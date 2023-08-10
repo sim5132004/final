@@ -19,14 +19,14 @@ public class TestController {
 
     @GetMapping("/")
     public String home(){
-        return "redirect:/test";
+        return "redirect:/home";
     }
 
-    @GetMapping("test")
+    @GetMapping("home")
     public String test(Model model){
         List<Test> testList = testInterface.findAll();
         log.info("test] "+testList);
-        return "test";
+        return "home";
     }
 
 

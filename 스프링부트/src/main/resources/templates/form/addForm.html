@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h2>상품 등록 폼</h2>
+    </div>
+<!-- th:object="${item}" 추가 -->
+    <form action="item.html" th:action th:object="${item}" method="post">
+        <div>
+            <label for="itemName">상품명</label>
+<!-- before
+            <input type="text" id="itemName" name="itemName" class="formcontrol" placeholder="이름을 입력하세요">
+-->
+<!-- th:field="*{itemName} <= 위 라인에 정의한 item과 매칭 item.itemName과 같음
+   th:field는 id, name, value 속성을 모두 자동으로 만들어준다.
+   name="itemName" 생략
+   id="itemName" 생략 <= 위 html의 lavel for에서 지정한 itemName이 없어서 빨간색으로 표시되지만 추후 자동생성되기 때문에 문제 없다.
+-->
+<!--  th:errorclass: 오류가 발생했을 때 오류메시지가 표시되는 필드에 'field-error' CSS 클래스를 추가하는데 사용  -->
+            <input type="text"  th:field="*{itemName}" th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
+<!-- th:errors: 유효성에 문제가 있는 경우 동적으로 에러 내용 화면 표시 -->
+            <div class="field-error" th:errors="*{itemName}">상품명 오류</div>
+        </div>
+        <div>
+            <label for="price">가격</label>
+<!-- 변경 -->
+            <input type="text" th:field="*{price}" th:errorclass="field-error" class="form-control" placeholder="가격을 입력하세요">
+            <div class="field-error" th:errors="*{price}">가격 오류</div>
+        </div>
+        <div>
+            <label for="quantity">수량</label>
+<!-- 변경 -->
+            <input type="text" th:field="*{quantity}" th:errorclass="field-error" class="form-control" placeholder="수량을 입력하세요">
+            <div class="field-error" th:errors="*{quantity}">수량 오류</div>
+        </div>
+
+        <hr class="my-4">
+<!-- 추가 -->
+        <div>판매 여부</div>
+        <div>
+            <div class="form-check">
+                <input type="checkbox" th:field="*{open}" class="form-check-input">
+                <input type="hidden" name="_open" value="on"/>
+                <label for="open" class="form-check-label">판매 오픈</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">상품 등록</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"
+                        onclick="location.href='items.html'"
+                        th:onclick="|location.href='@{/form/items}'|"
+                        type="button">취소</button>
+            </div>
+        </div>
+
+    </form>
+
+</div> <!-- /container -->
+</body>
+</html>
