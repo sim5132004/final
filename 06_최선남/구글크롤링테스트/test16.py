@@ -29,7 +29,7 @@ for search_query in search_queries:
     driver.get(url)
 
     # 페이지 수 반복
-    for page_num in range(5):
+    for page_num in range(2):
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
 

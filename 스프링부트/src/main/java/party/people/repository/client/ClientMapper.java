@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ClientMapper {
 
     // 회원 가입
-    Client save(Client client);
+    void save(Client client);
 
     // 전체 조회
     List<Client> findAll();

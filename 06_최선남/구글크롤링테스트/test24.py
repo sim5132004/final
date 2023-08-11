@@ -68,6 +68,7 @@ for search_query in search_queries:
 
                 except NoSuchElementException:
                     print(f"링크 {link_address}에서 내용을 찾을 수 없습니다.")
+                    pass
 
                 driver.close()  # 현재 창 닫기
                 driver.switch_to.window(original_window)  # 원래 창으로 전환
