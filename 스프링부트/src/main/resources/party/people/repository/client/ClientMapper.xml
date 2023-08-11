@@ -10,7 +10,7 @@
             SELECT client_seq.NEXTVAL FROM DUAL
         </selectKey>
         INSERT INTO client (sequenceid, clientid, password, clientemail, keyword)
-        VALUES (#{sequenceId}, #{clientId}, #{password}, #{clientEmail}, '')
+        VALUES (#{sequenceId}, #{clientId}, #{password}, #{clientEmail}, #{keyword})
     </insert>
 
     <!-- 전체 검색 -->

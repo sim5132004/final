@@ -1,4 +1,4 @@
-package party.people.web.controller;
+package party.people.web.controller.main;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,22 +13,23 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class TestController {
-
+public class HomeController {
+    /* DB 접속 확인용 인터페이스*/
     private final TestInterface testInterface;
 
+    /* index를 home으로 */
     @GetMapping("/")
-    public String home(){
+    public String redirectHome(){
         return "redirect:/home";
     }
 
+    /* home */
     @GetMapping("home")
-    public String test(Model model){
-        List<Test> testList = testInterface.findAll();
-        log.info("test] "+testList);
+    public String home(Model model){
+        /* Oracle 데이터베이스 연결 확인 */
+        List<Test> test = testInterface.findAll();
+        log.info("home] "+test);
         return "home";
     }
-
-
 
 }
