@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link href="../css/bootstrap.min.css"
+        th:href="@{/css/bootstrap.min.css}"
+        rel="stylesheet">
+  <style>
+    .container {
+      max-width: 560px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="py-5 text-center">
+    <h2>회원 상세페이지</h2>
+  </div>
+  <div>
+    <label for="loginid">회원 아이디</label>
+    <input type="text" th:field="${member.loginId}" class="form-control"
+           readonly>
+  </div>
+  <div>
+    <label for="name">이름</label>
+    <input type="text" th:field="${member.name}" class="form-control" readonly>
+  </div>
+
+  <hr class="my-4">
+
+    <div class="col">
+      <button class="w-100 btn btn-secondary btn-lg"
+              onclick="location.href='loginForm.html'"
+              th:onclick="|location.href='@{login}'|"
+              type="button">목록으로</button>
+    </div>
+  </div>
+</div> <!-- /container -->
+</body>
+</html>
