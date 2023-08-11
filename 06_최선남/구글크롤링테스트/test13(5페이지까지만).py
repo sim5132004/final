@@ -19,7 +19,7 @@ driver.get(url)
 
 # CSV 파일에 데이터를 저장하는 함수
 def save_data_to_csv(data_list, output_file):
-    with open(output_file, 'w', encoding='utf-8', newline='') as f:
+    with open(output_file, 'w', encoding='utf-8-sig', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['검색어', '내용'])
         for data in data_list:
@@ -28,7 +28,7 @@ def save_data_to_csv(data_list, output_file):
 data_list = []
 
 # 페이지 수 반복
-for page_num in range(5):  # 크롤링할 페이지 수 (5페이지 까지)
+for page_num in range(2):  # 크롤링할 페이지 수 (5페이지 까지)
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
 
