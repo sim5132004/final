@@ -21,9 +21,24 @@ tstroy_main_se='#content > div > div:nth-child(1)'
 
 all_data = {}
 count = 0
+
+
+def str_c(a):
+    sstr = str(a).replace('\n', '')
+
+
+    sstr = sstr.replace('[', '')
+    sstr = sstr.replace(']', '')
+    sstr = sstr.replace('"', '')
+    sstr = sstr.replace("'", '')
+    sstr = sstr.replace('\\n', '')
+    return sstr
+
+
+
 # json_string = first_list[0]
 # json.loads(json_string)
-for name_list in t[:100]:
+for name_list in t[151:201]:
     count2 = 0
     names = json.loads(name_list)
 
@@ -48,13 +63,14 @@ for name_list in t[:100]:
             driver.switch_to.parent_frame()
 
         sleep(1)
-        all_data[f'{[count]}{count2}'] = contents
+        st = str_c(contents)
+        all_data[f'{[count]}{count2}'] = st
 
         print(contents)
         count2 += 1
     count += 1
 
-with open('data.csv', 'w',encoding='utf-8') as f:
+with open('data3.csv', 'w',encoding='utf-8') as f:
     f.write(str(all_data))
 
 # df=pd.DataFrame(all_data)
