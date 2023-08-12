@@ -15,7 +15,7 @@ wait = WebDriverWait(driver, 10)
 base_url = 'https://www.google.com/search?q='
 
 # 엑셀 파일 경로 입력
-excel_file_path = '인천광역시_인천투어_관광지 리스트_현황(준최종).xlsx'
+excel_file_path = '관광.xlsx'
 
 # 엑셀 파일에서 "제목" 열 읽어오기
 excel_data = pd.read_excel(excel_file_path)
@@ -31,7 +31,7 @@ for search_query in search_queries:
     original_window = driver.current_window_handle  # 현재 창 핸들 저장
 
     # 페이지 수 반복
-    for page_num in range(5):
+    for page_num in range(1):
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
 
@@ -46,7 +46,7 @@ for search_query in search_queries:
 
                 try:
                     wait.until(
-                        EC.visibility_of_element_located((By.TAG_NAME, 'body')))
+                        EC.visibility_of_element_located((By.XPATH, 'body')))
 
                     # 새 창의 내용을 읽어옴
                     page_html = driver.page_source

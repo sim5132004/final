@@ -1,3 +1,4 @@
+import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
@@ -5,7 +6,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import csv
-import pandas as pd
 
 # 웹 드라이버 설정
 driver = webdriver.Chrome('chromedriver')  # 드라이버 경로
@@ -29,7 +29,7 @@ for search_query in search_queries:
     driver.get(url)
 
     # 페이지 수 반복
-    for page_num in range(1):
+    for page_num in range(2):  # 크롤링할 페이지 수 (5페이지 까지)
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
 
@@ -43,7 +43,7 @@ for search_query in search_queries:
                 driver.switch_to.window(driver.window_handles[1])  # 새로 열린 창으로 전환
 
                 try:
-                    wait.until(EC.presence_of_element_located((By.XPATH, 'body')))  # body가 로드될 때까지 대기
+                    wait.until(EC.presence_of_element_located((By.TAG_NAME, 'body')))  # body가 로드될 때까지 대기
                     page_html = driver.page_source
                     page_soup = BeautifulSoup(page_html, 'html.parser')
                     content = page_soup.find('body').text.strip()  # body의 내용 추출
@@ -75,7 +75,7 @@ if not data_list:
     print("내용을 찾을 수 없습니다.")
 else:
     # 데이터를 CSV 파일에 저장
-    output_file = 'google_search_contents_from_excel.csv'
+    output_file = '구글크롤링.csv'
     with open(output_file, 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['검색어', '내용'])

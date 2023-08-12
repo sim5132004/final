@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, UnexpectedAlertPresentException, \
+    NoAlertPresentException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,7 +10,7 @@ import pandas as pd
 
 # 웹 드라이버 설정
 driver = webdriver.Chrome('chromedriver')  # 드라이버 경로
-wait = WebDriverWait(driver, 20)
+wait = WebDriverWait(driver, 30)
 
 # 구글 검색 페이지 URL
 base_url = 'https://www.google.com/search?q='
@@ -28,6 +29,8 @@ for search_query in search_queries:
     url = base_url + search_query
     driver.get(url)
 
+    original_window = driver.current_window_handle  # 현재 창 핸들 저장
+
     # 페이지 수 반복
     for page_num in range(1):
         html = driver.page_source
@@ -43,20 +46,40 @@ for search_query in search_queries:
                 driver.switch_to.window(driver.window_handles[1])  # 새로 열린 창으로 전환
 
                 try:
-                    wait.until(EC.presence_of_element_located((By.XPATH, 'body')))  # body가 로드될 때까지 대기
+                    # 새 창이 로딩될 때까지 최대 20초까지 대기
+                    wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'body')))
+
+                    # 새 창의 내용을 읽어옴
                     page_html = driver.page_source
                     page_soup = BeautifulSoup(page_html, 'html.parser')
                     content = page_soup.find('body').text.strip()  # body의 내용 추출
+
                     data = {
                         'search_query': search_query,
                         'content': content
                     }
                     data_list.append(data)
-                except (TimeoutException, NoSuchElementException):
-                    print(f"링크 {link_address}에서 내용을 가져오지 못했습니다.")
+
+                except TimeoutException:
+                    print(f"링크 {link_address}에서 시간이 오래 걸려 건너뜁니다.")
+                    driver.close()  # 현재 창 닫기
+                    driver.switch_to.window(original_window)  # 원래 창으로 전환
+                    continue  # 다음 링크로 이동
+
+                except NoSuchElementException:
+                    print(f"링크 {link_address}에서 내용을 찾을 수 없습니다.")
+                    pass
+
+                except UnexpectedAlertPresentException:
+                    print(f"링크 {link_address}에서 Alert 창이 발생했습니다. 처리합니다.")
+                    try:
+                        alert = driver.switch_to.alert
+                        alert.accept()  # Alert 창 확인 버튼 클릭
+                    except NoAlertPresentException :
+                        pass
 
                 driver.close()  # 현재 창 닫기
-                driver.switch_to.window(driver.window_handles[0])  # 원래 창으로 전환
+                driver.switch_to.window(original_window)  # 원래 창으로 전환
 
         try:
             # 클릭할 다음 버튼 찾기
@@ -75,7 +98,7 @@ if not data_list:
     print("내용을 찾을 수 없습니다.")
 else:
     # 데이터를 CSV 파일에 저장
-    output_file = 'google_search_contents_from_excel.csv'
+    output_file = '구글크롤링.csv'
     with open(output_file, 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['검색어', '내용'])
