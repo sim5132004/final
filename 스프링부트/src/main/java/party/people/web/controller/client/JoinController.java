@@ -64,7 +64,7 @@ public class JoinController {
         }
 
 
-        /* 체크리스트 키워드를 keyword에 추가 */
+        /* 체크리스트 키워드를 client 객체 keyword에 추가 */
         client.setKeyword(regionKeywords);
         log.info("클라이언트 객체 확인 "+client);
 
