@@ -21,19 +21,24 @@ public class JoinController {
 
     private final ClientInterface clientInterface;
 
+    /* 회원가입 페이지로 연결 */
     @GetMapping("/join")
+    /* client 객체는 Validation 검증용으로 전송해야 에러 안 뜸 */
+    /* thymeleaf단에서 th:object로 client를 받기 때문으로 추정됨.. */
     public String joinForm(Client client, Model model){
         /* 체크 박스 메서드(최하단(메서드이름 컨트롤 클릭도 가능)에서 메서드 확인 가능) */
         /* 요약 : 체크박스 리스트를 thymeleaf단에 제공 */
         checkbox(model);
-        log.info("joinForm] "+client);
-
         return "client/join";
     }
 
 
-
+    /* 회원가입 페이지에서 회원가입 클릭시 기능 수행 */
     @PostMapping("/join")
+    /* @Valid => Valid 어노테이션 적용 */
+    /* BindingResult => 오류메세지를 타임리프단에 전달 */
+    /* RequestedParam => 체크박스 리스트 선택결과를 리스트로 가져오기,
+       requird=false는 해당 list가 null일 경우 에러메시지 방지 */
     public String join(@Valid @ModelAttribute Client client, BindingResult bindingResult, Model model,
                        @RequestParam(value = "selectedItems", required = false) List<String> selectedItems){
 
@@ -44,6 +49,7 @@ public class JoinController {
         /* 체크리스트를 키워드에 담을 빈 변수 생성 */
         String regionKeywords = "";
         int count = 0;
+        /* 체크리스트가 null이 아닐 경우에만 기능수행(에러 방지) */
         if (selectedItems!=null) {
             /* 체크박스 선택된 리스트를 위 변수에 입력 */
             for (String regionKeyword : selectedItems) {
@@ -90,6 +96,7 @@ public class JoinController {
     }
 
     /* 체크박스 메서드화 */
+    /* GetMapping, PostMapping에서 모두 사용하기 때문에 중복 방지용으로 메서드로 만듬 */
     private static void checkbox(Model model) {
         /* CHECKBOX리스트를 동적 생성하기 위한 리스트 생성 */
         List<String> regionCheckbox = Arrays.asList("연수구","남동구","부평구","계양구","서구","동구","중구","미추홀구","강화군","옹진군");

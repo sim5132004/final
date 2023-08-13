@@ -1,4 +1,4 @@
-package party.people.web.controller.login;
+package party.people.web.controller.client;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
