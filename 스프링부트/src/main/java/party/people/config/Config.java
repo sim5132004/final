@@ -19,17 +19,19 @@ public class Config {
     private final ClientMapper clientMapper;
 
 
-
+    /* DB접속 TEST용 BEAN */
     @Bean
     public TestInterface testInterface(){
         return new TestRepository(testMapper);
     }
 
+    /* 회원관리용 BEAN */
     @Bean
     public ClientInterface clientInterface(){
         return new ClientRepository(clientMapper);
     }
 
+    /* 로그인용 BEAN -> 클라이언트 인터페이스와 연결 */
     @Bean
     public LoginInterface loginInterface(){
         return new LoginService(clientInterface());

@@ -13,12 +13,14 @@ import java.util.Optional;
 @Slf4j
 public class ClientRepository implements ClientInterface{
 
+    /* DB에서 가져오기 위해 Mapper 이용 */
     private final ClientMapper clientMapper;
 
+    /* 이하 인터페이스에서 가져온 기능을 Mapper에 위임 */
+
     @Override
-    public Client save(Client client) {
+    public void save(Client client) {
         clientMapper.save(client);
-        return client;
     }
 
     @Override
@@ -35,6 +37,11 @@ public class ClientRepository implements ClientInterface{
     public Optional<Client> findByClientId(String clientId) {
         log.info("findByClientId] "+clientId);
         return clientMapper.findByClientId(clientId);
+    }
+
+    @Override
+    public Optional<Client> findByClientEmail(String clientEmail) {
+        return Optional.empty();
     }
 
     @Override

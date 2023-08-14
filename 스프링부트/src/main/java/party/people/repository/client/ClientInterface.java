@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface ClientInterface {
 
     // 회원 가입
-    Client save(Client client);
+    void save(Client client);
 
     // 전체 조회
     List<Client> findAll();
@@ -16,8 +16,11 @@ public interface ClientInterface {
     // 시퀀스 아이디로 찾기
     Optional<Client> findBySequenceId(Long sequenceId);
 
-    // 고객 아이디로 찾기
+    // 고객 아이디로 찾기(아이디 중복 검사용)
     Optional<Client> findByClientId(String clientId);
+
+    // Email로 찾기(이메일 중복 검사용)
+    Optional<Client> findByClientEmail(String clientEmail);
 
     // 비밀 번호 찾기(고객 아이디, 이메일 이용)
     Optional<Client> findPassword(String clientId, String clientEmail);
