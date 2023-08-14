@@ -5,6 +5,7 @@ import time
 import pandas as pd
 from time import sleep
 import json
+import re
 
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -32,13 +33,22 @@ def str_c(a):
     sstr = sstr.replace('"', '')
     sstr = sstr.replace("'", '')
     sstr = sstr.replace('\\n', '')
+    sstr = re.sub(r'[!@#$%^&*(),.?":{}|<>]', '', sstr)
+
+
     return sstr
 
 
+with open('search_list.txt', 'r') as f:
+    search_list = f.read()
+    f.close()
+
+search_list=search_list.split('\n')
 
 # json_string = first_list[0]
 # json.loads(json_string)
-for name_list in t[600:700]:
+
+for name_list in t[:1]:
     count2 = 0
     names = json.loads(name_list)
 
@@ -70,8 +80,9 @@ for name_list in t[600:700]:
         count2 += 1
     count += 1
 
-with open('data5.csv', 'w',encoding='utf-8') as f:
-    f.write(str(all_data))
+with open('test_json.json', 'w') as f:
+    json.dump(all_data,f)
+    # f.write(str(all_data))
 
 # df=pd.DataFrame(all_data)
 
