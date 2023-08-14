@@ -33,11 +33,18 @@
         where clientid=#{clientId}
     </select>
 
+    <!-- 고객 이메일로 검색 -->
+    <select id="findByClientEmail" resultType="client">
+        select *
+        from client
+        where clientEmail=#{clientEmail}
+    </select>
+
     <!-- 비밀번호 검색(아이디, 이메일 이용) -->
     <select id="findPassword" resultType="client">
         select *
         from client
-        where sequenceid=#{clientId} and clientEmail=#{clientEmail}
+        where clientid=#{clientId} and clientEmail=#{clientEmail}
     </select>
 
     <!-- 내 정보 수정 -->
