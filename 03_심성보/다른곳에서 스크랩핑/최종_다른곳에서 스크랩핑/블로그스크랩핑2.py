@@ -21,7 +21,7 @@ se2='#post-view222482771948 > div'
 tstroy_main_se='#content > div > div:nth-child(1)'
 
 all_data = {}
-count = 0
+
 
 
 # 특수문자 제거 정규식
@@ -42,8 +42,8 @@ with open('search_list.txt', 'r') as f:
     f.close()
 search_list_s=search_list.split('\n')
 print(search_list_s)
-
-for counting in range(9):
+count = 5
+for counting in range(5,9):
     counting_ck=counting*100
     # if counting_ck > 783:
         # counting_ck=782
@@ -76,9 +76,9 @@ for counting in range(9):
             st = str_c(contents)
             try:
               # contents=f'{search_list_s[count]}{count2}'
-              print(f'{count}')
-            # st = str_c(contents)
-              all_data[f'{search_list_s[count]}{count2}'] = contents
+                print(f'{count}')
+                st = str_c(contents)
+                all_data[f'{search_list_s[count]}{count2}'] = st
             except:
                 print('종료')
                 continue

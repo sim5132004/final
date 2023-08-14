@@ -4,7 +4,8 @@ import pandas as pd
 
 
 # JSON 파일에서 데이터 불러오기
-file_path = "test_json.json"
+file_path = "save_json[0].json"
+
 with open(file_path, "r") as json_file:
     loaded_data = json.load(json_file)
 
