@@ -38,7 +38,7 @@ def str_c(a):
 
 # json_string = first_list[0]
 # json.loads(json_string)
-for name_list in t[151:201]:
+for name_list in t[600:700]:
     count2 = 0
     names = json.loads(name_list)
 
@@ -70,7 +70,7 @@ for name_list in t[151:201]:
         count2 += 1
     count += 1
 
-with open('data3.csv', 'w',encoding='utf-8') as f:
+with open('data5.csv', 'w',encoding='utf-8') as f:
     f.write(str(all_data))
 
 # df=pd.DataFrame(all_data)
