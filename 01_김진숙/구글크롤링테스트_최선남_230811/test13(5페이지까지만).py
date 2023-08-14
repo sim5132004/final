@@ -19,12 +19,12 @@ driver.get(url)
 
 # CSV 파일에 데이터를 저장하는 함수
 def save_data_to_csv(data_list, output_file):
-    with open(output_file, 'w', encoding='utf-8', newline='') as f:
+    with open(output_file, 'w', encoding='utf-8-sig', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(['검색어', '내용'])
         for data in data_list:
             writer.writerow([data['search_query'], data['content']])
-
+230811_최선남_구글크롤링 작업소스파일 복붙
 data_list = []
 
 # 페이지 수 반복
