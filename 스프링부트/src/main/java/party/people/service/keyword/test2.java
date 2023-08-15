@@ -5,12 +5,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class test {
+public class test2 {
     public static void main(String[] args) {
         // 리스트 형식으로 키워드 값을 가져올 시 어떻게 개수 체크를 할 것인가
         List<String>keyword = new ArrayList<>();
-        // () 가로형식 정규식 테스트
-        keyword.add("낮잠(3), 여름(4),부평구(2)");
+        // KEYWORD/개수 형식 체크
+        keyword.add("낮잠/3,여름/4,부평구/2");
 
         // 첫번째 테스트 해시맵으로 해보자!
         Map<String, Integer>mapKeyword = new HashMap<>();
@@ -18,28 +18,22 @@ public class test {
         System.out.println("전체 리스트 : "+keyword.get(0));
         /* ,로 keyword를 하나 하나 쪼개서 리스트 재 생성 */
         List splitKeyword = Arrays.stream(keyword.get(0).split(",")).toList();
-        /* 쪼개진 키워드들을 정규식을 이용해 해시맵에 키워드를 키로 개수를 밸류로 입력*/
+        /* 쪼개진 키워드들을 이번엔 /의 인덱스를 이용해 해시맵에 키워드를 키로 개수를 밸류로 입력*/
         for (int index = 0; index < splitKeyword.size(); index++) {
-            /* 정규식 적용 대상 예) 낮잠(3) */
-            String regexTitle = splitKeyword.get(index).toString();
-            System.out.println("쪼개진 리스트 : "+regexTitle);
-            /* 정규식 한글만 추출 */
-            String regexTextPattern = "([가-힣]+)";
-            /* 정규식 숫자만 추출 */
-            String regexNumberPattern = "\\d+";
-            /* text는 한글, number는 숫자를 Pattern 객체로 생성 */
-            Pattern textPattern = Pattern.compile(regexTextPattern);
-            Pattern numberPattern = Pattern.compile(regexNumberPattern);
-            /* 생성한 객체에 적용대상 매개변수를 matcher함수에 입력 */
-            Matcher textMatcher = textPattern.matcher(regexTitle);
-            Matcher numberMatcher = numberPattern.matcher(regexTitle);
-            /* 매처에서 해당되는 영역을 찾기 */
-            textMatcher.find();
-            numberMatcher.find();
-            /* 각각 결과를 group()을 통해 result에 저장 */
-            String textResult = textMatcher.group();
-            int numberResult = Integer.parseInt(numberMatcher.group());
-            /* mapKeyword에 키와, 밸류를 각각 저장 */
+            /* List에 <> 제네릭을 적용하지 않았기 때문에 get 호출시 Object 자료형으로 호출 */
+            // 그래서 toString()으로 String으로 변환
+            // , 하고 띄어쓰기를 했을 경우에 대비해 strip() 글자 시작과 끝에 띄어쓰기가 있으면 제거 함수 사용
+            String Title = splitKeyword.get(index).toString().strip();
+            System.out.println("쪼개진 리스트 : "+Title);
+            // '/'의 인덱스를 찾아 divideCheckIndex에 저장
+            int divideCheckIndex = Title.indexOf("/");
+            // 시작부터 /의 인덱스 앞까지 substring으로 추출 -> substring(시작인덱스(포함),끝인덱스(미포함))
+            String textResult = Title.substring(0,divideCheckIndex);
+            // 체크인덱스의+1(/의 다음문자)부터 글자의 끝까지 substring으로 추출
+            // ex) "23"과 같은 스트링 자료형이므로 Integer.parseInt이용해 int형으로 변경
+            int numberResult = Integer.parseInt(Title.substring(divideCheckIndex+1, Title.length()));
+
+//            /* mapKeyword에 키와, 밸류를 각각 저장 */
             mapKeyword.put(textResult, numberResult);
         }
         System.out.println("맵으로 쪼갠결과"+mapKeyword);
@@ -54,6 +48,7 @@ public class test {
             System.out.println("Key: " + entry.getKey() + ", "
                     + "Value: " + entry.getValue());
         }
+
 
 
 

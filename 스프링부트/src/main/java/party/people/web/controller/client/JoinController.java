@@ -54,9 +54,9 @@ public class JoinController {
             /* 체크박스 선택된 리스트를 위 변수에 입력 */
             for (String regionKeyword : selectedItems) {
                 if (count == 0) {
-                    regionKeywords = regionKeywords + regionKeyword;
+                    regionKeywords = regionKeywords + regionKeyword+"/1";
                 } else {
-                    regionKeywords = regionKeywords + "," + regionKeyword;
+                    regionKeywords = regionKeywords + "," + regionKeyword+"/1";
                 }
                 count++;
             }
