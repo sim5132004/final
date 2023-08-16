@@ -10,7 +10,7 @@
 .header_wrap header{ position: relative; margin:0 auto; width: 100% }
 .header_wrap header .search_box{ position: absolute; top:1px; right:2% }
 
-.header_wrap header:after{ content:""; display: block; clear:both; }
+.header_wrap header:after{ content:""; display: block; clear:both;  }
 .header_wrap header h1{ width: 310px; text-align: center; letter-spacing: -1px; font:500 20px/40px 'Noto Sans KR', SansSerif; position: absolute; top: 0px; left: 0px; }
 .header_wrap header h1:hover{ color: #ed3135 }
 
