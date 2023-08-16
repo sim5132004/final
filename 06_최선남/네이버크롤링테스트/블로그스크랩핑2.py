@@ -42,7 +42,7 @@ with open('search_list.txt', 'r') as f:
     f.close()
 search_list_s=search_list.split('\n')
 # print(search_list_s)
-count = 5
+count = 500
 for counting in range(5,9):
     counting_ck=counting*100
     # if counting_ck > 783:
@@ -61,7 +61,6 @@ for counting in range(5,9):
             driver.get(url)
             sleep(1)
 
-            #     find_elements(By.CSS_SELECTOR)
 
             if url.find('naver') == -1:
                 x = driver.find_elements(By.CSS_SELECTOR, tstroy_main_se)
@@ -81,7 +80,6 @@ for counting in range(5,9):
             sleep(1)
             st = str_c(contents)
             try:
-              # contents=f'{search_list_s[count]}{count2}'
                 print(f'{count}')
                 st = str_c(contents)
                 all_data[f'{search_list_s[count]}{count2}'] = st

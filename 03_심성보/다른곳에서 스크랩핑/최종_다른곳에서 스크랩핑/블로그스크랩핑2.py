@@ -42,7 +42,7 @@ with open('search_list.txt', 'r') as f:
     f.close()
 search_list_s=search_list.split('\n')
 print(search_list_s)
-count = 5
+count = 500
 for counting in range(5,9):
     counting_ck=counting*100
     # if counting_ck > 783:
