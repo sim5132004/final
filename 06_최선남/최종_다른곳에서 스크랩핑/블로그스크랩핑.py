@@ -42,7 +42,7 @@ with open('search_list.txt', 'r') as f:
     f.close()
 search_list_s=search_list.split('\n')
 
-for counting in range(9):
+for counting in range(5,9):
     counting_ck=counting*100
     if counting == 8:
         counting_ck=(counting*100)-20
