@@ -41,7 +41,7 @@ with open('search_list.txt', 'r') as f:
     search_list = f.read()
     f.close()
 search_list_s=search_list.split('\n')
-print(search_list_s)
+# print(search_list_s)
 count = 5
 for counting in range(5,9):
     counting_ck=counting*100
@@ -51,6 +51,7 @@ for counting in range(5,9):
     all_data={}
     for name_list in t[0+int(counting_ck):100+int(counting_ck)]:
     # for name_list in t[577:]:
+    #     print(name_list)
         count2 = 0
         names = json.loads(name_list)
 
