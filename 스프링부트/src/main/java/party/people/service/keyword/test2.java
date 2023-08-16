@@ -48,9 +48,29 @@ public class test2 {
             System.out.println("Key: " + entry.getKey() + ", "
                     + "Value: " + entry.getValue());
         }
+        String newKeyword = "밤잠";
+        System.out.println(mapKeyword.get(newKeyword));
+        if (mapKeyword.get(newKeyword)==null){
+            mapKeyword.put(newKeyword,1);
+        } else {
+            mapKeyword.put(newKeyword,mapKeyword.get(newKeyword)+1);
+        }
 
+        System.out.println(mapKeyword.get(newKeyword));
 
+        System.out.println(mapKeyword.keySet().stream().toList().get(1));
+        System.out.println(mapKeyword.keySet());
+        System.out.println(mapKeyword.values().stream().toList().get(1));
+        System.out.println(mapKeyword.values());
 
+        List<String>goToDBKeyword = new ArrayList<>();
+        for (int i=0; i<mapKeyword.size(); i++){
+            String key = mapKeyword.keySet().stream().toList().get(i);
+            String num = mapKeyword.get(key).toString();
+
+            goToDBKeyword.add(key+"/"+num);
+        }
+        System.out.println(goToDBKeyword);
 
 
     }
