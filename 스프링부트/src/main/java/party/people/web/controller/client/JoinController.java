@@ -60,6 +60,7 @@ public class JoinController {
             bindingResult.rejectValue("clientId","clientId.invalid","해당 ID는 이미 존재합니다");
             return "client/join";
         }
+        log.info("중복검사에서 에러니?");
 
         /* 비밀번호, 비밀번호2 일치 확인 */
         Boolean pass = (client.getPassword()).equals(client.getPassword2());
@@ -67,6 +68,7 @@ public class JoinController {
             bindingResult.rejectValue("password2","password2.invalid","두 비밀번호가 일치하지 않습니다.");
             return "client/join";
         }
+        /* 여기서 에러니? */
 
         /* Validation 체크 => 밸리데이션 오류시 join페이지로 리턴 오류메시지(client domain 확인) 출력 */
         if(bindingResult.hasErrors()) {

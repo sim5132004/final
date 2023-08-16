@@ -50,7 +50,7 @@
     <!-- 내 정보 수정 -->
     <update id="update">
         update client
-        set password=#{clientUpdateParam.password},
+        set password=#{clientUpdateParam.password2},
             clientEmail=#{clientUpdateParam.clientEmail},
             keyword=#{clientUpdateParam.keyword}
         where clientid = #{clientId}

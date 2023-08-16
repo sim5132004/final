@@ -1,11 +1,9 @@
 package party.people.service.keyword;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class test2 {
+public class keywordToMapLogic {
     public static void main(String[] args) {
         String words = "낮잠/3,여름/4,부평구/2";
 
@@ -62,6 +60,7 @@ public class test2 {
 
     }
 
+    /* DB에서 넘어온 KEYWORD리스트(String 형식)를 MAP으로 변환하는 함수 */
     public static Map<String, Integer> keywordToMap(String words) {
         // 리스트 형식으로 키워드 값을 가져올 시 어떻게 개수 체크를 할 것인가
         List<String>keyword = new ArrayList<>();
@@ -70,8 +69,6 @@ public class test2 {
 
         // 첫번째 테스트 해시맵으로 해보자!
         Map<String, Integer>mapKeyword = new HashMap<>();
-
-        System.out.println("전체 리스트 : "+keyword.get(0));
         /* ,로 keyword를 하나 하나 쪼개서 리스트 재 생성 */
         List splitKeyword = Arrays.stream(keyword.get(0).split(",")).toList();
         /* 쪼개진 키워드들을 이번엔 /의 인덱스를 이용해 해시맵에 키워드를 키로 개수를 밸류로 입력*/
@@ -80,7 +77,6 @@ public class test2 {
             // 그래서 toString()으로 String으로 변환
             // , 하고 띄어쓰기를 했을 경우에 대비해 strip() 글자 시작과 끝에 띄어쓰기가 있으면 제거 함수 사용
             String Title = splitKeyword.get(index).toString().strip();
-            System.out.println("쪼개진 리스트 : "+Title);
             // '/'의 인덱스를 찾아 divideCheckIndex에 저장
             int divideCheckIndex = Title.indexOf("/");
             // 시작부터 /의 인덱스 앞까지 substring으로 추출 -> substring(시작인덱스(포함),끝인덱스(미포함))

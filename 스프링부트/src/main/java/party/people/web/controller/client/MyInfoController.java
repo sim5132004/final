@@ -18,7 +18,7 @@ import java.util.List;
 /* 각 클래스에서 만든 메서드 호출 */
 import static party.people.web.controller.client.JoinController.checkbox;
 import static party.people.web.controller.client.JoinController.makeKeywords;
-import static party.people.service.keyword.test2.keywordToMap;
+import static party.people.service.keyword.keywordToMapLogic.keywordToMap;
 
 @Controller
 @RequiredArgsConstructor
@@ -62,14 +62,28 @@ public class MyInfoController {
     public String myInfo(ClientUpdateDto clientUpdateParam, Model model, HttpServletRequest request,
                          @RequestParam(value = "selectedItems", required = false) List<String> selectedItems,
                          @Valid Client client, BindingResult bindingResult){
+        /* JoinController 참고(메서드 컨트롤 클릭으로 메서드 확인 가능) */
+        /* 요약 : 체크박스 동적 생성 메서드 */
+        checkbox(model);
+
         /* 기존 세션 정보 호출*/
         HttpSession loginInfo = request.getSession(false);
 
         /* 세션 정보 Client객체로 형변환 */
         Client loginClient = (Client) loginInfo.getAttribute("로그인");
 
+        /* 로그인한 사람의 keyword 호출 */
+        String keywords = loginClient.getKeyword();
+
+        /* keywordToMap 메서드 호출 service->keyword->test2 참고(메서드 컨트롤 클릭으로 메서드 확인 가능) */
+        /* 메서드로 호출된 맵에서 key값 목록만 List로 변환 */
+        List<String> selectedKey = keywordToMap(keywords).keySet().stream().toList();
+        model.addAttribute("selectedKey",selectedKey);
+
         log.info("세션에서 받아온 녀석 "+loginClient);
         log.info("html에서 받아온 녀석 "+clientUpdateParam);
+
+
         /* 체크리스트를 keyword화 해주는 메서드 호출 */
         /* JoinController 참고(메서드 컨트롤 클릭으로 메서드 확인 가능) */
         /* 요약 : 전달받은 리스트를 DB 약속한 형태로 변환 */
@@ -86,10 +100,18 @@ public class MyInfoController {
             clientUpdateParam.setKeyword("");
         }
 
-        /* 비밀번호, 비밀번호2 일치 확인 */
-        Boolean pass = (clientUpdateParam.getPassword()).equals(clientUpdateParam.getPassword2());
+        /* 기존 비밀번호 일치 확인*/
+        Boolean pass = loginClient.getPassword().equals(clientUpdateParam.getPassword());
         if (!pass){
-            bindingResult.rejectValue("password2","password2.invalid","두 비밀번호가 일치하지 않습니다.");
+            bindingResult.rejectValue("password","password.invalid","기존 비밀번호와 일치하지 않습니다.");
+            return "client/myInfo";
+        }
+
+        /* 비밀번호2, 비밀번호3 일치 확인 */
+        Boolean pass2 =(clientUpdateParam.getPassword2()).equals(clientUpdateParam.getPassword3());
+
+        if (!pass2){
+            bindingResult.rejectValue("password3","password3.invalid","새 비밀번호가 재확인 비밀번호와 일치하지 않습니다.");
             return "client/myInfo";
         }
 
