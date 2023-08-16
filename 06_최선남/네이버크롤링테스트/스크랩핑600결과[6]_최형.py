@@ -21,7 +21,7 @@ se2='#post-view222482771948 > div'
 tstroy_main_se='#content > div > div:nth-child(1)'
 
 all_data = {}
-count = 0
+
 
 
 # 특수문자 제거 정규식
@@ -41,11 +41,13 @@ with open('search_list.txt', 'r') as f:
     search_list = f.read()
     f.close()
 search_list_s=search_list.split('\n')
-
-for counting in range(9):
+print(search_list_s)
+count = 600
+for counting in range(6,7):
     counting_ck=counting*100
-    if counting == 8:
-        counting_ck=(counting*100)-20
+    # if counting_ck > 783:
+        # counting_ck=782
+    print(f'{counting_ck}\n\n\n\n\n\n')
     all_data={}
     for name_list in t[0+int(counting_ck):100+int(counting_ck)]:
         count2 = 0
@@ -54,34 +56,39 @@ for counting in range(9):
         for name in names['items']:
             print(f"{name['link']}")
             url = name['link']
-            # driver.get(url)
-            # sleep(1)
-            #
-            # #     find_elements(By.CSS_SELECTOR)
-            #
-            # if url.find('naver') == -1:
-            #     x = driver.find_elements(By.CSS_SELECTOR, tstroy_main_se)
-            #     contents = [element.text for element in x]
-            # else:
-            #     test_url = url.split('/')
-            #     naver_main_se = f'#post-view{test_url[4]} > div'
-            #     driver.switch_to.frame('mainFrame')
-            #     x = driver.find_elements(By.CSS_SELECTOR, naver_main_se)
-            #     contents = [element.text for element in x]
-            #     driver.switch_to.parent_frame()
-            #
-            # sleep(1)
-            # st = str_c(contents)
-            contents=f'{search_list_s[count]}{count2}'
-            print(f'{count}')
-            # st = str_c(contents)
-            all_data[f'{search_list_s[count]}{count2}'] = contents
+            driver.get(url)
+            sleep(1)
+
+            #     find_elements(By.CSS_SELECTOR)
+
+            if url.find('naver') == -1:
+                x = driver.find_elements(By.CSS_SELECTOR, tstroy_main_se)
+                contents = [element.text for element in x]
+            else:
+                test_url = url.split('/')
+                naver_main_se = f'#post-view{test_url[4]} > div'
+                driver.switch_to.frame('mainFrame')
+                x = driver.find_elements(By.CSS_SELECTOR, naver_main_se)
+                contents = [element.text for element in x]
+                driver.switch_to.parent_frame()
+
+            sleep(1)
+            st = str_c(contents)
+            try:
+              # contents=f'{search_list_s[count]}{count2}'
+                print(f'{count}')
+                st = str_c(contents)
+                all_data[f'{search_list_s[count]}{count2}'] = st
+            except:
+                print('종료')
+                continue
 
             print(contents)
             count2 += 1
         count += 1
     with open(f'save_json[{counting}].json', 'w') as f:
         json.dump(all_data, f)
+        print('저장완료')
 
 
 
