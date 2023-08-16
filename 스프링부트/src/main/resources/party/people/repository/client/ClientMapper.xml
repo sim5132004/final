@@ -51,7 +51,8 @@
     <update id="update">
         update client
         set password=#{clientUpdateParam.password},
-            email=#{clientUpdateParam.clientEmail}
+            clientEmail=#{clientUpdateParam.clientEmail},
+            keyword=#{clientUpdateParam.keyword}
         where clientid = #{clientId}
     </update>
 

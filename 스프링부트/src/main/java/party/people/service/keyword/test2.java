@@ -7,10 +7,66 @@ import java.util.stream.Collectors;
 
 public class test2 {
     public static void main(String[] args) {
+        String words = "낮잠/3,여름/4,부평구/2";
+
+        /* DB에서 가져온 키워드를 Map으로 전환하는 메서드 사용 */
+        Map<String, Integer> mapKeyword = keywordToMap(words);
+
+
+        System.out.println("맵으로 쪼갠결과"+mapKeyword);
+        System.out.println(mapKeyword.size());
+
+        System.out.println("키값으로 내림차순 정렬결과");
+        // Stream과 map.Entry를 이용하면 정렬도 된다!
+        List<Map.Entry<String, Integer>> entries = mapKeyword.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+        for (Map.Entry<String, Integer> entry : entries) {
+            System.out.println("Key: " + entry.getKey() + ", "
+                    + "Value: " + entry.getValue());
+        }
+
+        /* 새로운 키워드가 들어오면 어떻게 처리할까 */
+        String newKeyword = "밤잠";
+        System.out.println(mapKeyword.get(newKeyword));
+        /* keyword가 null 없으면 맵에 키를 추가하고 카운트에 1 */
+        if (mapKeyword.get(newKeyword)==null){
+            mapKeyword.put(newKeyword,1);
+        /* keyword가 존재한다면 해당 키워드 카운트에 +1 */
+        } else {
+            mapKeyword.put(newKeyword,mapKeyword.get(newKeyword)+1);
+        }
+
+        System.out.println(mapKeyword.get(newKeyword));
+
+        System.out.println(mapKeyword.keySet().stream().toList().get(1));
+        System.out.println(mapKeyword.keySet());
+        System.out.println(mapKeyword.values().stream().toList().get(1));
+        System.out.println(mapKeyword.values());
+
+        /* 위의 프린트인에서 확인 결과 순서 이상 없음 */
+        /* 해쉬맵을 다시 리스트화 */
+        List<String>goToDBKeyword = new ArrayList<>();
+        for (int i=0; i<mapKeyword.size(); i++){
+            String key = mapKeyword.keySet().stream().toList().get(i);
+            String num = mapKeyword.get(key).toString();
+
+            /* 키워드에 넣기로 한 양식 적용 (KEYWORD/COUNT) */
+            goToDBKeyword.add(key+"/"+num);
+        }
+        System.out.println(goToDBKeyword);
+
+        /* DB에는 리스트를 넣을 수 없기 때문에 약속된 문자열로 투스트링! */
+        String goToDB = goToDBKeyword.toString().replace("[","").replace("]","");
+        System.out.println(goToDB);
+
+    }
+
+    public static Map<String, Integer> keywordToMap(String words) {
         // 리스트 형식으로 키워드 값을 가져올 시 어떻게 개수 체크를 할 것인가
         List<String>keyword = new ArrayList<>();
         // KEYWORD/개수 형식 체크
-        keyword.add("낮잠/3,여름/4,부평구/2");
+        keyword.add(words);
 
         // 첫번째 테스트 해시맵으로 해보자!
         Map<String, Integer>mapKeyword = new HashMap<>();
@@ -36,42 +92,6 @@ public class test2 {
 //            /* mapKeyword에 키와, 밸류를 각각 저장 */
             mapKeyword.put(textResult, numberResult);
         }
-        System.out.println("맵으로 쪼갠결과"+mapKeyword);
-        System.out.println(mapKeyword.size());
-
-        System.out.println("키값으로 내림차순 정렬결과");
-        // Stream과 map.Entry를 이용하면 정렬도 된다!
-        List<Map.Entry<String, Integer>> entries = mapKeyword.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toList());
-        for (Map.Entry<String, Integer> entry : entries) {
-            System.out.println("Key: " + entry.getKey() + ", "
-                    + "Value: " + entry.getValue());
-        }
-        String newKeyword = "밤잠";
-        System.out.println(mapKeyword.get(newKeyword));
-        if (mapKeyword.get(newKeyword)==null){
-            mapKeyword.put(newKeyword,1);
-        } else {
-            mapKeyword.put(newKeyword,mapKeyword.get(newKeyword)+1);
-        }
-
-        System.out.println(mapKeyword.get(newKeyword));
-
-        System.out.println(mapKeyword.keySet().stream().toList().get(1));
-        System.out.println(mapKeyword.keySet());
-        System.out.println(mapKeyword.values().stream().toList().get(1));
-        System.out.println(mapKeyword.values());
-
-        List<String>goToDBKeyword = new ArrayList<>();
-        for (int i=0; i<mapKeyword.size(); i++){
-            String key = mapKeyword.keySet().stream().toList().get(i);
-            String num = mapKeyword.get(key).toString();
-
-            goToDBKeyword.add(key+"/"+num);
-        }
-        System.out.println(goToDBKeyword);
-
-
+        return mapKeyword;
     }
 }
