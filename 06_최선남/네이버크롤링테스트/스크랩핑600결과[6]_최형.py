@@ -65,12 +65,17 @@ for counting in range(6,7):
                 x = driver.find_elements(By.CSS_SELECTOR, tstroy_main_se)
                 contents = [element.text for element in x]
             else:
-                test_url = url.split('/')
-                naver_main_se = f'#post-view{test_url[4]} > div'
-                driver.switch_to.frame('mainFrame')
-                x = driver.find_elements(By.CSS_SELECTOR, naver_main_se)
-                contents = [element.text for element in x]
-                driver.switch_to.parent_frame()
+                try:
+                    test_url = url.split('/')
+                    naver_main_se = f'#post-view{test_url[4]} > div'
+                    driver.switch_to.frame('mainFrame')
+                    x = driver.find_elements(By.CSS_SELECTOR, naver_main_se)
+                    contents = [element.text for element in x]
+                    driver.switch_to.parent_frame()
+                except:
+                    count2+=1
+                    continue
+
 
             sleep(1)
             st = str_c(contents)
