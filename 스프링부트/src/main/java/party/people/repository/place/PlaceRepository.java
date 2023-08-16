@@ -12,8 +12,10 @@ import java.util.List;
 @Slf4j
 public class PlaceRepository implements PlaceInterface{
 
+    /* DB에서 가져오기 위해 Mapper 이용 */
     private final PlaceMapper placeMapper;
 
+    /* 이하 인터페이스에서 가져온 기능을 Mapper에 위임 */
     @Override
     public List<Place> findAll() {
         return placeMapper.findAll();
@@ -22,6 +24,11 @@ public class PlaceRepository implements PlaceInterface{
     @Override
     public List<Place> findByCategory(String category) {
         return placeMapper.findByCategory(category);
+    }
+
+    @Override
+    public List<Place> findByTitle(String title) {
+        return placeMapper.findByTitle(title);
     }
 
     @Override

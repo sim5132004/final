@@ -12,6 +12,9 @@ public interface PlaceInterface {
     /* 해당 카테고리에 해당하는 리스트 불러오기 */
     List<Place>findByCategory(String category);
 
+    /* 해당 상호명에 해당하는 리스트 불러오기 */
+    List<Place>findByTitle(String title);
+
     /* 해당 키워드가 포함되어 있는 리스트 불러오기 */
     List<Place>findByKeyword(String keyword);
 

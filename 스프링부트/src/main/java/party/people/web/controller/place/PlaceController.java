@@ -21,7 +21,8 @@ public class PlaceController {
     public String placeForm(Model model){
         List<Place> findAll = placeInterface.findAll();
         List<Place> findCategory = placeInterface.findByCategory("레저");
-        log.info("placeForm] "+findCategory);
+        List<Place> findTitle = placeInterface.findByTitle("강화도");
+        log.info("placeForm] "+findTitle);
 
 
         return "place/placeTest";
