@@ -1,6 +1,7 @@
 package party.people.repository.client;
 
 import party.people.domain.Client;
+import party.people.web.controller.client.FindPwForm;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +24,7 @@ public interface ClientInterface {
     Optional<Client> findByClientEmail(String clientEmail);
 
     // 비밀 번호 찾기(고객 아이디, 이메일 이용)
-    Optional<Client> findPassword(String clientId, String clientEmail);
+    Optional<Client> findPassword(FindPwForm form);
 
     // 내 정보 수정
     void update(String clientId, ClientUpdateDto clientUpdateParam);

@@ -25,8 +25,12 @@
         <div class="col">
             <button class="btn btn-primary float-end"
                     onclick="location.href='addForm.html'"
-                    th:onclick="|location.href='@{/searchForm}'|"
-                    type="button">아이디 찾기</button>
+                    th:onclick="|location.href='@{/findId}'|"
+                    type="button" style="margin-left: 40px">아이디 찾기</button>
+            <button class="btn btn-primary float-end"
+                    onclick="location.href='addForm.html'"
+                    th:onclick="|location.href='@{/findPw}'|"
+                    type="button">비밀번호 찾기</button>
         </div>
     </div>
 

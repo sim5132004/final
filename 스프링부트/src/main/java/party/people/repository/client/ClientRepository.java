@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import party.people.domain.Client;
+import party.people.web.controller.client.FindPwForm;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,12 +42,12 @@ public class ClientRepository implements ClientInterface{
 
     @Override
     public Optional<Client> findByClientEmail(String clientEmail) {
-        return Optional.empty();
+        return clientMapper.findByClientEmail(clientEmail);
     }
 
     @Override
-    public Optional<Client> findPassword(String clientId, String clientEmail) {
-        return clientMapper.findPassword(clientId, clientEmail);
+    public Optional<Client> findPassword(FindPwForm form) {
+        return clientMapper.findPassword(form);
     }
 
     @Override

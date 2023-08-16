@@ -9,7 +9,8 @@ public class test {
     public static void main(String[] args) {
         // 리스트 형식으로 키워드 값을 가져올 시 어떻게 개수 체크를 할 것인가
         List<String>keyword = new ArrayList<>();
-        keyword.add("낮잠(3),여름(4),부평구(2)");
+        // () 가로형식 정규식 테스트
+        keyword.add("낮잠(3), 여름(4),부평구(2)");
 
         // 첫번째 테스트 해시맵으로 해보자!
         Map<String, Integer>mapKeyword = new HashMap<>();
