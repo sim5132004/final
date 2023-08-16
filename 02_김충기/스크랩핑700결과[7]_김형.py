@@ -49,7 +49,7 @@ for counting in range(7,8):
         # counting_ck=782
     print(f'{counting_ck}\n\n\n\n\n\n')
     all_data={}
-    for name_list in t[0+int(counting_ck):100+int(counting_ck)]:
+    for name_list in t[0+int(counting_ck):50+int(counting_ck)]:
         count2 = 0
         names = json.loads(name_list)
 

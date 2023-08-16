@@ -13,6 +13,7 @@ import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
 import party.people.repository.client.ClientUpdateDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /* 각 클래스에서 만든 메서드 호출 */
@@ -44,15 +45,22 @@ public class MyInfoController {
         /* 로그인한 사람의 keyword 호출 */
         String keywords = loginClient.getKeyword();
 
-        /* keywordToMap 메서드 호출 service->keyword->test2 참고(메서드 컨트롤 클릭으로 메서드 확인 가능) */
-        /* 메서드로 호출된 맵에서 key값 목록만 List로 변환 */
-        List<String> selectedKey = keywordToMap(keywords).keySet().stream().toList();
-        log.info("myInfoForm] "+selectedKey);
+        /* 키워드 정보가 null일 경우 처리, 안 하면 thymeleaf단에서 selectedKey가 Null이라 오류 발생 */
+        if (keywords!=null) {
+            /* keywordToMap 메서드 호출 service->keyword->test2 참고(메서드 컨트롤 클릭으로 메서드 확인 가능) */
+            /* 메서드로 호출된 맵에서 key값 목록만 List로 변환 */
+            List<String> selectedKey = keywordToMap(keywords).keySet().stream().toList();
+            log.info("myInfoForm] " + selectedKey);
+            /* 사용자가 선택한 정보만 체킹하기 위해 선택된 리스트 thymeleaf단에 전달 */
+            /* th:checked="${selectedKey.contains(item) ? 'checked' : null}"> */
+            /* 위와 같이 리스트에 존재하면 check, 존재하지 않으면 non-check */
+            model.addAttribute("selectedKey",selectedKey);
+        } else {
+            /* null일 경우 빈 리스트 생성 */
+            List<String>noneKey = new ArrayList<>();
+            model.addAttribute("selectedKey",noneKey);
+        }
         model.addAttribute("client", loginClient);
-        /* 사용자가 선택한 정보만 체킹하기 위해 선택된 리스트 thymeleaf단에 전달 */
-        /* th:checked="${selectedKey.contains(item) ? 'checked' : null}"> */
-        /* 위와 같이 리스트에 존재하면 check, 존재하지 않으면 non-check */
-        model.addAttribute("selectedKey",selectedKey);
 
         return "client/myInfo";
     }
