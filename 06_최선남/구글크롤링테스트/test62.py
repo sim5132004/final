@@ -11,7 +11,7 @@ CX = 'f3d1510f2ba7c43af'
 API_KEY = 'AIzaSyBrb_GNxcT5thFJS46soBtyV1VPk4XpJ60'
 
 # 엑셀 파일에서 "제목" 열 읽어오기
-excel_file_path = '관광수정.xlsx'  # 엑셀 파일 경로 설정
+excel_file_path = '인천광역시_인천투어_관광지 리스트_현황(준최종).xlsx.'  # 엑셀 파일 경로 설정
 excel_data = pd.read_excel(excel_file_path)
 search_queries = excel_data['제목'].tolist()
 
@@ -51,13 +51,19 @@ for search_query in search_queries:
                 response = requests.get(link, timeout=10)  # 설정한 시간 내에 응답이 없으면 건너뜀
                 response.raise_for_status()
                 soup = BeautifulSoup(response.content, 'html.parser')
-                content = soup.find('body').get_text().strip()  # body의 내용 추출
-                data = {
-                    'search_query': search_query,
-                    'content': content
-                }
-                data_list.append(data)
-                print(f"검색어: {search_query}, 수집 완료")
+
+                # body 태그가 없는 경우를 처리
+                body = soup.find('body')
+                if body:
+                    content = body.get_text().strip()  # body의 내용 추출
+                    data = {
+                        'search_query': search_query,
+                        'content': content
+                    }
+                    data_list.append(data)
+                    print(f"검색어: {search_query}, 수집 완료")
+                else:
+                    print(f"링크 {link}에서 body 태그가 없어서 건너뜁니다.")
             except requests.exceptions.Timeout:
                 print(f"링크 {link}에서 응답 시간 초과로 인해 건너뜁니다.")
             except requests.exceptions.RequestException as e:
@@ -68,7 +74,7 @@ for search_query in search_queries:
 
 # 데이터를 CSV 파일에 저장
 if data_list:
-    output_file = '제발저장되라슈발이거때문에삼일을날렸어개새끼야.csv'
+    output_file = '찢어죽이고_사지를분해시킬_구글크롤링.csv'
     save_data_to_csv(data_list, output_file)
     print(f'내용이 {output_file}에 저장되었습니다.')
 else:
