@@ -18,4 +18,7 @@ public interface PlaceInterface {
     /* 해당 키워드가 포함되어 있는 리스트 불러오기 */
     List<Place>findByKeyword(String keyword);
 
+    /* 주소로 검색 (ex) xx구로 검색 */
+    List<Place>findByAddress(String address);
+
 }

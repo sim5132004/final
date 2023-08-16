@@ -14,7 +14,9 @@ import party.people.repository.client.ClientInterface;
 import party.people.repository.client.ClientUpdateDto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /* 각 클래스에서 만든 메서드 호출 */
 import static party.people.web.controller.client.JoinController.checkbox;
@@ -49,7 +51,8 @@ public class MyInfoController {
         if (keywords!=null) {
             /* keywordToMap 메서드 호출 service->keyword->test2 참고(메서드 컨트롤 클릭으로 메서드 확인 가능) */
             /* 메서드로 호출된 맵에서 key값 목록만 List로 변환 */
-            List<String> selectedKey = keywordToMap(keywords).keySet().stream().toList();
+            Map<String, Integer>map = new HashMap<>();
+            List<String> selectedKey = keywordToMap(map, keywords).keySet().stream().toList();
             log.info("myInfoForm] " + selectedKey);
             /* 사용자가 선택한 정보만 체킹하기 위해 선택된 리스트 thymeleaf단에 전달 */
             /* th:checked="${selectedKey.contains(item) ? 'checked' : null}"> */
@@ -85,7 +88,8 @@ public class MyInfoController {
 
         /* keywordToMap 메서드 호출 service->keyword->test2 참고(메서드 컨트롤 클릭으로 메서드 확인 가능) */
         /* 메서드로 호출된 맵에서 key값 목록만 List로 변환 */
-        List<String> selectedKey = keywordToMap(keywords).keySet().stream().toList();
+        Map<String, Integer>map = new HashMap<>();
+        List<String> selectedKey = keywordToMap(map, keywords).keySet().stream().toList();
         model.addAttribute("selectedKey",selectedKey);
 
         log.info("세션에서 받아온 녀석 "+loginClient);

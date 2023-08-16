@@ -7,8 +7,10 @@ public class keywordToMapLogic {
     public static void main(String[] args) {
         String words = "낮잠/3,여름/4,부평구/2";
 
+        // 첫번째 테스트 해시맵으로 해보자!
+        Map<String, Integer>mapKeyword = new HashMap<>();
         /* DB에서 가져온 키워드를 Map으로 전환하는 메서드 사용 */
-        Map<String, Integer> mapKeyword = keywordToMap(words);
+        mapKeyword = keywordToMap(mapKeyword, words);
 
 
         System.out.println("맵으로 쪼갠결과"+mapKeyword);
@@ -26,14 +28,7 @@ public class keywordToMapLogic {
 
         /* 새로운 키워드가 들어오면 어떻게 처리할까 */
         String newKeyword = "밤잠";
-        System.out.println(mapKeyword.get(newKeyword));
-        /* keyword가 null 없으면 맵에 키를 추가하고 카운트에 1 */
-        if (mapKeyword.get(newKeyword)==null){
-            mapKeyword.put(newKeyword,1);
-        /* keyword가 존재한다면 해당 키워드 카운트에 +1 */
-        } else {
-            mapKeyword.put(newKeyword,mapKeyword.get(newKeyword)+1);
-        }
+        addNewKeyword(mapKeyword, newKeyword);
 
         System.out.println(mapKeyword.get(newKeyword));
 
@@ -43,9 +38,28 @@ public class keywordToMapLogic {
         System.out.println(mapKeyword.values());
 
         /* 위의 프린트인에서 확인 결과 순서 이상 없음 */
+        /* mapToString 메서드 참고 */
+        String goToDB = mapToString(mapKeyword);
+        System.out.println(goToDB);
+
+    }
+
+    /* 맵에 키워드 추가하는 메서드 */
+    public static void addNewKeyword(Map<String, Integer> mapKeyword, String newKeyword) {
+        /* keyword가 null 없으면 맵에 키를 추가하고 카운트에 1 */
+        if (mapKeyword.get(newKeyword)==null){
+            mapKeyword.put(newKeyword,1);
+        /* keyword가 존재한다면 해당 키워드 카운트에 +1 */
+        } else {
+            mapKeyword.put(newKeyword, mapKeyword.get(newKeyword)+1);
+        }
+    }
+
+    /* 맵을 DB에 넣을 수 있게 스트링화 */
+    public static String mapToString(Map<String, Integer> mapKeyword) {
         /* 해쉬맵을 다시 리스트화 */
         List<String>goToDBKeyword = new ArrayList<>();
-        for (int i=0; i<mapKeyword.size(); i++){
+        for (int i = 0; i< mapKeyword.size(); i++){
             String key = mapKeyword.keySet().stream().toList().get(i);
             String num = mapKeyword.get(key).toString();
 
@@ -56,19 +70,17 @@ public class keywordToMapLogic {
 
         /* DB에는 리스트를 넣을 수 없기 때문에 약속된 문자열로 투스트링! */
         String goToDB = goToDBKeyword.toString().replace("[","").replace("]","");
-        System.out.println(goToDB);
-
+        return goToDB;
     }
 
     /* DB에서 넘어온 KEYWORD리스트(String 형식)를 MAP으로 변환하는 함수 */
-    public static Map<String, Integer> keywordToMap(String words) {
+    public static Map<String, Integer> keywordToMap(Map<String, Integer>mapKeyword, String words) {
         // 리스트 형식으로 키워드 값을 가져올 시 어떻게 개수 체크를 할 것인가
         List<String>keyword = new ArrayList<>();
         // KEYWORD/개수 형식 체크
         keyword.add(words);
 
-        // 첫번째 테스트 해시맵으로 해보자!
-        Map<String, Integer>mapKeyword = new HashMap<>();
+
         /* ,로 keyword를 하나 하나 쪼개서 리스트 재 생성 */
         List splitKeyword = Arrays.stream(keyword.get(0).split(",")).toList();
         /* 쪼개진 키워드들을 이번엔 /의 인덱스를 이용해 해시맵에 키워드를 키로 개수를 밸류로 입력*/
@@ -86,7 +98,16 @@ public class keywordToMapLogic {
             int numberResult = Integer.parseInt(Title.substring(divideCheckIndex+1, Title.length()));
 
 //            /* mapKeyword에 키와, 밸류를 각각 저장 */
-            mapKeyword.put(textResult, numberResult);
+//            addNewKeyword(mapKeyword, textResult);
+            /* keyword가 null 없으면 맵에 키를 추가하고 카운트에 1 */
+            System.out.println(textResult+"숫자"+numberResult);
+            if (mapKeyword.get(textResult)==null){
+                mapKeyword.put(textResult,numberResult);
+                /* keyword가 존재한다면 해당 키워드 카운트에 +1 */
+            } else {
+                mapKeyword.put(textResult, mapKeyword.get(textResult)+numberResult);
+            }
+//            mapKeyword.put(textResult, numberResult);
         }
         return mapKeyword;
     }

@@ -12,6 +12,7 @@ import party.people.repository.place.PlaceRepository;
 import party.people.repository.test.TestInterface;
 import party.people.repository.test.TestMapper;
 import party.people.repository.test.TestRepository;
+import party.people.service.client.ClientKeywords;
 import party.people.service.login.LoginInterface;
 import party.people.service.login.LoginService;
 
@@ -39,6 +40,11 @@ public class Config {
     @Bean
     public LoginInterface loginInterface(){
         return new LoginService(clientInterface());
+    }
+
+    @Bean
+    public ClientKeywords clientKeywords() {
+        return new ClientKeywords(clientInterface());
     }
 
     /* Place 검색용 BEAN */
