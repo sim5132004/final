@@ -1,4 +1,4 @@
-package party.people.web.controller.client;
+package party.people.web.controller.client.formAndDto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

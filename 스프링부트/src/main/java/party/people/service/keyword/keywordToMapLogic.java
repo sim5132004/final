@@ -12,36 +12,49 @@ public class keywordToMapLogic {
         /* DB에서 가져온 키워드를 Map으로 전환하는 메서드 사용 */
         mapKeyword = keywordToMap(mapKeyword, words);
 
-
         System.out.println("맵으로 쪼갠결과"+mapKeyword);
         System.out.println(mapKeyword.size());
-
-        System.out.println("키값으로 내림차순 정렬결과");
-        // Stream과 map.Entry를 이용하면 정렬도 된다!
-        List<Map.Entry<String, Integer>> entries = mapKeyword.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toList());
-        for (Map.Entry<String, Integer> entry : entries) {
-            System.out.println("Key: " + entry.getKey() + ", "
-                    + "Value: " + entry.getValue());
-        }
 
         /* 새로운 키워드가 들어오면 어떻게 처리할까 */
         String newKeyword = "밤잠";
         addNewKeyword(mapKeyword, newKeyword);
 
-        System.out.println(mapKeyword.get(newKeyword));
+        System.out.println("키값으로 내림차순 정렬결과");
+        // Stream과 map.Entry를 이용하면 정렬도 된다!
+        /* mapToSortedString 내림차순 정렬 후 스트링 변환 */
+        String totalKeyword = mapToSortedString(mapKeyword);
+        System.out.println("정렬된 스트링"+totalKeyword);
 
-        System.out.println(mapKeyword.keySet().stream().toList().get(1));
-        System.out.println(mapKeyword.keySet());
-        System.out.println(mapKeyword.values().stream().toList().get(1));
-        System.out.println(mapKeyword.values());
-
-        /* 위의 프린트인에서 확인 결과 순서 이상 없음 */
-        /* mapToString 메서드 참고 */
+        /* mapToString 메서드 참고 => 비정렬 */
         String goToDB = mapToString(mapKeyword);
         System.out.println(goToDB);
 
+    }
+
+    /* 해시맵을 넣으면 해시맵 객체를 가진 리스트로 만들어 value값으로 내림차순 정렬 후 String으로 변환 */
+    public static String mapToSortedString(Map<String, Integer> mapKeyword) {
+        /* map을 entry를 이용해 value값으로 스트림 내림차순 정렬 후 맵 객체를 가진 리스트로 변환 */
+        List<Map.Entry<String, Integer>> entries = mapKeyword.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+        /* 스트링으로 추출하기위한 변수 생성 */
+        String totalKeyword = "";
+        /* 무제한으로 넣으면 DB용량 문제 발생 이유로 count 임시 생성 */
+        int count = 1;
+        /* map을 for문 사용해 string에 삽입 */
+        System.out.println(entries.size());
+        for (Map.Entry<String, Integer> entry : entries) {
+            if (count==1) {
+                totalKeyword = totalKeyword + entry.getKey() + "/" + entry.getValue();
+            } else{
+                totalKeyword = totalKeyword +","+ entry.getKey() + "/" + entry.getValue();
+            }
+            count++;
+            if (count==300){
+                break;
+            }
+        }
+        return totalKeyword;
     }
 
     /* 맵에 키워드 추가하는 메서드 */
@@ -97,10 +110,7 @@ public class keywordToMapLogic {
             // ex) "23"과 같은 스트링 자료형이므로 Integer.parseInt이용해 int형으로 변경
             int numberResult = Integer.parseInt(Title.substring(divideCheckIndex+1, Title.length()));
 
-//            /* mapKeyword에 키와, 밸류를 각각 저장 */
-//            addNewKeyword(mapKeyword, textResult);
             /* keyword가 null 없으면 맵에 키를 추가하고 카운트에 1 */
-            System.out.println(textResult+"숫자"+numberResult);
             if (mapKeyword.get(textResult)==null){
                 mapKeyword.put(textResult,numberResult);
                 /* keyword가 존재한다면 해당 키워드 카운트에 +1 */

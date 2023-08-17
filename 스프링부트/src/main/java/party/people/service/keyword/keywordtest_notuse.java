@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class test {
+public class keywordtest_notuse {
     public static void main(String[] args) {
         // 리스트 형식으로 키워드 값을 가져올 시 어떻게 개수 체크를 할 것인가
         List<String>keyword = new ArrayList<>();

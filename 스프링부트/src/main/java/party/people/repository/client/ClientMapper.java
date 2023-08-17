@@ -3,7 +3,8 @@ package party.people.repository.client;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import party.people.domain.Client;
-import party.people.web.controller.client.FindPwForm;
+import party.people.web.controller.client.formAndDto.ClientUpdateDto;
+import party.people.web.controller.client.formAndDto.FindPwForm;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,4 +32,7 @@ public interface ClientMapper {
 
     // 내 정보 수정
     void update(@Param("clientId") String clientId, @Param("clientUpdateParam") ClientUpdateDto clientUpdateParam);
+
+    /* 회원 탈퇴 */
+    void quit(Client client);
 }

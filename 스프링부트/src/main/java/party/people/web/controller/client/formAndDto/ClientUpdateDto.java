@@ -1,4 +1,4 @@
-package party.people.repository.client;
+package party.people.web.controller.client.formAndDto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
