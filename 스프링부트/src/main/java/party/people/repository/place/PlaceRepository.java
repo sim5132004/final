@@ -40,4 +40,9 @@ public class PlaceRepository implements PlaceInterface{
     public List<Place> findByAddress(String address) {
         return placeMapper.findByAddress(address);
     }
+
+    @Override
+    public List<Place> randon3() {
+        return placeMapper.randon3();
+    }
 }

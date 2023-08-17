@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
-import party.people.service.client.ClientKeywords;
+import party.people.service.keyword.KeywordsMerge;
 import party.people.service.login.LoginInterface;
+import party.people.web.controller.client.formAndDto.LoginForm;
 
 import java.util.List;
 
@@ -25,13 +26,11 @@ public class LoginController {
 
     private final LoginInterface loginInterface;
     private final ClientInterface clientInterface;
-    private final ClientKeywords clientKeywords;
+    private final KeywordsMerge keywordsMerge;
 
     /* Thymeleaf onclick:login 수행시 페이지 이동*/
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
-        String key = clientKeywords.keywords();
-        log.info("loginForm] "+key);
 
 
         return "login/loginForm";

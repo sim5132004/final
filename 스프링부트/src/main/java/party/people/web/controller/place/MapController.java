@@ -16,15 +16,25 @@ import java.util.List;
 public class MapController {
     private final PlaceInterface placeInterface;
 
+//    @GetMapping("map")
+//    public String map(Model model){
+//        List<Place> findAll = placeInterface.findAll();
+////        List<Place> findCategory = placeInterface.findByCategory("레저");
+////        List<Place> findTitle = placeInterface.findByTitle("강화도");
+////        log.info("placeForm] "+findTitle);
+//        model.addAttribute("map", findAll);
+//
+//        return "map";
+//    }
+
     @GetMapping("map")
-    public String map(Model model){
-        List<Place> findAll = placeInterface.findAll();
+    public String map2(Model model){
+        List<Place> random3 = placeInterface.randon3();
 //        List<Place> findCategory = placeInterface.findByCategory("레저");
 //        List<Place> findTitle = placeInterface.findByTitle("강화도");
 //        log.info("placeForm] "+findTitle);
-        model.addAttribute("map", findAll);
+        model.addAttribute("map", random3);
 
-        return "map";
+        return "map2";
     }
-
 }

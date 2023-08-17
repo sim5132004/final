@@ -23,4 +23,6 @@ public interface PlaceMapper {
     /* 주소로 검색 (ex) xx구로 검색 */
     List<Place>findByAddress(String address);
 
+    List<Place>randon3();
+
 }
