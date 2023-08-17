@@ -6,10 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import party.people.domain.Place;
 import party.people.repository.place.PlaceInterface;
 
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,6 +28,24 @@ public class PlaceController {
 
 
         return "place/placeTest";
+    }
+
+    @PostMapping("searchPlace")
+    public String searchPlace(@RequestParam("searchForm") String searchForm, Model model){
+        log.info("검색내용 "+ searchForm);
+        List<String>splitSearch = Arrays.stream(searchForm.split(" ")).toList();
+        List<Place>mergedResult = new ArrayList<>();
+        for (String one : splitSearch){
+            mergedResult.addAll(placeInterface.findByKeyword(one));
+            log.info("포문으로 개수 확인 " +mergedResult.size());
+        }
+        log.info("검색 결과 개수 "+mergedResult.size());
+        Set<Place> uniqueResult = new HashSet<>(mergedResult);
+        List<Place> resultWithoutDuplicates = new ArrayList<>(uniqueResult);
+        log.info("중복결과 제거 확인 " + resultWithoutDuplicates.size());
+        model.addAttribute("searchResult", resultWithoutDuplicates);
+
+        return "home";
     }
 
 }
