@@ -20,7 +20,8 @@ public class Client {
     private String password; /* CLIENT 비밀번호 */
     @NotBlank(message = "비밀번호는 필수 입력 사항입니다.")
     @Size(min=4, message = "비밀번호는 최소 4글자 이상이어야 합니다.")
-    private String password2;
+    private String password2; /* 회원가입시에는 일치 확인용 / 수정시에는 새로운 비밀번호 */
+    private String password3; /* 수정시에만 사용되는 새로운 비밀번호와 일치하는지 확인용 */
     @NotBlank
     @Email
     private String clientEmail; /* 고객 이메일 */

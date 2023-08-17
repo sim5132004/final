@@ -46,22 +46,8 @@ public class JoinController {
         /* 요약 : 체크박스 리스트를 thymeleaf단에 제공 */
         checkbox(model);
 
-        /* 체크리스트를 키워드에 담을 빈 변수 생성 */
-        String regionKeywords = "";
-        int count = 0;
-        /* 체크리스트가 null이 아닐 경우에만 기능수행(에러 방지) */
-        if (selectedItems!=null) {
-            /* 체크박스 선택된 리스트를 위 변수에 입력 */
-            for (String regionKeyword : selectedItems) {
-                if (count == 0) {
-                    regionKeywords = regionKeywords + regionKeyword+"/1";
-                } else {
-                    regionKeywords = regionKeywords + "," + regionKeyword+"/1";
-                }
-                count++;
-            }
-            log.info("체크리스트 확인 " + regionKeywords);
-        }
+        /* 받아온 체크 박스 정보 처리(최하단 확인) */
+        String regionKeywords = makeKeywords(selectedItems);
 
 
         /* 체크리스트 키워드를 client 객체 keyword에 추가 */
@@ -74,6 +60,7 @@ public class JoinController {
             bindingResult.rejectValue("clientId","clientId.invalid","해당 ID는 이미 존재합니다");
             return "client/join";
         }
+        log.info("중복검사에서 에러니?");
 
         /* 비밀번호, 비밀번호2 일치 확인 */
         Boolean pass = (client.getPassword()).equals(client.getPassword2());
@@ -81,6 +68,7 @@ public class JoinController {
             bindingResult.rejectValue("password2","password2.invalid","두 비밀번호가 일치하지 않습니다.");
             return "client/join";
         }
+        /* 여기서 에러니? */
 
         /* Validation 체크 => 밸리데이션 오류시 join페이지로 리턴 오류메시지(client domain 확인) 출력 */
         if(bindingResult.hasErrors()) {
@@ -95,9 +83,30 @@ public class JoinController {
 
     }
 
+    /* 체크박스 키워드를 DB에 담을 형식(keyword/count)으로 전환하는 메서드 */
+    public static String makeKeywords(List<String> selectedItems) {
+        /* 체크리스트를 키워드에 담을 빈 변수 생성 */
+        String regionKeywords = "";
+        int count = 0;
+        /* 체크리스트가 null이 아닐 경우에만 기능수행(에러 방지) */
+        if (selectedItems !=null) {
+            /* 체크박스 선택된 리스트를 위 변수에 입력 */
+            for (String regionKeyword : selectedItems) {
+                if (count == 0) {
+                    regionKeywords = regionKeywords + regionKeyword+"/1";
+                } else {
+                    regionKeywords = regionKeywords + "," + regionKeyword+"/1";
+                }
+                count++;
+            }
+            log.info("체크리스트 확인 " + regionKeywords);
+        }
+        return regionKeywords;
+    }
+
     /* 체크박스 메서드화 */
     /* GetMapping, PostMapping에서 모두 사용하기 때문에 중복 방지용으로 메서드로 만듬 */
-    private static void checkbox(Model model) {
+    public static void checkbox(Model model) {
         /* CHECKBOX리스트를 동적 생성하기 위한 리스트 생성 */
         List<String> regionCheckbox = Arrays.asList("연수구","남동구","부평구","계양구","서구","동구","중구","미추홀구","강화군","옹진군");
         /* 체크박스 LIST를 THYMELEAF단으로 전송 */

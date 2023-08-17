@@ -30,5 +30,5 @@ public interface ClientMapper {
     Optional<Client> findPassword(FindPwForm form);
 
     // 내 정보 수정
-    void update(String clientId, ClientUpdateDto clientUpdateParam);
+    void update(@Param("clientId") String clientId, @Param("clientUpdateParam") ClientUpdateDto clientUpdateParam);
 }
