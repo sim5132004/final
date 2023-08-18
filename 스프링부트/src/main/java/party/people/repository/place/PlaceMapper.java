@@ -1,6 +1,7 @@
 package party.people.repository.place;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import party.people.domain.Place;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public interface PlaceMapper {
 
     /* 주소로 검색 (ex) xx구로 검색 */
     List<Place>findByAddress(String address);
+
+    /* 키워드를 새로 갱신! */
+    void updateKeyword(@Param("title") String title, @Param("keyword") String keyword);
 
     List<Place>randon3();
 

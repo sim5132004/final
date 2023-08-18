@@ -21,6 +21,9 @@ public interface PlaceInterface {
     /* 주소로 검색 (ex) xx구로 검색 */
     List<Place>findByAddress(String address);
 
+    /* 키워드를 새로 갱신! */
+    void updateKeyword(String title,String keyword);
+
     List<Place>randon3();
 
 }

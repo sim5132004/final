@@ -42,6 +42,11 @@ public class PlaceRepository implements PlaceInterface{
     }
 
     @Override
+    public void updateKeyword(String title, String keyword) {
+        placeMapper.updateKeyword(title, keyword);
+    }
+
+    @Override
     public List<Place> randon3() {
         return placeMapper.randon3();
     }
