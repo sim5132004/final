@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import party.people.domain.Place;
 import party.people.repository.place.PlaceInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,11 +30,16 @@ public class MapController {
 
     @GetMapping("map")
     public String map2(Model model){
-        List<Place> random3 = placeInterface.randon3();
+        List<List<Place>> maps = new ArrayList<>();
+        for(int i = 0; i < 6; i++){
+            List<Place> random3 = placeInterface.randon3();
+            maps.add(random3);
+        }
+
 //        List<Place> findCategory = placeInterface.findByCategory("레저");
 //        List<Place> findTitle = placeInterface.findByTitle("강화도");
 //        log.info("placeForm] "+findTitle);
-        model.addAttribute("map", random3);
+        model.addAttribute("maps", maps);
 
         return "map2";
     }

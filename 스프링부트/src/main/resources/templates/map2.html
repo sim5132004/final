@@ -101,91 +101,103 @@
     //   실시간 교통량 표시
     map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
 
-    var df = /*[[${map}]]*/ []; // 타임리프 데이터를 자바스크립트로 가져옴
+    var colors  = ['#FF5733', '#6A33FF', '#33FF6E', '#FFC933', '#33C3FF', '#FF33C3'];
 
-    // 좌표와 다른 정보들을 받아옴
-    positions = [];
-    for (var i = 0; i < df.length; i++) {
-        var row = df[i];
-        positions.push({
-            id: row.id,
-            category: row.category,
-            title: row.title,
-            latlng: new kakao.maps.LatLng(row.latitude, row.longitude),
+    var maps = /*[[${maps}]]*/ [];
+    console.log(maps);
 
-        });
-    }
+    for(var a = 0; a < maps.length; a++){
 
-    // 마커 이미지
-    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-    var imageSize = new kakao.maps.Size(24, 35);
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+        var df = maps[a]; // 타임리프 데이터를 자바스크립트로 가져옴
+        console.log(df);
 
-    //
-    // var markers = [] // 클러스터러에 마커 리스트로 넘겨주기 위해서
-    for (var i = 0; i < positions.length; i++) {
-        var marker = new kakao.maps.Marker({
-            map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
-            id: positions[i].id,
-            position: positions[i].latlng,
-            title: positions[i].title,
-            category: positions[i].category,
-        });
+        // 좌표와 다른 정보들을 받아옴
+        positions = [];
+        for (var i = 0; i < df.length; i++) {
+            var row = df[i];
+            positions.push({
+                id: row.id,
+                category: row.category,
+                title: row.title,
+                latlng: new kakao.maps.LatLng(row.latitude, row.longitude),
 
-        // 마우스 올릴때 나오는 정보 추가
-        var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].category + '</p>';
-        // var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].opend + '</p>' + '<p>' + positions[i].closed + '</p>';
-        var infowindow = new kakao.maps.InfoWindow({
-            content: info
-        });
+            });
+        }
+        console.log(positions);
 
-        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-        kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
-    }
+        // 마커 이미지
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        var imageSize = new kakao.maps.Size(24, 35);
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-    var clickPosition = []
-    for (var i = 0; i < df.length; i++){
-        clickPosition.push(new kakao.maps.LatLng(df[i].latitude, df[i].longitude))
-    }
+        //
+        // var markers = [] // 클러스터러에 마커 리스트로 넘겨주기 위해서
+        for (var i = 0; i < positions.length; i++) {
+            var marker = new kakao.maps.Marker({
+                map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
+                id: positions[i].id,
+                position: positions[i].latlng,
+                title: positions[i].title,
+                category: positions[i].category,
+            });
 
-    var polyline = new kakao.maps.Polyline({
-        // map: map, // 선을 표시할 지도입니다
-        path: clickPosition, // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
-        strokeWeight: 3, // 선의 두께입니다
-        strokeColor: '#db4040', // 선의 색깔입니다
-        strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-        strokeStyle: 'solid' // 선의 스타일입니다
-    });
-    polyline.setMap(map);
+            // 마우스 올릴때 나오는 정보 추가
+            var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].category + '</p>';
+            // var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].opend + '</p>' + '<p>' + positions[i].closed + '</p>';
+            var infowindow = new kakao.maps.InfoWindow({
+                content: info
+            });
 
-    // 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+            kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
+        }
 
-    // ver2 displayCircleDot에 clickPosition을 리스트로 주는 경우(테스트중)
-    for(var i = 0; i < clickPosition.length-1; i++){
+        var clickPosition = []
+        for (var i = 0; i < df.length; i++){
+            clickPosition.push(new kakao.maps.LatLng(df[i].latitude, df[i].longitude))
+        }
 
-        var dline = new kakao.maps.Polyline({
+        var color = colors[a];
+        var polyline = new kakao.maps.Polyline({
             // map: map, // 선을 표시할 지도입니다
-            path: [clickPosition[i], clickPosition[i+1]], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
+            path: clickPosition, // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
             strokeWeight: 3, // 선의 두께입니다
-            strokeColor: '#db4040', // 선의 색깔입니다
+            strokeColor: color, // 선의 색깔입니다 '#db4040'
             strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid' // 선의 스타일입니다
         });
+        polyline.setMap(map);
 
-        var distance = Math.round(dline.getLength());
-        console.log(distance);
-        displayCircleDot(clickPosition[i], distance);
+        // 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
 
+        // ver2 displayCircleDot에 clickPosition을 리스트로 주는 경우(테스트중)
+        for(var i = 0; i < clickPosition.length-1; i++){
+
+            var dline = new kakao.maps.Polyline({
+                // map: map, // 선을 표시할 지도입니다
+                path: [clickPosition[i], clickPosition[i+1]], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
+                strokeWeight: 3, // 선의 두께입니다
+                strokeColor: '#db4040', // 선의 색깔입니다
+                strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+                strokeStyle: 'solid' // 선의 스타일입니다
+            });
+
+            var distance = Math.round(dline.getLength());
+            console.log(distance);
+            displayCircleDot(clickPosition[i], distance);
+
+        }
+
+
+        // ver1 displayCircleDot에 clickPosition을 하나만 주는 경우 (이건 마지막에 총거리만 찍힘)
+        // for (var i = 0; i < clickPosition.length; i++){
+        //     var distance = Math.round(polyline.getLength());
+        //     displayCircleDot(clickPosition[i], distance);
+        // }
+        //
     }
 
-
-    // ver1 displayCircleDot에 clickPosition을 하나만 주는 경우 (이건 마지막에 총거리만 찍힘)
-    // for (var i = 0; i < clickPosition.length; i++){
-    //     var distance = Math.round(polyline.getLength());
-    //     displayCircleDot(clickPosition[i], distance);
-    // }
-    //
     function makeOverListener(map, marker, infowindow) {
         return function () {
             infowindow.open(map, marker);
