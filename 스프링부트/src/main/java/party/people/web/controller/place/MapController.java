@@ -17,6 +17,7 @@ import java.util.List;
 public class MapController {
     private final PlaceInterface placeInterface;
 
+    // 이건 전체 마커 찍히는 지도용
 //    @GetMapping("map")
 //    public String map(Model model){
 //        List<Place> findAll = placeInterface.findAll();
@@ -28,8 +29,10 @@ public class MapController {
 //        return "map";
 //    }
 
+    // 이건 추천카드별 마커 찍히는 페이지용
     @GetMapping("map")
     public String map2(Model model){
+        // <List<Place>는 한 세트의 마커틀, List<List<Place>> maps 이거는 세트들의 리스트
         List<List<Place>> maps = new ArrayList<>();
         for(int i = 0; i < 6; i++){
             List<Place> random3 = placeInterface.randon3();
