@@ -1,6 +1,6 @@
 .main{ overflow: hidden }
 /* 전체 WRAP */
-.container{ min-width: 500px; height: 100% }
+.container{ min-width: 600px; height: 100% }
 .container:after{ content:""; display: block; clear:both; }
 
 /* 해더 */
@@ -71,7 +71,7 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 .lnb h2{ font:600 24px/35px 'Noto Sans KR', SansSerif; text-align: center; text-transform:uppercase; color:rgba(0,0,0,.9); letter-spacing: 1px; padding: 0 0 15px 0 }
 .lnb h2 a i{ display: block }
 
-.standard_cond{ font:400 13px Sans-Serif; color:#000; letter-spacing: -0.3px }
+.standard_cond{ font:400 12px Sans-Serif; color:#000; letter-spacing: -0.3px }
 .lnb h2 b{ color: #000 }
 .lnb h2 i{ color: #009900; display: inline-block; padding-right:3px; }
 .dash_board_graph{ height: 240px; margin:0 auto; text-align: center; border-bottom: solid 1px rgba(0,0,0,.1); padding: 15px }
@@ -145,7 +145,16 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
     display: inline-block; color: rgba(0,0,0,1);  background:rgba(0,0,0,.0.5); border-left:solid 1px rgba(0,0,0,.3);  }
 .copyright a:hover{  background: #009900; }
 
-/* 우측 컨텐츠  */
+/* 모달 레이어 */
+.modal_layer_wrap{  z-index:999; position: fixed; top:0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.4); display: flex; justify-content: center;   align-items: center; display:none; }
+.layer_box{ z-index:9999; position:relative; min-width: 600px; min-height: 300px; background: #fff; border-radius: 10px; box-shadow: 3px 3px 10px rgba(0,0,0,.6); max-width: 60%; max-height: 85%; overflow-y:auto; word-break: break-word; padding: 30px }
+
+.layer_box:after{ display:inline-block; position:absolute; top:10px; right:10px; content:""; font:600 30px/30px 'fontAwesome'; color:rgba(0,0,0,.6); cursor: pointer  }
+.layer_box:hover:after{ color:#146c43; }
+
+/* ==============================
+     우측 컨텐츠
+===============================  */
 /*.contents_wrap{ position: relative;  height: 100%;  box-sizing: border-box; font-size: 12px; word-break: break-all;}*/
 /*.contents_wrap:after{ content:""; display: block; clear:both; }*/
 
@@ -234,6 +243,7 @@ dl.ai_card > dt h2 strong{ display:inline-block;  margin-left:-10px; width:78%; 
 
 dl.ai_card > dt .area{ position:relative; top:-20px; left:-25px; display: inline-block;  color:rgba(0,0,0,.8);  text-align: center;  font:500 14px/20px 'Noto Sans KR', SansSerif;  overflow: hidden; vertical-align: middle;  border:solid 1px rgba(0,0,0,.5); border-width:0 1px 1px 0; border-radius:16px 0 15px 0; overflow: hidden  }
 dl.ai_card > dt .area b{ display: block; padding: 0px 9px;  }
+dl.ai_card dt .area b.depth_1{ font:600 16px/20px 'Noto Sans KR', SansSerif; color: #146c43 }
 dl.ai_card dt .area b.depth_2{ background: #009900;  color: #fff; padding: 2px 5px;  }
 
 dl.ai_card > dt .keyword_recommand{ text-align: center; border-bottom:dotted 2px rgba(0,0,0,.3); margin:2px 12px 0px 0; padding-bottom:10px }
