@@ -1,6 +1,6 @@
 .main{ overflow: hidden }
 /* 전체 WRAP */
-.container{ min-width: 500px; height: 100% }
+.container{ min-width: 600px; height: 100% }
 .container:after{ content:""; display: block; clear:both; }
 
 /* 해더 */
@@ -145,7 +145,16 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
     display: inline-block; color: rgba(0,0,0,1);  background:rgba(0,0,0,.0.5); border-left:solid 1px rgba(0,0,0,.3);  }
 .copyright a:hover{  background: #009900; }
 
-/* 우측 컨텐츠  */
+/* 모달 레이어 */
+.modal_layer_wrap{  z-index:999; position: fixed; top:0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.4); display: flex; justify-content: center;   align-items: center; display:none; }
+.layer_box{ z-index:9999; position:relative; min-width: 600px; min-height: 300px; background: #fff; border-radius: 10px; box-shadow: 3px 3px 10px rgba(0,0,0,.6); max-width: 60%; max-height: 85%; overflow-y:auto; word-break: break-word; padding: 30px }
+
+.layer_box:after{ display:inline-block; position:absolute; top:10px; right:10px; content:""; font:600 30px/30px 'fontAwesome'; color:rgba(0,0,0,.6); cursor: pointer  }
+.layer_box:hover:after{ color:#146c43; }
+
+/* ==============================
+     우측 컨텐츠
+===============================  */
 /*.contents_wrap{ position: relative;  height: 100%;  box-sizing: border-box; font-size: 12px; word-break: break-all;}*/
 /*.contents_wrap:after{ content:""; display: block; clear:both; }*/
 
@@ -294,7 +303,7 @@ ul.summary_card:hover > li .category b.depth_2{ background: #007fff }
 /* 모임카드 푸터 */
 dl.ai_card dd.footer{ text-align: center; padding: 10px 0 0 0; margin:0 -10px 0 -21px }
 dl.ai_card dd.footer button{ background: #fff; font:500 14px/30px 'Noto Sans KR', SansSerif; vertical-align: middle; border:solid 1px #009900; margin:2px 1px; border-radius: 3px; color: #146c43; padding:0 10px; }
-dl.ai_card dd.footer button.confirm{ background: #009900; color: #fff; background:  }
+dl.ai_card dd.footer button.confirm{ background: #009900; color: #fff;  }
 
 /* 모임카드  반응형 처리  */
 @media(max-width:1700px){
