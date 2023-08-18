@@ -79,6 +79,13 @@
         where 주소 like '%'||#{address}||'%'
     </select>
 
+    <!-- 내 정보 수정 -->
+    <update id="updateKeyword">
+        update placeinfo_test
+        set 키워드리스트=#{keyword}
+        where 제목 = #{title}
+    </update>
+
     <select id="randon3" resultType="place">
         SELECT 카테고리 as category, 소분류 as smallcategory, 제목 as title,
                주소 as address, 전화번호 as tel, 위도 as latitude, 경도 as longitude,

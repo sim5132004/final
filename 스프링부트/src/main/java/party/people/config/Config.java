@@ -15,6 +15,7 @@ import party.people.repository.place.PlaceRepository;
 import party.people.repository.test.TestInterface;
 import party.people.repository.test.TestMapper;
 import party.people.repository.test.TestRepository;
+import party.people.service.keyword.KeywordInSomething;
 import party.people.service.keyword.KeywordsMerge;
 import party.people.service.login.LoginInterface;
 import party.people.service.login.LoginService;
@@ -54,11 +55,17 @@ public class Config {
         return new PlaceRepository(placeMapper);
     }
 
-//    /* 서비스를 인터페이스와 연결하는 BEAN */
+    /* 서비스를 인터페이스와 연결하는 BEAN */
     @Bean
     public KeywordsMerge keywordsMerge() {
         return new KeywordsMerge(clientInterface(), placeInterface(), keywordsInterface());
     }
+
+    @Bean
+    public KeywordInSomething keywordInSomething(){
+        return new KeywordInSomething(placeInterface());
+    }
+
 
     /* Keywords 입력용 BEAN */
     @Bean
