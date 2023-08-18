@@ -56,5 +56,13 @@
         where clientid = #{clientId}
     </update>
 
+    <update id="quit">
+        update client
+        set password=null,
+            clientEmail=null,
+            clientid = null
+        where clientid = #{clientId} and password = #{password}
+    </update>
+
 
 </mapper>

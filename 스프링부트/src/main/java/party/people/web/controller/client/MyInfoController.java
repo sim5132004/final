@@ -11,7 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
-import party.people.repository.client.ClientUpdateDto;
+import party.people.web.controller.client.formAndDto.ClientUpdateDto;
 
 import java.util.ArrayList;
 import java.util.HashMap;

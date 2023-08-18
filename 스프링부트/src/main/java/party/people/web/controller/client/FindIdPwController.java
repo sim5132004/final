@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
+import party.people.web.controller.client.formAndDto.FindPwForm;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +24,6 @@ public class FindIdPwController {
     /* ID찾기 페이지로 이동 */
     @GetMapping("findId")
     public String findIdForm(Client client){
-        log.info("findIdForm] "+client);
         return "login/findIdForm";
     }
 

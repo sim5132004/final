@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import party.people.domain.Client;
-import party.people.web.controller.client.FindPwForm;
+import party.people.web.controller.client.formAndDto.ClientUpdateDto;
+import party.people.web.controller.client.formAndDto.FindPwForm;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,5 +54,10 @@ public class ClientRepository implements ClientInterface{
     @Override
     public void update(String clientId, ClientUpdateDto clientUpdateParam) {
         clientMapper.update(clientId, clientUpdateParam);
+    }
+
+    @Override
+    public void quit(Client client) {
+        clientMapper.quit(client);
     }
 }
