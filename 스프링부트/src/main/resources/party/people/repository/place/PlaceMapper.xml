@@ -81,7 +81,7 @@
 
     <!-- 내 정보 수정 -->
     <update id="updateKeyword">
-        update placeinfo_test
+        update placeinfo
         set 키워드리스트=#{keyword}
         where 제목 = #{title}
     </update>

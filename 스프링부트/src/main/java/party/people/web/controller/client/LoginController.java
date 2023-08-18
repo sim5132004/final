@@ -27,13 +27,10 @@ public class LoginController {
 
     private final LoginInterface loginInterface;
     private final ClientInterface clientInterface;
-    private final KeywordInSomething keywordInSomething;
 
     /* Thymeleaf onclick:login 수행시 페이지 이동*/
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
-        keywordInSomething.addToKeyword();
-
 
         return "login/loginForm";
     }

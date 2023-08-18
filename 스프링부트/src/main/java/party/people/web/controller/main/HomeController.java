@@ -57,6 +57,8 @@ public class HomeController {
                 }
             }
         }
+        /* 여기까진 문제 없음 */
+
         /* 중복 유무를 확인했으니 place객체 string값을 전달하기 위해 place랑 상관없는 "회원"다시 제거 */
         mergedList.remove("회원");
         /* 이미 DB에 없으면 False save로 저장 / 있으면 True update */
