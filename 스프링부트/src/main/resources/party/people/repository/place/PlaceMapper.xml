@@ -61,7 +61,10 @@
                부대시설 as otherAmenityInfo, 키워드리스트 as keyword,
                이미지주소1 as imageAdd1, 이미지주소2 as imageAdd2
         from placeinfo
-        where 키워드리스트 like '%'||#{keyword}||'%'
+        where
+            <foreach collection="keywords" item="keyword" separator=" AND ">
+            키워드리스트 like '%'||#{keyword}||'%'
+            </foreach>
     </select>
 
     <!-- 주소로 검색 ex) 부평구 -->

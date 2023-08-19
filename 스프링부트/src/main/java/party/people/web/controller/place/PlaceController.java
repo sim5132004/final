@@ -38,28 +38,22 @@ public class PlaceController {
         /* 검색 결과를 출력하는 로직 */
         log.info("검색내용 "+ searchForm);
         List<String>splitSearch = Arrays.stream(searchForm.split(" ")).toList();
-        List<Place>mergedResult = new ArrayList<>();
-        for (String one : splitSearch){
-            mergedResult.addAll(placeInterface.findByKeyword(one));
-//            log.info("포문으로 개수 확인 " +mergedResult.size());
-        }
-        log.info("검색 결과 개수 "+mergedResult.size());
-        Set<Place> uniqueResult = new HashSet<>(mergedResult);
-        /* or조건 */
-        List<Place> resultWithoutDuplicates = new ArrayList<>(uniqueResult);
-        /* and조건 */
-        log.info("중복결과 제거 확인 " + resultWithoutDuplicates.size());
-//        model.addAttribute("searchResult", mergedResult);
-        model.addAttribute("searchResult", resultWithoutDuplicates);
+        List<Place>searchResult = placeInterface.findByKeyword(splitSearch);
 
-        /* 검색한 내용을 키워드에 추가하는 로직 */
-//        for (Place one : resultWithoutDuplicates){
+        model.addAttribute("searchResult", searchResult);
+
+
+        /* 검색한 내용을 키워드에 추가하는 로직 => 해당 로직은 완성 됐지만 반복시 데이터가 오염되므로 실 서비스시 주석 해제*/
+//        for (Place one : searchResult){
 //            String keyword = one.getKeyword();
 //            Map<String, Integer> map = new HashMap<>();
 //            map = keywordToMap(map, keyword);
+//            log.info("오류발생 지점 확인용 ");
 //            if(splitSearch!=null){
+//                log.info("searchPlace] "+splitSearch);
 //                for (String split : splitSearch){
-//                    if (placeInterface.findByKeyword(split)!=null) {
+//                    log.info("split] "+split);
+//                    if (placeInterface.findByKeyword(splitSearch)!=null) {
 //                        addNewKeyword(map, split);
 //                    }
 //                }
@@ -69,5 +63,4 @@ public class PlaceController {
 //        }
         return "home";
     }
-
 }

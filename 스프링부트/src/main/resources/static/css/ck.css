@@ -1,0 +1,75 @@
+.client-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the form headings */
+.client-container h2, .client-container h4 {
+    color: black;
+}
+
+/* Style the labels and input fields */
+.client-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+    font-weight: bold;
+}
+
+.client-container input[type="text"],
+.client-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Style the checkbox labels */
+.client-container label[for^="checkbox"] {
+    width: auto;
+    margin: 0 10px 10px 0;
+    display: inline-block;
+    color: #009900;
+}
+
+/* Style the checkboxes */
+.client-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Style the buttons */
+.client-container button {
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.client-container .btn-primary {
+    background-color: #009900;
+    border-color: #009900;
+}
+
+.client-container .btn-primary:hover {
+    background-color: #007700;
+    border-color: #007700;
+}
+
+.client-container .btn-secondary {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #333;
+}
+
+.client-container .btn-secondary:hover {
+    background-color: #aaa;
+    border-color: #aaa;
+    color: #fff;
+}

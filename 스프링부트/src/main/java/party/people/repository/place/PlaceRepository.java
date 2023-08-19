@@ -37,6 +37,11 @@ public class PlaceRepository implements PlaceInterface{
     }
 
     @Override
+    public List<Place> findByKeyword(List<String> keywords) {
+        return placeMapper.findByKeyword(keywords);
+    }
+
+    @Override
     public List<Place> findByAddress(String address) {
         return placeMapper.findByAddress(address);
     }

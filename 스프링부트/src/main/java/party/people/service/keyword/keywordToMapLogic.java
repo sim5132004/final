@@ -45,7 +45,7 @@ public class keywordToMapLogic {
         /* 무제한으로 넣으면 DB용량 문제 발생 이유로 count 임시 생성 */
         int count = 1;
         /* map을 for문 사용해 string에 삽입 */
-        System.out.println(entries.size());
+//        System.out.println(entries.size());
         for (Map.Entry<String, Integer> entry : entries) {
             if (count==1) {
                 totalKeyword = totalKeyword + entry.getKey() + "/" + entry.getValue();
