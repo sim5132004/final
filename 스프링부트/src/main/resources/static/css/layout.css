@@ -257,14 +257,14 @@ position: -webkit-sticky; position: sticky;*/}
 
 dl.ai_card{ position: relative; box-sizing: border-box; padding: 20px 25px 15px 25px;  margin:0 auto 40px; border:solid 1px rgba(0,0,0,.3); box-shadow:2px 2px 3px rgba(0,0,0,.2); border-radius: 20px; min-width: 345px;z-index:1; overflow: hidden; background:#fff }
 dl.ai_card:after{ content:""; display: block; clear:both; }
-dl.ai_card:hover{ background:rgba(0,210,255,.03); }
+dl.ai_card:hover{  }
 
 dl.ai_card > dt{    }
 dl.ai_card > dt h2{  height: 35px; }
 dl.ai_card > dt h2 strong{ display:inline-block;  width:88%; font:600 20px/26px 'Noto Sans KR', SansSerif; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: rgba(0,0,0,.95);  letter-spacing: -1px   }
 
 
-dl.ai_card > dt .area{  display: inline-block;  color:rgba(0,0,0,.8);  text-align: center;  overflow: hidden; vertical-align: top;  border:solid 1px rgba(0,153,0,.3); border-radius:5px; overflow: hidden; background: #fff  }
+dl.ai_card > dt .area{  display: inline-block;  color:rgba(0,0,0,.8);  text-align: center;  overflow: hidden; vertical-align: top;  border:solid 1px rgba(0,153,0,.4); border-radius:5px; overflow: hidden; background: #fff  }
 dl.ai_card > dt .area b{ display: block; padding: 0px 2px; min-width:24px }
 dl.ai_card dt .area b.depth_1{ font:600 14px/24px 'Noto Sans KR', SansSerif; color: #009900 }
 dl.ai_card dt .area b.depth_2{ background: rgba(0,0,0,.5);  color: #fff; padding: 1px 3px; display: none }
@@ -350,9 +350,9 @@ ul.summary_card .thumb{ overflow: hidden; border-radius: 3px; background: rgba(0
 ul.summary_card .thumb img{ width: 100%; height: 100%; text-align: center; }
 ul.summary_card > li{ overflow: hidden; white-space: nowrap; text-overflow: ellipsis;  }
 ul.summary_card > li br{ display: none }
-ul.summary_card > li:nth-child(1){ width:100%; float:none; font:600 14px/26px 'Noto Sans KR', SansSerif; vertical-align: middle; color: rgba( 0,0,0,.9); letter-spacing: -1px  }
+ul.summary_card > li:nth-child(1){ width:100%; float:none; font:600 18px/26px 'Noto Sans KR', SansSerif; vertical-align: middle; color: rgba( 0,0,0,.9); letter-spacing: -1px  }
 ul.summary_card > li{ width:52%; float:left;  box-sizing: border-box;  }
-ul.summary_card:hover > li:nth-child(1){ color: #009900 }
+ul.summary_card:hover > li:nth-child(1){  }
 
 /* 개별 장소 버튼 */
 ul.summary_card .btn_wrap{ width:15%; float:right; word-break: break-all; overflow: hidden; white-space:normal; text-overflow:clip; text-align: center;  vertical-align: bottom; margin-top:-24px }
