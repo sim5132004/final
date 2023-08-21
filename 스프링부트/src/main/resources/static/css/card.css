@@ -1,0 +1,26 @@
+/* 모임카드 스킨 */
+.invite dl.ai_card{ min-width: 700px  }
+.invite dl.ai_card .a_type{ }
+.invite dl ai_card .b_type{ }
+.invite dl.ai_card .c_type{ }
+.invite dl.ai_card .d_type{ }
+.invite dl.ai_card .e_type{ }
+
+.ai_card label{  }
+.ai_card label b{ display: inline-block; width:8%; vertical-align: top }
+.ai_card label input[type=text], .ai_card label input[type=date]
+{ display: inline-block; background: rgba(0,0,0,.03); border:solid 1px rgba(0,0,0,.6); border-radius:3px; padding:3px; color: rgba(0,0,0,.9); margin:0 1% 4px 0 }
+
+.ai_card h2 label{  }
+.ai_card h2 label b{ letter-spacing: 3px;  }
+.ai_card h2 label input[type=text]{ width:88%; font:500 22px/26px 'Noto Sans KR',Sans-serif; min-width:100px;display: inline-block; }
+
+.ai_card .form_info .date{ flex-direction:row; justify-content: space-between;  align-items: center; word-wrap: break-word; margin:5px 0 }
+.ai_card .form_info .date label{ width: 50% }
+.ai_card .form_info .date label:nth-child(2) input[type=text]{  }
+.ai_card .form_info .date label b{ width:60px; }
+.ai_card .form_info .people{ }
+.ai_card .form_info .people label input[type=text]{ width:88%; }
+.ai_card .form_info{ }
+.ai_card .form_info .memo textarea{ width: 87%; margin: 0 }
+.ai_card .form_info .skin{ padding:3px 0 10px 0;}

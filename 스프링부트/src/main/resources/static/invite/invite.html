@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="../css/reset.css" >
     <link rel="stylesheet" type="text/css" href="../css/layout.css" >
+    <link rel="stylesheet" type="text/css" href="../css/card.css" >
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3fa5806dfe291fb3622cf85fca14b017&libraries=services,clusterer,drawing"></script>
     <script src="../js/jquery.js"></script>
@@ -121,24 +122,26 @@
                 <form>
                 <div class="card_list_wrap">
                     <!-- 추천(조합) 모임카드 #.01 시작 -->
-                    <dl class="ai_card">
+                    <dl class="ai_card design">
                         <dt class="header">
-                            <h2 class="subject_keyword">
-                                <strong>제목 : <input type="text" placeholder="동인천/차이나타운/동인천/차이나타운" id="" value="동인천/차이나타운/동인천/차이나타운"></strong>
+                            <h2>
+                                <label>
+                                    <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="" value="동인천/차이나타운/짜파게티/회식">
+                                </label>
                             </h2>
                             <div class="form_info"><!-- 연관 키워드 10개 -->
-                                <div>
-                                    <label>모임날짜 : <input type="date" value="2023-08-21"></label>
-                                    <label>모임시간 : <input type="text"></label>
+                                <div class="date">
+                                    <label><b>모임날짜</b><input type="date" value="2023-08-21"></label>
+                                    <label><b>모임시간</b><input type="text"></label>
                                 </div>
-                                <div> 참가인원 : <input type="text"> </div>
-                                <div> 모임내용 : <textarea class="card_memo" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea> </div>
-                                <div> 카드스킨 :
-                                    <label><input type="radio" value="a_type" checked>A_type</label>
-                                    <label><input type="radio" value="b_type">B_type</label>
-                                    <label><input type="radio" value="c_type">C_type</label>
-                                    <label><input type="radio" value="d_type">D_type</label>
-                                    <label><input type="radio" value="e_type">E_type</label>
+                                <div class="people"><label><b>참가인원</b><input type="text"> </label></div>
+                                <div class="memo"><label><b>모임내용</b><textarea class="card_memo" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
+                                <div class="skin"><b>카드스킨</b>
+                                    <label><input type="radio" value="a_type" checked> A_type</label>
+                                    <label><input type="radio" value="b_type"> B_type</label>
+                                    <label><input type="radio" value="c_type"> C_type</label>
+                                    <label><input type="radio" value="d_type"> D_type</label>
+                                    <label><input type="radio" value="e_type"> E_type</label>
                                 </div>
                             </div>
                         </dt>
@@ -219,7 +222,7 @@
                             </div>
                         </dd>
                         <dd class="footer">
-                            <button class="basic"><i class="fa-regular fa-envelope"></i> 모임카드 미리보기</button>
+                            <button class="confirm"><i class="fa-regular fa-envelope"></i> 모임카드 미리보기</button>
 <!--                            <button class="confirm"><i class="fa-regular fa-circle-down"></i> 모임카드 다운로드</button>-->
                         </dd>
                     </dl>

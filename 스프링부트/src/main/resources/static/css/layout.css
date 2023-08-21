@@ -210,7 +210,7 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 
 .invite .left_contents_padding_right{ width: 40%; min-width: 400px; }
 .invite .card_list_wrap .ai_card{ vertical-align: top;  }
-.invite .card_list_wrap .ai_card dd.body{ display: flex; justify-content: center; flex-direction:row; justify-content: space-between;  align-items: center; word-wrap: break-word;}
+.invite .card_list_wrap .ai_card dd.body{ display: flex; justify-content: center; flex-direction:row; justify-content: space-between;  align-items: center; word-wrap: break-word; }
 .invite .card_list_wrap .ai_card .card_list{ width: 32%; flex: 1 1 auto; }
 .invite .card_list_wrap .ai_card .card_list .summary_card{  }
 .invite .card_list_wrap .ai_card .card_list .summary_card li{ width: 100% !important; }
