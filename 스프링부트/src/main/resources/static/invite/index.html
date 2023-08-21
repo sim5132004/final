@@ -17,7 +17,7 @@
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="container invite">
     <!-- 장소(업체명)에 대한 상페정보 페이지 -->
     <div class="modal_layer_wrap">
         <div class="layer_box"></div>
@@ -37,7 +37,7 @@
         <!--        </nav>-->
         <form>
             <div class="page_search">
-                <input type="text" placeholder="[인천] 장소, 상호명 검색"><!--
+                <input type="text" placeholder="[인천] 장소, 상호명 검색" autofocus><!--
                  --><input type="submit" value="" class="fa fa-search">
             </div>
             <dl class="search_keword"> <!-- 최다 빈도수 키워드 10개만 나오게 해주세요 -->
@@ -92,21 +92,19 @@
         </script>
         <div class="lnb">
             <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
-            <h2> <div class="standard_cond">모임장소를 고르신 후,<br> 나만의 초대카드를 만들어보세요!</div></h2>
+            <h2> <div class="standard_cond">모임장소를 고르신 후,<br> 나만의 초대카드를 만들어보세요.</div></h2>
             <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
             <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
-            <ul class="sub_menu_list area">
+            <ul class="sub_menu_list">
                 <li><a href="#" onclick="('전체')" class="active"><i class="fa-solid fa-map-location-dot"></i> <span>전체</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('연수구')"><i class="fa-solid fa-location-dot"></i> <span>연수구</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('남동구')"><i class="fa-solid fa-map-pin"></i> <span>남동구</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('부평구')"><i class="fa-solid fa-location-arrow"></i> <span>부평구</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('계양구')"><i class="fa-regular fa-compass"></i> <span>계양구</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('서구')"><i class="fa-solid fa-location-crosshairs"></i> <span>서구</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('동구')"><i class="fa-solid fa-map-location-dot"></i> <span>동구</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('중구')"><i class="fa-solid fa-bookmark"></i> <span>중구</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('미추홀구')"><i class="fa-solid fa-route"></i> <span>미추홀구</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('강화군')"><i class="fa-solid fa-circle-info"></i> <span>강화군</span><b class="num">18,562</b></a></li>
-                <li><a href="#" onclick="('옹진군')"><i class="fa-solid fa-tags"></i> <span>옹진군</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('관광')"><i class="fa-solid fa-location-dot"></i> <span>관광</span><b class="num">6,562</b></a></li>
+                <li><a href="#" onclick="('전시')"><i class="fa-solid fa-map-pin"></i> <span>전시</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('자연')"><i class="fa-solid fa-location-arrow"></i> <span>자연</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('레저')"><i class="fa-regular fa-compass"></i> <span>레저</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('쇼핑')"><i class="fa-solid fa-location-crosshairs"></i> <span>쇼핑</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('음식')"><i class="fa-solid fa-map-location-dot"></i> <span>음식</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('숙박')"><i class="fa-solid fa-bookmark"></i> <span>숙박</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('문화')"><i class="fa-solid fa-route"></i> <span>문화</span><b class="num">18,562</b></a></li>
             </ul>
         </div>
 
@@ -116,9 +114,12 @@
     <hr class="skip"/>
     <!-- ####### 03. CONTENTS START ####### -->
     <section class="contents_wrap">
+
         <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
-        <div class="left_contents invite">
-            <form>
+        <div class="left_contents">
+           <div class="left_contents_padding_left"></div>
+                <div class="left_contents_center">
+                <form>
                 <div class="card_list_wrap">
                     <!-- 추천(조합) 모임카드 #.01 시작 -->
                     <dl class="ai_card">
@@ -208,15 +209,17 @@
                         </dd>
                         <dd class="footer">
                             <button class="basic"><i class="fa-solid fa-location-dot"></i> 추천장소 지도보기</button>
-                            <button class="confirm"><i class="fa-solid fa-pen-to-square"></i> 모임카드 만들기</button>
+                            <button class="confirm"><i class="fa-solid fa-pen-to-square"></i> 모임카드 다운로드</button>
                         </dd>
                     </dl>
                     <!-- 추천(조합) 모임카드 #.01 끝 -->
                 </div>
-            </form>
+                </form>
+                </div>
+            <div class="left_contents_padding_right"></div>
         </div>
         <!-- #### 03-1.우측 본문 영역 시작 -->
-        <div class="right_contents invite">
+        <div class="right_contents area">
             <div class="page_title">
                 <h1>돈비어<!-- ## 페이지 타이틀 ##  좌측 메뉴 .active 되어 있는 메뉴명 제이쿼리 클론하여 가져옴 --> </h1>
                 <!-- ## 페이지 네비 경로 ## -->
@@ -635,9 +638,10 @@
     <!-- ####### 04. FOOTER START ####### -->
     <div class="footer_wrap">
         <footer>
-            <p class="copyright">  © 2023 TEAM PARTY PEOPLE. <a href="#">맨위로 <i class="fa-solid fa-arrow-up"></i></a></p>
+            <p class="copyright">  © 2023 Party People.</p>
         </footer>
     </div>
+    <a href="#" class="to_top"><i class="fa-solid fa-arrow-up"></i> 맨위로</a>
     <!-- ####### 04. FOOTER END ####### -->
 </div>
 </body>
