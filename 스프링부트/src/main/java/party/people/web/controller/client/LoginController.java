@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
 import party.people.service.keyword.KeywordInSomething;
@@ -23,19 +24,17 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("client")
 public class LoginController {
 
     private final LoginInterface loginInterface;
     private final ClientInterface clientInterface;
-    private final KeywordInSomething keywordInSomething;
 
     /* Thymeleaf onclick:login 수행시 페이지 이동*/
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
-        keywordInSomething.addToKeyword();
 
-
-        return "login/loginForm";
+        return "login/login";
     }
 
     /* 로그인 기능 수행 */

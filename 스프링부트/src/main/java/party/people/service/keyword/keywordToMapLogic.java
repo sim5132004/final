@@ -1,8 +1,11 @@
 package party.people.service.keyword;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class keywordToMapLogic {
     public static void main(String[] args) {
         String words = "낮잠/3,여름/4,부평구/2";
@@ -42,7 +45,7 @@ public class keywordToMapLogic {
         /* 무제한으로 넣으면 DB용량 문제 발생 이유로 count 임시 생성 */
         int count = 1;
         /* map을 for문 사용해 string에 삽입 */
-        System.out.println(entries.size());
+//        System.out.println(entries.size());
         for (Map.Entry<String, Integer> entry : entries) {
             if (count==1) {
                 totalKeyword = totalKeyword + entry.getKey() + "/" + entry.getValue();

@@ -45,7 +45,7 @@ public class HomeController {
 
         /* DB에서 통합 키워드리스트 불러오기 */
         List<Keywords>all = keywordsInterface.findAll();
-        log.info("home] "+all);
+
 
         /* Flag 변수 -> DB에 있는지 확인 유무를 체크하는 용도 */
         Boolean check = false;
@@ -57,6 +57,8 @@ public class HomeController {
                 }
             }
         }
+        /* 여기까진 문제 없음 */
+
         /* 중복 유무를 확인했으니 place객체 string값을 전달하기 위해 place랑 상관없는 "회원"다시 제거 */
         mergedList.remove("회원");
         /* 이미 DB에 없으면 False save로 저장 / 있으면 True update */
@@ -87,7 +89,7 @@ public class HomeController {
 
         /* 기존 세션 정보가 없으면 home으로 이동 */
         if (loginInfo==null){
-            return "home";
+            return "place/place";
         }
 
         /* 세션 정보 "로그인"으로 세션 정보를 호출해 Client loginClient 객체를 생성 */
@@ -96,7 +98,7 @@ public class HomeController {
         log.info("로그인이 되었는가" + loginClient);
         /* 해당 객체가 없다면 home으로 이동 */
         if (loginClient==null){
-            return "home";
+            return "place/place";
         }
         log.info("home] "+loginClient);
         /* 세션에 저장되어있는 로그인 정보를 thymeleaf단에 "client"이름으로 전달 */

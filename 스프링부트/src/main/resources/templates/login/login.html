@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="ALL"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>PLACE > PARTY PEOPLE</title>
+    <meta name="Description" content="인천광역시 소재의 다양한 모임취향에 맞는(회식/데이트/동호회) AI추천 모임장소에 대한 상세정보를 제공합니다."/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
+<!--    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" type="text/css" href="../css/layout.css" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="../js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <!--구글 차트 관련 스크립트-->
+    <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
+    <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
+    <style>
+
+        .login-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            padding: 40px;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,.5);
+            box-sizing: border-box;
+            box-shadow: 0 15px 25px rgba(0,0,0,.6);
+            border-radius: 10px;
+        }
+
+        .login-box h2 {
+            margin: 0 0 30px;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        .login-box .user-box {
+            position: relative;
+        }
+
+        .login-box .user-box input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            outline: none;
+            background: transparent;
+        }
+        .login-box .user-box label {
+            position: absolute;
+            top:0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .login-box .user-box input:focus ~ label,
+        .login-box .user-box input:valid ~ label {
+            top: -20px;
+            left: 0;
+            color: #03e9f4;
+            font-size: 12px;
+        }
+
+        .login-box form a {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            color: #03e9f4;
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: .5s;
+            margin-top: 40px;
+            letter-spacing: 4px
+        }
+
+        .login-box a:hover {
+            background: #03e9f4;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #03e9f4,
+            0 0 25px #03e9f4,
+            0 0 50px #03e9f4,
+            0 0 100px #03e9f4;
+        }
+
+        .login-box a span {
+            position: absolute;
+            display: block;
+        }
+
+        .login-box a span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #03e9f4);
+            animation: btn-anim1 1s linear infinite;
+        }
+
+        @keyframes btn-anim1 {
+            0% {
+                left: -100%;
+            }
+            50%,100% {
+                left: 100%;
+            }
+        }
+
+        .login-box a span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #03e9f4);
+            animation: btn-anim2 1s linear infinite;
+            animation-delay: .25s
+        }
+
+        @keyframes btn-anim2 {
+            0% {
+                top: -100%;
+            }
+            50%,100% {
+                top: 100%;
+            }
+        }
+
+        .login-box a span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #03e9f4);
+            animation: btn-anim3 1s linear infinite;
+            animation-delay: .5s
+        }
+
+        @keyframes btn-anim3 {
+            0% {
+                right: -100%;
+            }
+            50%,100% {
+                right: 100%;
+            }
+        }
+
+        .login-box a span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #03e9f4);
+            animation: btn-anim4 1s linear infinite;
+            animation-delay: .75s
+        }
+
+
+        .field-error {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 장소(업체명)에 대한 상페정보 페이지 -->
+    <div class="modal_layer_wrap">
+        <div class="layer_box"></div>
+    </div>
+    <!-- ####### 01. HEADER START ####### -->
+    <div class="header_wrap">
+        <header>
+            <h1 class="logo"><a href="/">Party People</a></h1>
+        </header>
+<!--        <nav class="gnb">-->
+<!--            <ul>-->
+<!--                <li><a href="place">Place</a></li>-->
+<!--                <li><a href="culture">Culture</a></li>-->
+<!--                <li><a href="invite">Invite</a></li>-->
+<!--                <li><a href="analysis">Analysis</a></li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+        <form>
+            <div class="page_search">
+                <input type="text" placeholder="[인천] 장소, 상호명 검색" style="width:248.14px;"><!--
+                 --><input type="submit" value="" class="fa fa-search">
+            </div>
+            <dl class="search_keword"> <!-- 최다 빈도수 키워드 10개만 나오게 해주세요 -->
+                <dt><a href="#">AI추천 키워드</a></dt>
+                <dd><a href="#">부평맛집</a></dd>
+                <dd><a href="#">회식장소</a></dd>
+                <dd><a href="#">쏘맥</a></dd>
+                <dd><a href="#">마라탕</a></dd>
+                <dd><a href="#">스크린골프</a></dd>
+                <dd><a href="#">데이트코스</a></dd>
+                <dd><a href="#">월미도바이킹</a></dd>
+                <dd><a href="#">점심메뉴</a></dd>
+                <dd><a href="#">8000원</a></dd>
+            </dl>
+        </form>
+    </div>
+    <!-- ####### 01. HEADER END ####### -->
+    <hr class="skip"/>
+    <!-- ####### 02. LNB START ######### -->
+    <div class="lnb_wrap">
+        <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 시작 -->
+        <dl class="fixed_quick_menu">
+<!--        <dt title="Party Peaple(인천)"><i class="fa-solid fa-map-location-dot"></i>인천</dt>-->
+            <dd class="active"><a href="place"><i class="fa-solid fa-map-location-dot"></i> Place</a></dd>
+            <dd><a href="culture"><i class="fa-regular fa-compass"></i> Culture</a></dd>
+            <dd><a href="invite"><i class="fa-solid fa-people-group"></i> Invite</a></dd>
+            <dd><a href="analysis"><i class="fa-solid fa-chart-line"></i> Analysis</a></dd>
+        </dl>
+        <ul class="membership">
+            <li><a href="#" onclick="('로그인')"><i class="fa-solid fa-right-to-bracket"></i> 로그인</a></li>
+            <li><a href="#" onclick="('회원가입')"><i class="fa-solid fa-user-plus"></i> 회원가입</a></li>
+        </ul>
+        <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 끝 -->
+        <hr class="skip"/>
+        <!-- #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 -->
+        <script>
+            $(function(){
+                // 업종별 대메뉴 활성화(class="active") 메뉴버튼 처리
+                $("nav ul li:nth-child(1) a").addClass("active");
+                // 사용자가 선택한 메뉴 활성화(class="active")에 따른 페이지 메뉴명 제이쿼리 변경 처리
+                $(".fixed_quick_menu dd.active a").clone().prependTo(".lnb h2");
+                $(".sub_menu_list li a.active").clone().prependTo(".right_contents h1");
+                // $(".right_contents h1 span").appendTo("분석");
+                // 페이지 네비게이션 경로 처리
+                $(".fixed_quick_menu dd.active a").clone().appendTo(".page_path");
+                $(".sub_menu_list li a.active span").clone().appendTo(".page_path");
+                $(".right_contents.area ul.summary_card input[type=checkbox]").attr(disabled);
+                // 체크 박스 비활성화
+                //$(".right_contents.area ul.summary_card input[type=checkbox]").prop("disabled",true);
+
+            });
+        </script>
+        <div class="lnb">
+            <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
+            <h2> <div class="standard_cond">Ai추천 모임장소를 확인 후, <br>나만의 모임초대카드를 만들어보세요.</div></h2>
+            <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
+            <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
+            <ul class="sub_menu_list area">
+                <li><a href="#" onclick="('전체')" class="active"><i class="fa-solid fa-map-location-dot"></i> <span>전체</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('연수구')"><i class="fa-solid fa-location-dot"></i> <span>연수구</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('남동구')"><i class="fa-solid fa-map-pin"></i> <span>남동구</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('부평구')"><i class="fa-solid fa-location-arrow"></i> <span>부평구</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('계양구')"><i class="fa-regular fa-compass"></i> <span>계양구</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('서구')"><i class="fa-solid fa-location-crosshairs"></i> <span>서구</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('동구')"><i class="fa-solid fa-map-location-dot"></i> <span>동구</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('중구')"><i class="fa-solid fa-bookmark"></i> <span>중구</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('미추홀구')"><i class="fa-solid fa-route"></i> <span>미추홀구</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('강화군')"><i class="fa-solid fa-circle-info"></i> <span>강화군</span><b class="num">18,562</b></a></li>
+                <li><a href="#" onclick="('옹진군')"><i class="fa-solid fa-tags"></i> <span>옹진군</span><b class="num">18,562</b></a></li>
+            </ul>
+        </div>
+
+        <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
+    </div>
+    <!-- ####### 02. LNB END ########## -->
+    <hr class="skip"/>
+    <!-- ####### 03. CONTENTS START ####### -->
+    <section class="contents_wrap">
+        <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
+        <div class="left_contents">
+            <!-- 회원가입 추가 삽입 부 -->
+            <div class="login-box">
+                <h2>Login</h2>
+                <form>
+                    <div class="user-box">
+                        <input type="text" name="" required="">
+                        <label>Username</label>
+                    </div>
+                    <div class="user-box">
+                        <input type="password" name="" required="">
+                        <label>Password</label>
+                    </div>
+                    <a href="#">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Submit
+                    </a>
+                </form>
+            </div>
+
+            <!-- 추가 창 끝 -->
+
+
+    </section>
+    <!-- ####### 03. CONTENTS END ####### -->
+    <hr class="skip"/>
+    <!-- ####### 04. FOOTER START ####### -->
+    <div class="footer_wrap">
+        <footer>
+            <p class="copyright">  © 2023 TEAM PARTY PEOPLE. <a href="#">맨위로 <i class="fa-solid fa-arrow-up"></i></a></p>
+        </footer>
+    </div>
+    <!-- ####### 04. FOOTER END ####### -->
+</div>
+</body>
+</html>

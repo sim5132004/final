@@ -19,6 +19,8 @@ import static party.people.service.keyword.keywordToMapLogic.*;
 public class KeywordInSomething {
     private final PlaceInterface placeInterface;
 
+    /* 이 서비스는 최초 실행 한 번만 되어야 함 */
+    /* 안 그러면 DB 오염 됨 */
     public void addToKeyword(){
         List<Place> allList = placeInterface.findAll();
         for(int i=0; i<allList.size(); i++){

@@ -303,7 +303,7 @@ ul.summary_card:hover > li .category b.depth_2{ background: #007fff }
 /* 모임카드 푸터 */
 dl.ai_card dd.footer{ text-align: center; padding: 10px 0 0 0; margin:0 -10px 0 -21px }
 dl.ai_card dd.footer button{ background: #fff; font:500 14px/30px 'Noto Sans KR', SansSerif; vertical-align: middle; border:solid 1px #009900; margin:2px 1px; border-radius: 3px; color: #146c43; padding:0 10px; }
-dl.ai_card dd.footer button.confirm{ background: #009900; color: #fff; background:  }
+dl.ai_card dd.footer button.confirm{ background: #009900; color: #fff;  }
 
 /* 모임카드  반응형 처리  */
 @media(max-width:1700px){

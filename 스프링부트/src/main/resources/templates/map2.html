@@ -93,99 +93,113 @@
         level: 10
     };
 
-    // var dots = {};
-    // var distanceOverlay;
 
     // 지도 생성
     var map = new kakao.maps.Map(mapContainer, mapOption);
     //   실시간 교통량 표시
     map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+    // 추천카드 세트별 선 색깔
+    var colors  = ['#FF5733', '#6A33FF', '#33FF6E', '#FFC933', '#33C3FF', '#FF33C3'];
 
-    var df = /*[[${map}]]*/ []; // 타임리프 데이터를 자바스크립트로 가져옴
+    var maps = /*[[${maps}]]*/ []; // 추천 카드 세트 리스트를 받고
+    console.log(maps);
 
-    // 좌표와 다른 정보들을 받아옴
-    positions = [];
-    for (var i = 0; i < df.length; i++) {
-        var row = df[i];
-        positions.push({
-            id: row.id,
-            category: row.category,
-            title: row.title,
-            latlng: new kakao.maps.LatLng(row.latitude, row.longitude),
+    for(var a = 0; a < maps.length; a++){
 
-        });
-    }
+        var df = maps[a]; // 각 세트별 좌표를 df로
+        console.log(df);
 
-    // 마커 이미지
-    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-    var imageSize = new kakao.maps.Size(24, 35);
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+        // 좌표와 다른 정보들을 받아옴
+        positions = [];
+        for (var i = 0; i < df.length; i++) {
+            var row = df[i];
+            positions.push({
+                id: row.id,
+                category: row.category,
+                title: row.title,
+                latlng: new kakao.maps.LatLng(row.latitude, row.longitude),
 
-    //
-    // var markers = [] // 클러스터러에 마커 리스트로 넘겨주기 위해서
-    for (var i = 0; i < positions.length; i++) {
-        var marker = new kakao.maps.Marker({
-            map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
-            id: positions[i].id,
-            position: positions[i].latlng,
-            title: positions[i].title,
-            category: positions[i].category,
-        });
+            });
+        }
+        console.log(positions);
 
-        // 마우스 올릴때 나오는 정보 추가
-        var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].category + '</p>';
-        // var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].opend + '</p>' + '<p>' + positions[i].closed + '</p>';
-        var infowindow = new kakao.maps.InfoWindow({
-            content: info
-        });
+        // 마커 이미지
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+        var imageSize = new kakao.maps.Size(24, 35);
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-        kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
-    }
+        //
+        // var markers = [] // 클러스터러에 마커 리스트로 넘겨주기 위해서
+        for (var i = 0; i < positions.length; i++) {
+            var marker = new kakao.maps.Marker({
+                map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
+                id: positions[i].id,
+                position: positions[i].latlng,
+                title: positions[i].title,
+                category: positions[i].category,
+            });
 
-    var clickPosition = []
-    for (var i = 0; i < df.length; i++){
-        clickPosition.push(new kakao.maps.LatLng(df[i].latitude, df[i].longitude))
-    }
+            // 마우스 올릴때 나오는 정보 추가
+            var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].category + '</p>';
+            // var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].opend + '</p>' + '<p>' + positions[i].closed + '</p>';
+            var infowindow = new kakao.maps.InfoWindow({
+                content: info
+            });
 
-    var polyline = new kakao.maps.Polyline({
-        // map: map, // 선을 표시할 지도입니다
-        path: clickPosition, // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
-        strokeWeight: 3, // 선의 두께입니다
-        strokeColor: '#db4040', // 선의 색깔입니다
-        strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-        strokeStyle: 'solid' // 선의 스타일입니다
-    });
-    polyline.setMap(map);
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+            kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
+        }
 
-    // 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
+        // 선을 그리기 위한 좌표 배열이 필요
+        var clickPosition = []
+        for (var i = 0; i < df.length; i++){
+            clickPosition.push(new kakao.maps.LatLng(df[i].latitude, df[i].longitude))
+        }
 
-    // ver2 displayCircleDot에 clickPosition을 리스트로 주는 경우(테스트중)
-    for(var i = 0; i < clickPosition.length-1; i++){
-
-        var dline = new kakao.maps.Polyline({
-            // map: map, // 선을 표시할 지도입니다
-            path: [clickPosition[i], clickPosition[i+1]], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
+        var color = colors[a]; // 선에 넣을 색 선택
+        var polyline = new kakao.maps.Polyline({
+            // map: map, // 이거 대신에 아래 polyline.setMap(map);로 맵에 선을 그림
+            path: clickPosition, // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
             strokeWeight: 3, // 선의 두께입니다
-            strokeColor: '#db4040', // 선의 색깔입니다
+            strokeColor: color, // 선의 색깔입니다 '#db4040'
             strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid' // 선의 스타일입니다
         });
+        polyline.setMap(map);
 
-        var distance = Math.round(dline.getLength());
-        console.log(distance);
-        displayCircleDot(clickPosition[i], distance);
+        // 아래 코드는 마커에 거리랑 빨간 점 찍는 코드
+        // ver2는 마커별로 사이사이 거리가 찍히고, ver1은 마지막에 총 거리만 찍힘
+        // ver2 displayCircleDot에 clickPosition을 리스트로 주는 경우(테스트중)
+        for(var i = 0; i < clickPosition.length-1; i++){ // 마지막 마커는 거리를 잴 다음 마커가 없으므로 lenght-1
 
+            // dline은 실제 그어지는 선이 아니라 거리 계산을 위한 매개변수용 선
+            var dline = new kakao.maps.Polyline({
+                // map: map, // 선을 표시할 지도입니다
+                path: [clickPosition[i], clickPosition[i+1]], // 선을 구성하는 좌표 배열입니다
+                strokeWeight: 3, // 선의 두께입니다
+                strokeColor: '#db4040', // 선의 색깔입니다
+                strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+                strokeStyle: 'solid' // 선의 스타일입니다
+            });
+
+            // dline.getLength()는 dline의 path에 있는 좌표 리스트의 모든 좌표간 거리를 더하는 함수
+            var distance = Math.round(dline.getLength());
+            console.log(distance);
+            displayCircleDot(clickPosition[i], distance); // 거리, 점 찍기
+
+        }
+
+
+        // ver1 displayCircleDot에 clickPosition을 하나만 주는 경우 (이건 마지막에 총거리만 찍힘)
+        // for (var i = 0; i < clickPosition.length; i++){
+        //     var distance = Math.round(polyline.getLength());
+        //     displayCircleDot(clickPosition[i], distance);
+        // }
+        //
     }
 
-
-    // ver1 displayCircleDot에 clickPosition을 하나만 주는 경우 (이건 마지막에 총거리만 찍힘)
-    // for (var i = 0; i < clickPosition.length; i++){
-    //     var distance = Math.round(polyline.getLength());
-    //     displayCircleDot(clickPosition[i], distance);
-    // }
-    //
+    // 마우스 올리면 정보 나오는 함수
     function makeOverListener(map, marker, infowindow) {
         return function () {
             infowindow.open(map, marker);
@@ -239,7 +253,7 @@
 
 
 
-    // ver2
+    // 이건 점이랑 거리 찍는 함수(api 그대로 쓴거임)
     function displayCircleDot(position, distance) {
 
         // 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
@@ -268,6 +282,7 @@
 
     }
 
+    // 이건 거리를 도보/자전거 시간으로 변환해서 찍어주는 함수인데 아직 안씀!
     function getTimeHTML(distance) {
 
         // 도보의 시속은 평균 4km/h 이고 도보의 분속은 67m/min입니다
