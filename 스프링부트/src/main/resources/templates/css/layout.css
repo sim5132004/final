@@ -219,8 +219,8 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 .invite ul.summary_card .btn_wrap button{ padding: 3px 7px; width: auto; border-radius: 1px }
 .invite .left_contents dl.ai_card dd.footer button{ border-color:rgba(0,153,0,.5); color: #009900; padding:1px 20px; border-radius:3px; }
 .invite .left_contents dl.ai_card dd.footer button.confirm{  background: #009900; color: #fff }
-.invite ul.summary_card .thumb{ height: 140px;   }
-.invite ul.summary_card .thumb img{ max-width: 400px; }
+.invite ul.summary_card .thumb{ height: 120px;   }
+.invite ul.summary_card .thumb img{ max-width: 320px }
 .card_map_wrap{ position:relative; height: 320px; }
 .card_map_wrap #map{ height: 100%; width: 100%; }
 
