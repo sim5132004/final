@@ -1,6 +1,7 @@
 package party.people.web.controller.category;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class CategoryController {
 
     private final PlaceInterface placeInterface;
@@ -33,6 +35,7 @@ public class CategoryController {
         placeList.add(place1);
         placeList.add(place2);
         placeList.add(place3);
+        log.info("goInvite] "+placeList);
 
         model.addAttribute("category","invite");
         model.addAttribute("category2",placeList);
