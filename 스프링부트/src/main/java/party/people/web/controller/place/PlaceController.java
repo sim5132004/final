@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import party.people.domain.Page;
 import party.people.domain.Place;
-import party.people.domain.TestOne;
+//import party.people.domain.TestOne;
 import party.people.repository.place.PlaceInterface;
 
 import static party.people.service.keyword.keywordToMapLogic.*;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class PlaceController {
     private final PlaceInterface placeInterface;
 
-    @GetMapping("place")
+//    @GetMapping("place")
     public String placeForm(Model model){
         List<Place> findAll = placeInterface.findAll();
         List<Place> findCategory = placeInterface.findByCategory("레저");
