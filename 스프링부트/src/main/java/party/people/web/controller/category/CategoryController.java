@@ -39,7 +39,7 @@ public class CategoryController {
 
         model.addAttribute("category","invite");
         model.addAttribute("category2",placeList);
-        return "invite/invite";
+        return "invite/invite_s";
     }
 
 

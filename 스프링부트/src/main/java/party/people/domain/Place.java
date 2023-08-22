@@ -2,6 +2,9 @@ package party.people.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class Place {
     private Long id;
@@ -33,6 +36,29 @@ public class Place {
 
     public Place(){
     }
+
+    public List<String> viewList(){
+        List a = new ArrayList<>();
+        a.add(petInfo);
+        a.add(parkingInfo);
+        a.add(runTimeInfo);
+        a.add(restDayInfo);
+        a.add(feeInfo);
+        a.add(toiletInfo);
+        a.add(languageInfo);
+        a.add(insuranceInfo);
+        a.add(salesItemInfo);
+        a.add(amenityInfo);
+        a.add(menuInfo);
+        a.add(wrapInfo);
+        a.add(checkinInfo);
+        a.add(checkoutInfo);
+        return a;
+
+
+    }
+
+
 
     public Place(Long id, String category, String smallCategory, String title, String address, String tel, Float latitude, Float longitude, String petInfo, String parkingInfo, String restDayInfo, String runTimeInfo, String feeInfo, String toiletInfo, String languageInfo, String insuranceInfo, String salesItemInfo, String amenityInfo, String menuInfo, String wrapInfo, String checkinInfo, String checkoutInfo, String otherAmenityInfo, String keyword, String imageAdd1, String imageAdd2) {
         this.id = id;
