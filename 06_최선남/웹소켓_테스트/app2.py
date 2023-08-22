@@ -17,7 +17,8 @@ def run_recommendation(data):
     추천주소 = data.get('address', None)
     top_n = 3
     recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
+    print("Received data from client:", data)  # 데이터 로그로 출력
     emit('recommendation_result', {'result': recommended_distance})
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    socketio.run(app, host='192.168.30.252', port=5000, debug=True)
