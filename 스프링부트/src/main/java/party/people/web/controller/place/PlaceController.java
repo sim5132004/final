@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import party.people.domain.Page;
 import party.people.domain.Place;
+import party.people.domain.TestOne;
 import party.people.repository.place.PlaceInterface;
 
 import static party.people.service.keyword.keywordToMapLogic.*;
@@ -32,6 +33,8 @@ public class PlaceController {
 
         return "place/placeTest";
     }
+
+
 
     @PostMapping("searchPlace")
     public String searchPlace(Page page, @RequestParam("searchForm") String searchForm, Model model){
@@ -63,4 +66,6 @@ public class PlaceController {
 //        }
         return "home";
     }
+
+
 }
