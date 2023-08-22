@@ -30,4 +30,6 @@ public interface PlaceInterface {
 
     List<Place>randon3();
 
+    Place idSearch(int id);
+
 }
