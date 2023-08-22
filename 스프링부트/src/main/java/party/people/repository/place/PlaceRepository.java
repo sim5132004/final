@@ -55,4 +55,9 @@ public class PlaceRepository implements PlaceInterface{
     public List<Place> randon3() {
         return placeMapper.randon3();
     }
+
+    @Override
+    public Place idSearch(int id){
+        return placeMapper.idSearch(id);
+    }
 }

@@ -32,4 +32,6 @@ public interface PlaceMapper {
 
     List<Place>randon3();
 
+    Place idSearch(int id);
+
 }
