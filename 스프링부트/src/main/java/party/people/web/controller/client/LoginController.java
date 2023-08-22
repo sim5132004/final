@@ -33,8 +33,9 @@ public class LoginController {
     /* Thymeleaf onclick:login 수행시 페이지 이동*/
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
+        log.info("loginForm] "+ form);
 
-        return "login/login";
+        return "login/loginForm2";
     }
 
     /* 로그인 기능 수행 */

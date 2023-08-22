@@ -84,13 +84,15 @@ public class HomeController {
         /* 세션 정보 가져오기 */
         /* create:false => 세션 정보가 있으면 기존 세션정보 로딩, 없으면 null 반환 */
         /* 세션 생성은 LoginController 참조 */
+        log.info("home] " + "문제찾기");
         HttpSession loginInfo =request.getSession(false);
         log.info("세션정보 " + loginInfo);
 
         /* 기존 세션 정보가 없으면 home으로 이동 */
         if (loginInfo==null){
-            return "place/place";
+            return "place/place_CK";
         }
+        log.info("home] "+"문제찾기");
 
         /* 세션 정보 "로그인"으로 세션 정보를 호출해 Client loginClient 객체를 생성 */
         /* LoginController에서 확인 가능 */
@@ -98,7 +100,7 @@ public class HomeController {
         log.info("로그인이 되었는가" + loginClient);
         /* 해당 객체가 없다면 home으로 이동 */
         if (loginClient==null){
-            return "place/place";
+            return "place/place_CK";
         }
         log.info("home] "+loginClient);
         /* 세션에 저장되어있는 로그인 정보를 thymeleaf단에 "client"이름으로 전달 */

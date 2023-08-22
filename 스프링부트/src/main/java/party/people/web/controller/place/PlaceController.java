@@ -34,42 +34,42 @@ public class PlaceController {
         return "place/placeTest";
     }
 
-    @PostMapping("go_invite")
-    public String goInvite(@RequestParam("go_invite") TestOne testOne, Model model){
+//    @PostMapping("go_invite")
+//    public String goInvite(@RequestParam("go_invite") TestOne testOne, Model model){
+//
+//
+//        return "testpage/test_shim_in";
+//    }
+//
 
+//    @GetMapping("test_main")
+//    public String testMain(Model model){
+//        TestOne one = new TestOne();
+//        System.out.println("셋터 시작");
+//        one.setOne(1);
+//        one.setTwo(2);
+//        one.setThree(3);
+//
+//        model.addAttribute("testOne", one);
+//        System.out.println("리턴 시작");
+//        return "testpage/test_shim_pl";
+//    }
 
-        return "testpage/test_shim_in";
-    }
-
-
-    @GetMapping("test_main")
-    public String testMain(Model model){
-        TestOne one = new TestOne();
-        System.out.println("셋터 시작");
-        one.setOne(1);
-        one.setTwo(2);
-        one.setThree(3);
-
-        model.addAttribute("testOne", one);
-        System.out.println("리턴 시작");
-        return "testpage/test_shim_pl";
-    }
-
-
-//    @PostMapping("test_main")
-    public String postMain(@ModelAttribute("test_ii") TestOne testOne, Model model){
-        TestOne testOne1= new TestOne();
-        model.addAttribute("c1", testOne1);
-        return "";
-    }
-
-    @PostMapping("test_i")
-    public String testIn(@ModelAttribute("test_ii") TestOne testOne, Model model){
-//        Integer s=testOne.getOne();
-//        System.out.println(s);
-        return "testpage/test_shim_in";
-    }
-
+//
+////    @PostMapping("test_main")
+//    public String postMain(@ModelAttribute("test_ii") TestOne testOne, Model model){
+//        TestOne testOne1= new TestOne();
+//        model.addAttribute("c1", testOne1);
+//        return "";
+//    }
+//
+//    @PostMapping("test_i")
+//    public String testIn(@ModelAttribute("test_ii") TestOne testOne, Model model){
+////        Integer s=testOne.getOne();
+////        System.out.println(s);
+//        return "testpage/test_shim_in";
+//    }
+//
 
 
 
