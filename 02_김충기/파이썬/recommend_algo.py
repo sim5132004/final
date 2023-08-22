@@ -124,7 +124,7 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
 
 def check_cdc_changes():
     with connection.cursor() as cursor:
-        cursor.execute("SELECT SEQUENCEID, CATEGORY, KEYWORD, ADDRESS  FROM ASDF")
+        cursor.execute("SELECT SEQUENCEID, CATEGORY, KEYWORD, ADDRESS  FROM searchinput")
         result = cursor.fetchall()
         return result
 
