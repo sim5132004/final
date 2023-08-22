@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="ALL"/>
@@ -17,25 +17,22 @@
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
 </head>
+
 <body>
-<div class="container invite">
+<div class="container invite skin">
     <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
     <div class="modal_layer_wrap">
-        <div class="layer_box"></div>
+        <div class="layer_bg"></div>
+        <div class="layer_box">
+            <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
+            <div class="layer_contents" th:insert="~{place_info.html}"></div>
+        </div>
     </div>
     <!-- ####### 01. HEADER START ####### -->
     <div class="header_wrap">
         <header>
-            <h1 class="logo"><a href="/">Party People</a></h1>
+            <h1 class="logo"><a href="#">Party People</a></h1>
         </header>
-        <!--        <nav class="gnb">-->
-        <!--            <ul>-->
-        <!--                <li><a href="place">Place</a></li>-->
-        <!--                <li><a href="culture">Culture</a></li>-->
-        <!--                <li><a href="invite">Invite</a></li>-->
-        <!--                <li><a href="analysis">Analysis</a></li>-->
-        <!--            </ul>-->
-        <!--        </nav>-->
         <form>
             <div class="page_search">
                 <input type="text" placeholder="[인천] 장소, 상호명 검색" autofocus><!--
@@ -73,23 +70,6 @@
         <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 끝 -->
         <hr class="skip"/>
         <!-- #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 -->
-        <script>
-            $(function(){
-                // 업종별 대메뉴 활성화(class="active") 메뉴버튼 처리
-                $("nav ul li:nth-child(1) a").addClass("active");
-                // 사용자가 선택한 메뉴 활성화(class="active")에 따른 페이지 메뉴명 제이쿼리 변경 처리
-                $(".fixed_quick_menu dd.active a").clone().prependTo(".lnb h2");
-                $(".sub_menu_list li a.active").clone().prependTo(".right_contents h1");
-                // $(".right_contents h1 span").appendTo("분석");
-                // 페이지 네비게이션 경로 처리
-                $(".fixed_quick_menu dd.active a").clone().appendTo(".page_path");
-                $(".sub_menu_list li a.active span").clone().appendTo(".page_path");
-                $(".right_contents.area ul.summary_card input[type=checkbox]").attr(disabled);
-                // 체크 박스 비활성화
-                //$(".right_contents.area ul.summary_card input[type=checkbox]").prop("disabled",true);
-
-            });
-        </script>
         <div class="lnb">
             <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
             <h2> <div class="standard_cond">모임장소를 고르신 후,<br> 나만의 초대카드를 만들어보세요.</div></h2>
@@ -99,7 +79,6 @@
 
             </ul>
         </div>
-
         <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
     </div>
     <!-- ####### 02. LNB END ########## -->
@@ -164,14 +143,12 @@
                                         <span class="category"><b class="depth_1">음식</b><b class="depth_2">한식</b></span>
                                     </li>
                                     <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" alt="돈비어천가"></li>
-                                    <li class="btn_wrap">
-                                        <button>상세정보</button>
-                                        <button>지도보기</button>
-                                    </li>
                                     <li class="addr">인천 중구 개항로 63-2</li>
                                     <li class="work_time">10:00~22:00브레이크타임없음<span>(쉬는날 : 연중무휴)</span></li>
                                     <li class="parking">주차시설 : 있음,유료</li>
-                                    <li class="tel">032-930-1234</li>
+                                    <li class="tel">032-930-1234
+                                        <a href="#" class="place_info_layer">상세정보</a>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- 대안 장소 선택_02: 업체 리스트 -->
@@ -179,18 +156,16 @@
                                 <ul class="summary_card">
                                     <li class="subject">
                                         <input type="checkbox" checked>
-                                        <b>신포국제시장</b>
+                                        <b>신포국제시장1</b>
                                         <span class="category"><b class="depth_1">쇼핑</b><b class="depth_2">전통시장</b></span>
                                     </li>
                                     <li class="thumb"><img src="https://dbscthumb-phinf.pstatic.net/4904_000_1/20170512140138758_Y0ECXXYI5.jpg/fb63_81_i3.jpg?type=m4500_4500_fst" alt="신포국제시장"></li>
-                                    <li class="btn_wrap">
-                                        <button>상세정보</button>
-                                        <button>지도보기</button>
-                                    </li>
                                     <li class="addr">인천 중구 송현로59번길 5</li>
                                     <li class="work_time">10:00~21:00<br>지원센터 09:00~18:00<span class="holyday">(쉬는날 : 매월 첫 주 월요일, 설·추석 당일 / 지원센터 주말 <br>(점포마다 상이함))</span></li>
                                     <li class="parking">주차시설 : 있음,무료</li>
-                                    <li class="tel">032-773-2368</li>
+                                    <li class="tel">032-930-0000
+                                        <a href="#" class="place_info_layer">상세정보</a>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- 대안 장소 선택_03: 업체 리스트 -->
@@ -202,14 +177,12 @@
                                         <span class="category"><b class="depth_1">쇼핑</b><b class="depth_2">전통시장</b></span>
                                     </li>
                                     <li class="thumb"><img src="http://imgnews.naver.net/image/003/2014/09/26/NISI20140926_0010170270_web_99_20140926192103.jpg" alt="신파시장"></li>
-                                    <li class="btn_wrap">
-                                        <button>상세정보</button>
-                                        <button>지도보기</button>
-                                    </li>
                                     <li class="addr">인천 중구 송현로59번길 5</li>
                                     <li class="work_time">10:00~21:00<br>지원센터 09:00~18:00<span class="holyday">(쉬는날 : 매월 첫 주 월요일, 설·추석 당일 / 지원센터 주말 <br>(점포마다 상이함))</span></li>
                                     <li class="parking">주차시설 : 있음,무료</li>
-                                    <li class="tel">032-773-2368</li>
+                                    <li class="tel">032-930-1589
+                                        <a href="#" class="place_info_layer">상세정보</a>
+                                    </li>
                                 </ul>
                             </div>
                         </dd>
@@ -276,4 +249,5 @@
     <!-- ####### 04. FOOTER END ####### -->
 </div>
 </body>
+<script src="../js/ui_basic.js"></script>
 </html>
