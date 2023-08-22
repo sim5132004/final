@@ -29,7 +29,7 @@ public class JoinController {
         /* 체크 박스 메서드(최하단(메서드이름 컨트롤 클릭도 가능)에서 메서드 확인 가능) */
         /* 요약 : 체크박스 리스트를 thymeleaf단에 제공 */
         checkbox(model);
-        return "client/join";
+        return "client/joinForm";
     }
 
 
