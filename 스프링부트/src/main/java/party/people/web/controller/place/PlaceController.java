@@ -34,7 +34,7 @@ public class PlaceController {
 
 
     @PostMapping("searchPlace")
-    public String searchPlace(Page page, @RequestParam("searchForm") String searchForm, Model model){
+    public String searchPlace(@RequestParam("searchForm") String searchForm, Model model){
         /* 검색 결과를 출력하는 로직 */
         log.info("검색내용 "+ searchForm);
         List<String>splitSearch = Arrays.stream(searchForm.split(" ")).toList();

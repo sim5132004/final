@@ -17,7 +17,7 @@
 .ai_card label{  }
 .ai_card label b{ display: inline-block; width:9%; min-width:56px; vertical-align: top }
 .ai_card label input[type=text], .ai_card label input[type=date]
-{ display: inline-block; background: rgba(0,0,0,.03); border:solid 1px rgba(0,0,0,.6); border-radius:3px; padding:2px; color: rgba(0,0,0,.9); margin:0 1% 4px 0 }
+{ display: inline-block; background:rgba(0,210,255,.06); border:solid 1px rgba(0,0,0,.4); border-radius:3px; padding:2px; color: rgba(0,0,0,.9); margin:0 1% 4px 0 }
 
 
 .ai_card h2 label{  }
@@ -37,5 +37,5 @@
 .ai_card .form_info .people label input[type=text]{ width:88%; }
 .ai_card .form_info{ }
 
-.ai_card .form_info .memo textarea{ width: 87%; margin: 0 }
+.ai_card .form_info .memo textarea{ width: 87%; margin: 0; background:rgba(0,210,255,.06); border:solid 1px rgba(0,0,0,.4); border-radius:3px; min-height: 50px }
 .ai_card .form_info .skin{ padding:3px 0 10px 0;}
