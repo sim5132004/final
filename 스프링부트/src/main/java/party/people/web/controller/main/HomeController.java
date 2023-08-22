@@ -31,6 +31,9 @@ public class HomeController {
     /* home */
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model){
+        /* 임시 place가 메인일때만 사용 */
+        model.addAttribute("category","place");
+
 /*
     1. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
 */
@@ -90,7 +93,7 @@ public class HomeController {
 
         /* 기존 세션 정보가 없으면 home으로 이동 */
         if (loginInfo==null){
-            return "place/place_CK";
+            return "place/place_ck";
         }
         log.info("home] "+"문제찾기");
 
@@ -100,7 +103,7 @@ public class HomeController {
         log.info("로그인이 되었는가" + loginClient);
         /* 해당 객체가 없다면 home으로 이동 */
         if (loginClient==null){
-            return "place/place_CK";
+            return "place/place_ck";
         }
         log.info("home] "+loginClient);
         /* 세션에 저장되어있는 로그인 정보를 thymeleaf단에 "client"이름으로 전달 */

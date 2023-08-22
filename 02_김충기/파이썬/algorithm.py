@@ -1,13 +1,9 @@
-from flask import Flask, render_template
-from flask_socketio import SocketIO, emit
-import pandas as pd
-import math
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import pandas as pd
 import cx_Oracle
 import pandas as pdb
-
+import math
 
 connection = cx_Oracle.connect("party/party@192.168.30.240:1521/xe")
 
@@ -16,10 +12,6 @@ query = """select * from PlACEINFO"""
 place_df = pd.read_sql(query, con=connection)
 
 data=place_df[['카테고리','제목','주소','위도','경도','키워드리스트']]
-
-app = Flask(__name__)
-socketio = SocketIO(app, async_mode='gevent')  # 비동기 모드로 SocketIO 설정
-
 
 # 데이터프레임에서 가져오기
 data_recommend = data
@@ -147,7 +139,7 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
 
 # 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천
 추천카테고리 = ''  # None으로 두면 카테고리를 사용하지 않음
-추천키워드 = ''  # None으로 두면 키워드를 사용하지 않음
+추천키워드 = '맛집'  # None으로 두면 키워드를 사용하지 않음
 추천주소 = ''  # None으로 두면 주소를 사용하지 않음
 top_n = 3
 recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
@@ -160,19 +152,3 @@ for item in recommended_distance[:3]:
         keywords_str = ', '.join(keywords)
         print(
             f"카테고리 : {category}, 가까운 추천 장소: {place}, \n주소: {address}, \n거리: {distance:.2f} km, \n추천키워드: {keywords_str}\n")
-
-@app.route('/')
-def index():
-    return render_template('index2.html')
-
-@socketio.on('run_recommendation')  # 클라이언트에서 'run_recommendation' 이벤트를 받았을 때 실행
-def run_recommendation(data):
-    추천카테고리 = data.get('category', None)
-    추천키워드 = data.get('keywords', None)
-    추천주소 = data.get('address', None)
-    top_n = 3
-    recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
-    emit('recommendation_result', {'result': recommended_distance})
-
-if __name__ == '__main__':
-    socketio.run(app, debug=True)

@@ -60,15 +60,19 @@
             recommendationHTML += "<ul>";
 
             for (var j = 0; j < distances.length; j++) {
-                var address = distances[j][2];
-                var distance = distances[j][3];
-                var keywords = distances[j][4].join(', ');
+               var category = distances[j][0]; // 추가: 카테고리 정보 가져오기
+               var nearbyPlace = distances[j][1]; // 추가: 가까운 장소 이름 가져오기
+               var address = distances[j][2];
+               var distance = distances[j][3];
+               var keywords = distances[j][4].join(', ');
 
-                recommendationHTML += "<li>";
-                recommendationHTML += "주소: " + address + "<br>";
-                recommendationHTML += "거리: " + distance.toFixed(2) + " km<br>";
-                recommendationHTML += "키워드: " + keywords + "<br>";
-                recommendationHTML += "</li>";
+               recommendationHTML += "<li>";
+               recommendationHTML += "추천 카테고리: " + category + "<br>"; // 추가: 추천 카테고리 표시
+               recommendationHTML += "가까운 장소: " + nearbyPlace + "<br>"; // 수정: 가까운 장소 표시
+               recommendationHTML += "주소: " + address + "<br>";
+               recommendationHTML += "거리: " + distance.toFixed(2) + " km<br>";
+               recommendationHTML += "키워드: " + keywords + "<br>";
+               recommendationHTML += "</li>";
             }
 
             recommendationHTML += "</ul></div>";
@@ -78,7 +82,7 @@
 </script>
 </body>
 </html>
-이렇게 수정하시고 키워드를 입력하여 "추천 알고리즘 실행" 버튼을 누르면, 해당 키워드를 기반으로 추천 결과가 나타날 것입니다. 만약 여전히 결과가 나타나지 않는다면, Python 코드도 확인하여 문제점을 찾아보시기 바랍니다.
+
 
 
 
