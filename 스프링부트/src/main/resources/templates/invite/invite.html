@@ -17,21 +17,20 @@
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
 </head>
-
 <body>
-<div class="container invite skin">
+<div class="container invite design">
     <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
     <div class="modal_layer_wrap">
         <div class="layer_bg"></div>
         <div class="layer_box">
             <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
-            <div class="layer_contents" th:insert="~{place_info}">..</div>
+            <div class="layer_contents" th:insert="~{insert/place_info}"></div>
         </div>
     </div>
     <!-- ####### 01. HEADER START ####### -->
     <div class="header_wrap">
         <header>
-            <h1 class="logo"><a href="#">Party People</a></h1>
+            <h1 class="logo"><a href="/">Party People</a></h1>
         </header>
         <form>
             <div class="page_search">
@@ -75,10 +74,9 @@
             <h2> <div class="standard_cond">모임장소를 고르신 후,<br> 나만의 초대카드를 만들어보세요.</div></h2>
             <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
             <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
-            <ul class="sub_menu_list">
 
-            </ul>
         </div>
+
         <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
     </div>
     <!-- ####### 02. LNB END ########## -->
@@ -103,17 +101,17 @@
                                 <div class="form_info"><!-- 연관 키워드 10개 -->
                                     <div class="date">
                                         <label><b>모임날짜</b><input type="date" value="2023-08-21"></label>
-                                        <label><b>모임시간</b><input type="text"></label>
+                                        <label><b>모임시간</b><input type="time"></label>
                                         <label><b>참가인원</b><input type="text"> </label>
                                     </div>
                                     <div class="memo"><label><b>모임내용</b><textarea class="card_memo" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
-                                    <div class="skin"><b>카드스킨</b>
-                                        <label><input type="radio" value="a_type" checked> A_type</label>
-                                        <label><input type="radio" value="b_type"> B_type</label>
-                                        <label><input type="radio" value="c_type"> C_type</label>
-                                        <label><input type="radio" value="d_type"> D_type</label>
-                                        <label><input type="radio" value="e_type"> E_type</label>
-                                    </div>
+<!--                                    <div class="skin"><b>카드스킨</b>-->
+<!--                                        <label><input type="radio" value="a_type" checked> A_type</label>-->
+<!--                                        <label><input type="radio" value="b_type"> B_type</label>-->
+<!--                                        <label><input type="radio" value="c_type"> C_type</label>-->
+<!--                                        <label><input type="radio" value="d_type"> D_type</label>-->
+<!--                                        <label><input type="radio" value="e_type"> E_type</label>-->
+<!--                                    </div>-->
                                 </div>
                             </dt>
                             <div class="card_map_wrap"><div id="map"></div></div>
@@ -133,6 +131,7 @@
                                 // 지도를 생성합니다
                                 var map = new kakao.maps.Map(mapContainer, mapOption);
                             </script>
+
                             <dd class="body">
                                 <!-- 대안 장소 선택_01: 업체 리스트 -->
                                 <div class="card_list">
@@ -152,6 +151,7 @@
                                     </ul>
                                 </div>
                                 <!-- 대안 장소 선택_02: 업체 리스트 -->
+
                                 <div class="card_list">
                                     <ul class="summary_card">
                                         <li class="subject">
@@ -219,19 +219,62 @@
             </div>
             <form>
                 <div class="card_list_wrap">
-                    <!-- 추천(조합) 모임카드 #.01 시작 -->
-                    <dl class="ai_card_skin">
-                        <dt class="header">
-
-                        </dt>
-                        <dd class="body">
-
-                        </dd>
-                        <dd class="footer">
-
-                        </dd>
+                    <!-- 카드 디자인 스킨 #.01 시작 -->
+                    <dl class="ai_card_skin a_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type" checked> A</label></dd>
+                        <dd class="footer">Party People</dd>
                     </dl>
-                    <!-- 추천(조합) 모임카드 #.01 끝 -->
+                    <!-- 카드 디자인 스킨 #.01 끝 -->
+                    <!-- 카드 디자인 스킨 #.02 시작 -->
+                    <dl class="ai_card_skin b_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> B</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.02 끝 -->
+                    <!-- 카드 디자인 스킨 #.03 시작 -->
+                    <dl class="ai_card_skin c_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> C</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.03 끝 -->
+                    <!-- 카드 디자인 스킨 #.04 시작 -->
+                    <dl class="ai_card_skin d_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> D</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.04 끝 -->
+                    <!-- 카드 디자인 스킨 #.05 시작 -->
+                    <dl class="ai_card_skin e_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> E</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.05 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin f_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> F</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin g_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> G</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin h_type">
+                        <dt class="header"></dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> H</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
                 </div>
             </form>
         </div>
@@ -240,14 +283,8 @@
     <!-- ####### 03. CONTENTS END ####### -->
     <hr class="skip"/>
     <!-- ####### 04. FOOTER START ####### -->
-    <div class="footer_wrap">
-        <footer>
-            <p class="copyright">  © 2023 Party People.</p>
-        </footer>
+    <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
+        <!-- ####### 04. FOOTER END ####### -->
     </div>
-    <a href="#" class="to_top"><i class="fa-solid fa-arrow-up"></i> 맨위로</a>
-    <!-- ####### 04. FOOTER END ####### -->
-</div>
 </body>
-<script src="../js/ui_basic.js"></script>
 </html>

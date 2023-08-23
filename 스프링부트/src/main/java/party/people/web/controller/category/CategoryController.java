@@ -42,7 +42,7 @@ public class CategoryController {
         /* side lnb 출력용 */
         model.addAttribute("category","invite");
         model.addAttribute("category2",placeList);
-        return "invite/invite_ck";
+        return "invite/invite";
     }
 
 
