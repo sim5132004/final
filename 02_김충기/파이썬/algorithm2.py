@@ -148,6 +148,7 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
 top_n = 3
 recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
 keywords_str = ''
+cate_list=[]
 for item in recommended_distance[:3]:
 
     카테고리, 제목, 거리정보 = item
@@ -164,9 +165,18 @@ for item in recommended_distance[:3]:
     keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
     set_keywords_slash_delete = list(set(keywords_slash_delete))
     print(f"가장 빈도수가 높은 키워드: {', '.join(set_keywords_slash_delete)}")
+    cate_list.append(set_keywords_slash_delete)
 
     for category, place, address, distance, keywords in 거리정보:
         keywords_str = ', '.join(keywords)
 
         print(
             f"카테고리 : {category}, 가까운 추천 장소: {place}, \n주소: {address}, \n거리: {distance:.2f} km, \n추천키워드: {keywords_str}\n")
+
+print(cate_list)
+baseString = ''
+for cate in cate_list:
+    for ca in cate:
+        baseString=baseString+ca.strip()+','
+    baseString=baseString+'/'
+finalString = baseString.rstrip('/').rstrip(',')

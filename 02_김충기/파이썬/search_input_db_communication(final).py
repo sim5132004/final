@@ -4,6 +4,7 @@ from sklearn.metrics.pairwise import linear_kernel
 import cx_Oracle
 import pandas as pd
 import math
+import re
 import time
 
 # Oracle DB 접속 정보 설정
@@ -36,25 +37,51 @@ while True:
         추천주소 = new_db_data[3]  # None으로 두면 주소를 사용하지 않음
         top_n = 3
         recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
-        list = recommended_distance
+        recommend_list = recommended_distance
         searchResult = ""
         count = 0;
-        for x in range(len(list)):
+        for x in range(len(recommend_list)):
             count += 1
             if(count==4):
                 break
-            searchResult += list[x][1]+","
-            for i in range(len(list[0][2]) - 1):
+            searchResult += recommend_list[x][1] + ","
+            for i in range(len(recommend_list[0][2]) - 1):
                 try:
-                    searchResult += list[x][2][i][1]+","
+                    searchResult += recommend_list[x][2][i][1] + ","
                 except:
                     pass
             searchResult = searchResult.rstrip(',')
             searchResult += '/'
         searchResult = searchResult.rstrip('/')
-        insert_sql = "INSERT INTO  searchresult(sequenceid, result) VALUES (searchresult_seq.nextval, :val2)"
+
+        category_list = []
+        for item in recommended_distance[:3]:
+
+            카테고리, 제목, 거리정보 = item
+
+            all_keywords = []
+            for category, place, address, distance, keywords in 거리정보:
+                all_keywords.extend(keywords)
+
+            # 키워드 빈도수 계산 및 상위 5개 추출
+            keyword_counts = pd.Series(all_keywords).value_counts()
+            top_keywords = keyword_counts.head(10).index.tolist()
+            top_keywords.sort(reverse=True)
+
+            keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
+            set_keywords_slash_delete = list(set(keywords_slash_delete))
+            category_list.append(set_keywords_slash_delete)
+
+        baseString = ''
+        for cate in category_list:
+            for ca in cate:
+                baseString = baseString + ca.strip() + ','
+            baseString = baseString.rstrip(',') + '/'
+        finalString = baseString.rstrip('/').rstrip(',')
+
+        insert_sql = "INSERT INTO  searchresult(sequenceid, result, sortkeyword) VALUES (searchresult_seq.nextval, :val2, :val3)"
         with connection.cursor() as cursor:
-            cursor.execute(insert_sql, val2=searchResult)
+            cursor.execute(insert_sql, val2=searchResult, val3=finalString)
             connection.commit()  # 변경사항을 커밋하여 반영
     else:
         print("새로운 값이 없습니다.")

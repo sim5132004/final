@@ -15,7 +15,7 @@ search_query = input('검색어를 입력하세요: ')
 # Google Custom Search API로 검색하여 링크 주소 가져오기
 def get_links(query, num_results=10):
     service = build("customsearch", "v1", developerKey=API_KEY)
-    result = service.cse().list(q=query, cx=CX, num=num_results).execute()
+    result = service.cse().recommend_list(q=query, cx=CX, num=num_results).execute()
     if 'items' in result:
         links = [item['link'] for item in result['items']]
         return links
