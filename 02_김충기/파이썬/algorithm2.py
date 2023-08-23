@@ -17,7 +17,7 @@ data=place_df[['카테고리','제목','주소','위도','경도','키워드리�
 # 데이터프레임에서 가져오기
 data_recommend = data
 
-# 데이터프레임을 카테고리와 키워드 컬럼만 남기고 복사(쓸것만 복사하기 원본 냅두고)
+# 데이터프레임을 카테고리와 키워드 컬럼만 남기고 복사
 data_for_recommend = data_recommend[['카테고리', '키워드리스트', '위도', '경도', '주소']].copy()
 
 # 각 컬럼의 NaN 값을 빈 문자열로 대체(전처리)
@@ -35,6 +35,8 @@ tfidf_matrix = tfidf_vectorizer.fit_transform(data_for_recommend['combined'])
 
 # 코사인 유사도 계산
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+
+
 # TF_IDF 행렬을 사용하여 코사인 유사도를 계산한다. 각 제목(장소) 간의 유사도(카테고리+키워드리스트 분석)를 나타내는 행렬
 
 # 위도 경도를 기반으로 두 지점 간의 거리를 계산하는 함수
@@ -53,11 +55,12 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
     distance = radius * c
-    return distance if not math.isnan(distance) and distance != 0 else 0
+    return distance if not math.isnan(distance) else None
+
+
 # 피타고라스의 정리와 유사함 a^2+c^2=b^2
 
-
-# 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행하는 함수
+# 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행
 def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천주소=None, top_n=3):
     # DB의 데이터프레임을 받아서 특정 조건에 맞는 제목(장소)를 추천하고 그 제목(장소)들의 거리 정보를 함께 반환한다.
     # df=Db의 데이터프레임, 추천카테고리 : Df의 '카테고리', 추천키워드 : DF의 '키워드리스트', 추천주소 : Df의 제목(장소)의 주소 top_n: 개수
@@ -138,7 +141,7 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
     return recommended_data_list
 
 
-# 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천
+# 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행
 추천카테고리 = ''  # None으로 두면 카테고리를 사용하지 않음
 추천키워드 = '맛집'  # None으로 두면 키워드를 사용하지 않음
 추천주소 = ''  # None으로 두면 주소를 사용하지 않음
@@ -146,9 +149,22 @@ top_n = 3
 recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
 keywords_str = ''
 for item in recommended_distance[:3]:
+
     카테고리, 제목, 거리정보 = item
-    print(f"입력한 키워드:{추천키워드}")
-    print(f"추천 카테고리: {카테고리}, 추천장소: {제목}\n")
+
+    all_keywords = []
+    for category, place, address, distance, keywords in 거리정보:
+        all_keywords.extend(keywords)
+
+    # 키워드 빈도수 계산 및 상위 5개 추출
+    keyword_counts = pd.Series(all_keywords).value_counts()
+    top_keywords = keyword_counts.head(10).index.tolist()
+    top_keywords.sort(reverse=True)
+
+    keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
+
+    print(f"가장 빈도수가 높은 키워드: {', '.join(keywords_slash_delete)}")
+
     for category, place, address, distance, keywords in 거리정보:
         keywords_str = ', '.join(keywords)
         print(

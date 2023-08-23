@@ -7,9 +7,11 @@ public class SearchResult {
     Long sequenceId;
     String result;
 
+
     public SearchResult(){}
 
     public SearchResult(String result) {
         this.result = result;
+
     }
 }
