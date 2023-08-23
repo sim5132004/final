@@ -60,16 +60,21 @@
         <div class="col align-items-center flex-col sign-in">
             <div class="form-wrapper align-items-center">
                 <div class="form sign-in">
-                    <form action="/findId" th:action method="post">
+                    <form action="/findPw" th:action th:object="${findPwForm}" method="post">
 
                     <div class="input-group">
                         <i class='bx bxs-user'></i>
-                        <input type="text" th:field="*{client.clientEmail}" placeholder="이메일">
-                        <div class="field-error" th:errors="*{client.clientEmail}" />
+                        <input type="text" th:field="*{clientId}" placeholder="아이디">
+                        <div class="field-error" th:errors="*{clientId}" />
+                    </div>
+                    <div class="input-group">
+                        <i class='bx bxs-user'></i>
+                        <input type="text" th:field="*{clientEmail}" placeholder="이메일">
+                        <div class="field-error" th:errors="*{clientEmail}" />
                     </div>
 
                     <button type="submit">
-                        ID 찾기
+                        비밀번호 찾기
                     </button>
                     <p>
                     <button th:onclick="|location.href='@{/client/login}'|"
@@ -78,8 +83,8 @@
                     </button>
 
                     <p>
-                        <b th:onclick="|location.href='@{/client/findPw}'|" class="pointer">
-                            비밀번호를 잊어버리셨나요?
+                        <b th:onclick="|location.href='@{/client/findId}'|" class="pointer">
+                            아이디를 잊어버리셨나요?
                         </b>
                     </p>
                     <p>
@@ -108,7 +113,7 @@
         <div class="col align-items-center flex-col">
             <div class="text sign-in">
                 <h2 style="text-align: left">
-                    이메일로 아이디를 <br> 찾아드립니다
+                    아이디와 이메일로 <br> 비밀번호를 찾아드립니다
                 </h2>
 
             </div>

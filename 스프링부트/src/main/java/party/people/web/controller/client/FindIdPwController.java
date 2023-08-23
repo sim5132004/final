@@ -51,7 +51,7 @@ public class FindIdPwController {
     /* Validation 및 thymeleaf 정보 제공을 위해 form 제공 */
     public String findPwForm(@ModelAttribute("findPwForm") FindPwForm form){
         log.info("findPwForm] "+form);
-        return "login/findPwForm";
+        return "login/findPwForm2";
     }
 
     @PostMapping("/findPw")
@@ -65,12 +65,12 @@ public class FindIdPwController {
         if (findPw==null) {
             bindingResult.rejectValue("clientId","clientId.invalid","제공해주신 ID와 Email과 일치하는 정보가 없습니다.");
 //            model.addAttribute("client", client);
-            return "login/findPwForm";
+            return "login/findPwForm2";
         }
 
         /* 일치하는 데이터가 있을 경우 thymeleaf에 전송 */
         model.addAttribute("client",findPw);
 
-        return "login/findPwResult";
+        return "login/findPwResult2";
     }
 }

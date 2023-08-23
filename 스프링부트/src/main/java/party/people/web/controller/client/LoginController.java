@@ -69,7 +69,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         /* HomeController 참고*/
         /* 세션 정보 가져오기 */
