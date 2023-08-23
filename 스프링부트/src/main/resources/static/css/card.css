@@ -1,5 +1,5 @@
 /* 모임카드 스킨 */
-.invite .left_contents dl.ai_card.design{ padding-top:90px !important; min-width: 500px }
+.invite .left_contents dl.ai_card.design{ padding-top:90px !important; min-width: 700px }
 
 
 .invite .left_contents .ai_card dd.footer{  position: absolute; top:0; left: 10px; width: 100%; min-width: 400px; background: #fff; z-index: 99; border-bottom:solid 2px rgba(0,0,0,.6); box-sizing: border-box;  text-align: left; padding:10px 0 10px 45px }
@@ -16,26 +16,53 @@
 
 .ai_card label{  }
 .ai_card label b{ display: inline-block; width:9%; min-width:56px; vertical-align: top }
-.ai_card label input[type=text], .ai_card label input[type=date]
+.ai_card label input[type=text], .ai_card label input[type=date], .ai_card label input[type=time]
 { display: inline-block; background:rgba(0,210,255,.06); border:solid 1px rgba(0,0,0,.4); border-radius:3px; padding:2px; color: rgba(0,0,0,.9); margin:0 1% 4px 0 }
-
 
 .ai_card h2 label{  }
 .ai_card h2 label b{ letter-spacing: 3px; }
 .ai_card h2 label input[type=text]{ width:88.5%; font:500 20px/24px 'Noto Sans KR',Sans-serif; min-width:100px;display: inline-block; }
-
-/* 모임카드  반응형 처리  */
-@media(max-width:1400px){
-    .ai_card h2 label input[type=text]{ width:80% }
+/*모임카드  반응형 처리 */
+@media(max-width:1620px){
+.ai_card h2 label input[type=text]{ width:70% }
 
 }
+
 .ai_card .form_info .date{ flex-direction:row; justify-content: space-between;  align-items: center; word-wrap: break-word; margin:5px 0 }
-.ai_card .form_info .date label{ width: 50% }
+.ai_card .form_info .date label{ width: 30%; flex:1 1 auto }
 .ai_card .form_info .date label:nth-child(2) input[type=text]{  }
 .ai_card .form_info .date label b{  }
+.ai_card .form_info .date label input{ }
 .ai_card .form_info .skin b{ display: inline-block; width:9%; min-width:56px; vertical-align: top }
 .ai_card .form_info .people label input[type=text]{ width:88%; }
 .ai_card .form_info{ }
 
 .ai_card .form_info .memo textarea{ width: 87%; margin: 0; background:rgba(0,210,255,.06); border:solid 1px rgba(0,0,0,.4); border-radius:3px; min-height: 50px }
 .ai_card .form_info .skin{ padding:3px 0 10px 0;}
+
+/* ====================================
+    디자인 카드 스킨
+=======================================*/
+
+
+.invite.design .card_list_wrap{ width: 100%; display: flex; flex-wrap: wrap; justify-content: center; flex-direction:row;  word-wrap: break-word; }
+
+.ai_card_skin{ position: relative; background: #fff; flex: 1 1 48%; margin:20px 1%; padding: 0 2%;  border-radius: 5px }
+.ai_card_skin:after{ content:""; display: block; clear:both; }
+
+.ai_card_skin dt.header{ min-height: 120px; color: #fff; font:500 16px/26px 'Noto Sans KR',Sans-serif; text-align: center;  display: flex;justify-content: center;align-items: center; text-shadow: 3px 2px 2px rgba(0,0,0,.5); letter-sapcing:0.5px }
+.ai_card_skin dd.body{ background: #fff; min-height: 180px; border-radius: 5px; font:600 30px/30px 'Noto Sans KR',Sans-serif; text-align: center;  display: flex;justify-content: center;align-items: center; color: rgba(0,0,0,.2) }
+.ai_card_skin dd.body input[type=radio]{ width: 20px; height: 20px }
+.ai_card_skin dd.footer{ color:rgba(255,255,255,.7); font:400 12px/30px 'Noto Sans KR',Sans-serif; text-align: center }
+
+
+.ai_card_skin.a_type{ background:#052238 url("../images/bg0.png") }
+.ai_card_skin.b_type{ background:#232323 url("../images/bg_04.jpg") no-repeat top; background-size: 100%  }
+.ai_card_skin.c_type{ background:#232323 url("../images/bg_05.jpg") no-repeat top; background-size: 100% }
+.ai_card_skin.d_type{ background:#0f5132 url("../images/bg_06.jpg") no-repeat top; background-size: 100%  }
+.ai_card_skin.e_type{ background:#000000 url("../images/bg3.png") }
+.ai_card_skin.f_type{ background:#232323 url("../images/bg_03.jpg") no-repeat top; background-size: 100%  }
+.ai_card_skin.g_type{ background:#009900 url("../images/bg4.png") }
+.ai_card_skin.h_type{ background:#0c4128 url("../images/bg_01.jpg") no-repeat top; background-size: 100%  }
+
+
