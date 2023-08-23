@@ -6,12 +6,13 @@ import lombok.Data;
 public class SearchResult {
     Long sequenceId;
     String result;
+    String sortKeyword;
 
 
     public SearchResult(){}
 
-    public SearchResult(String result) {
+    public SearchResult(String result, String sortKeyword) {
         this.result = result;
-
+        this.sortKeyword = sortKeyword;
     }
 }
