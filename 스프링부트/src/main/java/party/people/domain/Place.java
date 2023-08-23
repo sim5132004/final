@@ -2,6 +2,9 @@ package party.people.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class Place {
     private Long id;
@@ -33,6 +36,56 @@ public class Place {
 
     public Place(){
     }
+
+    public List<String> viewList(){
+        List a = new ArrayList<>();
+        if(petInfo != null){
+            a.add("애완동물 정보 : "+petInfo);
+        }
+        if(parkingInfo != null){
+        a.add("주차정보 : "+parkingInfo);}
+        if(runTimeInfo != null){
+        a.add("영업시간 : "+runTimeInfo);}
+
+        if(restDayInfo != null){
+            a.add("휴일정보 : "+restDayInfo);
+        }
+        if(feeInfo != null){
+            a.add("요금정보 : "+feeInfo);
+        }
+        if(toiletInfo != null){
+            a.add("화장실정보 : "+toiletInfo);
+        }
+        if(languageInfo != null){
+            a.add("언어정보 : "+languageInfo);
+        }
+        if(insuranceInfo != null){
+            a.add("사고보험정보 : "+insuranceInfo);
+        }
+        if(salesItemInfo != null){
+            a.add("판매품목 : "+ salesItemInfo);
+        }
+        if(amenityInfo != null){
+            a.add("편의 시설 : "+amenityInfo);
+        }
+        if(menuInfo != null){
+            a.add("메뉴 정보 : "+menuInfo);
+        }
+        if(wrapInfo != null){
+            a.add("포장 가능 : "+wrapInfo);
+        }
+        if(checkinInfo != null){
+            a.add("입실 : "+checkinInfo);
+        }
+        if(checkoutInfo != null){
+            a.add("퇴실 : "+checkoutInfo);
+        }
+        return a;
+
+
+    }
+
+
 
     public Place(Long id, String category, String smallCategory, String title, String address, String tel, Float latitude, Float longitude, String petInfo, String parkingInfo, String restDayInfo, String runTimeInfo, String feeInfo, String toiletInfo, String languageInfo, String insuranceInfo, String salesItemInfo, String amenityInfo, String menuInfo, String wrapInfo, String checkinInfo, String checkoutInfo, String otherAmenityInfo, String keyword, String imageAdd1, String imageAdd2) {
         this.id = id;

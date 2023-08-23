@@ -18,7 +18,7 @@
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
 </head>
 <body>
-<div class="container invite">
+<div class="container invite design">
     <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
     <div class="modal_layer_wrap">
         <div class="layer_bg"></div>
@@ -28,15 +28,57 @@
         </div>
     </div>
     <!-- ####### 01. HEADER START ####### -->
-    <div class="header_wrap" th:insert="~{insert/header_wrap}"></div>
+    <div class="header_wrap">
+        <header>
+            <h1 class="logo"><a href="/">Party People</a></h1>
+        </header>
+        <form>
+            <div class="page_search">
+                <input type="text" placeholder="[인천] 장소, 상호명 검색" autofocus><!--
+                 --><input type="submit" value="" class="fa fa-search">
+            </div>
+            <dl class="search_keword"> <!-- 최다 빈도수 키워드 10개만 나오게 해주세요 -->
+                <dt><a href="#">AI추천 키워드</a></dt>
+                <dd><a href="#">구월동맛집</a></dd>
+                <dd><a href="#">이동갈비</a></dd>
+                <dd><a href="#">가성비</a></dd>
+                <dd><a href="#">할맥</a></dd>
+                <dd><a href="#">스크린골프</a></dd>
+                <dd><a href="#">강화도여행</a></dd>
+                <dd><a href="#">8000원</a></dd>
+                <dd><a href="#">점심메뉴</a></dd>
+            </dl>
+        </form>
+    </div>
     <!-- ####### 01. HEADER END ####### -->
     <hr class="skip"/>
     <!-- ####### 02. LNB START ######### -->
-    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>
+    <div class="lnb_wrap">
+        <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 시작 -->
+        <dl class="fixed_quick_menu">
+            <!--        <dt title="Party Peaple(인천)"><i class="fa-solid fa-map-location-dot"></i>인천</dt>-->
+            <dd><a href="place"><i class="fa-solid fa-map-location-dot"></i> Place</a></dd>
+            <dd><a href="category"><i class="fa-regular fa-compass"></i> Category</a></dd>
+            <dd class="active"><a href="invite"><i class="fa-solid fa-people-group"></i> Invite</a></dd>
+            <dd><a href="analysis"><i class="fa-solid fa-chart-line"></i> Analysis</a></dd>
+        </dl>
+        <ul class="membership">
+            <li><a href="#" onclick="('로그인')"><i class="fa-solid fa-right-to-bracket"></i> 로그인</a></li>
+            <li><a href="#" onclick="('회원가입')"><i class="fa-solid fa-user-plus"></i> 회원가입</a></li>
+        </ul>
+        <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 끝 -->
+        <hr class="skip"/>
+        <!-- #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 -->
+        <div class="lnb">
+            <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
+            <h2> <div class="standard_cond">모임장소를 고르신 후,<br> 나만의 초대카드를 만들어보세요.</div></h2>
+            <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
+            <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
 
+        </div>
 
-
-    <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
+        <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
+    </div>
     <!-- ####### 02. LNB END ########## -->
     <hr class="skip"/>
     <!-- ####### 03. CONTENTS START ####### -->
@@ -59,17 +101,17 @@
                                 <div class="form_info"><!-- 연관 키워드 10개 -->
                                     <div class="date">
                                         <label><b>모임날짜</b><input type="date" value="2023-08-21"></label>
-                                        <label><b>모임시간</b><input type="text"></label>
+                                        <label><b>모임시간</b><input type="time"></label>
                                         <label><b>참가인원</b><input type="text"> </label>
                                     </div>
                                     <div class="memo"><label><b>모임내용</b><textarea class="card_memo" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
-                                    <div class="skin"><b>카드스킨</b>
-                                        <label><input type="radio" value="a_type" checked> A_type</label>
-                                        <label><input type="radio" value="b_type"> B_type</label>
-                                        <label><input type="radio" value="c_type"> C_type</label>
-                                        <label><input type="radio" value="d_type"> D_type</label>
-                                        <label><input type="radio" value="e_type"> E_type</label>
-                                    </div>
+<!--                                    <div class="skin"><b>카드스킨</b>-->
+<!--                                        <label><input type="radio" value="a_type" checked> A_type</label>-->
+<!--                                        <label><input type="radio" value="b_type"> B_type</label>-->
+<!--                                        <label><input type="radio" value="c_type"> C_type</label>-->
+<!--                                        <label><input type="radio" value="d_type"> D_type</label>-->
+<!--                                        <label><input type="radio" value="e_type"> E_type</label>-->
+<!--                                    </div>-->
                                 </div>
                             </dt>
                             <div class="card_map_wrap"><div id="map"></div></div>
@@ -89,6 +131,7 @@
                                 // 지도를 생성합니다
                                 var map = new kakao.maps.Map(mapContainer, mapOption);
                             </script>
+
                             <dd class="body">
                                 <!-- 대안 장소 선택_01: 업체 리스트 -->
                                 <div class="card_list">
@@ -108,6 +151,7 @@
                                     </ul>
                                 </div>
                                 <!-- 대안 장소 선택_02: 업체 리스트 -->
+
                                 <div class="card_list">
                                     <ul class="summary_card">
                                         <li class="subject">
@@ -175,19 +219,62 @@
             </div>
             <form>
                 <div class="card_list_wrap">
-                    <!-- 추천(조합) 모임카드 #.01 시작 -->
-                    <dl class="ai_card_skin">
-                        <dt class="header">
-
-                        </dt>
-                        <dd class="body">
-
-                        </dd>
-                        <dd class="footer">
-
-                        </dd>
+                    <!-- 카드 디자인 스킨 #.01 시작 -->
+                    <dl class="ai_card_skin a_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type" checked> A</label></dd>
+                        <dd class="footer">Party People</dd>
                     </dl>
-                    <!-- 추천(조합) 모임카드 #.01 끝 -->
+                    <!-- 카드 디자인 스킨 #.01 끝 -->
+                    <!-- 카드 디자인 스킨 #.02 시작 -->
+                    <dl class="ai_card_skin b_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> B</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.02 끝 -->
+                    <!-- 카드 디자인 스킨 #.03 시작 -->
+                    <dl class="ai_card_skin c_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> C</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.03 끝 -->
+                    <!-- 카드 디자인 스킨 #.04 시작 -->
+                    <dl class="ai_card_skin d_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> D</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.04 끝 -->
+                    <!-- 카드 디자인 스킨 #.05 시작 -->
+                    <dl class="ai_card_skin e_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> E</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.05 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin f_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> F</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin g_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> G</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin h_type">
+                        <dt class="header"></dt>
+                        <dd class="body"><label><input type="radio" value="a_type"> H</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
                 </div>
             </form>
         </div>
