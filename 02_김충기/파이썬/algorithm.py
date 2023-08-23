@@ -4,6 +4,7 @@ import pandas as pd
 import cx_Oracle
 import pandas as pdb
 import math
+import re
 
 connection = cx_Oracle.connect("party/party@192.168.30.240:1521/xe")
 

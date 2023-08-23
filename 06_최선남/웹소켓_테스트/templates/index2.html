@@ -20,7 +20,9 @@
     <div id="recommendation-results"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
-<script>
+<script type="module">
+    // import {dataList} from "../../../스프링부트/src/main/resources/static/js/test.js";
+
     var socket = io.connect('http://' + document.domain + ':' + location.port);
 
     document.getElementById('run-button').addEventListener('click', function() {
@@ -60,11 +62,11 @@
             recommendationHTML += "<ul>";
 
             for (var j = 0; j < distances.length; j++) {
-               var category = distances[j][0]; // 추가: 카테고리 정보 가져오기
-               var nearbyPlace = distances[j][1]; // 추가: 가까운 장소 이름 가져오기
-               var address = distances[j][2];
-               var distance = distances[j][3];
-               var keywords = distances[j][4].join(', ');
+               let category = distances[j][0]; // 추가: 카테고리 정보 가져오기
+               let nearbyPlace = distances[j][1]; // 추가: 가까운 장소 이름 가져오기
+               let address = distances[j][2];
+               let distance = distances[j][3];
+               let keywords = distances[j][4].join(', ');
 
                recommendationHTML += "<li>";
                recommendationHTML += "추천 카테고리: " + category + "<br>"; // 추가: 추천 카테고리 표시
@@ -77,6 +79,8 @@
 
             recommendationHTML += "</ul></div>";
             recommendationResultsDiv.innerHTML += recommendationHTML;
+
+           // dataList(category, nearbyPlace, address, distance, keywords)
         }
     });
 </script>

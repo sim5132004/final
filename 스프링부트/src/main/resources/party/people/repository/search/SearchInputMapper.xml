@@ -10,9 +10,14 @@
         <selectKey keyProperty="sequenceId" resultType="java.lang.Long" order="BEFORE">
             SELECT searchinput_seq.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO client (category, keyword, address)
+        INSERT INTO searchinput (sequenceid, category, keyword, address)
         VALUES (#{sequenceId}, #{category}, #{keyword}, #{address})
     </insert>
+
+    <select id = "loadAll" resultType="searchResult">
+        select *
+        from searchresult
+    </select>
 
 
 

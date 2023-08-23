@@ -12,6 +12,9 @@ import party.people.repository.keywords.KeywordsRepository;
 import party.people.repository.place.PlaceInterface;
 import party.people.repository.place.PlaceMapper;
 import party.people.repository.place.PlaceRepository;
+import party.people.repository.search.SearchInputInterface;
+import party.people.repository.search.SearchInputMapper;
+import party.people.repository.search.SearchInputRepository;
 import party.people.repository.test.TestInterface;
 import party.people.repository.test.TestMapper;
 import party.people.repository.test.TestRepository;
@@ -27,6 +30,7 @@ public class Config {
     private final ClientMapper clientMapper;
     private final PlaceMapper placeMapper;
     private final KeywordsMapper keywordsMapper;
+    private final SearchInputMapper searchInputMapper;
 
 
     /* DB접속 TEST용 BEAN */
@@ -71,5 +75,11 @@ public class Config {
     @Bean
     public KeywordsInterface keywordsInterface() {
         return new KeywordsRepository(keywordsMapper);
+    }
+
+    /* 검색겨로가 입출력용 Bean */
+    @Bean
+    public SearchInputInterface searchInputInterface() {
+        return new SearchInputRepository(searchInputMapper);
     }
 }

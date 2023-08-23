@@ -50,6 +50,10 @@ public class Place {
         if(restDayInfo != null){
             a.add("휴일정보 : "+restDayInfo);
         }
+        if(tel != null){
+            a.add("전화번호 : "+tel);
+        }
+
         if(feeInfo != null){
             a.add("요금정보 : "+feeInfo);
         }

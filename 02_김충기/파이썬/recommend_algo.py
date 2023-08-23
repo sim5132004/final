@@ -157,5 +157,3 @@ while True:
                     f"카테고리 : {category},가까운 추천 장소: {place}, \n주소: {address}, \n거리: {distance:.2f} km, \n추천키워드: {keywords_str}\n")
     else:
         print("새로운 값이 없습니다.")
-
-
