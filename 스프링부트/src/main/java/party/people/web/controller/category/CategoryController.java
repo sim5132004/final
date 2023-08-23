@@ -20,8 +20,10 @@ public class CategoryController {
 
     @GetMapping("place")
     public String goPlace(Model model){
+        /* side lnb 출력용 */
         model.addAttribute("category","place");
-        return "place/place_ck";
+
+        return "place/place_thymeleaf";
     }
 
 
@@ -37,6 +39,7 @@ public class CategoryController {
         placeList.add(place3);
         log.info("goInvite] "+placeList);
 
+        /* side lnb 출력용 */
         model.addAttribute("category","invite");
         model.addAttribute("category2",placeList);
         return "invite/invite";

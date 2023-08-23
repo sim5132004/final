@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
+import party.people.web.controller.client.formAndDto.LoginForm;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +59,7 @@ public class JoinController {
         Client duplicateId = clientInterface.findByClientId(client.getClientId()).orElse(null);
         if (duplicateId!=null){
             bindingResult.rejectValue("clientId","clientId.invalid","해당 ID는 이미 존재합니다");
-            return "client/join";
+            return "client/joinForm";
         }
         log.info("중복검사에서 에러니?");
 
@@ -66,13 +67,13 @@ public class JoinController {
         Boolean pass = (client.getPassword()).equals(client.getPassword2());
         if (!pass){
             bindingResult.rejectValue("password2","password2.invalid","두 비밀번호가 일치하지 않습니다.");
-            return "client/join";
+            return "client/joinForm";
         }
         /* 여기서 에러니? */
 
         /* Validation 체크 => 밸리데이션 오류시 join페이지로 리턴 오류메시지(client domain 확인) 출력 */
         if(bindingResult.hasErrors()) {
-            return "client/join";
+            return "client/joinForm";
         }
 
         /* Validation 오류 없으면 DB에 CLIENT 객체를 저장 */

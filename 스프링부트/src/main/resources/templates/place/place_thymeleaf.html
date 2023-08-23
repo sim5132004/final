@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="ALL"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>PLACE > PARTY PEOPLE</title>
+    <meta name="Description" content="인천광역시 소재의 다양한 모임취향에 맞는(회식/데이트/동호회) AI추천 모임장소에 대한 상세정보를 제공합니다."/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" >
+    <link rel="stylesheet" type="text/css" href="../css/layout.css" >
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3fa5806dfe291fb3622cf85fca14b017&libraries=services,clusterer,drawing"></script>
+    <script src="../js/jquery.js"></script>
+    <!--구글 차트 관련 스크립트-->
+    <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
+    <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <!-- 장소(업체명)에 대한 상페정보 페이지 -->
+    <div class="modal_layer_wrap">
+        <div class="layer_box"></div>
+    </div>
+    <!-- ####### 01. HEADER START ####### -->
+    <div class="header_wrap" th:insert="~{insert/header_wrap}"></div>
+    <!-- ####### 01. HEADER END ####### -->
+    <hr class="skip"/>
+    <!-- ####### 02. LNB START ######### -->
+    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>
+    <!-- ####### 02. LNB END ########## -->
+    <hr class="skip"/>
+    <!-- ####### 03. CONTENTS START ####### -->
+    <section class="contents_wrap">
+        <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
+        <div class="left_contents">
+            <div id="map"></div>
+            <script th:inline="javascript">
+                /* 지도 관련 스크립트*/
+
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                    mapOption = {
+                        /* 전국 지도*/
+                        // center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표
+                        // level: 13 // 지도의 확대 레벨
+
+                        /* 인천으로만 타겟을 줄인 지도*/
+                        center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
+                        level: 8 // 지도의 확대 레벨
+                    };
+                // 지도를 생성합니다
+                var map = new kakao.maps.Map(mapContainer, mapOption);
+            </script>
+
+        </div>
+        <!-- #### 03-1.우측 본문 영역 시작 -->
+        <div class="right_contents area">
+            <div class="page_title">
+                <h1>돈비어<!-- ## 페이지 타이틀 ##  좌측 메뉴 .active 되어 있는 메뉴명 제이쿼리 클론하여 가져옴 --> </h1>
+                <!-- ## 페이지 네비 경로 ## -->
+                <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
+            </div>
+            <div class="paging">
+                <a href="#" class="btn_first"></a>
+                <a href="#" class="btn_prev"></a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#" class="btn_next"></a>
+                <a href="#" class="btn_last"></a>
+            </div>
+            <form>
+                <div class="card_list_wrap">
+                    <!-- 추천(조합) 모임카드 #.01 시작 -->
+                    <dl class="ai_card" th:each="search, iterStat :${searchResult}">
+                        <dt class="header">
+                            <h2 class="subject_keyword">
+                                <span class="area">
+                                    <b class="depth_1" th:text="${iterStat.count}">1</b>
+                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>
+
+                                <!--                                    <b class="depth_2"-->
+<!--                                       th:text="${search[0].address.substring-->
+<!--                                       (search[0].address.indexOf(' ')+1,-->
+<!--                                       search[0].address.indexOf(search[0].address.indexOf(' ')+1,' '))}">중구</b></span>-->
+                                <strong>데이트/동인천/차이나타운/동인천/차이나타운</strong>
+                            </h2>
+                            <p class="keyword_recommand"><!-- 연관 키워드 10개 -->
+                                <a href="#">고기맛집</a><a href="#">월미도</a><a href="#">신포동</a><a href="#">중구</a><a href="#">숯불</a><a href="#" class="matching_keyword">돈비어</a><a href="#">돼지갈비</a><a href="#">초딩</a><a href="#">밑반찬</a><a href="#">관광지</a><a href="#">인천야외</a>
+                            </p>
+                        </dt>
+                        <dd class="body">
+                            <!-- 대안 장소 선택_01: 업체 리스트 -->
+                            <div class="card_list" th:each="split_search :${search}">
+                                <ul class="summary_card">
+                                    <li class="subject">
+<!--                                        <b><span class="matching_keyword" th:text="${split_search.title}">돈비어</span>천가</b>-->
+                                        <b><span th:text="${split_search.title}">돈비어천가</span></b>
+                                        <span class="category"><b class="depth_1" th:text="${split_search.category}">음식</b><b class="depth_2" th:text="${split_search.smallCategory}">한식</b></span>
+                                    </li>
+                                    <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${split_search.imageAdd1}" alt="돈비어천가"></li>
+                                    <li class="btn_wrap">
+                                        <button>상세정보</button>
+                                        <button>지도보기</button>
+                                    </li>
+                                    <li class="addr" th:text="${split_search.address}">인천 중구 개항로 63-2</li>
+                                    <li class="work_time" th:text="${split_search.runTimeInfo}">10:00~22:00브레이크타임없음<span>(쉬는날 : 연중무휴)</span></li>
+                                    <li class="parking" th:text="${split_search.parkingInfo}">주차시설 : 있음,유료</li>
+                                    <li class="tel" th:text="${split_search.tel}">032-930-1234</li>
+                                </ul>
+                            </div>
+                            <!-- 대안 장소 선택_02: 업체 리스트 -->
+
+                            <!-- 대안 장소 선택_03: 업체 리스트 -->
+
+                        </dd>
+                        <dd class="footer">
+                            <button class="basic"><i class="fa-solid fa-location-dot"></i> 추천장소 지도보기</button>
+                            <button class="confirm"><i class="fa-solid fa-pen-to-square"></i> 모임카드 만들기</button>
+                        </dd>
+                    </dl>
+                    <!-- 추천(조합) 모임카드 #.01 끝 -->
+
+                </div>
+            </form>
+        </div>
+        <!-- #### 03-1.우측 본문 영역 끝 -->
+    </section>
+    <!-- ####### 03. CONTENTS END ####### -->
+    <hr class="skip"/>
+    <!-- ####### 04. FOOTER START ####### -->
+    <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
+    <!-- ####### 04. FOOTER END ####### -->
+</div>
+</body>
+</html>
