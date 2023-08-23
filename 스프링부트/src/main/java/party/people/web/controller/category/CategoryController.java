@@ -26,6 +26,13 @@ public class CategoryController {
         return "place/place_thymeleaf";
     }
 
+    @GetMapping("category")
+    public String goCategory(Model model){
+        /* side lnb 출력용 */
+       // model.addAttribute("category","place");
+
+        return "category/category";
+    }
 
     @GetMapping("invite")
     public String goInvite(Model model){
@@ -44,7 +51,7 @@ public class CategoryController {
         /* side lnb 출력용 */
         model.addAttribute("category","invite");
         model.addAttribute("category2",placeList);
-        return "invite/invite_ss";
+        return "invite/invite";
     }
 
 
