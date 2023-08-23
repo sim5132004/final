@@ -26,17 +26,32 @@ public class CategoryController {
         return "place/place_thymeleaf";
     }
 
+    @GetMapping("category")
+    public String goCategory(Model model){
+        /* side lnb 출력용 */
+       // model.addAttribute("category","place");
+        return "category/category";
+    }
+
+    @GetMapping("analysis")
+    public String goAnalysis(Model model){
+        /* side lnb 출력용 */
+        // model.addAttribute("category","place");
+        return "analysis/analysis";
+    }
 
     @GetMapping("invite")
     public String goInvite(Model model){
 
-        Place place1 = placeInterface.idSearch(1);
-        Place place2 = placeInterface.idSearch(2);
-        Place place3 = placeInterface.idSearch(3);
+        Place place1 = placeInterface.idSearch(1L);
+        Place place2 = placeInterface.idSearch(2L);
+        Place place3 = placeInterface.idSearch(3L);
         List<Place> placeList = new ArrayList<>();
         placeList.add(place1);
         placeList.add(place2);
         placeList.add(place3);
+        placeList=placeInterface.findAll();
+
         log.info("goInvite] "+placeList);
 
         /* side lnb 출력용 */

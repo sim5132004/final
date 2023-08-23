@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="robots" content="ALL"/>
@@ -20,8 +20,12 @@
 <body>
 <div class="container invite">
   <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
-  <div class="modal_layer_wrap">
-    <div class="layer_box"></div>
+  <div class="modal_layer_wrap detail">
+    <div class="layer_bg"></div>
+    <div class="layer_box">
+      <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
+      <!--            <div class="layer_contents" th:insert="~{place_info}"></div>-->
+    </div>
   </div>
   <!-- ####### 01. HEADER START ####### -->
   <div class="header_wrap">
@@ -532,13 +536,8 @@
   <!-- ####### 03. CONTENTS END ####### -->
   <hr class="skip"/>
   <!-- ####### 04. FOOTER START ####### -->
-  <div class="footer_wrap">
-    <footer>
-      <p class="copyright">  © 2023 Party People.</p>
-    </footer>
+  <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
+    <!-- ####### 04. FOOTER END ####### -->
   </div>
-  <a href="#" class="to_top"><i class="fa-solid fa-arrow-up"></i> 맨위로</a>
-  <!-- ####### 04. FOOTER END ####### -->
-</div>
 </body>
 </html>
