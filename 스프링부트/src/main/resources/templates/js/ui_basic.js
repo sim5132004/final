@@ -21,4 +21,23 @@ $(".place_info_layer").click(function(){
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap").removeClass("show");
     });
+
+
+
 });
+
+var tt= "[[${session.test.tt}]]";
+
+document.write('hi')
+document.write(tt)
+document.write('placeInfo-'+[[${place.getId()}]])
+//
+// $("#tt").click(function(){
+//     //$("body").hide();
+//     $(".modal_layer_wrap").addClass("show");
+//     $(".layer_box a.close_layer,.layer_bg").click(function(){
+//         $(".modal_layer_wrap").removeClass("show");
+//     });
+//
+// });
+//

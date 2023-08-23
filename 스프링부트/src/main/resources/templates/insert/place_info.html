@@ -4,13 +4,13 @@
             <div class="view">
                 <div class="view_header veiw-header_intro">
                     <h1 class="subject">
-                        <span>&nbsp;월미테마파크</span>
+                        <span  th:text="${place.getTitle()}">&nbsp;월미테마파크</span>
                     </h1>
                     <div class="location">
                         <ul class="list">
                             <li>
-                                <strong class="title">&nbsp;주소</strong>
-                                <span class="text">인천광역시 중구 월미문화로 81</span>
+                                <strong class="title" >&nbsp;주소</strong>
+                                <span class="text"  th:text="${place.getTitle()}">인천광역시 중구 월미문화로 81</span>
                             </li>
                         </ul>
                     </div>
@@ -54,33 +54,36 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th scope="row">영업시간</th>
-                                    <td>평일 10:00~21:00, 주말 및 공휴일 10:00-23:00<br>차미패밀리파크<br>평일 10:00~19:00, 주말 및 공휴일 10:00-21:00</td>
+                                    <th scope="row" >영업시간</th>
+                                    <td  th:text="${place.getTitle()}">평일 10:00~21:00, 주말 및 공휴일 10:00-23:00<br>차미패밀리파크<br>평일 10:00~19:00, 주말 및 공휴일 10:00-21:00</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">쉬는 날</th>
-                                    <td>연중무휴</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">전화번호</th>
-                                    <td>032-761-0997</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">이용요금</th>
-                                    <td>30,000원<br>자피패밀리파크 10,000원</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">주차시설</th>
-                                    <td>주차 가능, 무료</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">애완동물 동반가능</th>
-                                    <td>가능(단, 소형견(7kg 미만)만 가능하며 개목줄 착용, 배설물 처리를 위한 비닐봉지 등을 구비한 이용객에 한하여 허용)</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">외국어안내서비스</th>
-                                    <td>영어 회화 가능 직원 있음</td>
-                                </tr>
+
+                                <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
+
+<!--                                <tr>-->
+<!--                                    <th scope="row">쉬는 날</th>-->
+<!--                                    <td  th:text="${place.getTitle()}">연중무휴</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">전화번호</th>-->
+<!--                                    <td  th:text="${place.getTitle()}">032-761-0997</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">이용요금</th>-->
+<!--                                    <td>30,000원<br>자피패밀리파크 10,000원</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">주차시설</th>-->
+<!--                                    <td>주차 가능, 무료</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">애완동물 동반가능</th>-->
+<!--                                    <td>가능(단, 소형견(7kg 미만)만 가능하며 개목줄 착용, 배설물 처리를 위한 비닐봉지 등을 구비한 이용객에 한하여 허용)</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <th scope="row">외국어안내서비스</th>-->
+<!--                                    <td>영어 회화 가능 직원 있음</td>-->
+<!--                                </tr>a-->
 
                                 </tbody>
                             </table>

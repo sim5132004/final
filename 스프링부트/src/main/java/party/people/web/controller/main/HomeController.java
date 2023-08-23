@@ -93,7 +93,8 @@ public class HomeController {
 
         /* 기존 세션 정보가 없으면 home으로 이동 */
         if (loginInfo==null){
-            return "place/place_ck";
+            model.addAttribute("client",null);
+            return "place/place_thymeleaf";
         }
         log.info("home] "+"문제찾기");
 
@@ -103,7 +104,8 @@ public class HomeController {
         log.info("로그인이 되었는가" + loginClient);
         /* 해당 객체가 없다면 home으로 이동 */
         if (loginClient==null){
-            return "place/place_ck";
+            model.addAttribute("client",null);
+            return "place/place_thymelaef";
         }
         log.info("home] "+loginClient);
         /* 세션에 저장되어있는 로그인 정보를 thymeleaf단에 "client"이름으로 전달 */
@@ -113,7 +115,7 @@ public class HomeController {
         List<Test> test = testInterface.findAll();
 
         /* 세션 객체(로그인 정보)가 null이 아니라면 loginHome으로 이동 */
-        return "loginHome";
+        return "place/place_thymeleaf";
     }
 
 }

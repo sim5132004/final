@@ -27,7 +27,9 @@
     <!-- ####### 01. HEADER END ####### -->
     <hr class="skip"/>
     <!-- ####### 02. LNB START ######### -->
-    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>
+<!--    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>-->
+    <div class="lnb" th:if="${client eq null}" th:insert="~{insert/lnb_wrap}"></div>
+    <div class="lnb" th:if="${client != null}" th:insert="~{insert/lnb_wrap_login}"></div>
     <!-- ####### 02. LNB END ########## -->
     <hr class="skip"/>
     <!-- ####### 03. CONTENTS START ####### -->
