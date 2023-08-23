@@ -30,8 +30,14 @@ public class CategoryController {
     public String goCategory(Model model){
         /* side lnb 출력용 */
        // model.addAttribute("category","place");
-
         return "category/category";
+    }
+
+    @GetMapping("analysis")
+    public String goAnalysis(Model model){
+        /* side lnb 출력용 */
+        // model.addAttribute("category","place");
+        return "analysis/analysis";
     }
 
     @GetMapping("invite")
