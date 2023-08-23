@@ -12,8 +12,10 @@ import java.util.List;
 @Slf4j
 public class KeywordsRepository implements KeywordsInterface {
 
+    /* DB에서 가져오기 위해 Mapper 이용 */
     private final KeywordsMapper keywordsMapper;
 
+    /* 이하 인터페이스에서 가져온 기능을 Mapper에 위임 */
     @Override
     public List<Keywords> findAll() {
         return keywordsMapper.findAll();

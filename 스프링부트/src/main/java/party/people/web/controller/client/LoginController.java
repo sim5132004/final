@@ -14,12 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
-import party.people.service.keyword.KeywordInSomething;
-import party.people.service.keyword.KeywordsMerge;
 import party.people.service.login.LoginInterface;
 import party.people.web.controller.client.formAndDto.LoginForm;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -35,7 +31,7 @@ public class LoginController {
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
         log.info("loginForm] "+ form);
 
-        return "login/loginForm2";
+        return "login/loginForm";
     }
 
     /* 로그인 기능 수행 */
@@ -73,7 +69,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @PostMapping("logout")
+    @PostMapping("/logout")
     public String logout(HttpServletRequest request){
         /* HomeController 참고*/
         /* 세션 정보 가져오기 */

@@ -6,9 +6,12 @@ import pandas as pd
 import math
 import time
 
+# Oracle DB 접속 정보 설정
+connection = cx_Oracle.connect("party/party@192.168.30.240:1521/xe")
+
 def check_cdc_changes():
     with connection.cursor() as cursor:
-        cursor.execute("SELECT SEQUENCEID, CATEGORY, KEYWORD, ADDRESS  FROM ASDF")
+        cursor.execute("SELECT SEQUENCEID, CATEGORY, KEYWORD, ADDRESS  FROM searchinput")
         result = cursor.fetchall()
         return result
 
@@ -30,5 +33,25 @@ while True:
         추천주소 = new_db_data[3]  # None으로 두면 주소를 사용하지 않음
         top_n = 3
         recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
+        list = recommended_distance
+        searchResult = ""
+        count = 0;
+        for x in range(len(list)):
+            count += 1
+            if(count==4):
+                break
+            searchResult += list[x][1]+","
+            for i in range(len(list[0][2]) - 1):
+                try:
+                    searchResult += list[x][2][i][1]+","
+                except:
+                    pass
+            searchResult = searchResult.rstrip(',')
+            searchResult += '/'
+        searchResult = searchResult.rstrip('/')
+        insert_sql = "INSERT INTO  searchresult(sequenceid, result) VALUES (searchresult_seq.nextval, :val2)"
+        with connection.cursor() as cursor:
+            cursor.execute(insert_sql, val2=searchResult)
+            connection.commit()  # 변경사항을 커밋하여 반영
     else:
         print("새로운 값이 없습니다.")

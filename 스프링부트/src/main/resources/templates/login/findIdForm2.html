@@ -5,7 +5,12 @@
     <link th:href="@{/css/ck2.css}"
           href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
-
+        .field-error {
+            margin-left: 5px;
+            text-align: left;
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 <body>
@@ -55,25 +60,25 @@
         <div class="col align-items-center flex-col sign-in">
             <div class="form-wrapper align-items-center">
                 <div class="form sign-in">
-                    <form th:action="${login}" th:object="${loginForm}" method="post">
+                    <form action="/findId" th:action method="post">
+
                     <div class="input-group">
                         <i class='bx bxs-user'></i>
-                        <input type="text" th:field="*{clientId}" placeholder="로그인 ID">
+                        <input type="text" th:field="*{client.clientEmail}" placeholder="이메일">
+                        <div class="field-error" th:errors="*{client.clientEmail}" />
                     </div>
-                    <div class="input-group">
-                        <i class='bx bxs-lock-alt'></i>
-                        <input type="password" th:field="*{password}" placeholder="비밀번호">
-                    </div>
+
                     <button type="submit">
-                        로 그 인
+                        ID 찾기
                     </button>
                     <p>
-                    <button th:onclick="|location.href='@{/}'|"
+                    <button th:onclick="|location.href='@{/client/login}'|"
                             type="button">
                             돌아가기
                     </button>
+
                     <p>
-                        <b>
+                        <b th:onclick="|location.href='@{/client/findPw}'|">
                             비밀번호를 잊어버리셨나요?
                         </b>
                     </p>
@@ -81,9 +86,11 @@
               <span>
                 아직 계정이 없으신가요?
               </span>
-                        <b onclick="toggle()" class="pointer">
-                            회원가입은 여기!
-                        </b>
+                    <b th:onclick="|location.href='@{/client/join}'|">회원가입은 여기!</b>
+<!--                        <b th:href="@{/client/join}" class="pointer">-->
+<!--&lt;!&ndash;                        <b onclick="toggle()" class="pointer">&ndash;&gt;-->
+<!--                            회원가입은 여기!-->
+<!--                        </b>-->
                     </p>
                     </form>
                 </div>
@@ -100,8 +107,8 @@
         <!-- SIGN IN CONTENT -->
         <div class="col align-items-center flex-col">
             <div class="text sign-in">
-                <h2>
-                    Welcome!!
+                <h2 style="text-align: left">
+                    이메일로 아이디를 <br> 찾아드립니다
                 </h2>
 
             </div>
@@ -136,7 +143,7 @@ container.classList.toggle('sign-up')
 
 setTimeout(() => {
 container.classList.add('sign-in')
-}, 200)
+}, 100)
 </script>
 </body>
 </html>
