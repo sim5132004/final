@@ -18,13 +18,25 @@
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
 </head>
 <body>
-<div class="container invite design">
+<div class="container invite skin">
     <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
-    <div class="modal_layer_wrap">
+    <div class="modal_layer_wrap detail">
         <div class="layer_bg"></div>
         <div class="layer_box">
             <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
-            <div class="layer_contents" th:insert="~{insert/place_info}"></div>
+<!--            <div class="layer_contents" th:insert="~{place_info}"></div>-->
+        </div>
+    </div>
+    <!-- 모달 레이어 : 모임카드 미리보기 클릭시 > 최종 모임카드 디자인 레이어 노출  -->
+    <div class="modal_layer_wrap card">
+        <div class="layer_bg"></div>
+        <div class="layer_box">
+            <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
+            <div class="layer_contents">
+                <h1>작성하신 내용을 확인 신 후, 모임카드 이미지를 다운로드하세요.
+                    <a href="#" class="download"><i class="fa-solid fa-download"></i> 초대장(JPG) 다운로드</a>
+                </h1>
+            </div>
         </div>
     </div>
     <!-- ####### 01. HEADER START ####### -->
@@ -131,13 +143,11 @@
                                 // 지도를 생성합니다
                                 var map = new kakao.maps.Map(mapContainer, mapOption);
                             </script>
-
                             <dd class="body">
                                 <!-- 대안 장소 선택_01: 업체 리스트 -->
                                 <div class="card_list">
                                     <ul class="summary_card">
                                         <li class="subject">
-                                            <input type="checkbox" checked>
                                             <b>돈비어천가</b>
                                             <span class="category"><b class="depth_1">음식</b><b class="depth_2">한식</b></span>
                                         </li>
@@ -155,7 +165,6 @@
                                 <div class="card_list">
                                     <ul class="summary_card">
                                         <li class="subject">
-                                            <input type="checkbox" checked>
                                             <b>신포국제시장1</b>
                                             <span class="category"><b class="depth_1">쇼핑</b><b class="depth_2">전통시장</b></span>
                                         </li>
@@ -172,7 +181,6 @@
                                 <div class="card_list">
                                     <ul class="summary_card">
                                         <li class="subject">
-                                            <input type="checkbox" checked>
                                             <b>신파시장</b>
                                             <span class="category"><b class="depth_1">쇼핑</b><b class="depth_2">전통시장</b></span>
                                         </li>
@@ -187,8 +195,8 @@
                                 </div>
                             </dd>
                             <dd class="footer">
-                                <h3><button class="confirm"><i class="fa-solid fa-arrow-up-right-from-square"></i> 모임카드 미리보기</button>
-                                    원하시는 모임내용을 작성해주세요. <br>모임카드는 미리보기 후, 카드이미지(JPG) 다운로드 가능합니다.
+                                <h3><a href="#" class="confirm"><i class="fa-solid fa-arrow-up-right-from-square"></i> 모임카드 미리보기</a>
+                                    원하시는 모임내용을 작성해주세요. 모임카드는 미리보기 후, 카드이미지(JPG) 다운로드 가능합니다.
                                 </h3>
                                 <!--                            <button class="confirm"><i class="fa-regular fa-circle-down"></i> 모임카드 다운로드</button>-->
                             </dd>

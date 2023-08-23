@@ -17,15 +17,26 @@
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
 </head>
-
 <body>
 <div class="container invite skin">
     <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
-    <div class="modal_layer_wrap">
+    <div class="modal_layer_wrap detail">
         <div class="layer_bg"></div>
         <div class="layer_box">
             <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
             <div class="layer_contents" th:insert="~{place_info}"></div>
+        </div>
+    </div>
+    <!-- 모달 레이어 : 모임카드 미리보기 클릭시 > 최종 모임카드 디자인 레이어 노출  -->
+    <div class="modal_layer_wrap card">
+        <div class="layer_bg"></div>
+        <div class="layer_box">
+            <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
+            <div class="layer_contents">
+                <h1>작성하신 내용을 확인 신 후, 모임카드 이미지를 다운로드하세요.
+                    <a href="#" class="download"><i class="fa-solid fa-download"></i> 초대장(JPG) 다운로드</a>
+                </h1>
+            </div>
         </div>
     </div>
     <!-- ####### 01. HEADER START ####### -->
@@ -117,22 +128,7 @@
                             </div>
                         </dt>
                         <div class="card_map_wrap"><div id="map"></div></div>
-                        <script th:inline="javascript">
-                            /* 지도 관련 스크립트*/
 
-                            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                                mapOption = {
-                                    /* 전국 지도*/
-                                    // center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표
-                                    // level: 13 // 지도의 확대 레벨
-
-                                    /* 인천으로만 타겟을 줄인 지도*/
-                                    center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
-                                    level: 8 // 지도의 확대 레벨
-                                };
-                            // 지도를 생성합니다
-                            var map = new kakao.maps.Map(mapContainer, mapOption);
-                        </script>
                         <dd class="body">
                             <!-- 대안 장소 선택_01: 업체 리스트 -->
                             <div class="card_list">
@@ -219,19 +215,62 @@
             </div>
             <form>
                 <div class="card_list_wrap">
-                    <!-- 추천(조합) 모임카드 #.01 시작 -->
-                    <dl class="ai_card_skin">
-                        <dt class="header">
-
-                        </dt>
-                        <dd class="body">
-
-                        </dd>
-                        <dd class="footer">
-
-                        </dd>
+                    <!-- 카드 디자인 스킨 #.01 시작 -->
+                    <dl class="ai_card_skin a_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="a_type" checked> A</label></dd>
+                        <dd class="footer">Party People</dd>
                     </dl>
-                    <!-- 추천(조합) 모임카드 #.01 끝 -->
+                    <!-- 카드 디자인 스킨 #.01 끝 -->
+                    <!-- 카드 디자인 스킨 #.02 시작 -->
+                    <dl class="ai_card_skin b_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="b_type"> B</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.02 끝 -->
+                    <!-- 카드 디자인 스킨 #.03 시작 -->
+                    <dl class="ai_card_skin c_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="c_type"> C</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.03 끝 -->
+                    <!-- 카드 디자인 스킨 #.04 시작 -->
+                    <dl class="ai_card_skin d_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="d_type"> D</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.04 끝 -->
+                    <!-- 카드 디자인 스킨 #.05 시작 -->
+                    <dl class="ai_card_skin e_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="e_type"> E</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.05 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin f_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="f_type"> F</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin g_type">
+                        <dt class="header">INVITATION</dt>
+                        <dd class="body"><label><input type="radio" value="g_type"> G</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
+                    <!-- 카드 디자인 스킨 #.06 시작 -->
+                    <dl class="ai_card_skin h_type">
+                        <dt class="header"></dt>
+                        <dd class="body"><label><input type="radio" value="h_type"> H</label></dd>
+                        <dd class="footer">Party People</dd>
+                    </dl>
+                    <!-- 카드 디자인 스킨 #.06 끝 -->
                 </div>
             </form>
         </div>
@@ -250,4 +289,20 @@
 </div>
 </body>
 <script src="../js/ui_basic.js"></script>
+<script th:inline="javascript">
+    /* 지도 관련 스크립트*/
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            /* 전국 지도*/
+            // center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표
+            // level: 13 // 지도의 확대 레벨
+
+            /* 인천으로만 타겟을 줄인 지도*/
+            center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
+            level: 8 // 지도의 확대 레벨
+        };
+    // 지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+</script>
 </html>
