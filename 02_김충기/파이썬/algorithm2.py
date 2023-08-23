@@ -162,10 +162,11 @@ for item in recommended_distance[:3]:
     top_keywords.sort(reverse=True)
 
     keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
-
-    print(f"가장 빈도수가 높은 키워드: {', '.join(keywords_slash_delete)}")
+    set_keywords_slash_delete = list(set(keywords_slash_delete))
+    print(f"가장 빈도수가 높은 키워드: {', '.join(set_keywords_slash_delete)}")
 
     for category, place, address, distance, keywords in 거리정보:
         keywords_str = ', '.join(keywords)
+
         print(
             f"카테고리 : {category}, 가까운 추천 장소: {place}, \n주소: {address}, \n거리: {distance:.2f} km, \n추천키워드: {keywords_str}\n")
