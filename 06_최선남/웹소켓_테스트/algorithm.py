@@ -11,10 +11,10 @@ query = """select * from PlACEINFO"""
 
 place_df = pd.read_sql(query, con=connection)
 
-data=place_df[['카테고리','제목','주소','위도','경도','키워드리스트']]
+data= place_df
 
 # 데이터프레임에서 가져오기
-data_recommend = data
+data_recommend= data
 
 # 데이터프레임을 카테고리와 키워드 컬럼만 남기고 복사(쓸것만 복사하기 원본 냅두고)
 data_for_recommend = data_recommend[['카테고리', '키워드리스트', '위도', '경도', '주소']].copy()

@@ -9,7 +9,10 @@ import time
 # Oracle DB 접속 정보 설정
 connection = cx_Oracle.connect("party/party@192.168.30.240:1521/xe")
 
+
+# DB에서 계속 데이터를 호출하는 함수
 def check_cdc_changes():
+
     with connection.cursor() as cursor:
         cursor.execute("SELECT SEQUENCEID, CATEGORY, KEYWORD, ADDRESS  FROM searchinput")
         result = cursor.fetchall()

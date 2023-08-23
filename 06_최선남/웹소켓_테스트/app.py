@@ -163,7 +163,7 @@ for item in recommended_distance[:3]:
 
 @app.route('/')
 def index():
-    return render_template('index2.html')
+    return render_template('index425.html')
 
 @socketio.on('run_recommendation')  # 클라이언트에서 'run_recommendation' 이벤트를 받았을 때 실행
 def run_recommendation(data):
