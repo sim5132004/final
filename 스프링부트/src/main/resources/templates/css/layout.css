@@ -160,7 +160,7 @@ a.place_info_layer:hover{ background: #0d6efd; color: #fff; border-color: #0d6ef
 .contents_wrap{ position: relative; height: 100%;  box-sizing: border-box; font-size: 12px; word-break: break-all;  }
 .contents_wrap:after{ content:""; display: block; clear:both; }
 
-.skin .left_contents{ z-index:99999 }
+.skin .left_contents{ }
 .left_contents{  position: fixed; width:100%;  height: 100%; box-sizing: border-box;  display: flex; justify-content: center; flex-direction:row; justify-content: space-between; word-wrap: break-word; }
 .left_contents:after{ content:""; display: block; clear:both; }
 
