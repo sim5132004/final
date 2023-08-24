@@ -73,6 +73,7 @@ public class CategoryController {
 
             /* 해당 리스트를 타임리프단에 전달 */
             model.addAttribute("searchResult", finalForm);
+
         }
 
         // place페이지 오른쪽 카드세트 번호에 글자 색 리스트
