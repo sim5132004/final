@@ -311,32 +311,13 @@
 
                             </h2>
                             <p class="keyword_recommand"><!-- 연관 키워드 3개 -->
-<!--                                <a href="#" th:if="${iterStat.index < search.size()}" th:text="${search[iterStat.index].keyword.substring(0, search[iterStat.index].keyword.indexOf('/'))}">고기맛집</a>-->
-<!--                                <a href="#" th:if="${iterStat.index + 1 < search.size()}" th:text="${search[iterStat.index + 1].keyword.substring(0, search[iterStat.index + 1].keyword.indexOf('/'))}">월미도</a>-->
-<!--                                <a href="#" th:if="${iterStat.index + 2 < search.size()}" th:text="${search[iterStat.index + 2].keyword.substring(0, search[iterStat.index + 2].keyword.indexOf('/'))}">신포동</a>-->
-<!--                                <a href="#" th:if="${iterStat.index < search.size()}" th:text="${search[iterStat.index].keyword.substring(search[iterStat.index].keyword.indexOf(' ') + 1, search[iterStat.index].keyword.indexOf('/', search[iterStat.index].keyword.indexOf('/') + 1))}">중구</a>-->
-<!--                                <a href="#" th:if="${iterStat.index + 1 < search.size()}" th:text="${search[iterStat.index + 1].keyword.substring(search[iterStat.index + 1].keyword.indexOf(' ') + 1, search[iterStat.index + 1].keyword.indexOf('/', search[iterStat.index + 1].keyword.indexOf('/') + 1))}">중구</a>-->
-<!--                                <a href="#" th:if="${iterStat.index + 2 < search.size()}" th:text="${search[iterStat.index + 2].keyword.substring(search[iterStat.index + 2].keyword.indexOf(' ') + 1, search[iterStat.index + 2].keyword.indexOf('/', search[iterStat.index + 2].keyword.indexOf('/') + 1))}">중구</a>-->
+                                <span th:each="splited:${search}" style="display: inline">
+                                <a href="#" th:text="${splited.keyword.substring(0,splited.keyword.indexOf('/'))}">고기맛집</a>
+                                <a href="#"
+                                   th:text="${splited.keyword.substring(splited.keyword.indexOf(' ') + 1,
+                                    splited.keyword.indexOf('/',splited.keyword.indexOf('/')+1))}">중구</a>
+                                </span>
 
-                                <a href="#" th:if="${search[0] != null}" th:text="${search[0].keyword.substring(0,search[0].keyword.indexOf('/'))}">고기맛집</a>
-                                <a href="#" th:if="${search[1] != null}" th:text="${search[1].keyword.substring(0,search[1].keyword.indexOf('/'))}">월미도</a>
-                                <a href="#" th:if="${search[2] != null}" th:text="${search[2].keyword.substring(0,search[2].keyword.indexOf('/'))}">신포동</a>
-                                <a href="#"
-                                   th:if="${search[0] != null}"
-                                   th:text="${search[0].keyword.substring(search[0].keyword.indexOf(' ') + 1,
-                                    search[0].keyword.indexOf('/',search[0].keyword.indexOf('/')+1))}">중구</a>
-                                <a href="#"
-                                   th:if="${search[1] != null}"
-                                   th:text="${search[1].keyword.substring(search[1].keyword.indexOf(' ') + 1,
-                                    search[1].keyword.indexOf('/',search[1].keyword.indexOf('/')+1))}">중구</a>
-                                <a href="#"
-                                   th:if="${search[2] != null}"
-                                   th:text="${search[2].keyword.substring(search[2].keyword.indexOf(' ') + 1,
-                                    search[2].keyword.indexOf('/',search[2].keyword.indexOf('/')+1))}">중구</a>
-
-<!--                                <a href="#">숯불</a>-->
-<!--                                <a href="#">돈비어</a>-->
-<!--                                <a href="#">돼지갈비</a><a href="#">초딩</a><a href="#">밑반찬</a><a href="#">관광지</a><a href="#">인천야외</a>-->
                             </p>
                         </dt>
                         <dd class="body">
