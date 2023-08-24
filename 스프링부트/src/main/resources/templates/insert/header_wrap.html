@@ -27,7 +27,7 @@
 
 <!-- post 보내는곳 -->
 <form id="categoryForm" action="/place" method="post">
-    <input type="hidden" id="category_subject" name="category_subject">
+    <input type="hidden" id="categorySubject" name="categorySubject">
 </form>
 
 
@@ -36,7 +36,7 @@
     <!-- 스프링으로 보내기 -->
     function sendCategory(category) {
 
-        document.getElementById('category_subject').value = category;
+        document.getElementById('categorySubject').value = category;
         document.getElementById('categoryForm').submit();
         console.log('삼성물산11층돌파기원')
     }
