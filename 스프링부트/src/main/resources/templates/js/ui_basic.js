@@ -23,6 +23,27 @@ $(".place_info_layer.item_1").click(function(){
     $(".layer_contents.item_1").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_1").remove();
+    });
+});
+
+$(".place_info_layer.item_2").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_2").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_2").remove();
+    });
+});
+
+$(".place_info_layer.item_3").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_3").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_3").remove();
     });
 });
 
@@ -35,7 +56,7 @@ $(".ai_card.design .confirm").click(function(){
     // 카드 디자인 스킨 복사
     // 모임카드 미리보기 버튼 클릭시, 인바이트 사용자가 작성한 최종 내용 카드 디자인 스킨 입혀서 보여주기
     $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
-    $(".ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
+    $(".left_contents_center .ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
     // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
     $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
     $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
@@ -43,18 +64,19 @@ $(".ai_card.design .confirm").click(function(){
     $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
 
     $(".layer_box a.close_layer,.layer_bg").click(function(){
-        $(".modal_layer_wrap.card").removeClass("show");
+        $(".modal_layer_wrap.card").removeClass("show")
+        $(".modal_layer_wrap.card .layer_contents .ai_card_skin").remove();
     });
 });
 // var skinChecked = $(".ai_card_skin input[type=radio]:checked").val();
 // skinChecked.clone().appendTo(".modal_layer_wrap.card .layer_contents");
 $(function(){
     // 모임카드 미리보기 버튼 클릭시, 인바이트 사용자가 작성한 최종 내용 카드 디자인 스킨 입혀서 보여주기
-   //  $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
-   //  $(".ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
-   // // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
-   //  $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
-   //  $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
-   //  $(".modal_layer_wrap.card .form_info .skin").remove();
-   //  $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
+    //  $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
+    //  $(".ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
+    // // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
+    //  $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
+    //  $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
+    //  $(".modal_layer_wrap.card .form_info .skin").remove();
+    //  $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
 });
