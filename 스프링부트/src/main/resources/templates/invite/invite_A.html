@@ -29,7 +29,7 @@
             <!-- 하단 각각 데이터 복붙 -->
         </div>
     </div>
-            <!-- 모달 레이어 : 모임카드 미리보기 클릭시 > 최종 모임카드 디자인 레이어 노출  -->
+    <!-- 모달 레이어 : 모임카드 미리보기 클릭시 > 최종 모임카드 디자인 레이어 노출  -->
     <div class="modal_layer_wrap card"  id="xx">
         <div class="layer_bg"></div>
         <div class="layer_box">
@@ -120,15 +120,13 @@
     <!-- ####### 02. LNB END ########## -->
     <hr class="skip"/>
     <!-- ####### 03. CONTENTS START ####### -->
-
     <section class="contents_wrap">
 
         <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
-        <form>
         <div class="left_contents">
             <div class="left_contents_padding_left"></div>
             <div class="left_contents_center">
-
+                <form >
                     <div class="card_list_wrap">
                         <!-- 추천(조합) 모임카드 #.01 시작 -->
                         <dl class="ai_card design">
@@ -140,12 +138,18 @@
                                 </h2>
                                 <div class="form_info"><!-- 연관 키워드 10개 -->
                                     <div class="date">
-                                        <label><b>모임날짜</b><input type="date" value="2023-08-21"></label>
+                                        <label><b>모인날짜</b><input type="date" value="2023-08-21"></label>
                                         <label><b>모임시간</b><input type="time"></label>
                                         <label><b>참가인원</b><input type="text"> </label>
                                     </div>
                                     <div class="memo"><label><b>모임내용</b><textarea class="card_memo" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
-
+                                    <!--                                    <div class="skin"><b>카드스킨</b>-->
+                                    <!--                                        <label><input type="radio" value="a_type" checked> A_type</label>-->
+                                    <!--                                        <label><input type="radio" value="b_type"> B_type</label>-->
+                                    <!--                                        <label><input type="radio" value="c_type"> C_type</label>-->
+                                    <!--                                        <label><input type="radio" value="d_type"> D_type</label>-->
+                                    <!--                                        <label><input type="radio" value="e_type"> E_type</label>-->
+                                    <!--                                    </div>-->
                                 </div>
                             </dt>
                             <div class="card_map_wrap"><div id="map"></div></div>
@@ -178,7 +182,9 @@
                                         <li class="thumb"><img th:src="${place.getImageAdd1()}" alt="돈비어천가"></li>
                                         <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
                                         <li class="tel">032-930-1234
-                                            <a href="#" class="place_info_layer">상세정보</a>
+                                            <a href="#" th:class="|place_info_layer item_${place.getId()}|">상세정보</a>
+                                            <!-- 업체 상세 정보 레이어 -->
+                                            <div th:class="|layer_contents item_${place.getId()}|" th:insert="~{insert/place_info}"></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -192,6 +198,7 @@
                         </dl>
                         <!-- 추천(조합) 모임카드 #.01 끝 -->
                     </div>
+                </form>
             </div>
             <div class="left_contents_padding_right"></div>
         </div>
@@ -213,69 +220,66 @@
                 <a href="#" class="btn_next"></a>
                 <a href="#" class="btn_last"></a>
             </div>
-
-                <div class="card_list_wrap">
-                    <!-- 카드 디자인 스킨 #.01 시작 -->
-                    <dl class="ai_card_skin a_type">
-                        <dt class="header">INVITATION</dt>
-                        <dd class="body"><label><input type="radio" value="a_type" checked> A</label></dd>
-                        <dd class="footer">Party People</dd>
-                    </dl>
-                    <!-- 카드 디자인 스킨 #.01 끝 -->
-                    <!-- 카드 디자인 스킨 #.02 시작 -->
-                    <dl class="ai_card_skin b_type">
-                        <dt class="header">INVITATION</dt>
-                        <dd class="body"><label><input type="radio" value="a_type"> B</label></dd>
-                        <dd class="footer">Party People</dd>
-                    </dl>
-                    <!-- 카드 디자인 스킨 #.02 끝 -->
-                    <!-- 카드 디자인 스킨 #.03 시작 -->
-                    <dl class="ai_card_skin c_type">
-                        <dt class="header">INVITATION</dt>
-                        <dd class="body"><label><input type="radio" value="a_type"> C</label></dd>
-                        <dd class="footer">Party People</dd>
-                    </dl>
-                    <!-- 카드 디자인 스킨 #.03 끝 -->
-                    <!-- 카드 디자인 스킨 #.04 시작 -->
-                    <dl class="ai_card_skin d_type">
-                        <dt class="header">INVITATION</dt>
-                        <dd class="body"><label><input type="radio" value="a_type"> D</label></dd>
-                        <dd class="footer">Party People</dd>
-                    </dl>
-                    <!-- 카드 디자인 스킨 #.04 끝 -->
-                    <!-- 카드 디자인 스킨 #.05 시작 -->
-                    <dl class="ai_card_skin e_type">
-                        <dt class="header">INVITATION</dt>
-                        <dd class="body"><label><input type="radio" value="a_type"> E</label></dd>
-                        <dd class="footer">Party People</dd>
-                    </dl>
-                    <!-- 카드 디자인 스킨 #.05 끝 -->
-                    <!-- 카드 디자인 스킨 #.06 시작 -->
-                    <dl class="ai_card_skin f_type">
-                        <dt class="header">INVITATION</dt>
-                        <dd class="body"><label><input type="radio" value="a_type"> F</label></dd>
-                        <dd class="footer">Party People</dd>
-                    </dl>
-                    <!-- 카드 디자인 스킨 #.06 끝 -->
-                    <!-- 카드 디자인 스킨 #.06 시작 -->
-                    <dl class="ai_card_skin g_type">
-                        <dt class="header">INVITATION</dt>
-                        <dd class="body"><label><input type="radio" value="a_type"> G</label></dd>
-                        <dd class="footer">Party People</dd>
-                    </dl>
-                    <!-- 카드 디자인 스킨 #.06 끝 -->
-                    <!-- 카드 디자인 스킨 #.06 시작 -->
-                    <dl class="ai_card_skin h_type">
-                        <dt class="header"></dt>
-                        <dd class="body"><label><input type="radio" value="a_type"> H</label></dd>
-                        <dd class="footer">Party People</dd>
-                    </dl>
-                    <!-- 카드 디자인 스킨 #.06 끝 -->
-                </div>
-
+            <div class="card_list_wrap">
+                <!-- 카드 디자인 스킨 #.01 시작 -->
+                <dl class="ai_card_skin a_type">
+                    <dt class="header">INVITATION</dt>
+                    <dd class="body"><label><input type="radio" value="a_type" checked> A</label></dd>
+                    <dd class="footer">Party People</dd>
+                </dl>
+                <!-- 카드 디자인 스킨 #.01 끝 -->
+                <!-- 카드 디자인 스킨 #.02 시작 -->
+                <dl class="ai_card_skin b_type">
+                    <dt class="header">INVITATION</dt>
+                    <dd class="body"><label><input type="radio" value="a_type"> B</label></dd>
+                    <dd class="footer">Party People</dd>
+                </dl>
+                <!-- 카드 디자인 스킨 #.02 끝 -->
+                <!-- 카드 디자인 스킨 #.03 시작 -->
+                <dl class="ai_card_skin c_type">
+                    <dt class="header">INVITATION</dt>
+                    <dd class="body"><label><input type="radio" value="a_type"> C</label></dd>
+                    <dd class="footer">Party People</dd>
+                </dl>
+                <!-- 카드 디자인 스킨 #.03 끝 -->
+                <!-- 카드 디자인 스킨 #.04 시작 -->
+                <dl class="ai_card_skin d_type">
+                    <dt class="header">INVITATION</dt>
+                    <dd class="body"><label><input type="radio" value="a_type"> D</label></dd>
+                    <dd class="footer">Party People</dd>
+                </dl>
+                <!-- 카드 디자인 스킨 #.04 끝 -->
+                <!-- 카드 디자인 스킨 #.05 시작 -->
+                <dl class="ai_card_skin e_type">
+                    <dt class="header">INVITATION</dt>
+                    <dd class="body"><label><input type="radio" value="a_type"> E</label></dd>
+                    <dd class="footer">Party People</dd>
+                </dl>
+                <!-- 카드 디자인 스킨 #.05 끝 -->
+                <!-- 카드 디자인 스킨 #.06 시작 -->
+                <dl class="ai_card_skin f_type">
+                    <dt class="header">INVITATION</dt>
+                    <dd class="body"><label><input type="radio" value="a_type"> F</label></dd>
+                    <dd class="footer">Party People</dd>
+                </dl>
+                <!-- 카드 디자인 스킨 #.06 끝 -->
+                <!-- 카드 디자인 스킨 #.06 시작 -->
+                <dl class="ai_card_skin g_type">
+                    <dt class="header">INVITATION</dt>
+                    <dd class="body"><label><input type="radio" value="a_type"> G</label></dd>
+                    <dd class="footer">Party People</dd>
+                </dl>
+                <!-- 카드 디자인 스킨 #.06 끝 -->
+                <!-- 카드 디자인 스킨 #.06 시작 -->
+                <dl class="ai_card_skin h_type">
+                    <dt class="header"></dt>
+                    <dd class="body"><label><input type="radio" value="a_type"> H</label></dd>
+                    <dd class="footer">Party People</dd>
+                </dl>
+                <!-- 카드 디자인 스킨 #.06 끝 -->
+            </div>
         </div>
         <!-- #### 03-1.우측 본문 영역 끝 -->
-        </form>
     </section>
     <!-- ####### 03. CONTENTS END ####### -->
     <hr class="skip"/>
@@ -283,8 +287,6 @@
     <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
         <!-- ####### 04. FOOTER END ####### -->
     </div>
-
 </div>
-
 </body>
 </html>
