@@ -1,5 +1,7 @@
 package party.people.web.controller.place;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.DelegatingServerHttpResponse;
@@ -39,7 +41,8 @@ public class PlaceController {
 
     /* 검색창 매핑 */
     @PostMapping("place")
-    public String searchPlace(@RequestParam(value = "searchForm", required = false) String searchForm,
+    public String searchPlace(HttpServletRequest request,
+                              @RequestParam(value = "searchForm", required = false) String searchForm,
                               @RequestParam(value = "address", required = false) String address,
                               @RequestParam(value = "categorySubject", required=false) String categorySubject, Model model){
         /* side lnb출력용 */
@@ -135,6 +138,11 @@ public class PlaceController {
 
             /* 해당 리스트를 타임리프단에 전달 */
             model.addAttribute("searchResult", finalForm);
+
+            /* 세션 생성 */
+            HttpSession searchResult = request.getSession();
+            /* "검색결과"라는 키로 세션 값 생성 */
+            searchResult.setAttribute("검색결과",finalForm);
         }
 
 

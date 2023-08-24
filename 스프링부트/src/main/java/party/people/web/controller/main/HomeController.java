@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import party.people.domain.Client;
 import party.people.domain.Keywords;
+import party.people.domain.Place;
 import party.people.domain.Test;
 import party.people.repository.keywords.KeywordsInterface;
 import party.people.repository.test.TestInterface;
@@ -96,7 +97,11 @@ public class HomeController {
             model.addAttribute("client",null);
             return "place/place_thymeleaf";
         }
-        log.info("home] "+"문제찾기");
+
+        /* 검색결과 다중 세션 여부 확인용 */
+        List<List<Place>>place = (List<List<Place>>) loginInfo.getAttribute("검색결과");
+        log.info("다중세션 여부 확인 " + place);
+
 
         /* 세션 정보 "로그인"으로 세션 정보를 호출해 Client loginClient 객체를 생성 */
         /* LoginController에서 확인 가능 */
@@ -105,7 +110,7 @@ public class HomeController {
         /* 해당 객체가 없다면 home으로 이동 */
         if (loginClient==null){
             model.addAttribute("client",null);
-            return "place/place_thymelaef";
+            return "place/place_thymeleaf";
         }
         log.info("home] "+loginClient);
         /* 세션에 저장되어있는 로그인 정보를 thymeleaf단에 "client"이름으로 전달 */
