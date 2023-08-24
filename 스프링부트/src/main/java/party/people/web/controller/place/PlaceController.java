@@ -1,5 +1,7 @@
 package party.people.web.controller.place;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.server.DelegatingServerHttpResponse;
@@ -39,12 +41,12 @@ public class PlaceController {
 
     /* 검색창 매핑 */
     @PostMapping("place")
-    public String searchPlace(@RequestParam(value = "searchForm", required = false) String searchForm,
-                              @RequestParam(value = "address", required = false) String address, Model model){
+    public String searchPlace(HttpServletRequest request,
+                              @RequestParam(value = "searchForm", required = false) String searchForm,
+                              @RequestParam(value = "address", required = false) String address,
+                              @RequestParam(value = "categorySubject", required=false) String categorySubject, Model model){
         /* side lnb출력용 */
         model.addAttribute("category","place");
-
-
 
         /* 검색 결과를 출력하는 로직 */
         log.info("검색내용 "+ searchForm);
@@ -58,7 +60,10 @@ public class PlaceController {
             input.setKeyword(searchForm);
             model.addAttribute("searchText",searchForm);
         } else input.setKeyword("");
-        input.setCategory("");
+        if (categorySubject!=null){
+            input.setCategory(categorySubject);
+            model.addAttribute("searchText", categorySubject);
+        } else input.setCategory("");
         /* 이를 searchinput DB Table에 집어넣는다 */
         searchInputInterface.save(input);
         /* 이와 동시에 searchResult DB 탐색을 시작한다 */
@@ -133,6 +138,11 @@ public class PlaceController {
 
             /* 해당 리스트를 타임리프단에 전달 */
             model.addAttribute("searchResult", finalForm);
+
+            /* 세션 생성 */
+            HttpSession searchResult = request.getSession();
+            /* "검색결과"라는 키로 세션 값 생성 */
+            searchResult.setAttribute("검색결과",finalForm);
         }
 
 
@@ -161,6 +171,7 @@ public class PlaceController {
 //        }
         return "place/place_thymeleaf";
     }
+
 
 
 }
