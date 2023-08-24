@@ -15,9 +15,12 @@ $(function(){
     // 업체 상세정보 레이어 노출
 });
 // 업체 상세버튼 클릭시, 상세 정보 페이지 모달 레이어 노출
-$(".place_info_layer").click(function(){
+
+
+$(".place_info_layer.item_1").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_1").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
     });

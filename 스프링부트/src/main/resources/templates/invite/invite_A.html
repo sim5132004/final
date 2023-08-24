@@ -21,9 +21,15 @@
 <body>
 
 <div class="container invite skin">
-
-
-    <!-- 모달 레이어 : 모임카드 미리보기 클릭시 > 최종 모임카드 디자인 레이어 노출  -->
+    <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
+    <div class="modal_layer_wrap detail">
+        <div class="layer_bg"></div>
+        <div class="layer_box">
+            <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
+            <!-- 하단 각각 데이터 복붙 -->
+        </div>
+    </div>
+            <!-- 모달 레이어 : 모임카드 미리보기 클릭시 > 최종 모임카드 디자인 레이어 노출  -->
     <div class="modal_layer_wrap card"  id="xx">
         <div class="layer_bg"></div>
         <div class="layer_box">
@@ -166,29 +172,16 @@
                                 <div class="card_list" th:each="place : ${category2}">
                                     <ul class="summary_card">
                                         <li class="subject">
-                                            <b th:text="${place.getTitle()}">돈비어천가</b>
+                                            <b th:text="${place.getTitle()}">돈비어천가c</b>
                                             <span class="category"><b class="depth_1"  th:text="${place.getCategory()}">음식</b><b class="depth_2"  th:text="${place.getSmallCategory()}">한식</b></span>
                                         </li>
                                         <li class="thumb"><img th:src="${place.getImageAdd1()}" alt="돈비어천가"></li>
                                         <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
-                                        <li class="tel" th:text="${place.getTel()}">032-930-1234
-
+                                        <li class="tel">032-930-1234
+                                            <a href="#" class="place_info_layer">상세정보</a>
                                         </li>
-                                        <li >    <a href="#" class="place_info_layer">상세정보</a></li>
-
                                     </ul>
-                                    <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
-                                    <div class="modal_layer_wrap detail" th:id="|detail_${place.getId()}|">
-                                        <div class="layer_bg" th:id="|layer_${place.getId()}|"></div>
-                                        <div class="layer_box" th:id="|box_${place.getId()}|">
-                                            <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
-                                                        <div class="layer_contents" th:insert="~{insert/place_info}"></div>
-                                        </div>
-                                    </div>
                                 </div>
-                                <!-- 대안 장소 선택_02: 업체 리스트 -->
-
-
                             </dd>
                             <dd class="footer">
                                 <h3><a href="#" class="confirm"><i class="fa-solid fa-arrow-up-right-from-square"></i> 모임카드 미리보기</a>
@@ -291,7 +284,7 @@
         <!-- ####### 04. FOOTER END ####### -->
     </div>
 
-
+</div>
 
 </body>
 </html>
