@@ -40,16 +40,20 @@ public class PlaceController {
 
 
     /* 검색창 매핑 */
-    @PostMapping("place")
+    @PostMapping("/place")
     public String searchPlace(HttpServletRequest request,
                               @RequestParam(value = "searchForm", required = false) String searchForm,
                               @RequestParam(value = "address", required = false) String address,
-                              @RequestParam(value = "categorySubject", required=false) String categorySubject, Model model){
+                              @RequestParam(value = "categorySubject", required=false) String categorySubject,
+                              @RequestParam(value = "keywordSubject", required = false) String keywordSubject,
+                              Model model){
+
         /* side lnb출력용 */
         model.addAttribute("category","place");
 
+        log.info("키워드를 받아오자 :" +keywordSubject);
         /* 검색 결과를 출력하는 로직 */
-        log.info("검색내용 "+ searchForm);
+        log.info("검색내용 :"+ searchForm + "/ 주소내용 : " + address + "/ 카테고리 : " + categorySubject);
         /* 우리의 검색 로직에는 3가지(카테고리, 키워드, 주소)가 들어가니 SearchInput 클래스에 넣는다 */
         SearchInput input = new SearchInput();
         if (address!=null) {
@@ -59,7 +63,12 @@ public class PlaceController {
         if (searchForm!=null) {
             input.setKeyword(searchForm);
             model.addAttribute("searchText",searchForm);
-        } else input.setKeyword("");
+        } else {
+            if (keywordSubject!=null) {
+                input.setKeyword(keywordSubject);
+                model.addAttribute("searchText",keywordSubject);
+            } else input.setKeyword("");
+        }
         if (categorySubject!=null){
             input.setCategory(categorySubject);
             model.addAttribute("searchText", categorySubject);
@@ -144,10 +153,6 @@ public class PlaceController {
             /* "검색결과"라는 키로 세션 값 생성 */
             searchResult.setAttribute("검색결과",finalForm);
         }
-
-
-
-
 
 
 
