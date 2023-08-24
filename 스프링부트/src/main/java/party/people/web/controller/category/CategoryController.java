@@ -60,5 +60,10 @@ public class CategoryController {
         return "invite/invite";
     }
 
+//    @GetMapping("category")
+//    public String goCategory(Model model){
+//
+//        return "category/category";
+//    }
 
 }

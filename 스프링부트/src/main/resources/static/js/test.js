@@ -35,6 +35,7 @@ socket.onmessage = function(event) {
     ul[0].childNodes[1].childNodes[1].innerText = data[0][2][0][1]
     ul[0].childNodes[3].childNodes[0].setAttribute("src", "")
     ul[0].childNodes[7].innerText = data[0][2][0][2]
+    ul[0].childNodes[11].innerText = data[0][2][0][4][0]
 
     console.log(ul[0].childNodes[9])
     console.log(ul[0].childNodes[11])
