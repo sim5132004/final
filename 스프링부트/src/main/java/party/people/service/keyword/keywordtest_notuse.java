@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 public class keywordtest_notuse {
     public static void main(String[] args) {
+
+        /* 우리 로직은 () 형식이 아니라 폐기 */
+
+
         // 리스트 형식으로 키워드 값을 가져올 시 어떻게 개수 체크를 할 것인가
         List<String>keyword = new ArrayList<>();
         // () 가로형식 정규식 테스트

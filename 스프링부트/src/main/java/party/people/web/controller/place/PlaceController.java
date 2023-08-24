@@ -97,19 +97,6 @@ public class PlaceController {
 
         /* 검색된 결과를 우리 thymeleaf단에 맞게끔 가공하는 로직 */
 
-//        /* 키워드 모음집을 보내는 로직 */
-//        List<List<String>> topFinalKeyword = new ArrayList<>();
-//        log.info("searchPlace]검색" +result.getSortKeyword());
-//        List<String>topKeywords = Arrays.stream(result.getSortKeyword().split("/")).toList();
-//        log.info("searchPlace] "+topKeywords);
-//        List<String> mid = new ArrayList<>();
-//        for (String one : topKeywords){
-//            log.info("하나를 찾자 "+one);
-//            mid = Arrays.stream(one.split(",")).toList();
-//            topFinalKeyword.add(mid);
-//        }
-
-
         /* 출력 형식이 이중 리스트로 [[PLACE, PLACE, PLACE], [PLACE, PLACE, PLACE], ... ] */
         /* 리스트에 PLACE 3개의 객체가 하나의 리스트로 들어가 있는 형식이어야 함  */
         /* 그래서 DB inputResult 테이블도 내부 3개는 ,로 리스트와 리스트사이는 / 로 구분지어둠 */

@@ -53,6 +53,7 @@ public class keywordToMapLogic {
                 totalKeyword = totalKeyword +","+ entry.getKey() + "/" + entry.getValue();
             }
             count++;
+            /* 300개가 넘어가면 DB 용랑 한계로 에러 발생 */
             if (count==300){
                 break;
             }
