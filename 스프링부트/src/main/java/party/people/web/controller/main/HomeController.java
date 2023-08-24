@@ -88,7 +88,6 @@ public class HomeController {
         /* 세션 정보 가져오기 */
         /* create:false => 세션 정보가 있으면 기존 세션정보 로딩, 없으면 null 반환 */
         /* 세션 생성은 LoginController 참조 */
-        log.info("home] " + "문제찾기");
         HttpSession loginInfo =request.getSession(false);
         log.info("세션정보 " + loginInfo);
 
