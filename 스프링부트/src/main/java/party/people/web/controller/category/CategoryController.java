@@ -26,11 +26,11 @@ public class CategoryController {
         return "place/place_thymeleaf";
     }
 
-    @GetMapping("category")
+    @GetMapping("main")
     public String goCategory(Model model){
         /* side lnb 출력용 */
        // model.addAttribute("category","place");
-        return "category/category";
+        return "main/main";
     }
 
     @GetMapping("analysis")
