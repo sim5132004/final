@@ -23,11 +23,21 @@ $(".place_info_layer").click(function(){
     });
 });
 
+// 모임카드 스킨 라디오 버튼 선택(checked)
+
 // INVITE > 모임카드 미리보기 버튼 클릭시 최종 모임카드 디자인 적용된 레이어 노출하기
 $(".ai_card.design .confirm").click(function(){
     //$("body").hide();c
     $(".modal_layer_wrap.card").addClass("show");
     // 카드 디자인 스킨 복사
+    // 모임카드 미리보기 버튼 클릭시, 인바이트 사용자가 작성한 최종 내용 카드 디자인 스킨 입혀서 보여주기
+    $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
+    $(".ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
+    // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
+    $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
+    $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
+    $(".modal_layer_wrap.card .form_info .skin").remove();
+    $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
 
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.card").removeClass("show");
@@ -36,11 +46,12 @@ $(".ai_card.design .confirm").click(function(){
 // var skinChecked = $(".ai_card_skin input[type=radio]:checked").val();
 // skinChecked.clone().appendTo(".modal_layer_wrap.card .layer_contents");
 $(function(){
-    $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
-    $(".ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
-   // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
-    $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
-    $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
-    $(".modal_layer_wrap.card .form_info .skin").remove();
-    $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
+    // 모임카드 미리보기 버튼 클릭시, 인바이트 사용자가 작성한 최종 내용 카드 디자인 스킨 입혀서 보여주기
+   //  $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
+   //  $(".ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
+   // // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
+   //  $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
+   //  $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
+   //  $(".modal_layer_wrap.card .form_info .skin").remove();
+   //  $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
 });
