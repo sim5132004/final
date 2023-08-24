@@ -4,14 +4,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.server.DelegatingServerHttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import party.people.domain.Page;
 import party.people.domain.Place;
 import party.people.domain.SearchInput;
 import party.people.domain.SearchResult;
@@ -45,13 +41,13 @@ public class PlaceController {
                               @RequestParam(value = "searchForm", required = false) String searchForm,
                               @RequestParam(value = "address", required = false) String address,
                               @RequestParam(value = "categorySubject", required=false) String categorySubject,
-                              @RequestParam(value = "keywordSubject", required = false) String keywordSubject,
+                              @RequestParam(value = "hashTag", required = false) String hashTag,
                               Model model){
 
         /* side lnb출력용 */
         model.addAttribute("category","place");
 
-        log.info("키워드를 받아오자 :" +keywordSubject);
+        log.info("키워드를 받아오자 :" + hashTag);
         /* 검색 결과를 출력하는 로직 */
         log.info("검색내용 :"+ searchForm + "/ 주소내용 : " + address + "/ 카테고리 : " + categorySubject);
         /* 우리의 검색 로직에는 3가지(카테고리, 키워드, 주소)가 들어가니 SearchInput 클래스에 넣는다 */
@@ -64,9 +60,9 @@ public class PlaceController {
             input.setKeyword(searchForm);
             model.addAttribute("searchText",searchForm);
         } else {
-            if (keywordSubject!=null) {
-                input.setKeyword(keywordSubject);
-                model.addAttribute("searchText",keywordSubject);
+            if (hashTag !=null) {
+                input.setKeyword(hashTag);
+                model.addAttribute("searchText", hashTag);
             } else input.setKeyword("");
         }
         if (categorySubject!=null){
@@ -154,6 +150,10 @@ public class PlaceController {
             searchResult.setAttribute("검색결과",finalForm);
         }
 
+        String[] colors = {
+                "#ff0000", "#ff8c00", "#ffff00", "#008000", "#0000ff", "#4b0082", "#8b00ff"
+        };
+        model.addAttribute("colors", colors);
 
 
         /* 검색한 내용을 키워드에 추가하는 로직 => 해당 로직은 완성 됐지만 반복시 데이터가 오염되므로 실 서비스시 주석 해제*/
@@ -174,6 +174,8 @@ public class PlaceController {
 //            String updated = mapToSortedString(map);
 //            placeInterface.updateKeyword(one.getTitle(), updated);
 //        }
+
+
         return "place/place_thymeleaf";
     }
 
