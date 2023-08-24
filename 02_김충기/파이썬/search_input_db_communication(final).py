@@ -38,6 +38,7 @@ while True:
         top_n = 3
         recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
         recommend_list = recommended_distance
+        # print(recommend_list)
         searchResult = ""
         count = 0;
         for x in range(len(recommend_list)):
@@ -45,8 +46,10 @@ while True:
             if(count==4):
                 break
             searchResult += recommend_list[x][1] + ","
-            for i in range(len(recommend_list[0][2]) - 1):
+            for i in range(len(recommend_list[0][2])):
                 try:
+                    if (i==2) :
+                        break
                     searchResult += recommend_list[x][2][i][1] + ","
                 except:
                     pass
@@ -54,30 +57,30 @@ while True:
             searchResult += '/'
         searchResult = searchResult.rstrip('/')
 
-        # category_list = []
-        # for item in recommended_distance[:3]:
-        #
-        #     카테고리, 제목, 거리정보 = item
-        #
-        #     all_keywords = []
-        #     for category, place, address, distance, keywords in 거리정보:
-        #         all_keywords.extend(keywords)
-        #
-        #     # 키워드 빈도수 계산 및 상위 5개 추출
-        #     keyword_counts = pd.Series(all_keywords).value_counts()
-        #     top_keywords = keyword_counts.head(10).index.tolist()
-        #     top_keywords.sort(reverse=True)
-        #
-        #     keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
-        #     set_keywords_slash_delete = list(set(keywords_slash_delete))
-        #     category_list.append(set_keywords_slash_delete)
-        #
-        # baseString = ''
-        # for cate in category_list:
-        #     for ca in cate:
-        #         baseString = baseString + ca.strip() + ','
-        #     baseString = baseString.rstrip(',') + '/'
-        # finalString = baseString.rstrip('/').rstrip(',')
+        category_list = []
+        for item in recommended_distance[:3]:
+
+            카테고리, 제목, 거리정보 = item
+
+            all_keywords = []
+            for category, place, address, distance, keywords in 거리정보:
+                all_keywords.extend(keywords)
+
+            # 키워드 빈도수 계산 및 상위 5개 추출
+            keyword_counts = pd.Series(all_keywords).value_counts()
+            top_keywords = keyword_counts.head(10).index.tolist()
+            top_keywords.sort(reverse=True)
+
+            keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
+            set_keywords_slash_delete = list(set(keywords_slash_delete))
+            category_list.append(set_keywords_slash_delete)
+
+        baseString = ''
+        for cate in category_list:
+            for ca in cate:
+                baseString = baseString + ca.strip() + ','
+            baseString = baseString.rstrip(',') + '/'
+        finalString = baseString.rstrip('/').rstrip(',')
 
         insert_sql = "INSERT INTO  searchresult(sequenceid, result) VALUES (searchresult_seq.nextval, :val2)"
         with connection.cursor() as cursor:
