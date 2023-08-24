@@ -308,17 +308,33 @@
 <!--                                       (search[0].address.indexOf(' ')+1,-->
 <!--                                       search[0].address.indexOf(search[0].address.indexOf(' ')+1,' '))}">중구</b></span>-->
                                 <strong th:text="|${search[0].category}/${search[0].smallCategory}/${search[0].title}|">데이트/동인천/차이나타운/동인천/차이나타운</strong>
-
                             </h2>
                             <p class="keyword_recommand"><!-- 연관 키워드 3개 -->
                                 <span th:each="splited:${search}" style="display: inline">
-                                <a th:onclick="" th:text="${splited.keyword.substring(0,splited.keyword.indexOf('/'))}">고기맛집</a>
-                                <a href="#"
+                                <a class="keywordLink" onclick="sendKeyword()" th:text="${splited.keyword.substring(0,splited.keyword.indexOf('/'))}">고기맛집</a>
+                                <a class="keywordLink" onclick="sendKeyword()"
                                    th:text="${splited.keyword.substring(splited.keyword.indexOf(' ') + 1,
                                     splited.keyword.indexOf('/',splited.keyword.indexOf('/')+1))}">중구</a>
                                 </span>
-
                             </p>
+                            <!-- post 보내는곳 -->
+                            <form id="keywordForm" action="/place" method="post">
+                                <input type="hidden" id="keyword_subject" name="keyword_subject">
+                            </form>
+
+                            <script th:inline="javascript">
+                                <!-- 스프링으로 보내기 -->
+                                function sendKeyword() {
+                                    var keywordLink = documnet.getElementsByClassName("keywordLink");
+
+                                    var textValue = keywordLink.innerText;
+
+                                    document.getElementById('keyword_subject').value = textValue;
+                                    document.getElementById('keywordForm').submit();
+                                    console.log('삼성물산11층돌파기원')
+                                }
+
+                            </script>
                         </dt>
                         <dd class="body">
                             <!-- 대안 장소 선택_01: 업체 리스트 -->
