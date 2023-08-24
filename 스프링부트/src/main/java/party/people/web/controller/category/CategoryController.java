@@ -50,14 +50,16 @@ public class CategoryController {
         placeList.add(place1);
         placeList.add(place2);
         placeList.add(place3);
-        placeList=placeInterface.findAll();
+//        placeList=placeInterface.findAll();
+
+
 
         log.info("goInvite] "+placeList);
 
         /* side lnb 출력용 */
-        model.addAttribute("category","invite");
+        model.addAttribute("category","invite_A");
         model.addAttribute("category2",placeList);
-        return "invite/invite";
+        return "invite/invite_A";
     }
 
 //    @GetMapping("category")
