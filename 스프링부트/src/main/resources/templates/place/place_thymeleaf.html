@@ -361,7 +361,7 @@
                             <h2 class="subject_keyword">
                                 <span class="area">
                                     <b class="depth_1" th:text="${iterStat.count}" style="color: ">1</b>
-                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>
+<!--                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>-->
                                 </span>
                                 <!--                                    <b class="depth_2"-->
 <!--                                       th:text="${search[0].address.substring-->
@@ -373,7 +373,7 @@
                                 <span th:each="splited:${search}" style="display: inline">
                                 <a onclick="sendKeyword(this)" th:text="${splited.keyword.substring(0,splited.keyword.indexOf('/'))}" class="pointer">고기맛집</a>
                                 <a onclick="sendKeyword(this)"
-                                   th:text="${splited.keyword.substring(splited.keyword.indexOf(' ') + 1,
+                                   th:text="${splited.keyword.substring(splited.keyword.indexOf(',') + 1,
                                     splited.keyword.indexOf('/',splited.keyword.indexOf('/')+1))}" class="pointer">중구</a>
                                 </span>
                             </p>
