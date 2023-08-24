@@ -85,7 +85,9 @@
     <section class="contents_wrap">
         <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
         <div class="left_contents">
-            <div id="map"></div>
+            <div class="map_wrap">
+                <div id="map"></div>
+            </div>
             <script th:inline="javascript">
                 <!--  울 학원 기준으로 처음 위치 지정-->
                 var mapContainer = document.getElementById('map');
