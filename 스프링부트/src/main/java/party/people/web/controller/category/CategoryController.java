@@ -127,14 +127,14 @@ public class CategoryController {
         /* side lnb 출력용 */
         model.addAttribute("category","invite_A");
 
-        if(request != null){
-            model.addAttribute("category2",request);
-
-        }else{
-
-            model.addAttribute("category2",placeList);
-
-        }
+//        if(request != null){
+//            model.addAttribute("category2",request);
+//
+//        }else{
+//
+//            model.addAttribute("category2",placeList);
+//
+//        }
 
         return "invite/invite_A";
     }
