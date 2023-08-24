@@ -312,7 +312,7 @@
                             </h2>
                             <p class="keyword_recommand"><!-- 연관 키워드 3개 -->
                                 <span th:each="splited:${search}" style="display: inline">
-                                <a href="#" th:text="${splited.keyword.substring(0,splited.keyword.indexOf('/'))}">고기맛집</a>
+                                <a th:onclick="" th:text="${splited.keyword.substring(0,splited.keyword.indexOf('/'))}">고기맛집</a>
                                 <a href="#"
                                    th:text="${splited.keyword.substring(splited.keyword.indexOf(' ') + 1,
                                     splited.keyword.indexOf('/',splited.keyword.indexOf('/')+1))}">중구</a>
