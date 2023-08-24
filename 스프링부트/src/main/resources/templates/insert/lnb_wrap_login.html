@@ -37,3 +37,14 @@
     <div class="lnb" th:if="${category eq 'analysis'}" th:insert="~{insert/analysis_lnb}"></div>
     <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
 </div>
+
+<script th:inline="javascript">
+    var category = [[${category}]]
+    console.log(category)
+    function activeCategory(category){
+        $('dd').removeClass('active');
+        $('dd.'+category).addClass('active')
+    }
+    activeCategory(category)
+
+</script>
