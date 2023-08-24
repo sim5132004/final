@@ -371,25 +371,24 @@
                             </h2>
                             <p class="keyword_recommand"><!-- 연관 키워드 3개 -->
                                 <span th:each="splited:${search}" style="display: inline">
-                                <a class="keywordLink" onclick="sendKeyword()" th:text="${splited.keyword.substring(0,splited.keyword.indexOf('/'))}">고기맛집</a>
-                                <a class="keywordLink" onclick="sendKeyword()"
+                                <a onclick="sendKeyword(this)" th:text="${splited.keyword.substring(0,splited.keyword.indexOf('/'))}" class="pointer">고기맛집</a>
+                                <a onclick="sendKeyword(this)"
                                    th:text="${splited.keyword.substring(splited.keyword.indexOf(' ') + 1,
-                                    splited.keyword.indexOf('/',splited.keyword.indexOf('/')+1))}">중구</a>
+                                    splited.keyword.indexOf('/',splited.keyword.indexOf('/')+1))}" class="pointer">중구</a>
                                 </span>
                             </p>
                             <!-- post 보내는곳 -->
                             <form id="keywordForm" action="/place" method="post">
-                                <input type="hidden" id="keyword_subject" name="keyword_subject">
+                                <input type="hidden" id="keywordSubject" name="keywordSubject">
                             </form>
 
                             <script th:inline="javascript">
                                 <!-- 스프링으로 보내기 -->
-                                function sendKeyword() {
-                                    var keywordLink = documnet.getElementsByClassName("keywordLink");
+                                function sendKeyword(element) {
+                                    var textValue = element.innerText;
+                                    console.log(textValue);
 
-                                    var textValue = keywordLink.innerText;
-
-                                    document.getElementById('keyword_subject').value = textValue;
+                                    document.getElementById('keywordSubject').value = textValue.toString();
                                     document.getElementById('keywordForm').submit();
                                     console.log('삼성물산11층돌파기원')
                                 }
@@ -398,22 +397,22 @@
                         </dt>
                         <dd class="body">
                             <!-- 대안 장소 선택_01: 업체 리스트 -->
-                            <div class="card_list" th:each="split :${search}">
+                            <div class="card_list" th:each="place :${search}">
                                 <ul class="summary_card">
                                     <li class="subject">
 <!--                                        <b><span class="matching_keyword" th:text="${split_search.title}">돈비어</span>천가</b>-->
-                                        <b><span th:text="${split.title}">돈비어천가</span></b>
-                                        <span class="category"><b class="depth_1" th:text="${split.category}">음식</b><b class="depth_2" th:text="${split.smallCategory}">한식</b></span>
+                                        <b><span th:text="${place.title}">돈비어천가</span></b>
+                                        <span class="category"><b class="depth_1" th:text="${place.category}">음식</b><b class="depth_2" th:text="${place.smallCategory}">한식</b></span>
                                     </li>
-                                    <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${split.imageAdd1}" alt="돈비어천가"></li>
+                                    <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${place.imageAdd1}" alt="돈비어천가"></li>
                                     <li class="btn_wrap">
                                         <button>상세정보</button>
                                         <button>지도보기</button>
                                     </li>
-                                    <li class="addr" th:text="${split.address}">인천 중구 개항로 63-2</li>
-                                    <li class="work_time" th:text="${split.runTimeInfo}">10:00~22:00브레이크타임없음<span>(쉬는날 : 연중무휴)</span></li>
-                                    <li class="parking" th:text="${split.parkingInfo}">주차시설 : 있음,유료</li>
-                                    <li class="tel" th:text="${split.tel}">032-930-1234</li>
+                                    <li class="addr" th:text="${place.address}">인천 중구 개항로 63-2</li>
+                                    <li class="work_time" th:text="${place.runTimeInfo}">10:00~22:00브레이크타임없음<span>(쉬는날 : 연중무휴)</span></li>
+                                    <li class="parking" th:text="${place.parkingInfo}">주차시설 : 있음,유료</li>
+                                    <li class="tel" th:text="${place.tel}">032-930-1234</li>
                                 </ul>
                             </div>
                             <!-- 대안 장소 선택_02: 업체 리스트 -->
