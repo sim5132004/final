@@ -36,7 +36,7 @@ public class CategoryController {
     @GetMapping("analysis")
     public String goAnalysis(Model model){
         /* side lnb 출력용 */
-        // model.addAttribute("category","place");
+         model.addAttribute("category","analysis");
         return "analysis/analysis";
     }
 
