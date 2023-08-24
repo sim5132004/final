@@ -125,7 +125,7 @@ public class CategoryController {
         log.info("goInvite] "+placeList);
 
         /* side lnb 출력용 */
-        model.addAttribute("category","invite_A");
+        model.addAttribute("category","invite");
 
 //        if(request != null){
 //            model.addAttribute("category2",request);
@@ -151,12 +151,17 @@ public class CategoryController {
         /* 세션 생성은 LoginController 참조 */
         HttpSession loginInfo = request.getSession(false);
         log.info("세션정보 " + loginInfo);
+
+        /* 세션 정보가 없으면 client 객체에 null값 반환 */
         if (loginInfo==null) {
             model.addAttribute("client", null);
         } else {
+            /* 세션 정보가 있으면 "로그인"이라는 키로 로그인 회원의 정보 가져오기 */
             Client loginClient = (Client) loginInfo.getAttribute("로그인");
+            /* 해당 정보가 없으면 client 객체에 null값 반환 */
             if (loginClient==null) {
                 model.addAttribute("client", null);
+                /* 로그인 회원에 대한 정보를 client 객체에 담아 반환 */
             } else model.addAttribute("client", loginClient);
         }
     }

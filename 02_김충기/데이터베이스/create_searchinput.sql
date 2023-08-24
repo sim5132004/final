@@ -5,6 +5,9 @@ create table searchinput (
     address varchar2(256)
 );
 
+drop table searchinput;
+drop sequence searchinput_seq;
+
 CREATE SEQUENCE searchinput_seq
   START WITH 1          -- 시작을 1부터
   INCREMENT BY 1        -- 1씩 증가

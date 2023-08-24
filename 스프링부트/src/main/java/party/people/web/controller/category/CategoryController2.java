@@ -14,6 +14,8 @@ import party.people.domain.Place;
 import party.people.repository.InviteCard.InviteCardInterface;
 import party.people.repository.place.PlaceInterface;
 
+import static party.people.web.controller.category.CategoryController.loginCheck;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,12 @@ public class CategoryController2 {
     @GetMapping("invite")
     public String goInvite(HttpServletRequest request, Model model){
 
+        /* 로그인 세션 유지용 메서드 */
+        /* 메서드 이름 컨트롤 클릭으로 내용 확인 가능 */
+        loginCheck(request,model);
+
+        /* side lnb 출력용 */
+        model.addAttribute("category","invite");
 
         Place place1 = placeInterface.idSearch(1L);
         List<Place> placeList = new ArrayList<>();
@@ -42,7 +50,6 @@ public class CategoryController2 {
         placeList2.add(place22);
         placeList2.add(place32);
 
-        model.addAttribute("category","invite_A");
 
 
 

@@ -16,7 +16,7 @@
                포장가능여부 as wrapInfo, 입실시간 as checkinInfo, 퇴실시간 as checkoutInfo,
                부대시설 as otherAmenityInfo, 키워드리스트 as keyword,
                이미지주소1 as imageAdd1, 이미지주소2 as imageAdd2
-        from placeinfo
+        from placeinfo order by id
     </select>
 
     <!-- 카테고리로 검색 -->
