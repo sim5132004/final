@@ -1,6 +1,7 @@
 package party.people.service.keyword;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import party.people.domain.Place;
 import party.people.repository.place.PlaceInterface;
@@ -16,11 +17,32 @@ import static party.people.service.keyword.keywordToMapLogic.*;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class KeywordInSomething {
     private final PlaceInterface placeInterface;
 
-    /* 이 서비스는 최초 실행 한 번만 되어야 함 */
+    /* 이 페이지 서비스들은 최초 실행 한 번만 되어야 함 */
     /* 안 그러면 DB 오염 됨 */
+    public void allPlaceSort(){
+        /* 정렬할 때 사용할 맵 생성 */
+
+        /* 전체 리스트 불러오기 */
+        List<Place> allList = placeInterface.findAll();
+        for (Place one : allList){
+            Map<String, Integer>mapKeyword = new HashMap<>();
+            String keyword = one.getKeyword();
+            log.info("정렬전 키워드 "+keyword);
+            mapKeyword = keywordToMap(mapKeyword, keyword);
+            String sortedKeyword = mapToSortedString(mapKeyword);
+            log.info("정렬후 키워드 "+sortedKeyword);
+            System.out.println(sortedKeyword);
+            String title = one.getTitle();
+            placeInterface.updateKeyword(title,sortedKeyword);
+        }
+
+    }
+
+
     public void addToKeyword(){
         List<Place> allList = placeInterface.findAll();
         for(int i=0; i<allList.size(); i++){

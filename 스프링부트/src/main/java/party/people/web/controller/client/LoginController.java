@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
+import party.people.service.keyword.KeywordInSomething;
 import party.people.service.login.LoginInterface;
 import party.people.web.controller.client.formAndDto.LoginForm;
 
@@ -25,10 +26,13 @@ public class LoginController {
 
     private final LoginInterface loginInterface;
     private final ClientInterface clientInterface;
+    private final KeywordInSomething keywordInSomething;
 
     /* Thymeleaf onclick:login 수행시 페이지 이동*/
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
+        /* DB를 정렬하는 로직 */
+//        keywordInSomething.allPlaceSort();
         log.info("loginForm] "+ form);
 
         return "login/loginForm";

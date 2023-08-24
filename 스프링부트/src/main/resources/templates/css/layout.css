@@ -135,10 +135,10 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 .to_top:hover{  background: #009900; color: #fff; }
 
 /* 모달 레이어 */
-.modal_layer_wrap{  z-index:999999999; position: relative; top:0; left: 0; display:none; }
+.modal_layer_wrap{ position: fixed; top:0; left: 0;  z-index:9999999999; display:none;width:100%; height: 100%; }
 .modal_layer_wrap.show{  display: block; }
-.layer_bg{  z-index:9999999; position: fixed; top:0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.8);}
-.layer_box{ z-index:99999999; /* 상하좌우 정중앙 정렬하기 */position: fixed; top: 50%;left: 50%; transform: translate(-50%, -50%); min-width: 600px; min-height: 300px; background: #fff; border-radius: 10px; box-shadow: 3px 3px 10px rgba(0,0,0,.6); max-width: 60%; max-height: 85%; overflow-y:auto; word-break: break-word; padding: 30px;}
+.layer_bg{  z-index:99999999999; position: fixed; top:0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.8);}
+.layer_box{ z-index:9999999999999; /* 상하좌우 정중앙 정렬하기 */position: fixed; top: 50%;left: 50%; transform: translate(-50%, -50%); min-width: 600px; min-height: 300px; background: #fff; border-radius: 10px; box-shadow: 3px 3px 10px rgba(0,0,0,.6); max-width: 60%; max-height: 85%; overflow-y:auto; word-break: break-word; padding: 30px;}
 .modal_layer_wrap.card .layer_box{ max-width: 800px; max-height: 95%; background: none; box-shadow: none; border-radius: 0; padding: 0 0 30px 0 }
 
 .layer_box a.close_layer{  position:absolute; top:10px; right:10px;font-size: 20px; z-index: 99999999 }
@@ -149,6 +149,10 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 
 .modal_layer_wrap.card .layer_box a.close_layer{ position: fixed; top:0px; right:0px; display: none }
 .modal_layer_wrap.card .layer_box a.close_layer i{ color: #fff; }
+
+.modal_layer_wrap.card{}
+.modal_layer_wrap.card.show .layer_box > .layer_contents{ display: block }
+.modal_layer_wrap.card .ai_card_skin .layer_contents{ display: none }
 
 a.place_info_layer{ display: inline-block; font-weight: 600; color: #0d6efd; position: absolute; bottom:10px; right: 6px; padding: 2px 5px; border:solid 1px rgba(0,0,0,.2); border-radius: 2px; }
 a.place_info_layer:hover{ background: #0d6efd; color: #fff; border-color: #0d6efd }
@@ -209,6 +213,10 @@ a.place_info_layer:hover{ background: #0d6efd; color: #fff; border-color: #0d6ef
 .invite .right_contents.area .page_title{  width: 40%; min-width: 400px; }
 .invite .right_contents.area .paging{ width: 40%; min-width: 400px; }
 
+.invite.analisys .right_contents{  width: 50%; min-width: 500px; }
+.invite.analisys .right_contents.area .page_title{  width: 50%; min-width: 500px; }
+.invite.analisys .right_contents.area .paging{ width: 50%; min-width: 500px; }
+
 .invite .left_contents_padding_right{ width: 40%; min-width: 400px; }
 .invite .left_contents .card_list_wrap{  padding:0; }
 .invite .left_contents .ai_card{ vertical-align: top; padding: 30px 50px; border-radius: 0; border: 0; box-shadow: none }
@@ -266,6 +274,9 @@ position: -webkit-sticky; position: sticky;*/}
 dl.ai_card{ position: relative; box-sizing: border-box; padding: 20px 25px 15px 25px;  margin:0 auto 40px; border:solid 1px rgba(0,0,0,.3); box-shadow:2px 2px 3px rgba(0,0,0,.2); border-radius: 20px; min-width: 345px;z-index:1; overflow: hidden; background:#fff }
 dl.ai_card:after{ content:""; display: block; clear:both; }
 dl.ai_card:hover{  }
+
+.analisys dl.ai_card{ width: 100%;border-radius: 3px }
+.analisys dl.ai_card dd.body{ min-hight:300px }
 
 dl.ai_card > dt{    }
 dl.ai_card > dt h2{  height: 35px; }
