@@ -171,9 +171,10 @@
                                         </li>
                                         <li class="thumb"><img th:src="${place.getImageAdd1()}" alt="돈비어천가"></li>
                                         <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
-                                        <li class="tel">032-930-1234
-                                            <a href="#" class="place_info_layer">상세정보</a>
+                                        <li class="tel" th:text="${place.getTel()}">032-930-1234
+
                                         </li>
+                                        <li >    <a href="#" class="place_info_layer">상세정보</a></li>
 
                                     </ul>
                                     <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->

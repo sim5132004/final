@@ -101,7 +101,7 @@
                 //   실시간 교통량 표시
                 // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
                 // 추천카드 세트별 선 색깔
-                var colors  = ['#FF5733', '#6A33FF', '#33FF6E', '#FFC933', '#33C3FF', '#FF33C3'];
+                var colors  = ['#ff0000', '#ff8c00', '#ffff00', '#008000', '#0000ff', '#4b0082', '#8b00ff'];
 
                 var rmaps = /*[[${searchResult}]]*/ []; // 추천 카드 세트 리스트를 받고 (근데 마커가 거꾸로 찍혀서 뒤집을거라 rmaps라고 미리 함(여기를 maps로 하면 기존코드 변수명들을 다 바꿔야해서 걍 여기를 rmasp로 함))
                 console.log(rmaps);
@@ -134,7 +134,8 @@
                     console.log(positions);
 
                     // 마커 이미지
-                    var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+                    var imageSrc = "images/marker_spot(" + a + ").png";
+                    // var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
                     var imageSize = new kakao.maps.Size(24, 35);
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
@@ -149,6 +150,7 @@
                             position: positions[i].latlng,
                             title: positions[i].title,
                             category: positions[i].category,
+                            image: markerImage,
                         });
 
                         // 마우스 올릴때 나오는 정보 추가
@@ -360,8 +362,14 @@
                         <dt class="header">
                             <h2 class="subject_keyword">
                                 <span class="area">
-                                    <b class="depth_1" th:text="${iterStat.count}" style="color: ">1</b>
+<!--<<<<<<< Updated upstream-->
+<!--                                    th:color="${colors[iterStat.count]}-->
+<!--                                    <b class="depth_1" th:text="${iterStat.count}">1</b>-->
 <!--                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>-->
+<!--=======-->
+                                    <b class="depth_1" th:text="${iterStat.count}">1</b>
+                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>
+<!--&gt;>>>>>> Stashed changes-->
                                 </span>
                                 <!--                                    <b class="depth_2"-->
 <!--                                       th:text="${search[0].address.substring-->

@@ -150,6 +150,10 @@ public class PlaceController {
             searchResult.setAttribute("검색결과",finalForm);
         }
 
+        String[] colors = {
+                "#ff0000", "#ff8c00", "#ffff00", "#008000", "#0000ff", "#4b0082", "#8b00ff"
+        };
+        model.addAttribute("colors", colors);
 
 
         /* 검색한 내용을 키워드에 추가하는 로직 => 해당 로직은 완성 됐지만 반복시 데이터가 오염되므로 실 서비스시 주석 해제*/
@@ -170,6 +174,8 @@ public class PlaceController {
 //            String updated = mapToSortedString(map);
 //            placeInterface.updateKeyword(one.getTitle(), updated);
 //        }
+
+
         return "place/place_thymeleaf";
     }
 
