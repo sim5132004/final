@@ -37,6 +37,7 @@ public class PlaceController {
 
     /* 검색창 매핑 */
     @PostMapping("/place")
+    /* 다양한 방식으로 검색 입력을 RequestParam으로 받는다, required=false는 null 예외 방지용으로 사용 */
     public String searchPlace(HttpServletRequest request,
                               @RequestParam(value = "searchForm", required = false) String searchForm,
                               @RequestParam(value = "address", required = false) String address,
@@ -47,9 +48,7 @@ public class PlaceController {
         /* side lnb출력용 */
         model.addAttribute("category","place");
 
-        log.info("키워드를 받아오자 :" + hashTag);
         /* 검색 결과를 출력하는 로직 */
-        log.info("검색내용 :"+ searchForm + "/ 주소내용 : " + address + "/ 카테고리 : " + categorySubject);
         /* 우리의 검색 로직에는 3가지(카테고리, 키워드, 주소)가 들어가니 SearchInput 클래스에 넣는다 */
         SearchInput input = new SearchInput();
         if (address!=null) {
@@ -69,6 +68,7 @@ public class PlaceController {
             input.setCategory(categorySubject);
             model.addAttribute("searchText", categorySubject);
         } else input.setCategory("");
+
         /* 이를 searchinput DB Table에 집어넣는다 */
         searchInputInterface.save(input);
         /* 이와 동시에 searchResult DB 탐색을 시작한다 */
@@ -123,7 +123,6 @@ public class PlaceController {
                     midForm.add(placeOne);
                 }
                 /* place객체가 담긴 midForm리스트를 finalForm리스트에 추가한다 */
-
                 finalForm.add(midForm);
             }
             log.info("searchPlace] " + finalForm);
