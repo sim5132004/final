@@ -54,34 +54,34 @@ while True:
             searchResult += '/'
         searchResult = searchResult.rstrip('/')
 
-        category_list = []
-        for item in recommended_distance[:3]:
+        # category_list = []
+        # for item in recommended_distance[:3]:
+        #
+        #     카테고리, 제목, 거리정보 = item
+        #
+        #     all_keywords = []
+        #     for category, place, address, distance, keywords in 거리정보:
+        #         all_keywords.extend(keywords)
+        #
+        #     # 키워드 빈도수 계산 및 상위 5개 추출
+        #     keyword_counts = pd.Series(all_keywords).value_counts()
+        #     top_keywords = keyword_counts.head(10).index.tolist()
+        #     top_keywords.sort(reverse=True)
+        #
+        #     keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
+        #     set_keywords_slash_delete = list(set(keywords_slash_delete))
+        #     category_list.append(set_keywords_slash_delete)
+        #
+        # baseString = ''
+        # for cate in category_list:
+        #     for ca in cate:
+        #         baseString = baseString + ca.strip() + ','
+        #     baseString = baseString.rstrip(',') + '/'
+        # finalString = baseString.rstrip('/').rstrip(',')
 
-            카테고리, 제목, 거리정보 = item
-
-            all_keywords = []
-            for category, place, address, distance, keywords in 거리정보:
-                all_keywords.extend(keywords)
-
-            # 키워드 빈도수 계산 및 상위 5개 추출
-            keyword_counts = pd.Series(all_keywords).value_counts()
-            top_keywords = keyword_counts.head(10).index.tolist()
-            top_keywords.sort(reverse=True)
-
-            keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
-            set_keywords_slash_delete = list(set(keywords_slash_delete))
-            category_list.append(set_keywords_slash_delete)
-
-        baseString = ''
-        for cate in category_list:
-            for ca in cate:
-                baseString = baseString + ca.strip() + ','
-            baseString = baseString.rstrip(',') + '/'
-        finalString = baseString.rstrip('/').rstrip(',')
-
-        insert_sql = "INSERT INTO  searchresult(sequenceid, result, sortkeyword) VALUES (searchresult_seq.nextval, :val2, :val3)"
+        insert_sql = "INSERT INTO  searchresult(sequenceid, result) VALUES (searchresult_seq.nextval, :val2)"
         with connection.cursor() as cursor:
-            cursor.execute(insert_sql, val2=searchResult, val3=finalString)
+            cursor.execute(insert_sql, val2=searchResult)
             connection.commit()  # 변경사항을 커밋하여 반영
     else:
         print("새로운 값이 없습니다.")

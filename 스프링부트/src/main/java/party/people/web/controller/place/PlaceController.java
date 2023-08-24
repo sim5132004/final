@@ -150,8 +150,9 @@ public class PlaceController {
             searchResult.setAttribute("검색결과",finalForm);
         }
 
+        // place페이지 오른쪽 카드세트 번호에 글자 색 리스트
         String[] colors = {
-                "#ff0000", "#ff8c00", "#ffff00", "#008000", "#0000ff", "#4b0082", "#8b00ff"
+                "#ff0000", "#ff8c00", "#008000", "#0000ff", "#4b0082", "#8b00ff"
         };
         model.addAttribute("colors", colors);
 
