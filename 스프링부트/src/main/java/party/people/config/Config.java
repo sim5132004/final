@@ -3,6 +3,10 @@ package party.people.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import party.people.domain.InviteCard;
+import party.people.repository.InviteCard.InviteCardInterface;
+import party.people.repository.InviteCard.InviteCardMapper;
+import party.people.repository.InviteCard.InviteCardRepository;
 import party.people.repository.client.ClientInterface;
 import party.people.repository.client.ClientMapper;
 import party.people.repository.client.ClientRepository;
@@ -31,6 +35,7 @@ public class Config {
     private final PlaceMapper placeMapper;
     private final KeywordsMapper keywordsMapper;
     private final SearchInputMapper searchInputMapper;
+    private final InviteCardMapper inviteCardMapper;
 
 
     /* DB접속 TEST용 BEAN */
@@ -49,6 +54,11 @@ public class Config {
     @Bean
     public LoginInterface loginInterface(){
         return new LoginService(clientInterface());
+    }
+
+    @Bean
+    public InviteCardInterface inviteCardInterface(){
+        return new InviteCardRepository(inviteCardMapper);
     }
 
 

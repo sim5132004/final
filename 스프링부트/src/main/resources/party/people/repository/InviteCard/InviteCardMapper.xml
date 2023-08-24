@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="party.people.repository.InviteCard.InviteCardMapper">
+
+
+    <!-- 회원 가입 -->
+    <insert id="save" useGeneratedKeys="true" keyProperty="inde">
+        <selectKey keyProperty="indexId" resultType="java.lang.Long" order="BEFORE">
+            SELECT keyword_seq.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO InviteCard (index_id, CLIENT_ID, PLACE_ID_1, PLACE_ID_2, PLACE_ID_3,  TITLE    ,TAGET_DATE ,TAGET_TIME,
+        MEETING_CONTENT,  MEETING_PARTICIPANTS,  CARD_SKIN,  PLACE_ID_1_SET,PLACE_ID_2_SET,PLACE_ID_3_SET)
+        VALUES (#{indexId}, #{CLIENT_ID}, #{PLACE_ID_1},#{PLACE_ID_2}, #{PLACE_ID_3}, #{TITLE},
+        #{TAGET_DATE}, #{TAGET_TIME}, #{MEETING_CONTENT},
+        #{MEETING_PARTICIPANTS}, #{CARD_SKIN}, #{PLACE_ID_1_SET} ,  #{PLACE_ID_2_SET}, #{PLACE_ID_3_SET}
+        )
+
+
+
+
+    </insert>
+
+    <!-- 전체 검색 -->
+
+
+
+
+</mapper>

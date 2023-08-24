@@ -108,8 +108,8 @@ public class CategoryController {
 
 
 
-    @GetMapping("invite")
-    public String goInvite(HttpServletRequest request, Model model){
+//    @GetMapping("invite")
+    public String goInvite(Model model){
 
         Place place1 = placeInterface.idSearch(1L);
         Place place2 = placeInterface.idSearch(2L);
@@ -126,7 +126,16 @@ public class CategoryController {
 
         /* side lnb 출력용 */
         model.addAttribute("category","invite_A");
-        model.addAttribute("category2",placeList);
+
+        if(request != null){
+            model.addAttribute("category2",request);
+
+        }else{
+
+            model.addAttribute("category2",placeList);
+
+        }
+
         return "invite/invite_A";
     }
 
