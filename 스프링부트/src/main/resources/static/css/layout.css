@@ -1,4 +1,3 @@
-.main{ overflow: hidden }
 /* 전체 WRAP */
 .container{ min-width: 600px; height: 100%;  }
 .container:after{ content:""; display: block; clear:both; }
@@ -319,7 +318,7 @@ dl.ai_card dd.body::-webkit-scrollbar-track-piece{}/*진행줄에서 핸들로 �
 dl.ai_card dd.body::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
 
 
-.lnb_wrap{  overflow: auto }
+.lnb_wrap{  overflow-y: auto }
 .lnb_wrap{
     scrollbar-face-color:#ddd;/*스크롤*/
     scrollbar-highlight-color:#ddd;/*하이라이트*/
