@@ -10,14 +10,14 @@
                         <ul class="list">
                             <li>
                                 <strong class="title" >&nbsp;주소</strong>
-                                <span class="text"  th:text="${place.getTitle()}">인천광역시 중구 월미문화로 81</span>
+                                <span class="text"  th:text="${place.getAddress}">인천광역시 중구 월미문화로 81</span>
                             </li>
                         </ul>
                     </div>
 
                 </div>
                 <div class="tag">
-                    <a href="">&nbsp;#관광지</a>
+                    <a href="" >&nbsp;#관광지</a>
                     <a href="">#인스타</a>
                     <a href="">#인천_놀만한_곳</a>
                     <a href="">#바이킹</a>
@@ -31,7 +31,9 @@
                         <div class="slick-list">
                             <div class="slick-track" role="listbox" >
                             <div class="item slick-slide slick-cloned" data-slick-index="-1" id aria-hidden="true" tabindex="-1" style="width: 820px;">
-                                <img src="https://www.popco.net/zboard/data/photo_gallery/2019/02/16/15472229255c67db103d441.jpg" alt="월미테마파크">
+                                <img src="https://www.popco.net/zboard/data/photo_gallery/2019/02/16/15472229255c67db103d441.jpg"
+                                     th:src="${place.getImageAdd1}"
+                                     style="max-height: 500px; width: auto;"      alt="월미테마파크">
                         </div>
                             <div class="item slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slider01" style="width: 820px;">
                             </div>
@@ -53,6 +55,10 @@
                                     <col>
                                 </colgroup>
                                 <tbody>
+<!--                                <tr th:each="s:${place.viewAllList()}">-->
+<!--                                    <td th:text="${s}"></td>-->
+<!--                                </tr>-->
+
                                 <tr>
                                     <th scope="row" >영업시간</th>
                                     <td  th:text="${place.getTitle()}">평일 10:00~21:00, 주말 및 공휴일 10:00-23:00<br>차미패밀리파크<br>평일 10:00~19:00, 주말 및 공휴일 10:00-21:00</td>

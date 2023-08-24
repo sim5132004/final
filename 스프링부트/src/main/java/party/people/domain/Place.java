@@ -39,6 +39,24 @@ public class Place {
 
     public List<String> viewList(){
         List a = new ArrayList<>();
+
+        if(address != null)
+        a.add(address);
+        else a.add("_");
+
+        if(runTimeInfo != null)
+            a.add(runTimeInfo);
+        else a.add('_');
+
+        if(parkingInfo != null)
+            a.add("주차시설 : "+parkingInfo);
+        else a.add('_');
+
+        return a;
+    }
+
+    public List<String> viewAllList(){
+        List a = new ArrayList<>();
         if(petInfo != null){
             a.add("애완동물 정보 : "+petInfo);
         }
