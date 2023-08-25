@@ -229,6 +229,20 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 .invite.analisys .right_contents.area .page_title{  width: 55%; min-width:600px; }
 .invite.analisys .right_contents.area .paging{ width: 55%; min-width: 600px; }
 
+.invite.mypage .right_contents{  width: 85.4%; min-width: 600px; border: 0 }
+.invite.mypage .right_contents.area .page_title{  width: 85.4%; min-width:600px; top: 0; right:auto; left: 0; }
+.right_contents_lpadding
+
+.left_contents{  position: fixed; width:100%;  height: 100%; box-sizing: border-box;  display: flex; justify-content: center; flex-direction:row; justify-content: space-between; word-wrap: break-word; }
+.left_contents:after{ content:""; display: block; clear:both; }
+
+.left_contents_padding_left{ position: relative;top:0; left:0; width: 14.6%; height: 100%;  min-width: 280px;  flex: 0 0 auto; }
+.left_contents_padding_left:after{ content:""; display: block; clear:both; }
+
+.left_contents_center{   overflow:auto;  flex: 2 1 0;   }
+.left_contents_center:after{ content:""; display: block; clear:both; }
+
+
 .invite .left_contents_padding_right{ width: 40%; min-width: 400px; }
 .invite .left_contents .card_list_wrap{  padding:0; }
 .invite .left_contents .ai_card{ vertical-align: top; padding: 30px 50px; border-radius: 0; border: 0; box-shadow: none }
@@ -400,7 +414,7 @@ ul.summary_card:hover{ background: #fff  }
 ul.summary_card input[type=checkbox]{ width:16px; height:16px; }
 ul.summary_card .thumb{ width:31%; height: 75px; float:left;  box-sizing: border-box; margin-right:2%; }
 ul.summary_card .thumb{ overflow: hidden; border-radius: 3px; background: rgba(0,0,0,.05); text-align: center; }
-ul.summary_card .thumb img{ max-width: 100%; height: 100%; text-align: center; }
+ul.summary_card .thumb img{ width: 100%; height: 100%; text-align: center; }
 ul.summary_card > li{ overflow: hidden; white-space: nowrap; text-overflow: ellipsis;  }
 ul.summary_card li br{ display: none !important; }
 ul.summary_card > li:nth-child(1){ width:100%; float:none; font:600 18px/26px 'Noto Sans KR', SansSerif; vertical-align: middle; color: rgba( 0,0,0,.9); letter-spacing: -1px  }
