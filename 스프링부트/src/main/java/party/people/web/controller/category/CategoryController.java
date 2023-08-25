@@ -30,6 +30,10 @@ public class CategoryController {
     public String goPlace(HttpServletRequest request, Model model){
         /* side lnb 출력용 */
         model.addAttribute("category","place");
+
+        /* Default 검색 */
+        model.addAttribute("searchText", "전체");
+        
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
         loginCheck(request, model);
