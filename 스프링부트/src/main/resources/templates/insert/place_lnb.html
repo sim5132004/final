@@ -4,7 +4,7 @@
     <!-- 02-2-1.대시보드 집계 그래프 노출 영역 끝 -->
     <!-- 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 -->
     <ul class="sub_menu_list area">
-        <li><a href="#" onclick="sendAddress('')" class="null active"><i class="fa-solid fa-map-location-dot"></i> <span>전체</span><b class="num"></b></a></li>
+        <li><a href="#" onclick="sendAddress('null')" class="null active"><i class="fa-solid fa-map-location-dot"></i> <span>전체</span><b class="num"></b></a></li>
         <li><a href="#" onclick="sendAddress('연수구')" class="연수구"><i class="fa-solid fa-location-dot"></i> <span>연수구</span><b class="num"></b></a></li>
         <li><a href="#" onclick="sendAddress('남동구')" class="남동구"><i class="fa-solid fa-map-pin"></i> <span>남동구</span><b class="num"></b></a></li>
         <li><a href="#" onclick="sendAddress('부평구')" class="부평구"><i class="fa-solid fa-location-arrow"></i> <span>부평구</span><b class="num"></b></a></li>
@@ -39,7 +39,7 @@
     }
 
     var address = [[${address}]]
-    console.log("지역정보"+address)
+    console.log("지역정보["+address+"]")
     function activeAddressLnb(address){
         $('.sub_menu_list li a').removeClass('active');
         $('.sub_menu_list li a.'+address).addClass('active')

@@ -24,7 +24,7 @@ $(".place_info_layer.item_1").click(function(){
     $(".layer_contents.item_1").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_2").remove();
+        $(".modal_layer_wrap.detail .layer_contents.item_1").remove();
     });
 });
 

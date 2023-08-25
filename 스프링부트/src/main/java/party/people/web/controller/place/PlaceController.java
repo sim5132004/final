@@ -47,13 +47,21 @@ public class PlaceController {
         /* side lnb출력용 */
         model.addAttribute("category","place");
 
+        /* 검색창 카테고리 출력용 */
+        model.addAttribute("category2",categorySubject);
+
+
         /* 검색 결과를 출력하는 로직 */
         /* 우리의 검색 로직에는 3가지(카테고리, 키워드, 주소)가 들어가니 SearchInput 클래스에 넣는다 */
         SearchInput input = new SearchInput();
         if (address!=null) {
-            input.setAddress(address);
-            model.addAttribute("address",address);
-            model.addAttribute("searchText", address);
+            if (address.equals("null")) {
+                return "redirect:/place";
+            } else {
+                input.setAddress(address);
+                model.addAttribute("address", address);
+                model.addAttribute("searchText", address);
+            }
         } else {
             input.setAddress("");
             model.addAttribute("address","null");
