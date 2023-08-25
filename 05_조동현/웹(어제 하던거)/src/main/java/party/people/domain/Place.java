@@ -106,40 +106,6 @@ public class Place {
 
 
     }
-    public String keyWord5(){
-
-//        List<String> goString= new ArrayList<>();
-
-
-        String s = keyword.replace("/","");
-        String x = s.replace("0","");
-
-        for (int count = 0; count < 10; count++) {
-            s = s.replace(Integer.toString(count), "");
-        }
-
-
-
-        String goString[] = s.split(",");
-
-//        System.out.println(s);
-
-
-
-//
-//        List<Object> setString =new ArrayList<>();
-//        int count=0;
-//        for(String go: goString){
-//                setString.add(go.split("/"));
-//        }
-//
-//        System.out.println((setString.get(0)));
-
-
-        return "#" +goString[0]+"  #"+ goString[1]+"  #"+ goString[2]+"  #"+ goString[3];
-
-    }
-
 
 
 

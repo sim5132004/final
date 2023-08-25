@@ -7,7 +7,6 @@
     <title>PLACE > PARTY PEOPLE</title>
     <meta name="Description" content="인천광역시 소재의 다양한 모임취향에 맞는(회식/데이트/동호회) AI추천 모임장소에 대한 상세정보를 제공합니다."/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
-    <link rel="stylesheet" type="text/css" href="../css/reset.css" th:href="@{/css/testyo.css}" >
     <link rel="stylesheet" type="text/css" href="../css/reset.css" >
     <link rel="stylesheet" type="text/css" href="../css/layout.css" >
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -16,7 +15,6 @@
     <!--구글 차트 관련 스크립트-->
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
-<!--    <script th:inline="javascript" src="../js/ui_basic.js"></script>-->
 
 
     <!--    카카오 지도 스타일 시작 -->
@@ -69,21 +67,17 @@
     <!--    카카오 지도 스타일 끝-->
 </head>
 <body>
-<div class="container invite">
-    <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
-    <div class="modal_layer_wrap detail">
-        <div class="layer_bg"></div>
-        <div class="layer_box" id ="npo">
-            <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
-            <!-- 하단 각각 데이터 복붙 -->
-        </div>
+<div class="container">
+    <!-- 장소(업체명)에 대한 상페정보 페이지 -->
+    <div class="modal_layer_wrap">
+        <div class="layer_box"></div>
     </div>
     <!-- ####### 01. HEADER START ####### -->
     <div class="header_wrap" th:insert="~{insert/header_wrap}"></div>
     <!-- ####### 01. HEADER END ####### -->
     <hr class="skip"/>
     <!-- ####### 02. LNB START ######### -->
-    <!--    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>-->
+<!--    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>-->
     <div class="lnb" th:if="${client eq null}" th:insert="~{insert/lnb_wrap}"></div>
     <div class="lnb" th:if="${client != null}" th:insert="~{insert/lnb_wrap_login}"></div>
     <!-- ####### 02. LNB END ########## -->
@@ -96,7 +90,7 @@
                 <div id="map"></div>
             </div>
             <script th:inline="javascript">
-                // ------------------------------------- 옮긴 구간 ----------------------
+//              ------------------------------------- 옮긴 구간 ----------------------
                 var rmaps = /*[[${searchResult}]]*/ []; // 추천 카드 세트 리스트를 받고 (근데 마커가 거꾸로 찍혀서 뒤집을거라 rmaps라고 미리 함(여기를 maps로 하면 기존코드 변수명들을 다 바꿔야해서 걍 여기를 rmasp로 함))
                 console.log(rmaps);
 
@@ -129,29 +123,61 @@
                     center: new kakao.maps.LatLng(37.335887, 126.584063),
                     level: 10
                 };
-
                 // 지도 생성
                 var map = new kakao.maps.Map(mapContainer, mapOption);
+
                 // 받아온 좌표가 있으면 좌표들 중심으로 지도 재배치
                 if(rmaps != null){
                     map.setBounds(bounds);
                 }
+                // ------------------------------------------------------- 지도보기 버튼용 ---------------------
+                // $(document).ready(function() {
+                //     $("#myButton").click(function () {
+                //         // 데이터 속성에서 searchId와 otherData 값을 가져옴
+                //         var searchLat = $(this).data("searchLat");
+                //         var searchLon = $(this).data("searchLon");
+                //
+                //         var bounds2 = new kakao.maps.LatLngBounds();
+                //         bounds2.extend(new kakao.maps.LatLng(searchLat, searchLon));
+                //
+                //         // 가져온 데이터를 기반으로 원하는 작업 실행
+                //         performAction(searchId, otherData);
+                //         map.setBounds(bounds2);
+                //     });
+                // });
+
+                // document.getElementById("myButton").addEventListener("click", function(event) {
+                //     event.preventDefault(); // 기본 동작(새로고침) 방지
+                //     var searchLat = $(this).data("searchLat");
+                //     var searchLon = $(this).data("searchLon");
+                //
+                //     var bounds2 = new kakao.maps.LatLngBounds();
+                //     bounds2.extend(new kakao.maps.LatLng(searchLat, searchLon));
+                //
+                //     // 가져온 데이터를 기반으로 원하는 작업 실행
+                //     performAction(searchId, otherData);
+                //     map.setBounds(bounds2);
+                // });
+// ------------------------------------------------------- 지도보기 버튼용 ---------------------
 
                 //   실시간 교통량 표시
                 // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
                 // 추천카드 세트별 선 색깔
-                //var colors  = ['#ff0000', '#ff8c00', '#008000', '#0000ff', '#4b0082', '#8b00ff'];
                 var colors  = ['#ff0000', '#ff8c00', '#008000', '#0000ff', '#4b0082', '#8b00ff'];
-                var colors  = [ 'red', 'orange', 'green', 'blue', 'deep_blue', 'purple'];
-                var rmaps = /*[[${searchResult}]]*/ []; // 추천 카드 세트 리스트를 받고 (근데 마커가 거꾸로 찍혀서 뒤집을거라 rmaps라고 미리 함(여기를 maps로 하면 기존코드 변수명들을 다 바꿔야해서 걍 여기를 rmasp로 함))
-                console.log(rmaps);
 
-                var maps = [];
+                // --------------------------------   원래 지도 잘 뜨는 구간
+                // var rmaps = /*[[${searchResult}]]*/ []; // 추천 카드 세트 리스트를 받고 (근데 마커가 거꾸로 찍혀서 뒤집을거라 rmaps라고 미리 함(여기를 maps로 하면 기존코드 변수명들을 다 바꿔야해서 걍 여기를 rmasp로 함))
+                // console.log(rmaps);
+                //
+                // var maps = [];
+                // if(rmaps != null){
+                //     for(var i = 0; i < rmaps.length; i++){
+                //         maps.push(rmaps[i].slice().reverse()); // 원본 배열 복사 후 역순으로 뒤집은 배열 생성
+                //     }
+                //     console.log(maps);
+                // }
 
-                for(var i = 0; i < rmaps.length; i++){
-                    maps.push(rmaps[i].slice().reverse()); // 원본 배열 복사 후 역순으로 뒤집은 배열 생성
-                }
-                console.log(maps);
+                // -------------------------------------
 
 
                 for(var a = 0; a < maps.length; a++){
@@ -274,6 +300,14 @@
                         window.location.href = "festival/" + index;
                     };
                 }
+
+                // function setBounds() {
+                //     // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+                //     // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+                //
+                // }
+
+
                 //
                 // // ver1
                 // function displayCircleDot(position, distance) {
@@ -375,6 +409,7 @@
 
                     return content;
                 }
+
             </script>
 
         </div>
@@ -385,45 +420,40 @@
                 <!-- ## 페이지 네비 경로 ## -->
                 <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
             </div>
-            <!--            <div class="paging">-->
-            <!--                <a href="#" class="btn_first"></a>-->
-            <!--                <a href="#" class="btn_prev"></a>-->
-            <!--                <a href="#" class="active">1</a>-->
-            <!--                <a href="#">2</a>-->
-            <!--                <a href="#">3</a>-->
-            <!--                <a href="#">4</a>-->
-            <!--                <a href="#">5</a>-->
-            <!--                <a href="#" class="btn_next"></a>-->
-            <!--                <a href="#" class="btn_last"></a>-->
-            <!--            </div>-->
+<!--            <div class="paging">-->
+<!--                <a href="#" class="btn_first"></a>-->
+<!--                <a href="#" class="btn_prev"></a>-->
+<!--                <a href="#" class="active">1</a>-->
+<!--                <a href="#">2</a>-->
+<!--                <a href="#">3</a>-->
+<!--                <a href="#">4</a>-->
+<!--                <a href="#">5</a>-->
+<!--                <a href="#" class="btn_next"></a>-->
+<!--                <a href="#" class="btn_last"></a>-->
+<!--            </div>-->
             <form>
                 <div class="card_list_wrap">
                     <!-- 추천(조합) 모임카드 #.01 시작 -->
-                    <div th:if="${searchNull eq 'null'}">
-                        <h2><span th:text="|[${searchText}]|"></span>에 해당하는 검색 결과가 없습니다</h2>
-                        <h2>다음과 같은 장소는 어떠신가요?</h2>
-                    </div>
                     <dl class="ai_card" th:each="search, iterStat :${searchResult}">
                         <dt class="header">
                             <h2 class="subject_keyword">
                                 <span class="area">
 <!--<<<<<<< Updated upstream-->
-                                    <!--                                    th:color="${colors[iterStat.count]}-->
-                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}">1</b>-->
-                                    <!--                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>-->
-                                    <!--=======-->
-                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}" th:color="${colors[(iterStat.count)-1]}">1</b>-->
+<!--                                    th:color="${colors[iterStat.count]}-->
+<!--                                    <b class="depth_1" th:text="${iterStat.count}">1</b>-->
+<!--                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>-->
+<!--=======-->
+<!--                                    <b class="depth_1" th:text="${iterStat.count}" th:color="${colors[(iterStat.count)-1]}">1</b>-->
 
-                                    <!--                                    컨트롤러에서 colors리스트 받은걸 iterStat.count 순으로 (근데 iterStat.count는 1부터라서 -1 함)  -->
-                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>-->
-                                    <b th:class="'depth_1 ' + ${colors[iterStat.count - 1]}"  th:text="${iterStat.count}" >1</b>
+<!--                                    컨트롤러에서 colors리스트 받은걸 iterStat.count 순으로 (근데 iterStat.count는 1부터라서 -1 함)  -->
+                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>
                                     <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>
-                                <!--&gt;>>>>>> Stashed changes-->
+<!--&gt;>>>>>> Stashed changes-->
                                 </span>
                                 <!--                                    <b class="depth_2"-->
-                                <!--                                       th:text="${search[0].address.substring-->
-                                <!--                                       (search[0].address.indexOf(' ')+1,-->
-                                <!--                                       search[0].address.indexOf(search[0].address.indexOf(' ')+1,' '))}">중구</b></span>-->
+<!--                                       th:text="${search[0].address.substring-->
+<!--                                       (search[0].address.indexOf(' ')+1,-->
+<!--                                       search[0].address.indexOf(search[0].address.indexOf(' ')+1,' '))}">중구</b></span>-->
                                 <strong th:text="|${search[0].category}/${search[0].smallCategory}/${search[0].title}|">데이트/동인천/차이나타운/동인천/차이나타운</strong>
                             </h2>
                             <p class="keyword_recommand"><!-- 연관 키워드 3개 -->
@@ -439,24 +469,23 @@
                         </dt>
                         <dd class="body">
                             <!-- 대안 장소 선택_01: 업체 리스트 -->
-                            <div class="card_list" th:each="place, iStat :${search}">
+                            <div class="card_list" th:each="place :${search}">
                                 <ul class="summary_card">
                                     <li class="subject">
-                                        <!--                                        <b><span class="matching_keyword" th:text="${split_search.title}">돈비어</span>천가</b>-->
+<!--                                        <b><span class="matching_keyword" th:text="${split_search.title}">돈비어</span>천가</b>-->
                                         <b><span th:text="${place.title}">돈비어천가</span></b>
                                         <span class="category"><b class="depth_1" th:text="${place.category}">음식</b><b class="depth_2" th:text="${place.smallCategory}">한식</b></span>
                                     </li>
-                                    <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${place.imageAdd1}" th:alt="${place.title}"></li>
+                                    <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${place.imageAdd1}" alt="돈비어천가"></li>
                                     <li class="btn_wrap">
-                                        <a href="#" th:class="|place_info_layer item_${iterStat.count}${iStat.count}|">상세정보</a>
-<!--                                        <button href="#" th:class="|place_info_layer item_${place.getId()}|">상세정보</button>-->
-                                        <div th:class="|layer_contents item_${iterStat.count}${iStat.count}|" th:insert="~{insert/place_info}"></div>
-                                        <a href="#" >지도보기</a>
+                                        <button>상세정보</button>
+                                        <button id="myButton" th:attr="data-searchLat=${place.latitude}, data-searchLon=${place.longitude}">지도보기</button>
+<!--                                        <a href="#" id="myButton" searchLat=${place.latitude} searchLon=${place.longitude}>Click me</a>-->
+
                                     </li>
-                                            <li th:each="p:${place.viewList()}"  th:text="${p}"></li>
-<!--                                    <li class="addr" th:text="${place.address}">인천 중구 개항로 63-2</li>-->
-<!--                                    <li class="work_time" th:text="${place.runTimeInfo}">10:00~22:00브레이크타임없음<span>(쉬는날 : 연중무휴)</span></li>-->
-<!--                                    <li class="parking" th:text="'주차시설: '+${place.parkingInfo}">주차시설 : 있음,유료</li>-->
+                                    <li class="addr" th:text="${place.address}">인천 중구 개항로 63-2</li>
+                                    <li class="work_time" th:text="${place.runTimeInfo}">10:00~22:00브레이크타임없음<span>(쉬는날 : 연중무휴)</span></li>
+                                    <li class="parking" th:text="${place.parkingInfo}">주차시설 : 있음,유료</li>
                                     <li class="tel" th:text="${place.tel}">032-930-1234</li>
                                 </ul>
                             </div>
@@ -466,7 +495,7 @@
                         </dd>
                         <dd class="footer">
                             <button class="basic"><i class="fa-solid fa-location-dot"></i> 추천장소 지도보기</button>
-                            <button class="confirm" ><i class="fa-solid fa-pen-to-square"></i> 모임카드 편집하기</button>
+                            <button class="confirm"><i class="fa-solid fa-pen-to-square"></i> 모임카드 만들기</button>
                         </dd>
                     </dl>
                     <!-- 추천(조합) 모임카드 #.01 끝 -->
@@ -494,7 +523,8 @@
     <hr class="skip"/>
     <!-- ####### 04. FOOTER START ####### -->
     <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
-        <!-- ####### 04. FOOTER END ####### -->
-    </div>
+    <!-- ####### 04. FOOTER END ####### -->
+</div>
+</div>
 </body>
 </html>

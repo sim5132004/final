@@ -38,10 +38,6 @@ public class CategoryController2 {
         /* side lnb 출력용 */
         model.addAttribute("category","invite");
 
-        Place place1 = placeInterface.idSearch(1L);
-        List<Place> placeList = new ArrayList<>();
-//        placeList.add(place1);
-
         List<Place> placeList2 = new ArrayList<>();
         Place place12 = placeInterface.idSearch(11L);
         Place place22 = placeInterface.idSearch(22L);
@@ -49,6 +45,9 @@ public class CategoryController2 {
         placeList2.add(place12);
         placeList2.add(place22);
         placeList2.add(place32);
+
+        place12.keyWord5();
+
         List<Place> pl = new ArrayList<>();
 
 
@@ -60,6 +59,8 @@ public class CategoryController2 {
 
             log.info("CategoryController2");
             System.out.println(place2);
+
+
 
             System.out.println(place2.getClass());
 
