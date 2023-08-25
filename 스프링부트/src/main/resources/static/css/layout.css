@@ -225,9 +225,9 @@ a.place_info_layer:hover{ background: #0d6efd; color: #fff; border-color: #0d6ef
 .invite .right_contents.area .page_title{  width: 40%; min-width: 400px; }
 .invite .right_contents.area .paging{ width: 40%; min-width: 400px; }
 
-.invite.analisys .right_contents{  width: 50%; min-width: 500px; }
-.invite.analisys .right_contents.area .page_title{  width: 50%; min-width: 500px; }
-.invite.analisys .right_contents.area .paging{ width: 50%; min-width: 500px; }
+.invite.analisys .right_contents{  width: 55%; min-width: 600px; }
+.invite.analisys .right_contents.area .page_title{  width: 55%; min-width:600px; }
+.invite.analisys .right_contents.area .paging{ width: 55%; min-width: 600px; }
 
 .invite .left_contents_padding_right{ width: 40%; min-width: 400px; }
 .invite .left_contents .card_list_wrap{  padding:0; }
@@ -331,6 +331,24 @@ dl.ai_card dd.body::-webkit-scrollbar-track{background-color:rgba(255,255,255,1)
 dl.ai_card dd.body::-webkit-scrollbar-track-piece{}/*진행줄에서 핸들로 덮이지 않은 영역 */
 dl.ai_card dd.body::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
 
+dl.ai_card dd.content_data{ max-height: 600px; overflow-y: auto; padding: 20px 0 ; }
+dl.ai_card dd.content_data{
+    scrollbar-face-color:#ddd;/*스크롤*/
+    scrollbar-highlight-color:#ddd;/*하이라이트*/
+    scrollbar-3dlight-color:#ddd;/*왼쪽외곽음영*/
+    scrollbar-darkshadow-color:#ddd;/*오른쪽외곽음영*/
+    scrollbar-shadow-color:#ddd;/*오른쪽 안쪽음영*/
+    scrollbar-arrow-color:#ddd;/*화살*/
+    scrollbar-track-color:rgba(255,255,255,.1);/*스크롤영역*/
+    /* overflow-x: auto; */
+}
+dl.ai_card dd.content_data > img{ max-width: 100% }
+dl.ai_card dd.content_data::-webkit-scrollbar{opacity:1;width:5px; height: 15px;}/*스크롤바*/
+dl.ai_card dd.content_data::-webkit-scrollbar-button {width:0; height: 0;}  /*스크롤바 버튼(아래 위 화살표)*/
+dl.ai_card dd.content_data::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2);  background-clip: padding-box;  border: 0px solid transparent;  border-radius: 10px;}/*스크롤바 핸들*/
+dl.ai_card dd.content_data::-webkit-scrollbar-track{background-color:rgba(255,255,255,1);}/*스크롤바 진행줄*/
+dl.ai_card dd.content_data::-webkit-scrollbar-track-piece{}/*진행줄에서 핸들로 덮이지 않은 영역 */
+dl.ai_card dd.content_data::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
 
 .lnb_wrap{  overflow-y: auto; overflow-x:hidden }
 .lnb_wrap{
