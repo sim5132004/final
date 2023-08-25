@@ -28,6 +28,10 @@
 <script th:inline="javascript">
     <!-- 스프링으로 보내기 -->
     function sendAddress(address) {
+        function saveSessionQuery(query) {
+            sessionStorage.setItem("searchQuery", query);
+        }
+        saveSessionQuery("");
 
         document.getElementById('address').value = address;
         document.getElementById('addressForm').submit();

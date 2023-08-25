@@ -7,6 +7,7 @@
             <div class="page_search">
                 <input type="text" id="search-in" name="searchForm" placeholder="[인천] 장소, 상호명 검색" autofocus><!--
                  --><input type="submit" value="" class="fa fa-search">
+                <button type="button" id="clear-button" class="clear-button">X</button>
 
 <!--                </form>-->
             </div>
@@ -36,6 +37,10 @@
 <script th:inline="javascript">
     <!-- 스프링으로 보내기 -->
     function sendCategory(category) {
+        function saveSessionQuery(query) {
+            sessionStorage.setItem("searchQuery", query);
+        }
+        saveSessionQuery("");
 
         document.getElementById('categorySubject').value = category;
         document.getElementById('categoryForm').submit();
@@ -45,29 +50,48 @@
     // 페이지 로딩 시 실행되는 함수
     window.onload = function() {
         const searchInput = document.getElementById("search-in");
+        const clearButton = document.getElementById("clear-button");
         const searchForm = document.getElementById("search-form");
 
         // 검색창의 값이 있으면 폼의 value로 설정
-        const savedQuery = getSavedQuery();
+        const savedQuery = getSessionSavedQuery();
         if (savedQuery) {
             searchInput.value = savedQuery;
+            updateClearButtonVisibility();
         }
 
-        // 폼 제출 시 검색어를 저장
+        // X 버튼을 클릭하여 검색어 지우기
+        clearButton.addEventListener("click", function() {
+            searchInput.value = "";
+            updateClearButtonVisibility();
+            saveSessionQuery("");  // 검색어를 지우기 위해 빈 문자열 저장
+        });
+
+        // 검색어 입력 시 X 버튼의 가시성 업데이트
+        searchInput.addEventListener("input", function() {
+            updateClearButtonVisibility();
+        });
+
+        // 폼 제출 시 검색어를 세션 스토리지 저장
         searchForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            saveQuery(searchInput.value);
+            saveSessionQuery(searchInput.value);
             document.getElementById('search-form').submit();
         });
 
-        // 검색어를 localStorage에 저장
-        function saveQuery(query) {
-            localStorage.setItem("searchQuery", query);
+        // 세션 스토리지에 검색어를 저장
+        function saveSessionQuery(query) {
+            sessionStorage.setItem("searchQuery", query);
         }
 
-        // 저장된 검색어를 가져옴
-        function getSavedQuery() {
-            return localStorage.getItem("searchQuery");
+        // 세션 스토리지에서 검색어를 가져옴
+        function getSessionSavedQuery() {
+            return sessionStorage.getItem("searchQuery");
+        }
+
+        // X 버튼의 가시성 업데이트
+        function updateClearButtonVisibility() {
+            clearButton.style.display = searchInput.value ? "block" : "none";
         }
     };
 
