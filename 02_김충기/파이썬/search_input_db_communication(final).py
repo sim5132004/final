@@ -1,4 +1,4 @@
-from algorithm import recommend_distance, data_recommend
+from algorithm5 import recommend_distance, data_recommend
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import cx_Oracle
@@ -24,8 +24,8 @@ while True:
     # DB 데이터 쿼리를 날려 LIST로 가져온다
     new_changes = check_cdc_changes()
     old = new_changes
-    # 일정 시간 동안 대기 (예: 5초)
-    time.sleep(5)
+    # 일정 시간 동안 대기 (예: 1초)
+    time.sleep(1)
     new_changes = check_cdc_changes()
     if old!=new_changes:
         print("새로운 값이 들어왔습니다")
@@ -43,7 +43,7 @@ while True:
         count = 0;
         for x in range(len(recommend_list)):
             count += 1
-            if(count==4):
+            if(count==7):
                 break
             searchResult += recommend_list[x][1] + ","
             for i in range(len(recommend_list[0][2])):

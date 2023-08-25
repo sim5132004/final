@@ -17,7 +17,7 @@ data=place_df[['카테고리','제목','주소','위도','경도','키워드리�
 # 데이터프레임에서 가져오기
 data_recommend = data
 
-# 데이터프레임을 카테고리와 키워드 컬럼만 남기고 복사(쓸것만 복사하기 원본 냅두고)
+# 데이터프레임을 카테고리와 키워드 컬럼만 남기고 복사
 data_for_recommend = data_recommend[['카테고리', '키워드리스트', '위도', '경도', '주소']].copy()
 
 # 각 컬럼의 NaN 값을 빈 문자열로 대체(전처리)
@@ -35,6 +35,8 @@ tfidf_matrix = tfidf_vectorizer.fit_transform(data_for_recommend['combined'])
 
 # 코사인 유사도 계산
 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+
+
 # TF_IDF 행렬을 사용하여 코사인 유사도를 계산한다. 각 제목(장소) 간의 유사도(카테고리+키워드리스트 분석)를 나타내는 행렬
 
 # 위도 경도를 기반으로 두 지점 간의 거리를 계산하는 함수
@@ -53,34 +55,28 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
     distance = radius * c
-    return distance if not math.isnan(distance) and distance != 0 else 0
-# 피타고라스의 정리와 유사함 a^2+c^2=b^2
+    return distance if not math.isnan(distance) else None
 
 
-# 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행하는 함수
+# 피타고라스의 정리와 유사함 a^2+c^2=b^2dd
+
+# 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행
 def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천주소=None, top_n=3):
     # DB의 데이터프레임을 받아서 특정 조건에 맞는 제목(장소)를 추천하고 그 제목(장소)들의 거리 정보를 함께 반환한다.
     # df=Db의 데이터프레임, 추천카테고리 : Df의 '카테고리', 추천키워드 : DF의 '키워드리스트', 추천주소 : Df의 제목(장소)의 주소 top_n: 개수
 
     filtered_data = df.copy()
-    # df를 복사하여 filtererd_data 변수에 할당시킴 추천 조건을 적용하여 필터링한 데이터를 생성하면서, 원본데이터프레임은 그대로 유지
 
     if 추천카테고리:
         filtered_data = filtered_data[filtered_data['카테고리'] == 추천카테고리]
-        # 추천카테고리가 입력한 경우 (None이 아닌 경우), filtered_data를 해당 카테고리에 맞는 제목(장소)들로 필터링.
 
     if 추천키워드:
-        # NaN 값을 빈 문자열로 대체한 후에 키워드를 포함하는지 확인
         filtered_data = filtered_data[filtered_data['키워드리스트'].fillna('').str.contains(추천키워드)]
-        # 만약 추천키워드가 주어진 경우 (None이 아닌 경우), filtered_data를 해당 키워드가 포함된 제목들로 필터링
-        # 이때 fillna('')를 사용하여 키워드가 NaN인 경우에도 필터링할 수 있도록 함.
 
     if 추천주소:
-        # 주소에서 구나 군까지만 추출하여 필터링
         filtered_data = filtered_data[filtered_data['주소'].str.contains(추천주소)]
 
     recommended_data_list = []
-    # 빈리스트 생성 이 리스트는 추천된 장소들의 정보를 저장하는데 쓸거임
 
     for index, row in filtered_data.iterrows():
         # 데이터프레임의 각 행을 하나씩 순회한다.
@@ -96,6 +92,11 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
 
         sim_scores = list(enumerate(cosine_sim[idx]))
         # cosine_sim 행렬에서 현재 장소와 다른 모든 장소 간의 코사인 유사도를 가져와서 인덱스와 함께 리스트로 변환한다.
+
+        if distances:
+            max_sim_score = max(sim_scores[i][1] for i in place_index if sim_scores[i][1] < 1.0)
+            if max_sim_score < 0.4:
+                continue
 
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         # 코사인 유사도를 유사도값 기준으로 내림차순 정렬한다.
@@ -138,18 +139,60 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
     return recommended_data_list
 
 
-# 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천
-추천카테고리 = ''  # None으로 두면 카테고리를 사용하지 않음
+# 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행
+추천카테고리 = '자연'  # None으로 두면 카테고리를 사용하지 않음
 추천키워드 = ''  # None으로 두면 키워드를 사용하지 않음
-추천주소 = '부평구'  # None으로 두면 주소를 사용하지 않음
+추천주소 = ''  # None으로 두면 주소를 사용하지 않음
 top_n = 3
 recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
 keywords_str = ''
 for item in recommended_distance[:3]:
     카테고리, 제목, 거리정보 = item
-    print(f"입력한 키워드:{추천키워드}")
-    print(f"추천 카테고리: {카테고리}, 추천장소: {제목}\n")
+
+    all_keywords = []
+    filtered_sim_scores = []
+
+    for category, place, address, distance, keywords in 거리정보:
+        all_keywords.extend(keywords)
+
+    # 키워드 빈도수 계산 및 상위 5개 추출
+    keyword_counts = pd.Series(all_keywords).value_counts()
+    top_keywords = keyword_counts.head(10).index.tolist()
+    top_keywords.sort(reverse=True)
+
+    keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
+    set_keywords_slash_delete = list(set(keywords_slash_delete))
+
+    print(f"추천장소 : {제목}")
+    print(f"가장 빈도수가 높은 키워드:{', '.join(set_keywords_slash_delete)}")
+    cate_list = []
     for category, place, address, distance, keywords in 거리정보:
         keywords_str = ', '.join(keywords)
         print(
             f"카테고리 : {category}, 가까운 추천 장소: {place}, \n주소: {address}, \n거리: {distance:.2f} km, \n추천키워드: {keywords_str}\n")
+
+        idx = data_recommend[data_recommend['제목'] == place].index[0]
+        sim_scores = list(enumerate(cosine_sim[idx]))
+
+        # 유사도가 0.4 이상인 것들만 추출하여 filtered_sim_scores에 추가
+        filtered_sim_scores = [(i, score) for i, score in sim_scores if score >= 0.3 and i != idx]
+
+        # 유사도 기준 내림차순으로 정렬
+        filtered_sim_scores.sort(key=lambda x: x[1], reverse=True)
+
+        for i, score in filtered_sim_scores[:top_n]:
+            print(f"{data_recommend.loc[i]['제목']}: {score:.4f}")
+            print(f"카테고리: {data_recommend.iloc[i]['카테고리']}")
+            print(f"주소: {data_recommend.iloc[i]['주소']}")
+            print(
+                f"거리: {haversine_distance(data_recommend.iloc[idx]['위도'], data_recommend.iloc[idx]['경도'], data_recommend.iloc[i]['위도'], data_recommend.iloc[i]['경도']):.2f} km\n")
+
+        print("\n")
+
+print(cate_list)
+baseString = ''
+for cate in cate_list:
+    for ca in cate:
+        baseString=baseString+ca.strip()+','
+    baseString=baseString+'/'
+finalString = baseString.rstrip('/').rstrip(',')

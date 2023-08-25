@@ -53,8 +53,13 @@ public class PlaceController {
         SearchInput input = new SearchInput();
         if (address!=null) {
             input.setAddress(address);
+            model.addAttribute("address",address);
             model.addAttribute("searchText", address);
-        } else input.setAddress("");
+        } else {
+            input.setAddress("");
+            model.addAttribute("address","");
+
+        }
         if (searchForm!=null) {
             input.setKeyword(searchForm);
             model.addAttribute("searchText",searchForm);
@@ -87,9 +92,9 @@ public class PlaceController {
                 result = newLoad.get(newLoad.size()-1);
                 break;
             }
-            /* 대기 초 없이 반복하면 시스템에 무리가 가는 듯하여 1초마다 반복하게끔 실시  */
+            /* 대기 초 없이 반복하면 시스템에 무리가 가는 듯하여 0.5초마다 반복하게끔 실시  */
             try {
-                Thread.sleep(1000); // 1초 대기
+                Thread.sleep(500); // 0.5초 대기
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

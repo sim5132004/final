@@ -377,8 +377,7 @@
 <!--                                    <b class="depth_1" th:text="${iterStat.count}" th:color="${colors[(iterStat.count)-1]}">1</b>-->
 
 <!--                                    컨트롤러에서 colors리스트 받은걸 iterStat.count 순으로 (근데 iterStat.count는 1부터라서 -1 함)  -->
-<!--                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>-->
-                                    <b th:class="'depth_1 ' + ${colors[iterStat.count - 1]}"  th:text="${iterStat.count}" >1</b>
+                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>
                                     <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>
 <!--&gt;>>>>>> Stashed changes-->
                                 </span>
