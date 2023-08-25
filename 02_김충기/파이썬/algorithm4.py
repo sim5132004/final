@@ -58,7 +58,7 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     return distance if not math.isnan(distance) else None
 
 
-# 피타고라스의 정리와 유사함 a^2+c^2=b^2
+# 피타고라스의 정리와 유사함 a^2+c^2=b^2dd
 
 # 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행
 def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천주소=None, top_n=3):
