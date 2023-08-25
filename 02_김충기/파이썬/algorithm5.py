@@ -185,7 +185,7 @@ for item in recommended_distance[:3]:
         sim_scores = list(enumerate(cosine_sim[idx]))
 
         # 유사도가 0.4 이상인 것들만 추출하여 filtered_sim_scores에 추가
-        # filtered_sim_scores = [(i, score) for i, score in sim_scores if score >= 0.3 and i != idx]
+        filtered_sim_scores = [(i, score) for i, score in sim_scores if score >= 0.3 and i != idx]
 
         # 유사도 기준 내림차순으로 정렬
         filtered_sim_scores.sort(key=lambda x: x[1], reverse=True)
@@ -194,14 +194,8 @@ for item in recommended_distance[:3]:
             print(f"{data_recommend.loc[i]['제목']}: {score:.4f}")
             print(f"카테고리: {data_recommend.iloc[i]['카테고리']}")
             print(f"주소: {data_recommend.iloc[i]['주소']}")
-            for i, score in filtered_sim_scores[:top_n]:
-                print(f"{data_recommend.loc[i]['제목']}: {score:.4f}")
-                print(f"카테고리: {data_recommend.iloc[i]['카테고리']}")
-                print(f"주소: {data_recommend.iloc[i]['주소']}")
-                print(
-                    f"거리: {haversine_distance(data_recommend.iloc[idx]['위도'], data_recommend.iloc[idx]['경도'], data_recommend.iloc[i]['위도'], data_recommend.iloc[i]['경도']):.2f} km\n")
-
-            print("\n")
+            print(
+                f"거리: {haversine_distance(data_recommend.iloc[idx]['위도'], data_recommend.iloc[idx]['경도'], data_recommend.iloc[i]['위도'], data_recommend.iloc[i]['경도']):.2f} km\n")
 
         print(cate_list)
         baseString = ''
