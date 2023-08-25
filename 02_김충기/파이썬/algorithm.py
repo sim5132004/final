@@ -113,7 +113,7 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
             distance = haversine_distance(lat1, lon1, lat2, lon2)
             # haversine_distance 함수를 호출하여 현재 장소와 다른 장소 간의 거리를 계산, 거리 정보를 distance 변수에 저장
 
-            if distance is not None and distance < 20:
+            if distance is not None and distance < 20 and distance !=0 :
                 # 현재 장소와 추천한 장소의 거리가 0이 아닌 경우에만 실행
                 keywords = data_recommend.iloc[i]['키워드리스트'].split(',')[:5] if data_recommend.iloc[i]['키워드리스트'] else []
                 # 현재 추천한 장소의"키워드 리스트의" 값을 가져와서 쉼표로 분리한다. 최대 5개까지의 키워드만 추출함.
