@@ -55,6 +55,7 @@
 .ai_card_skin > dd.body > input[type=radio]{ width: 20px; height: 20px; font:600 30px/30px 'Noto Sans KR',Sans-serif; color: rgba(0,0,0,.2); text-align: center;  }
 .ai_card_skin > dd.footer{ color:rgba(255,255,255,.7); font:400 12px/30px 'Noto Sans KR',Sans-serif; text-align: center }
 
+.right_contents.area .ai_card_skin dd.body > label{ font:600 30px/30px 'Noto Sans KR',Sans-serif; color: rgba(0,0,0,.4) }
 
 .ai_card_skin.a_type{ background:#052238 url("../images/bg0.png") }
 .ai_card_skin.b_type{ background:#232323 url("../images/bg_04.jpg") no-repeat top; background-size: 100%  }
