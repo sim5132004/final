@@ -67,14 +67,10 @@
     <!--    카카오 지도 스타일 끝-->
 </head>
 <body>
-<div class="container invite">
-    <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
-    <div class="modal_layer_wrap detail">
-        <div class="layer_bg"></div>
-        <div class="layer_box" id ="npo">
-            <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
-            <!-- 하단 각각 데이터 복붙 -->
-        </div>
+<div class="container">
+    <!-- 장소(업체명)에 대한 상페정보 페이지 -->
+    <div class="modal_layer_wrap">
+        <div class="layer_box"></div>
     </div>
     <!-- ####### 01. HEADER START ####### -->
     <div class="header_wrap" th:insert="~{insert/header_wrap}"></div>
@@ -106,9 +102,8 @@
                 //   실시간 교통량 표시
                 // map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
                 // 추천카드 세트별 선 색깔
-                //var colors  = ['#ff0000', '#ff8c00', '#008000', '#0000ff', '#4b0082', '#8b00ff'];
                 var colors  = ['#ff0000', '#ff8c00', '#008000', '#0000ff', '#4b0082', '#8b00ff'];
-                var colors  = [ 'red', 'orange', 'green', 'blue', 'deep_blue', 'purple'];
+
                 var rmaps = /*[[${searchResult}]]*/ []; // 추천 카드 세트 리스트를 받고 (근데 마커가 거꾸로 찍혀서 뒤집을거라 rmaps라고 미리 함(여기를 maps로 하면 기존코드 변수명들을 다 바꿔야해서 걍 여기를 rmasp로 함))
                 console.log(rmaps);
 
@@ -377,8 +372,7 @@
 <!--                                    <b class="depth_1" th:text="${iterStat.count}" th:color="${colors[(iterStat.count)-1]}">1</b>-->
 
 <!--                                    컨트롤러에서 colors리스트 받은걸 iterStat.count 순으로 (근데 iterStat.count는 1부터라서 -1 함)  -->
-<!--                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>-->
-                                    <b th:class="'depth_1 ' + ${colors[iterStat.count - 1]}"  th:text="${iterStat.count}" >1</b>
+                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>
                                     <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>
 <!--&gt;>>>>>> Stashed changes-->
                                 </span>
@@ -425,7 +419,7 @@
                         </dd>
                         <dd class="footer">
                             <button class="basic"><i class="fa-solid fa-location-dot"></i> 추천장소 지도보기</button>
-                            <button class="confirm"  ><i class="fa-solid fa-pen-to-square"></i> 모임카드 편집하기</button>
+                            <button class="confirm"  ><i class="fa-solid fa-pen-to-square"></i> 모임카드 만들기</button>
                         </dd>
                     </dl>
                     <!-- 추천(조합) 모임카드 #.01 끝 -->

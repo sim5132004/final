@@ -78,7 +78,8 @@ public class CategoryController {
 
         // place페이지 오른쪽 카드세트 번호에 글자 색 리스트
         String[] colors = {
-                "#ff0000", "#ff8c00", "#008000", "#0000ff", "#4b0082", "#8b00ff"
+                //"#ff0000", "#ff8c00", "#008000", "#0000ff", "#4b0082", "#8b00ff"
+                "red", "orange", "green", "blue", "deep_blue", "purple"
         };
         model.addAttribute("colors", colors);
 
