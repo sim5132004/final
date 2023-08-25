@@ -478,7 +478,7 @@
                         </dd>
                         <dd class="footer">
                             <button class="basic"><i class="fa-solid fa-location-dot"></i> 추천장소 지도보기</button>
-                            <button class="confirm"  th><i class="fa-solid fa-pen-to-square"></i> 모임카드 편집하기</button>
+                            <button class="confirm" onclick="sendSearchInfo(this, ${search})"><i class="fa-solid fa-pen-to-square"></i> 모임카드 편집하기</button>
                         </dd>
                     </dl>
                     <!-- 추천(조합) 모임카드 #.01 끝 -->
@@ -487,6 +487,10 @@
             </form>
             <form id="hashTagForm" action="/place" method="post">
                 <input type="hidden" id="hashTag" name="hashTag">
+            </form>
+
+            <form id="sendObject" action="/place" method="post">
+                <input type="hidden" id="object" name="object">
             </form>
 
             <script th:inline="javascript">
@@ -498,6 +502,15 @@
                     document.getElementById('hashTag').value = element.innerText;
                     document.getElementById('hashTagForm').submit();
                 }
+                function sendSearchInfo(element, search) {
+                    // search 객체 정보를 가공하여 URL에 추가하거나 POST 요청으로 전송
+                    const searchOne = search;
+
+                    document.getElementById('object').value = searchOne;
+                    document.getElementById('sendObject').submit();
+                }
+
+
             </script>
         </div>
         <!-- #### 03-1.우측 본문 영역 끝 -->

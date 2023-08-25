@@ -42,6 +42,7 @@ public class PlaceController {
                               @RequestParam(value = "address", required = false) String address,
                               @RequestParam(value = "categorySubject", required=false) String categorySubject,
                               @RequestParam(value = "hashTag", required = false) String hashTag,
+                              @RequestParam(value = "object", required = false) Object object,
                               Model model){
 
         /* side lnb출력용 */
@@ -49,6 +50,10 @@ public class PlaceController {
 
         /* 검색창 카테고리 출력용 */
         model.addAttribute("category2",categorySubject);
+
+        log.info("재차검증");
+        log.info("오브젝트 확인] "+object);
+        log.info("정말 오브젝트냐");
 
 
         /* 검색 결과를 출력하는 로직 */
