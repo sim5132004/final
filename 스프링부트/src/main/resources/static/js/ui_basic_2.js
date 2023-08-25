@@ -171,34 +171,129 @@ $(".place_info_layer.item_23").click(function(){
 
 
 
-$(".place_info_layer.item_3_3").click(function(){
+$(".place_info_layer.item_33").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");
-    $(".layer_contents.item_3_3").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_contents.item_33").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_3_3").remove();
+        $(".modal_layer_wrap.detail .layer_contents.item_33").remove();
     });
 });
 
 
-$(".place_info_layer.item_3_2").click(function(){
+$(".place_info_layer.item_32").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");
-    $(".layer_contents.item_3_2").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_contents.item_32").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_3_2").remove();
+        $(".modal_layer_wrap.detail .layer_contents.item_32").remove();
     });
 });
 
 
-$(".place_info_layer.item_3_1").click(function(){
+$(".place_info_layer.item_31").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");
-    $(".layer_contents.item_3_1").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_contents.item_31").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_3_1").remove();
+        $(".modal_layer_wrap.detail .layer_contents.item_31").remove();
+    });
+});
+
+
+$(".place_info_layer.item_41").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_41").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_41").remove();
+    });
+});
+
+
+$(".place_info_layer.item_42").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_42").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_42").remove();
+    });
+});
+
+
+$(".place_info_layer.item_43").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_4_3").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_4_3").remove();
+    });
+});
+
+
+$(".place_info_layer.item_53").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_53").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_53").remove();
+    });
+});
+
+$(".place_info_layer.item_52").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_52").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_52").remove();
+    });
+});
+
+$(".place_info_layer.item_51").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_51").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_51").remove();
+    });
+});
+
+
+$(".place_info_layer.item_61").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_61").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_61").remove();
+    });
+});
+
+$(".place_info_layer.item_62").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_62").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_62").remove();
+    });
+});
+
+$(".place_info_layer.item_63").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_63").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_63").remove();
     });
 });

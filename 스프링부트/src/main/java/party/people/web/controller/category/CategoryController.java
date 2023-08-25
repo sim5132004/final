@@ -115,27 +115,27 @@ public class CategoryController {
 
 //    @GetMapping("invite")
     public String goInvite(HttpServletRequest request, Model model){
-
-        Place place1 = placeInterface.idSearch(1L);
-        Place place2 = placeInterface.idSearch(2L);
-        Place place3 = placeInterface.idSearch(3L);
-        List<Place> placeList = new ArrayList<>();
-        placeList.add(place1);
-        placeList.add(place2);
-        placeList.add(place3);
-//        placeList=placeInterface.findAll();
-
-
-
-        log.info("goInvite] "+placeList);
-
-        /* side lnb 출력용 */
-        model.addAttribute("category","invite");
-
-//        if(request != null){
-//            model.addAttribute("category2",request);
 //
-//        }else{
+//        Place place1 = placeInterface.idSearch(1L);
+//        Place place2 = placeInterface.idSearch(2L);
+//        Place place3 = placeInterface.idSearch(3L);
+//        List<Place> placeList = new ArrayList<>();
+//        placeList.add(place1);
+//        placeList.add(place2);
+//        placeList.add(place3);
+////        placeList=placeInterface.findAll();
+
+//
+//
+//        log.info("goInvite] "+placeList);
+//
+//        /* side lnb 출력용 */
+//        model.addAttribute("category","invite");
+//
+////        if(request != null){
+////            model.addAttribute("category2",request);
+////
+////        }else{
 //
 //            model.addAttribute("category2",placeList);
 //
