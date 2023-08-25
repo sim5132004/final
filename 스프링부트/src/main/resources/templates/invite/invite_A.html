@@ -49,103 +49,103 @@
         setTimeout(function() {
             console.log('Works!');
         }, 3000);
-            downloadButton.addEventListener('click', () => {
-                setTimeout(function () {
-                    console.log('Works!');
-                }, 3000);
-                html2canvas(captureDiv,
-                    {
-                        allowTaint: true,
-                        useCORS: false,// CORS 를 사용하여 시도 하 여 서버에서 이미지 업로드
-                        imageTimeout: 10000,
-                        // foreignObjectRendering: true,
-                        logging: true,
-                        // removeContainer: true,
-                    }
-                ).then(canvas => {
-                    saveImg(canvas.toDataURL('image/jpg'), 'your_card.jpg');
-                });
+        downloadButton.addEventListener('click', () => {
+            setTimeout(function () {
+                console.log('Works!');
+            }, 3000);
+            html2canvas(captureDiv,
+                {
+                    allowTaint: true,
+                    useCORS: false,// CORS 를 사용하여 시도 하 여 서버에서 이미지 업로드
+                    imageTimeout: 10000,
+                    // foreignObjectRendering: true,
+                    logging: true,
+                    // removeContainer: true,
+                }
+            ).then(canvas => {
+                saveImg(canvas.toDataURL('image/jpg'), 'your_card.jpg');
             });
+        });
 
-            const saveImg = (uri, filename) => {
-                let link = document.createElement('a');
+        const saveImg = (uri, filename) => {
+            let link = document.createElement('a');
 
-                document.body.appendChild(link);
+            document.body.appendChild(link);
 
-                link.href = uri;
-                link.download = filename;
-                link.click();
+            link.href = uri;
+            link.download = filename;
+            link.click();
 
-                document.body.removeChild(link);
-            };
+            document.body.removeChild(link);
+        };
     </script>
     <!-- ####### 01. HEADER START ####### -->
     <div class="header_wrap" th:insert="~{insert/header_wrap}"></div>
-<!--    <div class="header_wrap">-->
-<!--        <header>-->
-<!--            <h1 class="logo"><a href="/">Party People</a></h1>-->
-<!--        </header>-->
-<!--        <form>-->
-<!--            <div class="page_search">-->
-<!--                <input type="text" placeholder="[인천] 장소, 상호명 검색" autofocus>&lt;!&ndash;-->
-<!--                 &ndash;&gt;<input type="submit" value="" class="fa fa-search">-->
-<!--            </div>-->
-<!--            <dl class="search_keword"> &lt;!&ndash; 최다 빈도수 키워드 10개만 나오게 해주세요 &ndash;&gt;-->
-<!--                <dt><a href="#">AI추천 키워드</a></dt>-->
-<!--                <dd><a href="#">구월동맛집</a></dd>-->
-<!--                <dd><a href="#">이동갈비</a></dd>-->
-<!--                <dd><a href="#">가성비</a></dd>-->
-<!--                <dd><a href="#">할맥</a></dd>-->
-<!--                <dd><a href="#">스크린골프</a></dd>-->
-<!--                <dd><a href="#">강화도여행</a></dd>-->
-<!--                <dd><a href="#">8000원</a></dd>-->
-<!--                <dd><a href="#">점심메뉴</a></dd>-->
-<!--            </dl>-->
-<!--        </form>-->
-<!--    </div>-->
+    <!--    <div class="header_wrap">-->
+    <!--        <header>-->
+    <!--            <h1 class="logo"><a href="/">Party People</a></h1>-->
+    <!--        </header>-->
+    <!--        <form>-->
+    <!--            <div class="page_search">-->
+    <!--                <input type="text" placeholder="[인천] 장소, 상호명 검색" autofocus>&lt;!&ndash;-->
+    <!--                 &ndash;&gt;<input type="submit" value="" class="fa fa-search">-->
+    <!--            </div>-->
+    <!--            <dl class="search_keword"> &lt;!&ndash; 최다 빈도수 키워드 10개만 나오게 해주세요 &ndash;&gt;-->
+    <!--                <dt><a href="#">AI추천 키워드</a></dt>-->
+    <!--                <dd><a href="#">구월동맛집</a></dd>-->
+    <!--                <dd><a href="#">이동갈비</a></dd>-->
+    <!--                <dd><a href="#">가성비</a></dd>-->
+    <!--                <dd><a href="#">할맥</a></dd>-->
+    <!--                <dd><a href="#">스크린골프</a></dd>-->
+    <!--                <dd><a href="#">강화도여행</a></dd>-->
+    <!--                <dd><a href="#">8000원</a></dd>-->
+    <!--                <dd><a href="#">점심메뉴</a></dd>-->
+    <!--            </dl>-->
+    <!--        </form>-->
+    <!--    </div>-->
     <!-- ####### 01. HEADER END ####### -->
     <hr class="skip"/>
     <!-- ####### 02. LNB START ######### -->
     <div class="lnb" th:if="${client eq null}" th:insert="~{insert/lnb_wrap}"></div>
     <div class="lnb" th:if="${client != null}" th:insert="~{insert/lnb_wrap_login}"></div>
-<!--    <div class="lnb_wrap">-->
-<!--        &lt;!&ndash; #### 02-1. 좌측 고정 업종별 아이콘 메뉴 시작 &ndash;&gt;-->
-<!--        <dl class="fixed_quick_menu">-->
-<!--            &lt;!&ndash;        <dt title="Party Peaple(인천)"><i class="fa-solid fa-map-location-dot"></i>인천</dt>&ndash;&gt;-->
-<!--            <dd><a href="place"><i class="fa-solid fa-map-location-dot"></i> Place</a></dd>-->
-<!--            <dd><a href="category"><i class="fa-regular fa-compass"></i> Category</a></dd>-->
-<!--            <dd class="active"><a href="invite"><i class="fa-solid fa-people-group"></i> Invite</a></dd>-->
-<!--            <dd><a href="analysis"><i class="fa-solid fa-chart-line"></i> Analysis</a></dd>-->
-<!--        </dl>-->
-<!--        <ul class="membership">-->
-<!--            <li><a href="#" onclick="('로그인')"><i class="fa-solid fa-right-to-bracket"></i> 로그인</a></li>-->
-<!--            <li><a href="#" onclick="('회원가입')"><i class="fa-solid fa-user-plus"></i> 회원가입</a></li>-->
-<!--        </ul>-->
-<!--        &lt;!&ndash; #### 02-1. 좌측 고정 업종별 아이콘 메뉴 끝 &ndash;&gt;-->
-<!--        <hr class="skip"/>-->
-<!--        &lt;!&ndash; #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 &ndash;&gt;-->
-<!--        <div class="lnb">-->
-<!--            &lt;!&ndash; 02-2-1. 대시보드 집계 그래프 노출 영역 시작 &ndash;&gt;-->
-<!--            <h2> <div class="standard_cond">모임장소를 고르신 후,<br> 나만의 초대카드를 만들어보세요.</div></h2>-->
-<!--            &lt;!&ndash; 02-2-1.대시보드 집계 그래프 노출 영역 끝 &ndash;&gt;-->
-<!--            &lt;!&ndash; 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 &ndash;&gt;-->
+    <!--    <div class="lnb_wrap">-->
+    <!--        &lt;!&ndash; #### 02-1. 좌측 고정 업종별 아이콘 메뉴 시작 &ndash;&gt;-->
+    <!--        <dl class="fixed_quick_menu">-->
+    <!--            &lt;!&ndash;        <dt title="Party Peaple(인천)"><i class="fa-solid fa-map-location-dot"></i>인천</dt>&ndash;&gt;-->
+    <!--            <dd><a href="place"><i class="fa-solid fa-map-location-dot"></i> Place</a></dd>-->
+    <!--            <dd><a href="category"><i class="fa-regular fa-compass"></i> Category</a></dd>-->
+    <!--            <dd class="active"><a href="invite"><i class="fa-solid fa-people-group"></i> Invite</a></dd>-->
+    <!--            <dd><a href="analysis"><i class="fa-solid fa-chart-line"></i> Analysis</a></dd>-->
+    <!--        </dl>-->
+    <!--        <ul class="membership">-->
+    <!--            <li><a href="#" onclick="('로그인')"><i class="fa-solid fa-right-to-bracket"></i> 로그인</a></li>-->
+    <!--            <li><a href="#" onclick="('회원가입')"><i class="fa-solid fa-user-plus"></i> 회원가입</a></li>-->
+    <!--        </ul>-->
+    <!--        &lt;!&ndash; #### 02-1. 좌측 고정 업종별 아이콘 메뉴 끝 &ndash;&gt;-->
+    <!--        <hr class="skip"/>-->
+    <!--        &lt;!&ndash; #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 &ndash;&gt;-->
+    <!--        <div class="lnb">-->
+    <!--            &lt;!&ndash; 02-2-1. 대시보드 집계 그래프 노출 영역 시작 &ndash;&gt;-->
+    <!--            <h2> <div class="standard_cond">모임장소를 고르신 후,<br> 나만의 초대카드를 만들어보세요.</div></h2>-->
+    <!--            &lt;!&ndash; 02-2-1.대시보드 집계 그래프 노출 영역 끝 &ndash;&gt;-->
+    <!--            &lt;!&ndash; 02-2-2.페이지 컨텐츠 서브 메뉴 노출 시작 &ndash;&gt;-->
 
-<!--        </div>-->
+    <!--        </div>-->
 
-<!--        &lt;!&ndash; #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 &ndash;&gt;-->
-<!--    </div>-->
+    <!--        &lt;!&ndash; #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 &ndash;&gt;-->
+    <!--    </div>-->
     <!-- ####### 02. LNB END ########## -->
     <hr class="skip"/>
     <!-- ####### 03. CONTENTS START ####### -->
     <section class="contents_wrap">
 
-<!--        <form th:action="/saveCard" th:object="${card}">-->
+        <!--        <form th:action="/saveCard" th:object="${card}">-->
         <form>
-<!--        <form>-->
-        <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
-        <div class="left_contents">
-            <div class="left_contents_padding_left"></div>
-            <div class="left_contents_center">
+            <!--        <form>-->
+            <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
+            <div class="left_contents">
+                <div class="left_contents_padding_left"></div>
+                <div class="left_contents_center">
 
                     <div class="card_list_wrap">
                         <!-- 추천(조합) 모임카드 #.01 시작 -->
@@ -165,121 +165,125 @@
                                     <div class="memo"><label><b>모임내용</b><textarea class="card_memo" name="" rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
                                 </div>
                             </dt>
-                            <div class="card_map_wrap"><div id="map"></div></div>
-                            <script th:inline="javascript">
-                                var maps = /*[[${category2}]]*/ [];
-                                console.log(maps);
+                            <div class="card_map_wrap" style="width: 800px; height: 400px;">
+                                <div id="map">
+                                    <script th:inline="javascript">
+                                        var maps = /*[[${category2}]]*/ [];
+                                        console.log(maps);
 
-                                var allLatLng = [];
-                                var bounds = new kakao.maps.LatLngBounds();
-                                for(var i = 0; i < maps.length; i++){
-                                    var df = maps[i];
-                                    allLatLng.push(new kakao.maps.LatLng(df.latitude, df.longitude));
-                                }
-                                for(var i = 0; i<allLatLng.length; i++){
-                                    bounds.extend(allLatLng[i]);
-                                }
+                                        var allLatLng = [];
+                                        var bounds = new kakao.maps.LatLngBounds();
+                                        for(var i = 0; i < maps.length; i++){
+                                            var df = maps[i];
+                                            allLatLng.push(new kakao.maps.LatLng(df.latitude, df.longitude));
+                                        }
+                                        for(var i = 0; i<allLatLng.length; i++){
+                                            bounds.extend(allLatLng[i]);
+                                        }
 
-                                var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                                    mapOption = {
-                                        /* 전국 지도*/
-                                        // center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표
-                                        // level: 13 // 지도의 확대 레벨
+                                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                                            mapOption = {
+                                                /* 전국 지도*/
+                                                // center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표
+                                                // level: 13 // 지도의 확대 레벨
 
-                                        /* 인천으로만 타겟을 줄인 지도*/
-                                        center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
-                                        level: 8 // 지도의 확대 레벨
-                                    };
-                                // 지도를 생성합니다
-                                var map = new kakao.maps.Map(mapContainer, mapOption);
-                                map.setBounds(bounds);
-                                var center = map.getCenter();
+                                                /* 인천으로만 타겟을 줄인 지도*/
+                                                center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
+                                                level: 8 // 지도의 확대 레벨
+                                            };
+                                        // 지도를 생성합니다
+                                        var map = new kakao.maps.Map(mapContainer, mapOption);
+                                        map.setBounds(bounds);
+                                        // var center = map.getCenter();
+                                        //
+                                        // // 조금만 오른쪽으로 이동시킬 거리 (단위: 미터)
+                                        // var offsetX = 0; // 예시로 1000미터 이동
+                                        //
+                                        // // 새로운 중심 좌표 계산
+                                        // var newCenter = new kakao.maps.LatLng(center.getLat(), center.getLng() + (offsetX / 1000)); // 경도에 offset을 더해 새로운 경도 계산
+                                        // // 현재 지도의 레벨을 가져옵니다.
+                                        // var currentLevel = map.getLevel();
+                                        //
+                                        // // 현재 레벨에서 1을 더한 값으로 지도의 레벨을 변경합니다.
+                                        // var newLevel = currentLevel + 1;
+                                        //
+                                        // map.setLevel(newLevel, { anchor: newCenter });
+                                        //
+                                        // // 지도의 중심 좌표를 새로운 중심 좌표로 설정
+                                        map.setCenter(newCenter);
 
-                                // 조금만 오른쪽으로 이동시킬 거리 (단위: 미터)
-                                var offsetX = 500; // 예시로 1000미터 이동
-
-                                // 새로운 중심 좌표 계산
-                                var newCenter = new kakao.maps.LatLng(center.getLat(), center.getLng() + (offsetX / 1000)); // 경도에 offset을 더해 새로운 경도 계산
-                                // // 현재 지도의 레벨을 가져옵니다.
-                                // var currentLevel = map.getLevel();
-                                //
-                                // // 현재 레벨에서 1을 더한 값으로 지도의 레벨을 변경합니다.
-                                // var newLevel = currentLevel + 1;
-                                //
-                                // map.setLevel(newLevel, { anchor: newCenter });
-                                //
-                                // // 지도의 중심 좌표를 새로운 중심 좌표로 설정
-                                map.setCenter(newCenter);
-
-                                var placeId= 1;
-                                /* 지도 관련 스크립트*/
-                                var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-                                var imageSize = new kakao.maps.Size(24, 35);
-                                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+                                        var placeId= 1;
+                                        /* 지도 관련 스크립트*/
+                                        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+                                        var imageSize = new kakao.maps.Size(24, 35);
+                                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
 
 
-                                for(var a = 0; a < maps.length; a++) {
+                                        for(var a = 0; a < maps.length; a++) {
 
-                                    var row = maps[a]; // 각 세트별 좌표를 df로
-                                    console.log(row);
-                                    // console.log(df);
+                                            var row = maps[a]; // 각 세트별 좌표를 df로
+                                            console.log(row);
+                                            // console.log(df);
 
-                                    // 좌표와 다른 정보들을 받아옴
-                                    positions = [];
+                                            // 좌표와 다른 정보들을 받아옴
+                                            positions = [];
 
-                                    positions.push({
-                                        id: row.id,
-                                        category: row.category,
-                                        title: row.title,
-                                        latlng: new kakao.maps.LatLng(row.latitude, row.longitude),
-                                    });
-                                    console.log(positions);
+                                            positions.push({
+                                                id: row.id,
+                                                category: row.category,
+                                                title: row.title,
+                                                latlng: new kakao.maps.LatLng(row.latitude, row.longitude),
+                                            });
+                                            console.log(positions);
 
-                                    for (var i = 0; i < positions.length; i++) {
-                                        var marker = new kakao.maps.Marker({
-                                            map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
-                                            id: positions[i].id,
-                                            position: positions[i].latlng,
-                                            title: positions[i].title,
-                                            category: positions[i].category,
-                                            image: markerImage // 마커 이미지
-                                        });
+                                            for (var i = 0; i < positions.length; i++) {
+                                                var marker = new kakao.maps.Marker({
+                                                    map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
+                                                    id: positions[i].id,
+                                                    position: positions[i].latlng,
+                                                    title: positions[i].title,
+                                                    category: positions[i].category,
+                                                    image: markerImage // 마커 이미지
+                                                });
 
-                                        // 마우스 올릴때 나오는 정보 추가
-                                        var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].category + '</p>';
-                                        // var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].opend + '</p>' + '<p>' + positions[i].closed + '</p>';
-                                        var infowindow = new kakao.maps.InfoWindow({
-                                            content: info
-                                        });
+                                                // 마우스 올릴때 나오는 정보 추가
+                                                var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].category + '</p>';
+                                                // var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].opend + '</p>' + '<p>' + positions[i].closed + '</p>';
+                                                var infowindow = new kakao.maps.InfoWindow({
+                                                    content: info
+                                                });
 
-                                        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-                                        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-                                        kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
-                                    }
+                                                kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                                                kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+                                                kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
+                                            }
 
-                                }
-                                // 마우스 올리면 정보 나오는 함수
-                                function makeOverListener(map, marker, infowindow) {
-                                    return function () {
-                                        infowindow.open(map, marker);
-                                    };
-                                }
+                                        }
+                                        // 마우스 올리면 정보 나오는 함수
+                                        function makeOverListener(map, marker, infowindow) {
+                                            return function () {
+                                                infowindow.open(map, marker);
+                                            };
+                                        }
 
-                                // 마우스 내리면 info안나오는 함수
-                                function makeOutListener(infowindow) {
-                                    return function () {
-                                        infowindow.close();
-                                    };
-                                }
+                                        // 마우스 내리면 info안나오는 함수
+                                        function makeOutListener(infowindow) {
+                                            return function () {
+                                                infowindow.close();
+                                            };
+                                        }
 
-                                // 클릭하면 상세페이지로 넘어가는 함수 (아직 미완)
-                                function makeClickListener(index) {
-                                    return function () {
-                                        window.location.href = "festival/" + index;
-                                    };
-                                }
-                            </script>
+                                        // 클릭하면 상세페이지로 넘어가는 함수 (아직 미완)
+                                        function makeClickListener(index) {
+                                            return function () {
+                                                window.location.href = "festival/" + index;
+                                            };
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+
                             <dd class="body">
 
 
@@ -293,10 +297,10 @@
                                         <li class="thumb"><img th:src="${place.getImageAdd1()}" alt="돈비어천가"></li>
                                         <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
                                         <li class="tel" th:text="${place.getTel()}">032-930-1234 </li>
-                                            <a href="#" th:class="|place_info_layer item_${iterStat.count}|">상세정보</a>
-                                            <!-- 업체 상세 정보 레이어 -->
-<!--                                            <script th:inline="javascript"> placeId = [[${place.getId}]]</script>-->
-                                            <div th:class="|layer_contents item_${iterStat.count}|" th:insert="~{insert/place_info}"></div>
+                                        <a href="#" th:class="|place_info_layer item_${iterStat.count}|">상세정보</a>
+                                        <!-- 업체 상세 정보 레이어 -->
+                                        <!--                                            <script th:inline="javascript"> placeId = [[${place.getId}]]</script>-->
+                                        <div th:class="|layer_contents item_${iterStat.count}|" th:insert="~{insert/place_info}"></div>
 
                                     </ul>
                                 </div>
@@ -309,30 +313,30 @@
                         </dl>
                     </div>
 
-            </div>
+                </div>
 
 
-            <div class="left_contents_padding_right"></div>
-        </div>
-        <!-- #### 03-1.우측 본문 영역 시작 -->
-        <div class="right_contents area">
-            <div class="page_title">
-                <h1><i class="fa-solid fa-people-group"></i> 모임카드 디자인<!-- ## 페이지 타이틀 ##  좌측 메뉴 .active 되어 있는 메뉴명 제이쿼리 클론하여 가져옴 --> </h1>
-                <!-- ## 페이지 네비 경로 ## -->
-                <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
+                <div class="left_contents_padding_right"></div>
             </div>
-            <div class="paging">
-                <a href="#" class="btn_first"></a>
-                <a href="#" class="btn_prev"></a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#" class="btn_next"></a>
-                <a href="#" class="btn_last"></a>
-            </div>
-            <div class="card_list_wrap">
+            <!-- #### 03-1.우측 본문 영역 시작 -->
+            <div class="right_contents area">
+                <div class="page_title">
+                    <h1><i class="fa-solid fa-people-group"></i> 모임카드 디자인<!-- ## 페이지 타이틀 ##  좌측 메뉴 .active 되어 있는 메뉴명 제이쿼리 클론하여 가져옴 --> </h1>
+                    <!-- ## 페이지 네비 경로 ## -->
+                    <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
+                </div>
+                <div class="paging">
+                    <a href="#" class="btn_first"></a>
+                    <a href="#" class="btn_prev"></a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#" class="btn_next"></a>
+                    <a href="#" class="btn_last"></a>
+                </div>
+                <div class="card_list_wrap">
                     <!-- 카드 디자인 스킨 #.01 시작 -->
                     <dl class="ai_card_skin a_type">
                         <dt class="header">INVITATION</dt>
@@ -389,8 +393,8 @@
                         <dd class="footer">Party People</dd>
                     </dl>
                     <!-- 카드 디자인 스킨 #.06 끝 -->
+                </div>
             </div>
-        </div>
         </form>
         <!-- #### 03-1.우측 본문 영역 끝 -->
     </section>
