@@ -186,15 +186,14 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 .left_contents_center{   overflow:auto;  flex: 2 1 0;   }
 .left_contents_center:after{ content:""; display: block; clear:both; }
 
-.header_wrap{ display: none }
-.mypage .left_contents_padding_left{ background: red }
+/* 마이페이지 wrap */
+.mypage .left_contents_padding_left{  }
+.mypage .left_contents_center{ position:relative;  }
 
-.mypage .left_contents_center{ position:relative; background: blue;   }
+.left_contents_center .page_title{ position: fixed; z-index:1; background: #fff; width: 100%; height: 62px; padding: 15px 2% 10px 30px; border-bottom: solid 2px rgba(0,0,0,.6)}
+.left_contents_center .page_title h1{ font:600 26px/28px 'Noto Sans KR',Sans-serif; display: inline-block }
 
-.left_contents_center .page_title{ position: fixed; z-index:1; width: 100%; height: 62px; background: yellow; padding: 10px 2% 10px 30px; border-bottom: solid 1px rgba(0,0,0,.6)}
-.left_contents_center .page_title h1{ font:500 22px/28px 'Noto Sans KR',Sans-serif; display: inline-block }
-
-.left_contents_center .page_contents{ position: relative; margin-top:100px;  width: 100%; height: 100px; overflow: auto; background: #009900 }
+.left_contents_center .page_contents{ position: relative; margin-top:64px;  width: 100%; height:100%; overflow: auto; padding: 30px 35px; background: rgba(0,0,0,.04) }
 
 .left_contents_padding_right{ position: relative;top:0; right:0; width: 29%; height:100%; min-width: 400px; flex: 0 0 auto; }
 .left_contents_padding_right:after{ content:""; display: block; clear:both; }
