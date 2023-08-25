@@ -313,7 +313,7 @@ dl.ai_card > dt .keyword_recommand a:before{ content: "#"; display: inline-block
 dl.ai_card > dt .keyword_recommand a:hover{ color:#009900; font-weight: 600 }
 dl.ai_card > dt .keyword_recommand a:hover:before{ color:#009900; }
 /* 스크롤 */
-dl.ai_card dd.body{ max-height: 380px; overflow-y: auto }
+dl.ai_card dd.body{ max-height: 360px; overflow-y: auto }
 dl.ai_card dd.body{
     scrollbar-face-color:#ddd;/*스크롤*/
     scrollbar-highlight-color:#ddd;/*하이라이트*/
