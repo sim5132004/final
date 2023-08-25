@@ -139,10 +139,17 @@
                     var center = map.getCenter();
 
 // 조금만 오른쪽으로 이동시킬 거리 (단위: 미터)
-                    var offsetX = 10; // 예시로 1000미터 이동
+                    var offsetX = 45; // 예시로 1000미터 이동
 
 // 새로운 중심 좌표 계산
                     var newCenter = new kakao.maps.LatLng(center.getLat(), center.getLng() + (offsetX / 1000)); // 경도에 offset을 더해 새로운 경도 계산
+                    // 현재 지도의 레벨을 가져옵니다.
+                    var currentLevel = map.getLevel();
+
+// 현재 레벨에서 1을 더한 값으로 지도의 레벨을 변경합니다.
+                    var newLevel = currentLevel + 1;
+
+                    map.setLevel(newLevel, { anchor: newCenter });
 
 // 지도의 중심 좌표를 새로운 중심 좌표로 설정
                     map.setCenter(newCenter);
