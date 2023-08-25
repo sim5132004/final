@@ -105,6 +105,12 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
         # 자기 자신을 제외하고, 유사도가 0.3 이상인 것들만 추출하여 filtered_sim_scores에 추가
         filtered_sim_scores = [(i, score) for i, score in sim_scores if score >= 0.3 and i != idx]
 
+        if 추천카테고리 or 추천키워드 or 추천주소:  # 검색 조건이 있는 경우에만 추가로 걸러주기
+            filtered_sim_scores = [(i, score) for i, score in filtered_sim_scores if
+                                   data_recommend.iloc[i]['카테고리'] == 추천카테고리
+                                   or 추천키워드 in data_recommend.iloc[i]['키워드리스트']
+                                   or 추천주소 in data_recommend.iloc[i]['주소']]
+
         place_index = [i[0] for i in sim_scores if i[0] != idx]  # 제목이 같은 장소는 제외
         # 현재 장소를 제외하고, 다른 장소들의 인덱스를 place_index에 저장
 
