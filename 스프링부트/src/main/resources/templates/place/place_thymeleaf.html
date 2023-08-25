@@ -414,16 +414,16 @@
                                         <b><span th:text="${place.title}">돈비어천가</span></b>
                                         <span class="category"><b class="depth_1" th:text="${place.category}">음식</b><b class="depth_2" th:text="${place.smallCategory}">한식</b></span>
                                     </li>
-                                    <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${place.imageAdd1}" alt="돈비어천가"></li>
+                                    <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${place.imageAdd1}" th:alt="${place.title}"></li>
                                     <li class="btn_wrap">
                                         <a href="#" th:class="|place_info_layer item_${iterStat.count}${iStat.count}|">상세정보</a>
 <!--                                        <button href="#" th:class="|place_info_layer item_${place.getId()}|">상세정보</button>-->
                                         <div th:class="|layer_contents item_${iterStat.count}${iStat.count}|" th:insert="~{insert/place_info}"></div>
-                                        <button>지도보기</button>
+                                        <a href="#" >지도보기</a>
                                     </li>
                                     <li class="addr" th:text="${place.address}">인천 중구 개항로 63-2</li>
                                     <li class="work_time" th:text="${place.runTimeInfo}">10:00~22:00브레이크타임없음<span>(쉬는날 : 연중무휴)</span></li>
-                                    <li class="parking" th:text="${place.parkingInfo}">주차시설 : 있음,유료</li>
+                                    <li class="parking" th:text="'주차시설: '+${place.parkingInfo}">주차시설 : 있음,유료</li>
                                     <li class="tel" th:text="${place.tel}">032-930-1234</li>
                                 </ul>
                             </div>
