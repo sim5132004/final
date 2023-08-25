@@ -166,7 +166,7 @@
                                 </div>
                             </dt>
                             <div class="card_map_wrap">
-                                <div id="map" style="width: 800px; height: 400px;">
+                                <div id="map" style="width: 800px; height: 300px;">
                                     <script th:inline="javascript">
                                         var maps = /*[[${category2}]]*/ [];
                                         console.log(maps);
@@ -202,19 +202,19 @@
                                         // 새로운 중심 좌표 계산
                                         var newCenter = new kakao.maps.LatLng(center.getLat(), center.getLng() + (offsetX / 1000)); // 경도에 offset을 더해 새로운 경도 계산
                                         // // 현재 지도의 레벨을 가져옵니다.
-                                        var currentLevel = map.getLevel();
+                                        // var currentLevel = map.getLevel();
+                                        // //
+                                        // // // 현재 레벨에서 1을 더한 값으로 지도의 레벨을 변경합니다.
+                                        // var newLevel = currentLevel + 1;
                                         //
-                                        // // 현재 레벨에서 1을 더한 값으로 지도의 레벨을 변경합니다.
-                                        var newLevel = currentLevel + 1;
-
-                                        map.setLevel(newLevel, { anchor: newCenter });
-                                        //
-                                        // // 지도의 중심 좌표를 새로운 중심 좌표로 설정
+                                        // map.setLevel(newLevel, { anchor: newCenter });
+                                        // //
+                                        // // // 지도의 중심 좌표를 새로운 중심 좌표로 설정
                                         map.setCenter(newCenter);
 
                                         var placeId= 1;
                                         /* 지도 관련 스크립트*/
-                                        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+                                        var imageSrc = "images/marker_spot(3).png";
                                         var imageSize = new kakao.maps.Size(24, 35);
                                         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
