@@ -167,8 +167,18 @@
                             </dt>
                             <div class="card_map_wrap"><div id="map"></div></div>
                             <script th:inline="javascript">
-                                var placeId= 1;
-                                /* 지도 관련 스크립트*/
+                                var maps = /*[[${category2}]]*/ [];
+                                console.log(maps);
+
+                                var allLatLng = [];
+                                var bounds = new kakao.maps.LatLngBounds();
+                                for(var i = 0; i < maps.length; i++){
+                                    var df = maps[i];
+                                    allLatLng.push(new kakao.maps.LatLng(df.latitude, df.longitude));
+                                }
+                                for(var i = 0; i<allLatLng.length; i++){
+                                    bounds.extend(allLatLng[i]);
+                                }
 
                                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
                                     mapOption = {
@@ -182,6 +192,93 @@
                                     };
                                 // 지도를 생성합니다
                                 var map = new kakao.maps.Map(mapContainer, mapOption);
+                                map.setBounds(bounds);
+                                var center = map.getCenter();
+
+                                // 조금만 오른쪽으로 이동시킬 거리 (단위: 미터)
+                                var offsetX = 500; // 예시로 1000미터 이동
+
+                                // 새로운 중심 좌표 계산
+                                var newCenter = new kakao.maps.LatLng(center.getLat(), center.getLng() + (offsetX / 1000)); // 경도에 offset을 더해 새로운 경도 계산
+                                // // 현재 지도의 레벨을 가져옵니다.
+                                // var currentLevel = map.getLevel();
+                                //
+                                // // 현재 레벨에서 1을 더한 값으로 지도의 레벨을 변경합니다.
+                                // var newLevel = currentLevel + 1;
+                                //
+                                // map.setLevel(newLevel, { anchor: newCenter });
+                                //
+                                // // 지도의 중심 좌표를 새로운 중심 좌표로 설정
+                                map.setCenter(newCenter);
+
+                                var placeId= 1;
+                                /* 지도 관련 스크립트*/
+                                var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+                                var imageSize = new kakao.maps.Size(24, 35);
+                                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+
+
+                                for(var a = 0; a < maps.length; a++) {
+
+                                    var row = maps[a]; // 각 세트별 좌표를 df로
+                                    console.log(row);
+                                    // console.log(df);
+
+                                    // 좌표와 다른 정보들을 받아옴
+                                    positions = [];
+
+                                    positions.push({
+                                        id: row.id,
+                                        category: row.category,
+                                        title: row.title,
+                                        latlng: new kakao.maps.LatLng(row.latitude, row.longitude),
+                                    });
+                                    console.log(positions);
+
+                                    for (var i = 0; i < positions.length; i++) {
+                                        var marker = new kakao.maps.Marker({
+                                            map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
+                                            id: positions[i].id,
+                                            position: positions[i].latlng,
+                                            title: positions[i].title,
+                                            category: positions[i].category,
+                                            image: markerImage // 마커 이미지
+                                        });
+
+                                        // 마우스 올릴때 나오는 정보 추가
+                                        var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].category + '</p>';
+                                        // var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].opend + '</p>' + '<p>' + positions[i].closed + '</p>';
+                                        var infowindow = new kakao.maps.InfoWindow({
+                                            content: info
+                                        });
+
+                                        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                                        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+                                        kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
+                                    }
+
+                                }
+                                // 마우스 올리면 정보 나오는 함수
+                                function makeOverListener(map, marker, infowindow) {
+                                    return function () {
+                                        infowindow.open(map, marker);
+                                    };
+                                }
+
+                                // 마우스 내리면 info안나오는 함수
+                                function makeOutListener(infowindow) {
+                                    return function () {
+                                        infowindow.close();
+                                    };
+                                }
+
+                                // 클릭하면 상세페이지로 넘어가는 함수 (아직 미완)
+                                function makeClickListener(index) {
+                                    return function () {
+                                        window.location.href = "festival/" + index;
+                                    };
+                                }
                             </script>
                             <dd class="body">
 
