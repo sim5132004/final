@@ -13,6 +13,7 @@ import party.people.domain.InviteCard;
 import party.people.domain.Place;
 import party.people.repository.InviteCard.InviteCardInterface;
 import party.people.repository.place.PlaceInterface;
+import java.util.Random;
 
 import static party.people.web.controller.category.CategoryController.loginCheck;
 
@@ -28,8 +29,12 @@ public class CategoryController2 {
     private final InviteCardInterface inviteCardInterface;
 
 
+
+
     @GetMapping("invite")
     public String goInvite(HttpServletRequest request, Model model){
+
+        Random random = new Random();
 
         /* 로그인 세션 유지용 메서드 */
         /* 메서드 이름 컨트롤 클릭으로 내용 확인 가능 */
@@ -38,10 +43,17 @@ public class CategoryController2 {
         /* side lnb 출력용 */
         model.addAttribute("category","invite");
 
+        int randomNumber1 = random.nextInt(1,10);
+
+        int randomNumber2 = random.nextInt(1,800);
+
+        int randomNumber3 = random.nextInt(1, 800);
+
+
         List<Place> placeList2 = new ArrayList<>();
-        Place place12 = placeInterface.idSearch(11L);
-        Place place22 = placeInterface.idSearch(22L);
-        Place place32 = placeInterface.idSearch(33L);
+        Place place12 = placeInterface.idSearch(randomNumber1);
+        Place place22 = placeInterface.idSearch(randomNumber2);
+        Place place32 = placeInterface.idSearch(randomNumber3);
         placeList2.add(place12);
         placeList2.add(place22);
         placeList2.add(place32);
@@ -57,56 +69,23 @@ public class CategoryController2 {
 
             List<List<Place>> place2 = (List<List<Place>>) test.getAttribute("검색결과");
 
-            log.info("CategoryController2");
-            System.out.println(place2);
-
-
-
-            System.out.println(place2.getClass());
-
-            System.out.println(place2.get(0).getClass());
-
             pl= place2.get(0);
-            System.out.println(pl);
-
-            for(Place x:pl){
-                System.out.println("hihi");
-                System.out.println(x);
-            }
-
-
-//            Place place0= placeInterface.idSearch(pl.get(0).getId());
-//            Place place3 = placeInterface.idSearch(pl.get(1).getId());
-//
-//            Place place4 = placeInterface.idSearch(pl.get(2).getId());
-//            placeList.add(place3);
-//            placeList.add(place4);
-
-
 
         }
         else{
-            System.out.println("null");
+            log.info("NULL !!!!");
         }
 
 
         if (test!=null) {
             model.addAttribute("category2", pl);
-            model.addAttribute("keylist",pl.get(0).keyWord5());
+            model.addAttribute("keylist",pl.get(0).keyWordTitle());
         }else{
 
             model.addAttribute("category2", placeList2);
         }
         System.out.println(pl);
 
-        /* side lnb 출력용 */
-//        if(request != null){
-//            model.addAttribute("category2",request);
-//
-//        }else{
-//
-//
-//        }
 
         return "invite/invite_A";
     }

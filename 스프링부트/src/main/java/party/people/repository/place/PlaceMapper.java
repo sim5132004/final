@@ -32,6 +32,6 @@ public interface PlaceMapper {
 
     List<Place>randon3();
 
-    Place idSearch(Long id);
+    Place idSearch(Integer id);
 
 }

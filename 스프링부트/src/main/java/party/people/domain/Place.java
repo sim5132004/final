@@ -34,10 +34,10 @@ public class Place {
     private String imageAdd1;
     private String imageAdd2;
 
-    public Place(){
-    }
+    public Place() {}
 
-    public List<String> viewList(){
+
+    public List<String> viewList() {
         List a = new ArrayList<>();
 
 //        if(address != null)
@@ -45,15 +45,17 @@ public class Place {
 //        else a.add("_");
 
 //        if(runTimeInfo != null)
-            a.add(runTimeInfo);
+        a.add(runTimeInfo);
 //        else a.add('_');
 
-//        if(parkingInfo != null)
-            a.add("주차시설 : "+parkingInfo);
-//        else a.add('_');
-
-        return a;
+        if (parkingInfo != null) {
+            if (parkingInfo.equals("null") != true){  a.add("주차시설 : " + parkingInfo);}
+            else{ a.add('_');}
+        }
+            return a;
     }
+
+
 
     public List<String> viewAllList(){
         List a = new ArrayList<>();
@@ -106,10 +108,34 @@ public class Place {
 
 
     }
+
     public String keyWord5(){
 
 //        List<String> goString= new ArrayList<>();
 
+        if (keyword != null) {
+            String s = keyword.replace("/", "");
+            String x = s.replace("0", "");
+
+            for (int count = 0; count < 10; count++) {
+                s = s.replace(Integer.toString(count), "");
+            }
+
+
+            String goString[] = s.split(",");
+
+            return "#" +goString[0]+"  #"+ goString[1]+"  #"+ goString[2]+"  #"+ goString[3];
+
+        }
+
+    return "";
+
+
+    }
+
+
+
+    public String keyWordTitle(){
 
         String s = keyword.replace("/","");
         String x = s.replace("0","");
@@ -122,21 +148,8 @@ public class Place {
 
         String goString[] = s.split(",");
 
-//        System.out.println(s);
 
-
-
-//
-//        List<Object> setString =new ArrayList<>();
-//        int count=0;
-//        for(String go: goString){
-//                setString.add(go.split("/"));
-//        }
-//
-//        System.out.println((setString.get(0)));
-
-
-        return "#" +goString[0]+"  #"+ goString[1]+"  #"+ goString[2]+"  #"+ goString[3];
+        return getCategory()+"/"+getSmallCategory()+"/"+getTitle();
 
     }
 
@@ -172,3 +185,4 @@ public class Place {
         this.imageAdd2 = imageAdd2;
     }
 }
+

@@ -57,7 +57,7 @@ public class PlaceRepository implements PlaceInterface{
     }
 
     @Override
-    public Place idSearch(Long id){
+    public Place idSearch(Integer id){
         return placeMapper.idSearch(id);
     }
 }
