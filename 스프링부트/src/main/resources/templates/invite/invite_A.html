@@ -49,7 +49,6 @@
         setTimeout(function() {
             console.log('Works!');
         }, 3000);
-        window.onload = function() {
             downloadButton.addEventListener('click', () => {
                 setTimeout(function () {
                     console.log('Works!');
@@ -64,8 +63,7 @@
                         // removeContainer: true,
                     }
                 ).then(canvas => {
-                    saveImg(canvas.toDataURL('imag.' +
-                        'e/jpg'), 'your_card.jpg');
+                    saveImg(canvas.toDataURL('image/jpg'), 'your_card.jpg');
                 });
             });
 
@@ -80,7 +78,6 @@
 
                 document.body.removeChild(link);
             };
-        };
     </script>
     <!-- ####### 01. HEADER START ####### -->
     <div class="header_wrap" th:insert="~{insert/header_wrap}"></div>

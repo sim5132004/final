@@ -89,9 +89,11 @@
                             // 지도를 생성합니다
                             var map = new kakao.maps.Map(mapContainer, mapOption);
                         </script>
+<!--                        <dd class="body" th:object="category2">-->
                         <dd class="body">
-                            <!-- 대안 장소 선택_01: 업체 리스트 -->
-                            <div class="card_list">
+                            <!-- 대안 장소 선택_01: 업체 리스트 -- th:object="${category2.get(1)}-->
+                            <div  class="card_list" th:each="res : ${category2}">
+                                <p th:fied="${res.}"></p>
                                 <ul class="summary_card">
                                     <li class="subject">
                                         <input type="checkbox" checked>
@@ -146,6 +148,8 @@
                             <h3><button class="confirm"><i class="fa-solid fa-arrow-up-right-from-square"></i> 모임카드 미리보기</button>
                                 원하시는 모임내용을 작성해주세요. <br>모임카드는 미리보기 후, 카드이미지(JPG) 다운로드 가능합니다.
                             </h3>
+
+
                             <!--                            <button class="confirm"><i class="fa-regular fa-circle-down"></i> 모임카드 다운로드</button>-->
                         </dd>
                     </dl>
