@@ -1,4 +1,4 @@
-from algorithm import recommend_distance, data_recommend
+from algorithm4 import recommend_distance, data_recommend
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import cx_Oracle
@@ -43,7 +43,7 @@ while True:
         count = 0;
         for x in range(len(recommend_list)):
             count += 1
-            if(count==4):
+            if(count==7):
                 break
             searchResult += recommend_list[x][1] + ","
             for i in range(len(recommend_list[0][2])):
