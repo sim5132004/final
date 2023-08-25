@@ -56,12 +56,12 @@ public class PlaceController {
         SearchInput input = new SearchInput();
         if (address!=null) {
             if (address.equals("null")) {
-                model.addAttribute("address",address);
-                address="";
+                return "redirect:/place";
+            } else {
+                input.setAddress(address);
+                model.addAttribute("address", address);
+                model.addAttribute("searchText", address);
             }
-            input.setAddress(address);
-            model.addAttribute("address",address);
-            model.addAttribute("searchText", address);
         } else {
             input.setAddress("");
             model.addAttribute("address","null");
