@@ -99,7 +99,7 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 .sub_menu_list li a.active:hover i{ color: #009900; opacity: 1; }
 .sub_menu_list li a.active:after{ content: ""; font:400 17px 'fontAwesome'; opacity:1; color: #009900;  top:8px; right: 6px }
 .sub_menu_list li a:hover:after{color: #009900; opacity:1; }
-.sub_menu_list li a.active i{ opacity:1; color: #fff;}
+.sub_menu_list li a.active i{ opacity:1; color: #009900;}
 .sub_menu_list li a.active b.num{  /*009900*/ color: #009900; letter-spacing: -0.5px; display: none }
 
 .sub_menu_list.area{ }

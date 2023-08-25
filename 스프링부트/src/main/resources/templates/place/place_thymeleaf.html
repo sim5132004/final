@@ -419,11 +419,11 @@
                                         <a href="#" th:class="|place_info_layer item_${iterStat.count}${iStat.count}|">상세정보</a>
 <!--                                        <button href="#" th:class="|place_info_layer item_${place.getId()}|">상세정보</button>-->
                                         <div th:class="|layer_contents item_${iterStat.count}${iStat.count}|" th:insert="~{insert/place_info}"></div>
-                                        <button>지도보기</button>
+                                        <a href="#" >지도보기</a>
                                     </li>
                                     <li class="addr" th:text="${place.address}">인천 중구 개항로 63-2</li>
                                     <li class="work_time" th:text="${place.runTimeInfo}">10:00~22:00브레이크타임없음<span>(쉬는날 : 연중무휴)</span></li>
-                                    <li class="parking" th:text="${place.parkingInfo}">주차시설 : 있음,유료</li>
+                                    <li class="parking" th:text="'주차시설: '+${place.parkingInfo}">주차시설 : 있음,유료</li>
                                     <li class="tel" th:text="${place.tel}">032-930-1234</li>
                                 </ul>
                             </div>
@@ -433,7 +433,7 @@
                         </dd>
                         <dd class="footer">
                             <button class="basic"><i class="fa-solid fa-location-dot"></i> 추천장소 지도보기</button>
-                            <button class="confirm"  ><i class="fa-solid fa-pen-to-square"></i> 모임카드 편집하기</button>
+                            <button class="confirm" ><i class="fa-solid fa-pen-to-square"></i> 모임카드 편집하기</button>
                         </dd>
                     </dl>
                     <!-- 추천(조합) 모임카드 #.01 끝 -->
