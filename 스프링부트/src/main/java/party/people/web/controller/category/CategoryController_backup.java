@@ -62,12 +62,13 @@ public class CategoryController_backup {
 
         Place pl = new Place();
 
+        List<Place>place2 = new ArrayList<>();
 
         HttpSession test = request.getSession(false);
         if (test!=null) {
 
 
-            List<Place> place2 = (List<Place>) test.getAttribute("검색결과");
+            place2 = (List<Place>) test.getAttribute("검색결과");
             log.info("세션에서 받아온 정보 확인 "+place2);
 
             pl= place2.get(0);
@@ -79,7 +80,7 @@ public class CategoryController_backup {
 
 
         if (test!=null) {
-            model.addAttribute("category2", pl);
+            model.addAttribute("category2", place2);
             model.addAttribute("keylist",pl.keyWordTitle());
         }else{
 
