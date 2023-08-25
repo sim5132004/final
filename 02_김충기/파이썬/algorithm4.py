@@ -1,9 +1,18 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import pandas as pd
+import cx_Oracle
+import pandas as pdb
 import math
 import re
-## 라이브러리 임포트
+
+connection = cx_Oracle.connect("party/party@192.168.30.240:1521/xe")
+
+query = """select * from PlACEINFO"""
+
+place_df = pd.read_sql(query, con=connection)
+
+data=place_df[['카테고리','제목','주소','위도','경도','키워드리스트']]
 
 # 데이터프레임에서 가져오기
 data_recommend = data
@@ -156,7 +165,7 @@ for item in recommended_distance[:3]:
 
     print(f"추천장소 : {제목}")
     print(f"가장 빈도수가 높은 키워드:{', '.join(set_keywords_slash_delete)}")
-
+    cate_list = []
     for category, place, address, distance, keywords in 거리정보:
         keywords_str = ', '.join(keywords)
         print(
@@ -179,3 +188,11 @@ for item in recommended_distance[:3]:
                 f"거리: {haversine_distance(data_recommend.iloc[idx]['위도'], data_recommend.iloc[idx]['경도'], data_recommend.iloc[i]['위도'], data_recommend.iloc[i]['경도']):.2f} km\n")
 
         print("\n")
+
+print(cate_list)
+baseString = ''
+for cate in cate_list:
+    for ca in cate:
+        baseString=baseString+ca.strip()+','
+    baseString=baseString+'/'
+finalString = baseString.rstrip('/').rstrip(',')
