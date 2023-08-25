@@ -24,9 +24,9 @@
 
 
 /* 검색창 추천 검색 키워드 */
-.search_keword{ position: relative; top: 115px; left:0; height: 60px; font:500 12px/12px 'Noto Sans KR',Sans-serif; overflow: hidden;display: flex; width: auto; flex-wrap: wrap; flex-direction: row; justify-content: center; align-items: stretch; align-content: stretch; }
+.search_keword{ position: relative; top: 113px; left:0; height: 60px; font:500 12px/12px 'Noto Sans KR',Sans-serif; overflow: hidden;display: flex; width: auto; flex-wrap: wrap; flex-direction: row; justify-content: center; align-items: stretch; align-content: stretch; }
 .search_keword dt{ display: block; width: 100%;  }
-.search_keword dt a{  padding:3px 7px;  border-radius:10px; margin-right:1px; font:600 14px/18px 'Noto Sans KR',Sans-serif; color: #009900 }
+.search_keword dt a{   font:500 14px/18px 'Noto Sans KR',Sans-serif; }
 .search_keword dd{ flex:1 1 0;  }
 .search_keword dd a{ display: block; padding: 5px 2px; background:rgba(0,0,0,.03); font:600 12px/12px 'Noto Sans KR',Sans-serif; color: rgba(0,0,0,.6); }
 .search_keword dd a:hover{ color:#009900; border-color:#009900; background: #fff; font-weight:600; }
