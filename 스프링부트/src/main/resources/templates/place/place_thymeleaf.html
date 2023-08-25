@@ -15,6 +15,7 @@
     <!--구글 차트 관련 스크립트-->
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script th:inline="javascript" src="../js/ui_basic.js"></script>
 
 
     <!--    카카오 지도 스타일 시작 -->
@@ -410,7 +411,9 @@
                                     </li>
                                     <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${place.imageAdd1}" alt="돈비어천가"></li>
                                     <li class="btn_wrap">
-                                        <button>상세정보</button>
+                                        <a href="#" th:class="|place_info_layer item_${iterStat.count}|">상세정보</a>
+<!--                                        <button href="#" th:class="|place_info_layer item_${place.getId()}|">상세정보</button>-->
+                                        <div th:class="|layer_contents item_${iterStat.count}|" th:insert="~{insert/place_info}"></div>
                                         <button>지도보기</button>
                                     </li>
                                     <li class="addr" th:text="${place.address}">인천 중구 개항로 63-2</li>

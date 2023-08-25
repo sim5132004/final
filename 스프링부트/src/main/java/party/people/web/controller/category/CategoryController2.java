@@ -43,9 +43,9 @@ public class CategoryController2 {
 //        placeList.add(place1);
 
         List<Place> placeList2 = new ArrayList<>();
-        Place place12 = placeInterface.idSearch(1L);
-        Place place22 = placeInterface.idSearch(2L);
-        Place place32 = placeInterface.idSearch(3L);
+        Place place12 = placeInterface.idSearch(11L);
+        Place place22 = placeInterface.idSearch(22L);
+        Place place32 = placeInterface.idSearch(33L);
         placeList2.add(place12);
         placeList2.add(place22);
         placeList2.add(place32);
