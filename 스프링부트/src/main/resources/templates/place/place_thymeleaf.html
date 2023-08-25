@@ -81,7 +81,7 @@
     <!-- ####### 01. HEADER END ####### -->
     <hr class="skip"/>
     <!-- ####### 02. LNB START ######### -->
-<!--    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>-->
+    <!--    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>-->
     <div class="lnb" th:if="${client eq null}" th:insert="~{insert/lnb_wrap}"></div>
     <div class="lnb" th:if="${client != null}" th:insert="~{insert/lnb_wrap_login}"></div>
     <!-- ####### 02. LNB END ########## -->
@@ -351,17 +351,17 @@
                 <!-- ## 페이지 네비 경로 ## -->
                 <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
             </div>
-<!--            <div class="paging">-->
-<!--                <a href="#" class="btn_first"></a>-->
-<!--                <a href="#" class="btn_prev"></a>-->
-<!--                <a href="#" class="active">1</a>-->
-<!--                <a href="#">2</a>-->
-<!--                <a href="#">3</a>-->
-<!--                <a href="#">4</a>-->
-<!--                <a href="#">5</a>-->
-<!--                <a href="#" class="btn_next"></a>-->
-<!--                <a href="#" class="btn_last"></a>-->
-<!--            </div>-->
+            <!--            <div class="paging">-->
+            <!--                <a href="#" class="btn_first"></a>-->
+            <!--                <a href="#" class="btn_prev"></a>-->
+            <!--                <a href="#" class="active">1</a>-->
+            <!--                <a href="#">2</a>-->
+            <!--                <a href="#">3</a>-->
+            <!--                <a href="#">4</a>-->
+            <!--                <a href="#">5</a>-->
+            <!--                <a href="#" class="btn_next"></a>-->
+            <!--                <a href="#" class="btn_last"></a>-->
+            <!--            </div>-->
             <form>
                 <div class="card_list_wrap">
                     <!-- 추천(조합) 모임카드 #.01 시작 -->
@@ -370,21 +370,22 @@
                             <h2 class="subject_keyword">
                                 <span class="area">
 <!--<<<<<<< Updated upstream-->
-<!--                                    th:color="${colors[iterStat.count]}-->
-<!--                                    <b class="depth_1" th:text="${iterStat.count}">1</b>-->
-<!--                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>-->
-<!--=======-->
-<!--                                    <b class="depth_1" th:text="${iterStat.count}" th:color="${colors[(iterStat.count)-1]}">1</b>-->
+                                    <!--                                    th:color="${colors[iterStat.count]}-->
+                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}">1</b>-->
+                                    <!--                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>-->
+                                    <!--=======-->
+                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}" th:color="${colors[(iterStat.count)-1]}">1</b>-->
 
-<!--                                    컨트롤러에서 colors리스트 받은걸 iterStat.count 순으로 (근데 iterStat.count는 1부터라서 -1 함)  -->
-                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>
+                                    <!--                                    컨트롤러에서 colors리스트 받은걸 iterStat.count 순으로 (근데 iterStat.count는 1부터라서 -1 함)  -->
+                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>-->
+                                    <b th:class="'depth_1 ' + ${colors[iterStat.count - 1]}"  th:text="${iterStat.count}" >1</b>
                                     <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>
-<!--&gt;>>>>>> Stashed changes-->
+                                <!--&gt;>>>>>> Stashed changes-->
                                 </span>
                                 <!--                                    <b class="depth_2"-->
-<!--                                       th:text="${search[0].address.substring-->
-<!--                                       (search[0].address.indexOf(' ')+1,-->
-<!--                                       search[0].address.indexOf(search[0].address.indexOf(' ')+1,' '))}">중구</b></span>-->
+                                <!--                                       th:text="${search[0].address.substring-->
+                                <!--                                       (search[0].address.indexOf(' ')+1,-->
+                                <!--                                       search[0].address.indexOf(search[0].address.indexOf(' ')+1,' '))}">중구</b></span>-->
                                 <strong th:text="|${search[0].category}/${search[0].smallCategory}/${search[0].title}|">데이트/동인천/차이나타운/동인천/차이나타운</strong>
                             </h2>
                             <p class="keyword_recommand"><!-- 연관 키워드 3개 -->
@@ -403,7 +404,7 @@
                             <div class="card_list" th:each="place :${search}">
                                 <ul class="summary_card">
                                     <li class="subject">
-<!--                                        <b><span class="matching_keyword" th:text="${split_search.title}">돈비어</span>천가</b>-->
+                                        <!--                                        <b><span class="matching_keyword" th:text="${split_search.title}">돈비어</span>천가</b>-->
                                         <b><span th:text="${place.title}">돈비어천가</span></b>
                                         <span class="category"><b class="depth_1" th:text="${place.category}">음식</b><b class="depth_2" th:text="${place.smallCategory}">한식</b></span>
                                     </li>
@@ -452,7 +453,7 @@
     <hr class="skip"/>
     <!-- ####### 04. FOOTER START ####### -->
     <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
-    <!-- ####### 04. FOOTER END ####### -->
-</div>
+        <!-- ####### 04. FOOTER END ####### -->
+    </div>
 </body>
 </html>
