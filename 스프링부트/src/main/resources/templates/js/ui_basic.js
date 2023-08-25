@@ -17,17 +17,6 @@ $(function(){
 // 업체 상세버튼 클릭시, 상세 정보 페이지 모달 레이어 노출
 
 
-$(".place_info_layer.item_"+placeId).click(function(){
-    //$("body").hide();
-    $(".modal_layer_wrap.detail").addClass("show");
-    $(".layer_contents.item_"+placeId).clone().appendTo(".modal_layer_wrap.detail .layer_box");
-    console.log(placeId)
-    console(".layer_contents.item_"+placeId)
-    $(".layer_box a.close_layer,.layer_bg").click(function(){
-        $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_1").remove();
-    });
-});
 $(".place_info_layer.item_1").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");
@@ -98,25 +87,58 @@ $(function(){
     //  $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
 });
 
-
-
-
-
-
-
-
-
-
-
-$(".place_info_layer.item_"+[[$place.getId()]]).click(function(){
+$(".place_info_layer.item_11").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");
-    $(".layer_contents.item_"+placeId).clone().appendTo(".modal_layer_wrap.detail .layer_box");
-    console.log(placeId)
-    console(".layer_contents.item_"+placeId)
+    $(".layer_contents.item_11").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_1").remove();
+        $(".modal_layer_wrap.detail .layer_contents.item_11").remove();
+    });
+});
+
+$(".place_info_layer.item_12").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_12").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_12").remove();
+    });
+});
+
+
+
+
+$(".place_info_layer.item_13").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_13").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_13").remove();
+    });
+});
+
+
+
+$(".place_info_layer.item_21").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_21").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_21").remove();
+    });
+});
+
+$(".place_info_layer.item_22").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_22").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_22").remove();
     });
 });
 
@@ -125,12 +147,47 @@ $(".place_info_layer.item_"+[[$place.getId()]]).click(function(){
 
 
 
+$(".place_info_layer.item_23").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_23").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_23").remove();
+    });
+});
 
 
 
 
+$(".place_info_layer.item_3_3").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_3_3").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_3_3").remove();
+    });
+});
 
 
+$(".place_info_layer.item_3_2").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_3_2").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_3_2").remove();
+    });
+});
 
 
-
+$(".place_info_layer.item_3_1").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_3_1").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_3_1").remove();
+    });
+});

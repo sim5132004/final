@@ -197,12 +197,12 @@
                                         </li>
                                         <li class="thumb"><img th:src="${place.getImageAdd1()}" alt="돈비어천가"></li>
                                         <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
-                                        <li class="tel" th:text="${place.getTel()}">032-930-1234
+                                        <li class="tel" th:text="${place.getTel()}">032-930-1234 </li>
                                             <a href="#" th:class="|place_info_layer item_${iterStat.count}|">상세정보</a>
                                             <!-- 업체 상세 정보 레이어 -->
 <!--                                            <script th:inline="javascript"> placeId = [[${place.getId}]]</script>-->
                                             <div th:class="|layer_contents item_${iterStat.count}|" th:insert="~{insert/place_info}"></div>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </dd>
