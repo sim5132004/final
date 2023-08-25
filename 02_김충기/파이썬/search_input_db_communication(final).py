@@ -1,4 +1,4 @@
-from algorithm5 import recommend_distance, data_recommend
+from algorithm4 import recommend_distance, data_recommend
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import cx_Oracle
