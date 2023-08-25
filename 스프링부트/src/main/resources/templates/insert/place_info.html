@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="tag">
-                    <strong th:text="|${search[0].category}/${search[0].smallCategory}/${search[0].title}|">데이트/동인천/차이나타운/동인천/차이나타운</strong>
+                    <strong th:text="${place.keyWord5()}">데이트/동인천/차이나타운/동인천/차이나타운</strong>
 
 <!--                    <a href="" >&nbsp;#관광지</a>-->
 <!--                    <a href="">#인스타</a>-->
@@ -43,7 +43,7 @@
                     </div>
 
                     <div id="intro" class="section">
-                        <h2><i class="fa-solid fa-mountain-city"></i>&nbsp;<span th:text="|${search[0].category}|">관광</span><h3 class="blind">&nbsp;체험관광</h3>
+                        <h2><i class="fa-solid fa-mountain-city"></i>&nbsp;<span th:text="|${place.getCategory()}|">관광</span><h3 class="blind">&nbsp;체험관광</h3>
 
                         <div id="guide" class="section">
                             <h3 class="h3">&nbsp;이용정보</h3>
