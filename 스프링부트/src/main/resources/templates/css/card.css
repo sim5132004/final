@@ -24,7 +24,7 @@
 .ai_card h2 label input[type=text]{ width:88.5%; font:500 20px/24px 'Noto Sans KR',Sans-serif; min-width:100px;display: inline-block; }
 /*모임카드  반응형 처리 */
 @media(max-width:1620px){
-    .ai_card h2 label input[type=text]{ width:70% }
+.ai_card h2 label input[type=text]{ width:70% }
 
 }
 
@@ -47,7 +47,7 @@
 
 .invite.design .card_list_wrap{ width: 100%; display: flex; flex-wrap: wrap; justify-content: center; flex-direction:row;  word-wrap: break-word; }
 
-.ai_card_skin{ position: relative; background: #fff;  width:48%;  margin:0  1% 20px 1%; padding: 0 2%;  border-radius: 5px }
+.ai_card_skin{ position: relative; background: #fff; width:48%;  margin:0  1% 20px 1%; padding: 0 2%;  border-radius: 5px }
 .ai_card_skin:after{ content:""; display: block; clear:both; }
 
 .ai_card_skin > dt.header{ min-height: 120px; color: #fff; font:500 16px/26px 'Noto Sans KR',Sans-serif; text-align: center;  display: flex;justify-content: center;align-items: center; text-shadow: 3px 2px 2px rgba(0,0,0,.5); letter-sapcing:0.5px }
@@ -81,7 +81,7 @@
 .modal_layer_wrap.card .layer_contents > h1{ font:400 18px/24px 'Noto Sans KR',Sans-serif; color: rgba(255,255,255,.8); padding: 0 3px 10px 5px }
 .modal_layer_wrap.card .layer_contents > h1 a.download{ display: inline-block;background:#009900; color: #fff; padding: 3px 10px; text-align: center; font:500 16px/24px 'Noto Sans KR',Sans-serif; border-radius: 3px;  }
 
-
+.modal_layer_wrap.card .ai_card_skin{ width: 100% }
 .modal_layer_wrap.card .ai_card label input:nth-child(2),
 .modal_layer_wrap.card .ai_card label input[type=time]{ width: 130px }
 .modal_layer_wrap.card .ai_card h2{ text-align: center; display: block; height: 60px }
