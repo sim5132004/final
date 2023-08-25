@@ -286,9 +286,16 @@ dl.ai_card > dt h2{  height: 35px; }
 dl.ai_card > dt h2 strong{ display:inline-block;  width:88%; font:600 20px/26px 'Noto Sans KR', SansSerif; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: rgba(0,0,0,.95);  letter-spacing: -1px   }
 
 
-dl.ai_card > dt .area{  display: inline-block;  color:rgba(0,0,0,.8);  text-align: center;  overflow: hidden; vertical-align: top;  border:solid 1px rgba(0,153,0,.4); border-radius:5px; overflow: hidden; background: #fff  }
+dl.ai_card > dt .area{  display: inline-block;  color:rgba(0,0,0,.8);  text-align: center;  overflow: hidden; vertical-align: top;  border:solid 1px rgba(0,0,0,.4); border-radius:5px; overflow: hidden; background: #fff  }
 dl.ai_card > dt .area b{ display: block; padding: 0px 2px; min-width:24px }
-dl.ai_card dt .area b.depth_1{ font:600 14px/24px 'Noto Sans KR', SansSerif; color: #009900 }
+dl.ai_card dt .area b.depth_1{ font:600 14px/24px 'Noto Sans KR', SansSerif; color:#fff; background: rgba(0,0,0,.7)}
+dl.ai_card dt .area b.depth_1.red{ background: #ff0000 }
+dl.ai_card dt .area b.depth_1.orange{ background: #ff8c00 }
+dl.ai_card dt .area b.depth_1.green{ background: #008000 }
+dl.ai_card dt .area b.depth_1.blue{ background: #0000ff }
+dl.ai_card dt .area b.depth_1.deep_blue{ background: #4b0082 }
+dl.ai_card dt .area b.depth_1.purple{ background: #8b00ff }
+
 dl.ai_card dt .area b.depth_2{ background: rgba(0,0,0,.5);  color: #fff; padding: 1px 3px; display: none }
 dl.ai_card:hover  > dt .area{ background: #009900;  }
 dl.ai_card:hover  > dt .area b.depth_1{  color: #fff; }
