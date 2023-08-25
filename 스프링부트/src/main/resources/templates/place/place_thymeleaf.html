@@ -472,15 +472,19 @@
                                     <li class="tel" th:text="${place.tel}">032-930-1234</li>
                                 </ul>
                             </div>
+
                             <!-- 대안 장소 선택_02: 업체 리스트 -->
 
                             <!-- 대안 장소 선택_03: 업체 리스트 -->
                         </dd>
+
                         <dd class="footer">
                             <button class="basic"><i class="fa-solid fa-location-dot"></i> 추천장소 지도보기</button>
-                            <button th:id="${iterStat.count}" class="confirm" onclick="sendSearchInfo(this)"><i class="fa-solid fa-pen-to-square"></i> 모임카드 편집하기</button>
+                            <button type="button" th:id="${iterStat.count}" class="confirm" onclick="sendSearchInfo(this.id)"><i class="fa-solid fa-pen-to-square"></i> 모임카드 편집하기</button>
                         </dd>
                     </dl>
+
+
                     <!-- 추천(조합) 모임카드 #.01 끝 -->
 
                 </div>
@@ -489,8 +493,8 @@
                 <input type="hidden" id="hashTag" name="hashTag">
             </form>
 
-            <form id="sendObject" action="/place" method="post">
-                <input type="hidden" id="object" name="object">
+            <form id="buttonIdForm" action="/place" method="post">
+                <input type="hidden" id="buttonId" name="buttonId">
             </form>
 
             <script th:inline="javascript">
@@ -502,12 +506,16 @@
                     document.getElementById('hashTag').value = element.innerText;
                     document.getElementById('hashTagForm').submit();
                 }
-                function sendSearchInfo(element) {
+                function sendSearchInfo(clicked_id) {
                     // search 객체 정보를 가공하여 URL에 추가하거나 POST 요청으로 전송
-                    const searchOne = element.id;
 
-                    document.getElementById('object').value = searchOne;
-                    document.getElementById('sendObject').submit();
+                    var buttonId = clicked_id
+                    console.log("콘솔로그"+buttonId);
+
+
+
+                    document.getElementById('buttonId').value = buttonId;
+                    document.getElementById('buttonIdForm').submit();
                 }
 
 

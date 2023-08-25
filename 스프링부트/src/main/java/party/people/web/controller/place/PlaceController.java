@@ -42,18 +42,31 @@ public class PlaceController {
                               @RequestParam(value = "address", required = false) String address,
                               @RequestParam(value = "categorySubject", required=false) String categorySubject,
                               @RequestParam(value = "hashTag", required = false) String hashTag,
-                              @RequestParam(value = "object", required = false) Object object,
+                              @RequestParam(value = "buttonId", required = false) String buttonId,
                               Model model){
+
+        HttpSession test = request.getSession(false);
+
+        if(test!=null){
+            List<List<Place>> place2 = (List<List<Place>>) test.getAttribute("검색결과");
+            List<Place> selected = new ArrayList<>();
+            if (buttonId!=null){
+                int numberId = Integer.parseInt(buttonId);
+                selected = place2.get(numberId-1);
+                /* 세션 생성 */
+                HttpSession searchResult = request.getSession();
+                /* "검색결과"라는 키로 세션 값 생성 */
+                searchResult.setAttribute("검색결과",selected);
+                return "redirect:/invite";
+            }
+            log.info("선택된 녀석을 보자"+selected);
+        }
 
         /* side lnb출력용 */
         model.addAttribute("category","place");
 
         /* 검색창 카테고리 출력용 */
         model.addAttribute("category2",categorySubject);
-
-        log.info("재차검증");
-        log.info("오브젝트 확인] "+object);
-        log.info("정말 오브젝트냐");
 
 
         /* 검색 결과를 출력하는 로직 */
@@ -143,14 +156,16 @@ public class PlaceController {
                 finalForm.add(midForm);
             }
             log.info("searchPlace] " + finalForm);
+            HttpSession searchResult = request.getSession();
+            /* "검색결과"라는 키로 세션 값 생성 */
+            searchResult.setAttribute("검색결과",finalForm);
 
             /* 해당 리스트를 타임리프단에 전달 */
             model.addAttribute("searchResult", finalForm);
 
-            /* 세션 생성 */
-            HttpSession searchResult = request.getSession();
-            /* "검색결과"라는 키로 세션 값 생성 */
-            searchResult.setAttribute("검색결과",finalForm);
+
+
+
         } else {
             List<SearchResult>allResult = searchInputInterface.loadAll();
             Random random = new Random();
@@ -195,6 +210,7 @@ public class PlaceController {
             }
 
         }
+
 
 
         // place페이지 오른쪽 카드세트 번호에 글자 색 리스트

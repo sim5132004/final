@@ -13,17 +13,17 @@ import party.people.domain.InviteCard;
 import party.people.domain.Place;
 import party.people.repository.InviteCard.InviteCardInterface;
 import party.people.repository.place.PlaceInterface;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static party.people.web.controller.category.CategoryController.loginCheck;
 
-import java.util.ArrayList;
-import java.util.List;
-
-//@Controller
+@Controller
 @RequiredArgsConstructor
 @Slf4j
-public class CategoryController2 {
+public class CategoryController_backup {
 
     private final PlaceInterface placeInterface;
     private final InviteCardInterface inviteCardInterface;
@@ -60,14 +60,15 @@ public class CategoryController2 {
 
         place12.keyWord5();
 
-        List<Place> pl = new ArrayList<>();
+        Place pl = new Place();
 
 
         HttpSession test = request.getSession(false);
         if (test!=null) {
 
 
-            List<List<Place>> place2 = (List<List<Place>>) test.getAttribute("검색결과");
+            List<Place> place2 = (List<Place>) test.getAttribute("검색결과");
+            log.info("세션에서 받아온 정보 확인 "+place2);
 
             pl= place2.get(0);
 
@@ -79,7 +80,7 @@ public class CategoryController2 {
 
         if (test!=null) {
             model.addAttribute("category2", pl);
-            model.addAttribute("keylist",pl.get(0).keyWordTitle());
+            model.addAttribute("keylist",pl.keyWordTitle());
         }else{
 
             model.addAttribute("category2", placeList2);
