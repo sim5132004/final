@@ -49,7 +49,7 @@ public class CategoryController2 {
         placeList2.add(place12);
         placeList2.add(place22);
         placeList2.add(place32);
-
+        List<Place> pl = new ArrayList<>();
 
 
         HttpSession test = request.getSession(false);
@@ -64,16 +64,22 @@ public class CategoryController2 {
             System.out.println(place2.getClass());
 
             System.out.println(place2.get(0).getClass());
-            List<Place> pl = new ArrayList<>();
+
             pl= place2.get(0);
             System.out.println(pl);
 
-            Place place0= placeInterface.idSearch(pl.get(0).getId());
-            Place place3 = placeInterface.idSearch(pl.get(1).getId());
+            for(Place x:pl){
+                System.out.println("hihi");
+                System.out.println(x);
+            }
 
-            Place place4 = placeInterface.idSearch(pl.get(2).getId());
-            placeList.add(place3);
-            placeList.add(place4);
+
+//            Place place0= placeInterface.idSearch(pl.get(0).getId());
+//            Place place3 = placeInterface.idSearch(pl.get(1).getId());
+//
+//            Place place4 = placeInterface.idSearch(pl.get(2).getId());
+//            placeList.add(place3);
+//            placeList.add(place4);
 
 
 
@@ -84,11 +90,12 @@ public class CategoryController2 {
 
 
         if (test!=null) {
-            model.addAttribute("category2", placeList);
+            model.addAttribute("category2", pl);
         }else{
 
             model.addAttribute("category2", placeList2);
         }
+        System.out.println(pl);
 
         /* side lnb 출력용 */
 //        if(request != null){
