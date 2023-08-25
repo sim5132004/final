@@ -342,6 +342,8 @@ dl.ai_card dd.content_data{
     scrollbar-track-color:rgba(255,255,255,.1);/*스크롤영역*/
     /* overflow-x: auto; */
 }
+.analisys dl.ai_card dt{ border-bottom: dotted 2px rgba(0,0,0,.4); padding-bottom: 5px }
+.analisys dl.ai_card dt h2{ color: #0b5ed7; font-size: 20px; letter-spacing: -1px }
 dl.ai_card dd.content_data > img{ max-width: 100% }
 dl.ai_card dd.content_data::-webkit-scrollbar{opacity:1;width:5px; height: 15px;}/*스크롤바*/
 dl.ai_card dd.content_data::-webkit-scrollbar-button {width:0; height: 0;}  /*스크롤바 버튼(아래 위 화살표)*/
