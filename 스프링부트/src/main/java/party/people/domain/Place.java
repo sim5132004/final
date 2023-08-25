@@ -40,17 +40,17 @@ public class Place {
     public List<String> viewList(){
         List a = new ArrayList<>();
 
-        if(address != null)
+//        if(address != null)
         a.add(address);
-        else a.add("_");
+//        else a.add("_");
 
-        if(runTimeInfo != null)
+//        if(runTimeInfo != null)
             a.add(runTimeInfo);
-        else a.add('_');
+//        else a.add('_');
 
-        if(parkingInfo != null)
+//        if(parkingInfo != null)
             a.add("주차시설 : "+parkingInfo);
-        else a.add('_');
+//        else a.add('_');
 
         return a;
     }
