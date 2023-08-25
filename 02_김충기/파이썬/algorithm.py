@@ -27,7 +27,7 @@ data_for_recommend.fillna('', inplace=True)
 data_for_recommend['combined'] = data_for_recommend['카테고리'] + ' ' + data_for_recommend['키워드리스트']
 
 # TF-IDF 벡터화
-tfidf_vectorizer = TfidfVectorizer(ngram_range=(1, 3))  # 텍스트데이터를 TF_IDF 행렬로 변환 ngram_range 파라미터를 통해서 구성 범위 설정
+tfidf_vectorizer = TfidfVectorizer(ngram_range=(1, 1))  # 텍스트데이터를 TF_IDF 행렬로 변환 ngram_range 파라미터를 통해서 구성 범위 설정
 # "beautiful view"라는 문장이 있다면 ngram_range=(1, 3)의 경우 "beautiful", "view", "beautiful view" 등의 토큰이 생성
 
 tfidf_matrix = tfidf_vectorizer.fit_transform(data_for_recommend['combined'])
