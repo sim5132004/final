@@ -95,8 +95,9 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
 
         if distances:
             max_sim_score = max(sim_scores[i][1] for i in place_index if sim_scores[i][1] < 1.0)
-            if max_sim_score < 0.4:
-                continue
+            if 추천카테고리 or 추천키워드 or 추천주소 :
+                if max_sim_score < 0.4:
+                    continue
 
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         # 코사인 유사도를 유사도값 기준으로 내림차순 정렬한다.
@@ -187,15 +188,19 @@ for item in recommended_distance[:3]:
             print(f"{data_recommend.loc[i]['제목']}: {score:.4f}")
             print(f"카테고리: {data_recommend.iloc[i]['카테고리']}")
             print(f"주소: {data_recommend.iloc[i]['주소']}")
-            print(
-                f"거리: {haversine_distance(data_recommend.iloc[idx]['위도'], data_recommend.iloc[idx]['경도'], data_recommend.iloc[i]['위도'], data_recommend.iloc[i]['경도']):.2f} km\n")
+            for i, score in filtered_sim_scores[:top_n]:
+                print(f"{data_recommend.loc[i]['제목']}: {score:.4f}")
+                print(f"카테고리: {data_recommend.iloc[i]['카테고리']}")
+                print(f"주소: {data_recommend.iloc[i]['주소']}")
+                print(
+                    f"거리: {haversine_distance(data_recommend.iloc[idx]['위도'], data_recommend.iloc[idx]['경도'], data_recommend.iloc[i]['위도'], data_recommend.iloc[i]['경도']):.2f} km\n")
 
-        print("\n")
+            print("\n")
 
-print(cate_list)
-baseString = ''
-for cate in cate_list:
-    for ca in cate:
-        baseString=baseString+ca.strip()+','
-    baseString=baseString+'/'
-finalString = baseString.rstrip('/').rstrip(',')
+        print(cate_list)
+        baseString = ''
+        for cate in cate_list:
+            for ca in cate:
+                baseString = baseString + ca.strip() + ','
+            baseString = baseString + '/'
+        finalString = baseString.rstrip('/').rstrip(',')
