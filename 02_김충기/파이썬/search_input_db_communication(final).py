@@ -24,7 +24,7 @@ while True:
     # DB 데이터 쿼리를 날려 LIST로 가져온다
     new_changes = check_cdc_changes()
     old = new_changes
-    # 일정 시간 동안 대기 (예: 5초)
+    # 일정 시간 동안 대기 (예: 1초)
     time.sleep(1)
     new_changes = check_cdc_changes()
     if old!=new_changes:
