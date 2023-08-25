@@ -101,6 +101,9 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         # 코사인 유사도를 유사도값 기준으로 내림차순 정렬한다.
 
+        # 자기 자신을 제외하고, 유사도가 0.3 이상인 것들만 추출하여 filtered_sim_scores에 추가
+        filtered_sim_scores = [(i, score) for i, score in sim_scores if score >= 0.3 and i != idx]
+
         place_index = [i[0] for i in sim_scores if i[0] != idx]  # 제목이 같은 장소는 제외
         # 현재 장소를 제외하고, 다른 장소들의 인덱스를 place_index에 저장
 
@@ -175,7 +178,7 @@ for item in recommended_distance[:3]:
         sim_scores = list(enumerate(cosine_sim[idx]))
 
         # 유사도가 0.4 이상인 것들만 추출하여 filtered_sim_scores에 추가
-        filtered_sim_scores = [(i, score) for i, score in sim_scores if score >= 0.3 and i != idx]
+        # filtered_sim_scores = [(i, score) for i, score in sim_scores if score >= 0.3 and i != idx]
 
         # 유사도 기준 내림차순으로 정렬
         filtered_sim_scores.sort(key=lambda x: x[1], reverse=True)
