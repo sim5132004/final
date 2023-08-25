@@ -110,7 +110,7 @@ public class CategoryController {
 
 
 //    @GetMapping("invite")
-    public String goInvite(Model model){
+    public String goInvite(HttpServletRequest request, Model model){
 
         Place place1 = placeInterface.idSearch(1L);
         Place place2 = placeInterface.idSearch(2L);

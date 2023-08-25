@@ -52,9 +52,9 @@ public class CategoryController2 {
 
 
 
+        HttpSession test = request.getSession(false);
+        if (test!=null) {
 
-        if (request!=null) {
-            HttpSession test = request.getSession(false);
 
             List<List<Place>> place2 = (List<List<Place>>) test.getAttribute("검색결과");
 
@@ -83,7 +83,7 @@ public class CategoryController2 {
         }
 
 
-        if (request!=null) {
+        if (test!=null) {
             model.addAttribute("category2", placeList);
         }else{
 
