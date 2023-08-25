@@ -88,6 +88,16 @@ $(function(){
     //  $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
 });
 
+
+//수정중..
+// document.addEventListener("DOMContentLoaded", function() {
+//     var h1Element = document.getElementById("goddem");
+//
+//     h1Element.textContent = [[${place.getId}]];
+// });
+//
+
+
 $(".place_info_layer.item_11").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");

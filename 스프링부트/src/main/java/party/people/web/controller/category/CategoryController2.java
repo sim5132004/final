@@ -92,6 +92,7 @@ public class CategoryController2 {
 
         if (test!=null) {
             model.addAttribute("category2", pl);
+            model.addAttribute("keylist",pl.get(0).keyWord5());
         }else{
 
             model.addAttribute("category2", placeList2);

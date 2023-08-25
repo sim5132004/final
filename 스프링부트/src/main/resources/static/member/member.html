@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="robots" content="ALL"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>MEMBERSHIP > PARTY PEOPLE</title>
+  <title>MYPAGE > PARTY PEOPLE</title>
   <meta name="Description" content="인천시 다양한 모임주제에 맞는(회식/데이트/동호회) AI추천 카테고리에 대한 나만의 초대카드를 만들어보세요."/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
   <link rel="stylesheet" type="text/css" href="../css/reset.css" >
@@ -18,7 +18,7 @@
   <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
 </head>
 <body>
-<div class="container invite">
+<div class="container invite mypage">
   <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
   <div class="modal_layer_wrap">
     <div class="layer_box"></div>
@@ -56,20 +56,19 @@
       <dd><a href="category"><i class="fa-regular fa-compass"></i> Category</a></dd>
       <dd><a href="invite"><i class="fa-solid fa-people-group"></i> Invite</a></dd>
       <dd><a href="analysis"><i class="fa-solid fa-chart-line"></i> Analysis</a></dd>
-      <dd class="mypage active"><a href="mypage"><i class="fa-regular fa-user"></i> My-page</a></dd>
+      <dd class="mypage active"><a href="mypage"><i class="fa-solid fa-user"></i> My page</a></dd>
     </dl>
     <ul class="membership">
       <li><a href="#" onclick="('로그인')"><i class="fa-solid fa-right-to-bracket"></i> 로그인</a></li>
       <li><a href="#" onclick="('회원가입')"><i class="fa-solid fa-user-plus"></i> 회원가입</a></li>
     </ul>
+
     <!-- #### 02-1. 좌측 고정 업종별 아이콘 메뉴 끝 -->
     <hr class="skip"/>
     <!-- #### 02-2. 좌측 on/off 페이지 서브 메뉴 노출 시작 -->
-
     <div class="lnb">
       <!-- 02-2-1. 대시보드 집계 그래프 노출 영역 시작 -->
-      <h2>My Page
-        <div class="standard_cond">
+      <h2><div class="standard_cond">
 <!--    //로그인 전에 옆의 멘트 나오게 처리해주세요. //      회원가입을 하시면,<br>다양한 혜택이 쏟아집니다.-->
           <b>tester</b>님,<br> 좋은하루 되세요.
         </div>
@@ -86,7 +85,6 @@
         <li><a href="#"><i class="fa-solid fa-map-location-dot"></i> <span>회원탈퇴</span></a></li>
       </ul>
     </div>
-
     <!-- #### 02-2 좌측 on/off 페이지 서브 메뉴 노출 끝 -->
   </div>
   <!-- ####### 02. LNB END ########## -->
@@ -95,14 +93,16 @@
   <section class="contents_wrap">
 
     <!-- #### 03-1.우측 본문 영역 시작 -->
-    <div class="right_contents area">
-      <div class="right_contents_lpadding"></div>
+    <div class="left_contents">
+      <div class="left_contents_padding_left"></div>
+      <div class="left_contents_center">
       <div class="page_title">
+        <div class="right_contents_lpadding"></div>
         <h1>돈비어<!-- ## 페이지 타이틀 ##  좌측 메뉴 .active 되어 있는 메뉴명 제이쿼리 클론하여 가져옴 --> </h1>
         <!-- ## 페이지 네비 경로 ## -->
         <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
       </div>
-
+      </div>
     </div>
     <!-- #### 03-1.우측 본문 영역 끝 -->
   </section>
@@ -115,6 +115,7 @@
     </footer>
   </div>
   <a href="#" class="to_top"><i class="fa-solid fa-arrow-up"></i> 맨위로</a>
+  <script src="../js/ui_basic.js"></script>
   <!-- ####### 04. FOOTER END ####### -->
 </div>
 </body>
