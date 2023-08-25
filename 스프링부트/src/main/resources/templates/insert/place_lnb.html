@@ -34,4 +34,12 @@
         console.log('야호1')
     }
 
+    var address = [[${address}]]
+    console.log("지역정보"+address)
+    function activeCategory(address){
+        $('dd').removeClass('active');
+        $('dd.'+address).addClass('active')
+    }
+    activeCategory(category)
+
 </script>
