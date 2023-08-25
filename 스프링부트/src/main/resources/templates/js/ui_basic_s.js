@@ -15,10 +15,20 @@ $(function(){
     // 업체 상세정보 레이어 노출
 });
 // 업체 상세버튼 클릭시, 상세 정보 페이지 모달 레이어 노출
-$(".place_info_layer").click(function(){
-    //$("body").hide();
+// $(".place_info_layer").click(function(){
+//     //$("body").hide();
+//     $(".modal_layer_wrap").addClass("show");
+//     $(".layer_box a.close_layer,.layer_bg").click(function(){
+//         $(".modal_layer_wrap").removeClass("show");
+//     });
+// });
+
+
+$(".modal_layer_wrap").on("click", ".place_info_layer", function() {
     $(".modal_layer_wrap").addClass("show");
-    $(".layer_box a.close_layer,.layer_bg").click(function(){
-        $(".modal_layer_wrap").removeClass("show");
-    });
+});
+
+// 닫기 버튼 및 배경 클릭 시 모달 닫기
+$(".modal_layer_wrap").on("click", ".layer_box a.close_layer, .layer_bg", function() {
+    $(".modal_layer_wrap").removeClass("show");
 });

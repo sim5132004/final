@@ -7,6 +7,7 @@
     <title>PLACE > PARTY PEOPLE</title>
     <meta name="Description" content="인천광역시 소재의 다양한 모임취향에 맞는(회식/데이트/동호회) AI추천 모임장소에 대한 상세정보를 제공합니다."/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" th:href="@{/css/testyo.css}" >
     <link rel="stylesheet" type="text/css" href="../css/reset.css" >
     <link rel="stylesheet" type="text/css" href="../css/layout.css" >
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
@@ -15,6 +16,7 @@
     <!--구글 차트 관련 스크립트-->
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
+<!--    <script th:inline="javascript" src="../js/ui_basic.js"></script>-->
 
 
     <!--    카카오 지도 스타일 시작 -->
@@ -81,7 +83,7 @@
     <!-- ####### 01. HEADER END ####### -->
     <hr class="skip"/>
     <!-- ####### 02. LNB START ######### -->
-<!--    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>-->
+    <!--    <div class="lnb_wrap" th:insert="~{insert/lnb_wrap}"></div>-->
     <div class="lnb" th:if="${client eq null}" th:insert="~{insert/lnb_wrap}"></div>
     <div class="lnb" th:if="${client != null}" th:insert="~{insert/lnb_wrap_login}"></div>
     <!-- ####### 02. LNB END ########## -->
@@ -351,17 +353,17 @@
                 <!-- ## 페이지 네비 경로 ## -->
                 <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
             </div>
-<!--            <div class="paging">-->
-<!--                <a href="#" class="btn_first"></a>-->
-<!--                <a href="#" class="btn_prev"></a>-->
-<!--                <a href="#" class="active">1</a>-->
-<!--                <a href="#">2</a>-->
-<!--                <a href="#">3</a>-->
-<!--                <a href="#">4</a>-->
-<!--                <a href="#">5</a>-->
-<!--                <a href="#" class="btn_next"></a>-->
-<!--                <a href="#" class="btn_last"></a>-->
-<!--            </div>-->
+            <!--            <div class="paging">-->
+            <!--                <a href="#" class="btn_first"></a>-->
+            <!--                <a href="#" class="btn_prev"></a>-->
+            <!--                <a href="#" class="active">1</a>-->
+            <!--                <a href="#">2</a>-->
+            <!--                <a href="#">3</a>-->
+            <!--                <a href="#">4</a>-->
+            <!--                <a href="#">5</a>-->
+            <!--                <a href="#" class="btn_next"></a>-->
+            <!--                <a href="#" class="btn_last"></a>-->
+            <!--            </div>-->
             <form>
                 <div class="card_list_wrap">
                     <!-- 추천(조합) 모임카드 #.01 시작 -->
@@ -370,21 +372,22 @@
                             <h2 class="subject_keyword">
                                 <span class="area">
 <!--<<<<<<< Updated upstream-->
-<!--                                    th:color="${colors[iterStat.count]}-->
-<!--                                    <b class="depth_1" th:text="${iterStat.count}">1</b>-->
-<!--                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>-->
-<!--=======-->
-<!--                                    <b class="depth_1" th:text="${iterStat.count}" th:color="${colors[(iterStat.count)-1]}">1</b>-->
+                                    <!--                                    th:color="${colors[iterStat.count]}-->
+                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}">1</b>-->
+                                    <!--                                    <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>-->
+                                    <!--=======-->
+                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}" th:color="${colors[(iterStat.count)-1]}">1</b>-->
 
-<!--                                    컨트롤러에서 colors리스트 받은걸 iterStat.count 순으로 (근데 iterStat.count는 1부터라서 -1 함)  -->
-                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>
+                                    <!--                                    컨트롤러에서 colors리스트 받은걸 iterStat.count 순으로 (근데 iterStat.count는 1부터라서 -1 함)  -->
+                                    <!--                                    <b class="depth_1" th:text="${iterStat.count}" th:style="'color: ' + ${colors[iterStat.count - 1]}">1</b>-->
+                                    <b th:class="'depth_1 ' + ${colors[iterStat.count - 1]}"  th:text="${iterStat.count}" >1</b>
                                     <b class="depth_2" th:text="${search[0].address.substring(search[0].address.indexOf(' ') + 1, search[0].address.indexOf(' ', search[0].address.indexOf(' ') + 1))}">중구</b></span>
-<!--&gt;>>>>>> Stashed changes-->
+                                <!--&gt;>>>>>> Stashed changes-->
                                 </span>
                                 <!--                                    <b class="depth_2"-->
-<!--                                       th:text="${search[0].address.substring-->
-<!--                                       (search[0].address.indexOf(' ')+1,-->
-<!--                                       search[0].address.indexOf(search[0].address.indexOf(' ')+1,' '))}">중구</b></span>-->
+                                <!--                                       th:text="${search[0].address.substring-->
+                                <!--                                       (search[0].address.indexOf(' ')+1,-->
+                                <!--                                       search[0].address.indexOf(search[0].address.indexOf(' ')+1,' '))}">중구</b></span>-->
                                 <strong th:text="|${search[0].category}/${search[0].smallCategory}/${search[0].title}|">데이트/동인천/차이나타운/동인천/차이나타운</strong>
                             </h2>
                             <p class="keyword_recommand"><!-- 연관 키워드 3개 -->
@@ -400,16 +403,18 @@
                         </dt>
                         <dd class="body">
                             <!-- 대안 장소 선택_01: 업체 리스트 -->
-                            <div class="card_list" th:each="place :${search}">
+                            <div class="card_list" th:each="place, iStat :${search}">
                                 <ul class="summary_card">
                                     <li class="subject">
-<!--                                        <b><span class="matching_keyword" th:text="${split_search.title}">돈비어</span>천가</b>-->
+                                        <!--                                        <b><span class="matching_keyword" th:text="${split_search.title}">돈비어</span>천가</b>-->
                                         <b><span th:text="${place.title}">돈비어천가</span></b>
                                         <span class="category"><b class="depth_1" th:text="${place.category}">음식</b><b class="depth_2" th:text="${place.smallCategory}">한식</b></span>
                                     </li>
                                     <li class="thumb"><img src="http://post.phinf.naver.net/MjAxOTExMjdfMjU1/MDAxNTc0ODU4NzA3NDE4.cjVEQJahI7WG4lpINfdBrR7bkSPwCfFUIv_2leVYckkg.NBlTAwviZVXDJ_IPraQF0HC_l2jrnUV01rd3Bwkgydwg.JPEG/IanVqhid6dpa7OUrwfq7lLuE4OJE.jpg" th:src="${place.imageAdd1}" alt="돈비어천가"></li>
                                     <li class="btn_wrap">
-                                        <button>상세정보</button>
+                                        <a href="#" th:class="|place_info_layer item_${iterStat.count}${iStat.count}|">상세정보</a>
+<!--                                        <button href="#" th:class="|place_info_layer item_${place.getId()}|">상세정보</button>-->
+                                        <div th:class="|layer_contents item_${iterStat.count}${iStat.count}|" th:insert="~{insert/place_info}"></div>
                                         <button>지도보기</button>
                                     </li>
                                     <li class="addr" th:text="${place.address}">인천 중구 개항로 63-2</li>
@@ -452,7 +457,7 @@
     <hr class="skip"/>
     <!-- ####### 04. FOOTER START ####### -->
     <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
-    <!-- ####### 04. FOOTER END ####### -->
-</div>
+        <!-- ####### 04. FOOTER END ####### -->
+    </div>
 </body>
 </html>

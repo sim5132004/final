@@ -96,7 +96,7 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
         if distances:
             max_sim_score = max(sim_scores[i][1] for i in place_index if sim_scores[i][1] < 1.0)
             if 추천카테고리 or 추천키워드 or 추천주소 :
-                if max_sim_score < 0.4:
+                if max_sim_score < 0.3:
                     continue
 
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
@@ -108,10 +108,10 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
         if 추천카테고리 or 추천키워드 or 추천주소:  # 검색 조건이 있는 경우에만 추가로 걸러주기
             filtered_sim_scores = [(i, score) for i, score in filtered_sim_scores if
                                    data_recommend.iloc[i]['카테고리'] == 추천카테고리
-                                   or 추천키워드 in data_recommend.iloc[i]['키워드리스트']
-                                   or 추천주소 in data_recommend.iloc[i]['주소']]
+                                   or (추천키워드 and 추천키워드 in data_recommend.iloc[i]['키워드리스트'])
+                                   or (추천주소 and 추천주소 in data_recommend.iloc[i]['주소'])]
 
-        place_index = [i[0] for i in sim_scores if i[0] != idx]  # 제목이 같은 장소는 제외
+        place_index = list(i[0] for i in sim_scores if i[0] != idx)  # 제목이 같은 장소는 제외
         # 현재 장소를 제외하고, 다른 장소들의 인덱스를 place_index에 저장
 
         for i in place_index[:top_n]:
@@ -124,7 +124,7 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
             distance = haversine_distance(lat1, lon1, lat2, lon2)
             # haversine_distance 함수를 호출하여 현재 장소와 다른 장소 간의 거리를 계산, 거리 정보를 distance 변수에 저장
 
-            if distance is not None and distance < 5:
+            if distance is not None and distance < 10 and distance !=0 :
                 # 현재 장소와 추천한 장소의 거리가 0이 아닌 경우에만 실행
                 keywords = data_recommend.iloc[i]['키워드리스트'].split(',')[:5] if data_recommend.iloc[i]['키워드리스트'] else []
                 # 현재 추천한 장소의"키워드 리스트의" 값을 가져와서 쉼표로 분리한다. 최대 5개까지의 키워드만 추출함.
@@ -166,7 +166,7 @@ for item in recommended_distance[:3]:
         all_keywords.extend(keywords)
 
     # 키워드 빈도수 계산 및 상위 5개 추출
-    keyword_counts = pd.Series(all_keywords).value_counts()
+    keyword_counts = pd.Series(all_keywords, dtype=object).value_counts()
     top_keywords = keyword_counts.head(10).index.tolist()
     top_keywords.sort(reverse=True)
 

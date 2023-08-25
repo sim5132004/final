@@ -9,8 +9,7 @@ $(function(){
     // 페이지 네비게이션 경로 처리
     $(".fixed_quick_menu dd.active a").clone().appendTo(".page_path");
     $(".sub_menu_list li a.active span").clone().appendTo(".page_path");
-    $(".page_path > span").prepend("인천 ");
-    //$(".right_contents.area ul.summary_card input[type=checkbox]").attr(disabled);
+    $(".right_contents.area ul.summary_card input[type=checkbox]").attr(disabled);
     // 체크 박스 비활성화
     //$(".right_contents.area ul.summary_card input[type=checkbox]").prop("disabled",true);
     // 업체 상세정보 레이어 노출

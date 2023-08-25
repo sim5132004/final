@@ -57,7 +57,7 @@ public class PlaceController {
             model.addAttribute("searchText", address);
         } else {
             input.setAddress("");
-            model.addAttribute("address","");
+            model.addAttribute("address","null");
 
         }
         if (searchForm!=null) {

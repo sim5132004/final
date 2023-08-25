@@ -9,7 +9,8 @@ $(function(){
     // 페이지 네비게이션 경로 처리
     $(".fixed_quick_menu dd.active a").clone().appendTo(".page_path");
     $(".sub_menu_list li a.active span").clone().appendTo(".page_path");
-    $(".right_contents.area ul.summary_card input[type=checkbox]").attr(disabled);
+    $(".page_path > span").prepend("인천 ");
+    //$(".right_contents.area ul.summary_card input[type=checkbox]").attr(disabled);
     // 체크 박스 비활성화
     //$(".right_contents.area ul.summary_card input[type=checkbox]").prop("disabled",true);
     // 업체 상세정보 레이어 노출
@@ -23,9 +24,15 @@ $(".place_info_layer.item_1").click(function(){
     $(".layer_contents.item_1").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_1").remove();
+        $(".modal_layer_wrap.detail .layer_contents.item_2").remove();
     });
 });
+
+
+
+
+
+
 
 $(".place_info_layer.item_2").click(function(){
     //$("body").hide();
@@ -79,4 +86,109 @@ $(function(){
     //  $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
     //  $(".modal_layer_wrap.card .form_info .skin").remove();
     //  $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
+});
+
+$(".place_info_layer.item_11").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_11").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_11").remove();
+    });
+});
+
+$(".place_info_layer.item_12").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_12").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_12").remove();
+    });
+});
+
+
+
+
+$(".place_info_layer.item_13").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_13").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_13").remove();
+    });
+});
+
+
+
+$(".place_info_layer.item_21").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_21").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_21").remove();
+    });
+});
+
+$(".place_info_layer.item_22").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_22").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_22").remove();
+    });
+});
+
+
+
+
+
+
+$(".place_info_layer.item_23").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_23").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_23").remove();
+    });
+});
+
+
+
+
+$(".place_info_layer.item_3_3").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_3_3").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_3_3").remove();
+    });
+});
+
+
+$(".place_info_layer.item_3_2").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_3_2").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_3_2").remove();
+    });
+});
+
+
+$(".place_info_layer.item_3_1").click(function(){
+    //$("body").hide();
+    $(".modal_layer_wrap.detail").addClass("show");
+    $(".layer_contents.item_3_1").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_box a.close_layer,.layer_bg").click(function(){
+        $(".modal_layer_wrap.detail").removeClass("show");
+        $(".modal_layer_wrap.detail .layer_contents.item_3_1").remove();
+    });
 });
