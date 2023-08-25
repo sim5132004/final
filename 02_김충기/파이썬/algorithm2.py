@@ -143,8 +143,8 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
 
 # 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행
 추천카테고리 = ''  # None으로 두면 카테고리를 사용하지 않음
-추천키워드 = '맛집'  # None으로 두면 키워드를 사용하지 않음
-추천주소 = ''  # None으로 두면 주소를 사용하지 않음
+추천키워드 = ''  # None으로 두면 키워드를 사용하지 않음
+추천주소 = '부평구'  # None으로 두면 주소를 사용하지 않음
 top_n = 3
 recommended_distance = recommend_distance(data_recommend, 추천카테고리, 추천키워드, 추천주소, top_n)
 keywords_str = ''
@@ -159,7 +159,7 @@ for item in recommended_distance[:3]:
 
     # 키워드 빈도수 계산 및 상위 5개 추출
     keyword_counts = pd.Series(all_keywords).value_counts()
-    top_keywords = keyword_counts.head(10).index.tolist()
+    top_keywords = keyword_counts.head(9).index.tolist()
     top_keywords.sort(reverse=True)
 
     keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
