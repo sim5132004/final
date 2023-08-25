@@ -55,6 +55,10 @@ public class PlaceController {
         /* 우리의 검색 로직에는 3가지(카테고리, 키워드, 주소)가 들어가니 SearchInput 클래스에 넣는다 */
         SearchInput input = new SearchInput();
         if (address!=null) {
+            if (address.equals("null")) {
+                model.addAttribute("address",address);
+                address="";
+            }
             input.setAddress(address);
             model.addAttribute("address",address);
             model.addAttribute("searchText", address);
