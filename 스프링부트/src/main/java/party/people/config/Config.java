@@ -92,4 +92,6 @@ public class Config {
     public SearchInputInterface searchInputInterface() {
         return new SearchInputRepository(searchInputMapper);
     }
+
+
 }

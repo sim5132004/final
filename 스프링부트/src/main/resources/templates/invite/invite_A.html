@@ -17,7 +17,8 @@
     <!--구글 차트 관련 스크립트-->
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <script type="text/javascript" src="../js/html2canvas.js"></script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>-->
 </head>
 <body>
 
@@ -44,6 +45,7 @@
     </div>
 
     <script th:inline="javascript">
+
         let captureDiv = document.getElementById('x3');
         let downloadButton = document.getElementById('download');
         setTimeout(function() {
@@ -55,16 +57,17 @@
             }, 3000);
             html2canvas(captureDiv,
                 {
-                    allowTaint: false,
-                    useCORS: false,// CORS 를 사용하여 시도 하 여 서버에서 이미지 업로드
-                    imageTimeout: 10000,
-                    // foreignObjectRendering: true,
-                    logging: true,
+                    allowTaint: true,
+                    useCORS: true,// CORS 를 사용하여 시도 하 여 서버에서 이미지 업로드
+                    // imageTimeout: 10000,
+                    // foreignObjectRendering: true
+                    logging: true
                     // removeContainer: true,
-                }
-            ).then(canvas => {
+                })
+            .then(canvas => {
                 saveImg(canvas.toDataURL('image/jpg'), 'your_card.jpg');
             });
+
         });
 
         const saveImg = (uri, filename) => {
@@ -248,7 +251,10 @@
                                             <b th:text="${place.getTitle()}">돈비어천가c</b>
                                             <span class="category"><b class="depth_1"  th:text="${place.getCategory()}">음식</b><b class="depth_2"  th:text="${place.getSmallCategory()}">한식</b></span>
                                         </li>
-                                        <li class="thumb"><img th:src="${place.getImageAdd1()}" alt="돈비어천가"></li>
+                                        <li class="thumb">
+                                            <img th:src="${place.getImageAdd1()}" alt="돈비어천가">
+
+                                        </li>
                                         <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
                                         <li class="tel" th:text="${place.getTel()}">032-930-1234 </li>
                                         <a href="#" th:class="|place_info_layer item_${iterStat.count}|">상세정보</a>
