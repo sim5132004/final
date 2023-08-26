@@ -73,7 +73,10 @@ public class CategoryController {
 
                 finalForm.add(midForm);
             }
-            log.info("searchPlace] " + finalForm);
+
+            HttpSession searchResult = request.getSession();
+            /* "검색결과"라는 키로 세션 값 생성 */
+            searchResult.setAttribute("검색결과",finalForm);
 
             /* 해당 리스트를 타임리프단에 전달 */
             model.addAttribute("searchResult", finalForm);

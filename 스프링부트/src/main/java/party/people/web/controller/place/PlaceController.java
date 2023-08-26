@@ -65,7 +65,7 @@ public class PlaceController {
                 /* 세션 생성 */
                 HttpSession searchResult = request.getSession();
                 /* "검색결과"라는 키로 세션 값 재생성 */
-                searchResult.setAttribute("검색결과",selected);
+                searchResult.setAttribute("선택결과",selected);
                 /* 인바이트 페이지로 사용자 리다이렉트 */
                 return "redirect:/invite";
             }
@@ -213,6 +213,10 @@ public class PlaceController {
                     finalForm.add(midForm);
                 }
                 log.info("searchPlace] " + finalForm);
+
+                HttpSession searchResult = request.getSession();
+                /* "검색결과"라는 키로 세션 값 생성 */
+                searchResult.setAttribute("검색결과",finalForm);
 
                 /* 해당 리스트를 타임리프단에 전달 */
                 model.addAttribute("searchNull","null");

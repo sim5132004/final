@@ -7,6 +7,8 @@ import java.util.List;
 
 @Data
 public class Place {
+
+    /* 필드  */
     private Long id;
     private String category;
     private String smallCategory;
@@ -34,8 +36,41 @@ public class Place {
     private String imageAdd1;
     private String imageAdd2;
 
+
+    /* 기본 생성자 */
     public Place() {}
 
+    /* 생성자 */
+    public Place(Long id, String category, String smallCategory, String title, String address, String tel, Float latitude, Float longitude, String petInfo, String parkingInfo, String restDayInfo, String runTimeInfo, String feeInfo, String toiletInfo, String languageInfo, String insuranceInfo, String salesItemInfo, String amenityInfo, String menuInfo, String wrapInfo, String checkinInfo, String checkoutInfo, String otherAmenityInfo, String keyword, String imageAdd1, String imageAdd2) {
+        this.id = id;
+        this.category = category;
+        this.smallCategory = smallCategory;
+        this.title = title;
+        this.address = address;
+        this.tel = tel;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.petInfo = petInfo;
+        this.parkingInfo = parkingInfo;
+        this.restDayInfo = restDayInfo;
+        this.runTimeInfo = runTimeInfo;
+        this.feeInfo = feeInfo;
+        this.toiletInfo = toiletInfo;
+        this.languageInfo = languageInfo;
+        this.insuranceInfo = insuranceInfo;
+        this.salesItemInfo = salesItemInfo;
+        this.amenityInfo = amenityInfo;
+        this.menuInfo = menuInfo;
+        this.wrapInfo = wrapInfo;
+        this.checkinInfo = checkinInfo;
+        this.checkoutInfo = checkoutInfo;
+        this.otherAmenityInfo = otherAmenityInfo;
+        this.keyword = keyword;
+        this.imageAdd1 = imageAdd1;
+        this.imageAdd2 = imageAdd2;
+    }
+
+    /* 매서드 */
 
     public List<String> viewList() {
         List a = new ArrayList<>();
@@ -156,33 +191,6 @@ public class Place {
 
 
 
-    public Place(Long id, String category, String smallCategory, String title, String address, String tel, Float latitude, Float longitude, String petInfo, String parkingInfo, String restDayInfo, String runTimeInfo, String feeInfo, String toiletInfo, String languageInfo, String insuranceInfo, String salesItemInfo, String amenityInfo, String menuInfo, String wrapInfo, String checkinInfo, String checkoutInfo, String otherAmenityInfo, String keyword, String imageAdd1, String imageAdd2) {
-        this.id = id;
-        this.category = category;
-        this.smallCategory = smallCategory;
-        this.title = title;
-        this.address = address;
-        this.tel = tel;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.petInfo = petInfo;
-        this.parkingInfo = parkingInfo;
-        this.restDayInfo = restDayInfo;
-        this.runTimeInfo = runTimeInfo;
-        this.feeInfo = feeInfo;
-        this.toiletInfo = toiletInfo;
-        this.languageInfo = languageInfo;
-        this.insuranceInfo = insuranceInfo;
-        this.salesItemInfo = salesItemInfo;
-        this.amenityInfo = amenityInfo;
-        this.menuInfo = menuInfo;
-        this.wrapInfo = wrapInfo;
-        this.checkinInfo = checkinInfo;
-        this.checkoutInfo = checkoutInfo;
-        this.otherAmenityInfo = otherAmenityInfo;
-        this.keyword = keyword;
-        this.imageAdd1 = imageAdd1;
-        this.imageAdd2 = imageAdd2;
-    }
+
 }
 
