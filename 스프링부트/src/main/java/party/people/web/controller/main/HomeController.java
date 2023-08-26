@@ -32,8 +32,6 @@ public class HomeController {
     /* home */
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model){
-        /* 임시 place가 메인일때만 사용 */
-        model.addAttribute("category","place");
 
 /*
     1. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
@@ -94,13 +92,8 @@ public class HomeController {
         /* 기존 세션 정보가 없으면 home으로 이동 */
         if (loginInfo==null){
             model.addAttribute("client",null);
-            return "place/place_thymeleaf";
+            return "main";
         }
-
-        /* 검색결과 다중 세션 여부 확인용 */
-        List<List<Place>>place = (List<List<Place>>) loginInfo.getAttribute("검색결과");
-        log.info("다중세션 여부 확인 " + place);
-
 
         /* 세션 정보 "로그인"으로 세션 정보를 호출해 Client loginClient 객체를 생성 */
         /* LoginController에서 확인 가능 */
@@ -109,7 +102,7 @@ public class HomeController {
         /* 해당 객체가 없다면 home으로 이동 */
         if (loginClient==null){
             model.addAttribute("client",null);
-            return "place/place_thymeleaf";
+            return "main";
         }
         log.info("home] "+loginClient);
         /* 세션에 저장되어있는 로그인 정보를 thymeleaf단에 "client"이름으로 전달 */
@@ -119,7 +112,7 @@ public class HomeController {
         List<Test> test = testInterface.findAll();
 
         /* 세션 객체(로그인 정보)가 null이 아니라면 loginHome으로 이동 */
-        return "place/place_thymeleaf";
+        return "main";
     }
 
 }
