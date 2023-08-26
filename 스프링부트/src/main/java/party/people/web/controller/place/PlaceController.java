@@ -44,19 +44,29 @@ public class PlaceController {
                               @RequestParam(value = "hashTag", required = false) String hashTag,
                               @RequestParam(value = "buttonId", required = false) String buttonId,
                               Model model){
-
+        /* 기존 세션 정보 로딩 */
         HttpSession test = request.getSession(false);
 
+        /* 세션 정보가 있을 경우 로직 수행 */
         if(test!=null){
+            /* "검색결과"키로 리스트 로딩 */
             List<List<Place>> place2 = (List<List<Place>>) test.getAttribute("검색결과");
+
+            /* 모임카드 편집하기 버튼 클릭시 로직 수행용 객체 */
             List<Place> selected = new ArrayList<>();
+            /* 버튼 클릭시 아래 로직 수행 */
             if (buttonId!=null){
+                /* 스트링으로 넘어오는 id를 int로 변경 */
                 int numberId = Integer.parseInt(buttonId);
+
+                /* 세션으로 받아온 리스트에서 버튼아이디-1로 모임카드 편집하기 버튼에서 가지고있는 객체들 저장 */
+                /* 리스트의 인덱스는 0에서 시작하지만 iterStat.count는 1부터 시작하기 때문에 -1을 해줘야 함 */
                 selected = place2.get(numberId-1);
                 /* 세션 생성 */
                 HttpSession searchResult = request.getSession();
-                /* "검색결과"라는 키로 세션 값 생성 */
+                /* "검색결과"라는 키로 세션 값 재생성 */
                 searchResult.setAttribute("검색결과",selected);
+                /* 인바이트 페이지로 사용자 리다이렉트 */
                 return "redirect:/invite";
             }
             log.info("선택된 녀석을 보자"+selected);
