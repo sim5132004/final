@@ -64,7 +64,7 @@ public class PlaceController {
                 selected = place2.get(numberId-1);
                 /* 세션 생성 */
                 HttpSession searchResult = request.getSession();
-                /* "검색결과"라는 키로 세션 값 재생성 */
+                /* "선택결과"라는 키로 세션 값 재생성 */
                 searchResult.setAttribute("선택결과",selected);
                 /* 인바이트 페이지로 사용자 리다이렉트 */
                 return "redirect:/invite";

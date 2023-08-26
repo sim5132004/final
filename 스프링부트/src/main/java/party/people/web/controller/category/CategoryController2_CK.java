@@ -70,6 +70,11 @@ public class CategoryController2_CK {
         if (test!=null) {
 
             /* 세션 중 플레이스에서 보내온 세션이 있는지 확인하고 있으면 플레이스 리스트 객체에 저장 */
+
+            /* 키값을 "검색결과" 로 받아오면 인바이트에서 List<Place>가 아니라
+               List<List<Place>를 받아오는 경우에 에러가 생겨서
+                세션 키값을 검색결과와 선택결과로 분리 */
+
             place2 = (List<Place>) test.getAttribute("선택결과");
             log.info("세션에서 받아온 정보 확인 "+place2);
             /* "검색결과"키로 세션 정보를 받은 경우 */
