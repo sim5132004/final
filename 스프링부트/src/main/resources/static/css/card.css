@@ -47,13 +47,13 @@
 
 .invite.design .card_list_wrap{ width: 100%; display: flex; flex-wrap: wrap; justify-content: center; flex-direction:row;  word-wrap: break-word; }
 
-.ai_card_skin{ position: relative; background: #fff; width:48%;  margin:0  1% 20px 1%; padding: 0 2%;  border-radius: 5px }
+.ai_card_skin{ position: relative; background: #fff; width:48%;  margin:0  1% 15px 1%; padding: 0 2%;  border-radius: 5px }
 .ai_card_skin:after{ content:""; display: block; clear:both; }
 
 .ai_card_skin > dt.header{ min-height: 120px; color: #fff; font:600 20px/26px Sans-serif; text-align: center;  display: flex;justify-content: center;align-items: center; text-shadow: 3px 2px 2px rgba(0,0,0,.5); letter-sapcing:0.5px; letter-spacing: 0.5px }
 .ai_card_skin > dd.body{ background: #fff; min-height: 180px; border-radius: 5px;  display: flex;justify-content: center;align-items: center; }
 .ai_card_skin > dd.body > input[type=radio]{ width: 20px; height: 20px; font:600 30px/30px 'Noto Sans KR',Sans-serif; color: rgba(0,0,0,.2); text-align: center;  }
-.ai_card_skin > dd.footer{ color:rgba(255,255,255,.7); font:400 12px/26px Sans-serif; text-align: center }
+.ai_card_skin > dd.footer{ color:rgba(255,255,255,.7); font:400 12px/24px Sans-serif; text-align: center }
 
 .right_contents.area .ai_card_skin dd.body > label{ font:600 30px/30px 'Noto Sans KR',Sans-serif; color: rgba(0,0,0,.3) }
 .right_contents.area .ai_card_skin dd.body > label input[type=radio]{ width: 20px; height: 20px }
