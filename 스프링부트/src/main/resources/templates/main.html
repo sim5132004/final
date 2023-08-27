@@ -85,9 +85,28 @@
                         <dl class="ai_card design">
                             <dt class="header">
                                 <h2>
-                                    <label>
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}에 놀러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                    <label th:if="${category3 eq '관광'}">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 놀러갈래?|" value="동인천/차이나타운/짜파게티/회식">
                                     </label>
+                                    <label th:if="${category3 eq '전시'}">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 보러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                    </label>
+                                    <label th:if="${category3 eq '자연'}">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 쉬러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                    </label>
+                                    <label th:if="${category3 eq '레저'}">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 놀러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                    </label>
+                                    <label th:if="${category3 eq '쇼핑'}">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 쇼핑갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                    </label>
+                                    <label th:if="${category3 eq '음식'}">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 먹으러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                    </label>
+                                    <label th:if="${category3 eq '숙박'}">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 쉬러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                    </label>
+
                                 </h2>
                                 <div class="form_info">
                                     <div class="date">
