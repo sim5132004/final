@@ -47,17 +47,36 @@
             <div class="main_left_padding"></div>
             <div class="main_contents_center">
                 <ol class="category_main">
-                    <li class="active"><a href="" onclick="sendCategory('관광')"><i class="fa-solid fa-map-location-dot"></i> 관광</a></li>
-                    <li><a href="" onclick="sendCategory('전시')"><i class="fa-solid fa-landmark"></i> 전시</a></li>
-                    <li><a href="" onclick="sendCategory('자연')"><i class="fa-solid fa-mountain-sun"></i> 자연</a></li>
-                    <li><a href="" onclick="sendCategory('레저')"><i class="fa-solid fa-person-hiking"></i> 레저</a></li>
-                    <li><a href="" onclick="sendCategory('쇼핑')"><i class="fa-brands fa-shopify"></i> 쇼핑</a></li>
-                    <li><a href="" onclick="sendCategory('음식')"><i class="fa-solid fa-utensils"></i> 음식</a></li>
-                    <li><a href="" onclick="sendCategory('숙박')"><i class="fa-solid fa-bed"></i> 숙박</a></li>
+                    <li class="관광 active"><a onclick="sendCategory('관광')"><i class="fa-solid fa-map-location-dot"></i> 관광</a></li>
+                    <li class="전시"><a onclick="sendCategory('전시')"><i class="fa-solid fa-landmark"></i> 전시</a></li>
+                    <li class="자연"><a onclick="sendCategory('자연')"><i class="fa-solid fa-mountain-sun"></i> 자연</a></li>
+                    <li class="레저"><a onclick="sendCategory('레저')"><i class="fa-solid fa-person-hiking"></i> 레저</a></li>
+                    <li class="쇼핑"><a onclick="sendCategory('쇼핑')"><i class="fa-brands fa-shopify"></i> 쇼핑</a></li>
+                    <li class="음식"><a onclick="sendCategory('음식')"><i class="fa-solid fa-utensils"></i> 음식</a></li>
+                    <li class="숙박"><a onclick="sendCategory('숙박')"><i class="fa-solid fa-bed"></i> 숙박</a></li>
                 </ol>
 
+                <!-- post 보내는곳 -->
+                <form id="categorySubForm" action="/" method="post">
+                    <input type="hidden" id="categorySub" name="categorySub">
+                </form>
 
+                <script th:inline="javascript">
+                    function sendCategory(category) {
 
+                        document.getElementById('categorySub').value = category;
+                        document.getElementById('categorySubForm').submit();
+                    }
+
+                    var category3 = [[${category3}]];
+                    console.log(category3);
+                    function activeCategoryLnb(category3){
+                        $('ol li').removeClass('active');
+                        $('ol li.'+category3).addClass('active')
+                    }
+                    activeCategoryLnb(category3)
+
+                </script>
 
 
                 <dl class="ai_card_skin d_type">
@@ -67,120 +86,275 @@
                             <dt class="header">
                                 <h2>
                                     <label>
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="" value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}에 놀러갈래?|" value="동인천/차이나타운/짜파게티/회식">
                                     </label>
                                 </h2>
-                                <div class="form_info"><!-- 연관 키워드 10개 -->
+                                <div class="form_info">
                                     <div class="date">
-                                        <label><b>모임날짜</b><input type="date" value="2023-08-21"></label>
-                                        <label><b>모임시간</b><input type="time" value="오후 07:00"></label>
-                                        <label><b>참가인원</b><input type="text" value="5명"> </label>
+                                        <label><b>모임날짜</b><input type="date" id="todayDate" value="2023-08-21"></label>
+                                        <label><b>모임시간</b><input type="time" id="nowTime" value=""></label>
+                                        <label><b>참가인원</b><input type="text" value="6명"> </label>
                                     </div>
+
+                                    <script>
+                                        const today = new Date();
+                                        const year = today.getFullYear();
+                                        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+                                        const day = today.getDate().toString().padStart(2, '0');
+                                        const formattedDate = `${year}-${month}-${day}`;
+                                        document.getElementById('todayDate').value = formattedDate;
+
+                                        const now = new Date();
+                                        const hours = now.getHours().toString().padStart(2, '0');
+                                        const minutes = now.getMinutes().toString().padStart(2, '0');
+                                        const formattedTime = `${hours}:${minutes}`;
+
+                                        document.getElementById('nowTime').value = formattedTime;
+                                    </script>
+
                                     <div class="memo"><label><b>모임내용</b><textarea class="card_memo" name="" rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
                                 </div>
                             </dt>
-                            <div class="card_map_wrap"><div id="map"></div></div>
-                            <script>
-                                /* 지도 관련 스크립트*/
+                            <div class="card_map_wrap">
+                                <div id="map" style="width: 800px; height: 300px;">
+                                    <script th:inline="javascript">
+                                        var maps = /*[[${category2}]]*/ [];
+                                        console.log(maps);
 
-                                var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-                                    mapOption = {
-                                        /* 전국 지도*/
-                                        // center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표
-                                        // level: 13 // 지도의 확대 레벨
+                                        var allLatLng = [];
+                                        var bounds = new kakao.maps.LatLngBounds();
+                                        for(var i = 0; i < maps.length; i++){
+                                            var df = maps[i];
+                                            allLatLng.push(new kakao.maps.LatLng(df.latitude, df.longitude));
+                                        }
+                                        for(var i = 0; i<allLatLng.length; i++){
+                                            bounds.extend(allLatLng[i]);
+                                        }
 
-                                        /* 인천으로만 타겟을 줄인 지도*/
-                                        center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
-                                        level: 8 // 지도의 확대 레벨
-                                    };
-                                // 지도를 생성합니다
-                                var map = new kakao.maps.Map(mapContainer, mapOption);
-                            </script>
+                                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                                            mapOption = {
+                                                /* 전국 지도*/
+                                                // center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표
+                                                // level: 13 // 지도의 확대 레벨
+
+                                                /* 인천으로만 타겟을 줄인 지도*/
+                                                center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표
+                                                level: 8 // 지도의 확대 레벨
+                                            };
+                                        // 지도를 생성합니다
+                                        var map = new kakao.maps.Map(mapContainer, mapOption);
+                                        map.setBounds(bounds);
+                                        var center = map.getCenter();
+
+                                        // 조금만 오른쪽으로 이동시킬 거리 (단위: 미터)
+                                        var offsetX = 0; // 예시로 1000미터 이동
+
+                                        // 새로운 중심 좌표 계산
+                                        var newCenter = new kakao.maps.LatLng(center.getLat(), center.getLng() + (offsetX / 1000)); // 경도에 offset을 더해 새로운 경도 계산
+                                        // // 현재 지도의 레벨을 가져옵니다.
+                                        // var currentLevel = map.getLevel();
+                                        // //
+                                        // // // 현재 레벨에서 1을 더한 값으로 지도의 레벨을 변경합니다.
+                                        // var newLevel = currentLevel + 1;
+                                        //
+                                        // map.setLevel(newLevel, { anchor: newCenter });
+                                        // //
+                                        // // // 지도의 중심 좌표를 새로운 중심 좌표로 설정
+                                        map.setCenter(newCenter);
+
+                                        var placeId= 1;
+                                        /* 지도 관련 스크립트*/
+                                        var imageSrc = "images/marker_spot(3).png";
+                                        var imageSize = new kakao.maps.Size(24, 35);
+                                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+
+
+                                        for(var a = 0; a < maps.length; a++) {
+
+                                            var row = maps[a]; // 각 세트별 좌표를 df로
+                                            console.log(row);
+                                            // console.log(df);
+
+                                            // 좌표와 다른 정보들을 받아옴
+                                            positions = [];
+
+                                            positions.push({
+                                                id: row.id,
+                                                category: row.category,
+                                                title: row.title,
+                                                latlng: new kakao.maps.LatLng(row.latitude, row.longitude),
+                                            });
+                                            console.log(positions);
+
+                                            for (var i = 0; i < positions.length; i++) {
+                                                var marker = new kakao.maps.Marker({
+                                                    map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
+                                                    id: positions[i].id,
+                                                    position: positions[i].latlng,
+                                                    title: positions[i].title,
+                                                    category: positions[i].category,
+                                                    image: markerImage // 마커 이미지
+                                                });
+
+                                                // 마우스 올릴때 나오는 정보 추가
+                                                var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].category + '</p>';
+                                                // var info = '<h3>' + positions[i].title + '</h3>' + '<p>' + positions[i].opend + '</p>' + '<p>' + positions[i].closed + '</p>';
+                                                var infowindow = new kakao.maps.InfoWindow({
+                                                    content: info
+                                                });
+
+                                                kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+                                                kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+                                                kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
+                                            }
+
+                                        }
+                                        // 마우스 올리면 정보 나오는 함수
+                                        function makeOverListener(map, marker, infowindow) {
+                                            return function () {
+                                                infowindow.open(map, marker);
+                                            };
+                                        }
+
+                                        // 마우스 내리면 info안나오는 함수
+                                        function makeOutListener(infowindow) {
+                                            return function () {
+                                                infowindow.close();
+                                            };
+                                        }
+
+                                        // 클릭하면 상세페이지로 넘어가는 함수 (아직 미완)
+                                        function makeClickListener(index) {
+                                            return function () {
+                                                window.location.href = "festival/" + index;
+                                            };
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+
                             <dd class="body">
+
+
                                 <!-- 대안 장소 선택_01: 업체 리스트 -->
-                                <div class="card_list">
+                                <div class="card_list" th:each="place, iterStat : ${category2}">
                                     <ul class="summary_card">
                                         <li class="subject">
-                                            <b>강화 갑곶돈</b>
-                                            <span class="category"><b class="depth_1">관광</b><b class="depth_2">역사문화</b></span>
+                                            <b th:text="${place.getTitle()}">돈비어천가c</b>
+                                            <span class="category"><b class="depth_1"  th:text="${place.getCategory()}">음식</b><b class="depth_2"  th:text="${place.getSmallCategory()}">한식</b></span>
                                         </li>
-                                        <li class="thumb"><img src="https://minio.nculture.org/amsweb-opt/multimedia_assets/77/85267/84965/c/168_%EA%B0%95%ED%99%94-%EA%B0%91%EA%B3%B6%EB%82%98%EB%A3%A8_%EA%B0%91%EA%B3%B6%EB%8F%88%EB%8C%80-%EC%A0%84%EA%B2%BD_%EB%AC%B8%ED%99%94%EC%9E%AC%EC%B2%AD_%EC%A0%9C1%EC%9C%A0%ED%98%95-medium-size.jpg" alt="돈비어천가"></li>
-                                        <li>인천 강화군 강화읍 해안동로1366번길 18</li>
-                                        <li>09:00~18:00</li>
-                                        <li>주차시설 : 있음 (무료)</li>
-                                        <li class="tel">032-930-1234
-                                            <a href="#" class="place_info_layer item_1">상세정보</a>
+                                        <li class="thumb">
+                                            <img th:src="${place.getImageAdd1()}" alt="돈비어천가">
+
                                         </li>
-                                    </ul>
-                                </div>
-                                <div class="card_list">
-                                    <ul class="summary_card">
-                                        <li class="subject">
-                                            <b>강화 석수문</b>
-                                            <span class="category"><b class="depth_1">관광</b><b class="depth_2">역사문화</b></span>
-                                        </li>
-                                        <li class="thumb"><img src="http://tong.visitkorea.or.kr/cms/resource/72/2512572_image2_1.jpg" alt="돈비어천가"></li>
-                                        <li>인천 강화군 강화읍 고비고개로19번길 12</li>
-                                        <li>00:00~24:00</li>
-                                        <li>주차시설 : 있음 (무료)</li>
-                                        <li class="tel">032-930-1234
-                                            <a href="#" class="place_info_layer item_2">상세정보</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card_list">
-                                    <ul class="summary_card">
-                                        <li class="subject">
-                                            <b>용흥궁</b>
-                                            <span class="category"><b class="depth_1">관광</b><b class="depth_2">역사문화</b></span>
-                                        </li>
-                                        <li class="thumb"><img src="http://post.phinf.naver.net/20160420_85/14611369123561fx3n_JPEG/IjHZ0iPSsrLaUoV_7os8shoMqY2A.jpg" alt="돈비어천가"></li>
-                                        <li>인천 강화군 강화읍 동문안길21번길 16-1</li>
-                                        <li>09:00~18:00</li>
-                                        <li>주차시설 : 있음 (30분 무료)</li>
-                                        <li class="tel">032-930-1234
-                                            <a href="#" class="place_info_layer item_3">상세정보</a>
-                                        </li>
+                                        <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
+                                        <li class="tel" th:text="${place.getTel()}">032-930-1234 </li>
+                                        <a href="#" th:class="|place_info_layer item_${iterStat.count}|">상세정보</a>
+                                        <!-- 업체 상세 정보 레이어 -->
+                                        <!--                                            <script th:inline="javascript"> placeId = [[${place.getId}]]</script>-->
+                                        <div th:class="|layer_contents item_${iterStat.count}|" th:insert="~{insert/place_info}"></div>
+
                                     </ul>
                                 </div>
                             </dd>
-                         </dl>
+                        </dl>
+<!--                        <dl class="ai_card design">-->
+<!--                            <dt class="header">-->
+<!--                                <h2>-->
+<!--                                    <label>-->
+<!--                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="" value="동인천/차이나타운/짜파게티/회식">-->
+<!--                                    </label>-->
+<!--                                </h2>-->
+<!--                                <div class="form_info">&lt;!&ndash; 연관 키워드 10개 &ndash;&gt;-->
+<!--                                    <div class="date">-->
+<!--                                        <label><b>모임날짜</b><input type="date" value="2023-08-30"></label>-->
+<!--                                        <label><b>모임시간</b><input type="time" value="오후 03:00"></label>-->
+<!--                                        <label><b>참가인원</b><input type="text" value="6명"> </label>-->
+<!--                                    </div>-->
+<!--                                    <div class="memo"><label><b>모임내용</b><textarea class="card_memo" name="" rows="3" value="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>-->
+<!--                                </div>-->
+<!--                            </dt>-->
+<!--                            <div class="card_map_wrap"><div id="map"></div></div>-->
+<!--                            <script>-->
+<!--                                /* 지도 관련 스크립트*/-->
+
+<!--                                var mapContainer = document.getElementById('map'), // 지도를 표시할 div-->
+<!--                                    mapOption = {-->
+<!--                                        /* 전국 지도*/-->
+<!--                                        // center: new kakao.maps.LatLng(36.01683146793617, 129.42603381793853), // 지도의 중심좌표-->
+<!--                                        // level: 13 // 지도의 확대 레벨-->
+
+<!--                                        /* 인천으로만 타겟을 줄인 지도*/-->
+<!--                                        center: new kakao.maps.LatLng(37.45139514881181, 126.74155431191699), // 지도의 중심좌표-->
+<!--                                        level: 8 // 지도의 확대 레벨-->
+<!--                                    };-->
+<!--                                // 지도를 생성합니다-->
+<!--                                var map = new kakao.maps.Map(mapContainer, mapOption);-->
+<!--                            </script>-->
+<!--                            <dd class="body">-->
+<!--                                &lt;!&ndash; 대안 장소 선택_01: 업체 리스트 &ndash;&gt;-->
+<!--                                <div class="card_list">-->
+<!--                                    <ul class="summary_card">-->
+<!--                                        <li class="subject">-->
+<!--                                            <b>강화 갑곶돈</b>-->
+<!--                                            <span class="category"><b class="depth_1">관광</b><b class="depth_2">역사문화</b></span>-->
+<!--                                        </li>-->
+<!--                                        <li class="thumb"><img src="https://minio.nculture.org/amsweb-opt/multimedia_assets/77/85267/84965/c/168_%EA%B0%95%ED%99%94-%EA%B0%91%EA%B3%B6%EB%82%98%EB%A3%A8_%EA%B0%91%EA%B3%B6%EB%8F%88%EB%8C%80-%EC%A0%84%EA%B2%BD_%EB%AC%B8%ED%99%94%EC%9E%AC%EC%B2%AD_%EC%A0%9C1%EC%9C%A0%ED%98%95-medium-size.jpg" alt="돈비어천가"></li>-->
+<!--                                        <li>인천 강화군 강화읍 해안동로1366번길 18</li>-->
+<!--                                        <li>09:00~18:00</li>-->
+<!--                                        <li>주차시설 : 있음 (무료)</li>-->
+<!--                                        <li class="tel">032-930-1234-->
+<!--                                            <a href="#" class="place_info_layer item_1">상세정보</a>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                <div class="card_list">-->
+<!--                                    <ul class="summary_card">-->
+<!--                                        <li class="subject">-->
+<!--                                            <b>강화 석수문</b>-->
+<!--                                            <span class="category"><b class="depth_1">관광</b><b class="depth_2">역사문화</b></span>-->
+<!--                                        </li>-->
+<!--                                        <li class="thumb"><img src="http://tong.visitkorea.or.kr/cms/resource/72/2512572_image2_1.jpg" alt="돈비어천가"></li>-->
+<!--                                        <li>인천 강화군 강화읍 고비고개로19번길 12</li>-->
+<!--                                        <li>00:00~24:00</li>-->
+<!--                                        <li>주차시설 : 있음 (무료)</li>-->
+<!--                                        <li class="tel">032-930-1234-->
+<!--                                            <a href="#" class="place_info_layer item_2">상세정보</a>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                                <div class="card_list">-->
+<!--                                    <ul class="summary_card">-->
+<!--                                        <li class="subject">-->
+<!--                                            <b>용흥궁</b>-->
+<!--                                            <span class="category"><b class="depth_1">관광</b><b class="depth_2">역사문화</b></span>-->
+<!--                                        </li>-->
+<!--                                        <li class="thumb"><img src="http://post.phinf.naver.net/20160420_85/14611369123561fx3n_JPEG/IjHZ0iPSsrLaUoV_7os8shoMqY2A.jpg" alt="돈비어천가"></li>-->
+<!--                                        <li>인천 강화군 강화읍 동문안길21번길 16-1</li>-->
+<!--                                        <li>09:00~18:00</li>-->
+<!--                                        <li>주차시설 : 있음 (30분 무료)</li>-->
+<!--                                        <li class="tel">032-930-1234-->
+<!--                                            <a href="#" class="place_info_layer item_3">상세정보</a>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </dd>-->
+<!--                         </dl>-->
+
+
+
                     </dd>
                     <dd class="footer">Party People</dd>
                 </dl>
             </div>
         </div>
     </section>
-    <!-- post 보내는곳 -->
-    <form id="categoryForm" action="/" method="post">
-        <input type="hidden" id="categorySubject" name="categorySubject">
-    </form>
 
-    <script th:inline="javascript">
-        function sendCategory(category) {
-
-            document.getElementById('categorySubject').value = category;
-            document.getElementById('categoryForm').submit();
-        }
-
-        var category2 = [[${category2}]];
-        console.log(category2);
-        function activeCategoryLnb(category2){
-            $('ol li').removeClass('active');
-            $('ol li.'+category2).addClass('active')
-        }
-        activeCategoryLnb(category2)
-
-    </script>
     <!-- ####### 03. CONTENTS END ####### -->
     <hr class="skip"/>
     <!-- ####### 04. FOOTER START ####### -->
-    <!-- ####### 04. FOOTER START ####### -->
-    <div class="footer_wrap">
-        <footer>
-            <p class="copyright">  © 2023 Party People.</p>
-        </footer>
-    </div>
+    <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
     <!-- ####### 04. FOOTER END ####### -->
 </div>
 </body>

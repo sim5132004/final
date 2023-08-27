@@ -13,6 +13,9 @@ import party.people.repository.client.ClientRepository;
 import party.people.repository.keywords.KeywordsInterface;
 import party.people.repository.keywords.KeywordsMapper;
 import party.people.repository.keywords.KeywordsRepository;
+import party.people.repository.mainCard.MainCardInterface;
+import party.people.repository.mainCard.MainCardMapper;
+import party.people.repository.mainCard.MainCardRepository;
 import party.people.repository.place.PlaceInterface;
 import party.people.repository.place.PlaceMapper;
 import party.people.repository.place.PlaceRepository;
@@ -36,6 +39,7 @@ public class Config {
     private final KeywordsMapper keywordsMapper;
     private final SearchInputMapper searchInputMapper;
     private final InviteCardMapper inviteCardMapper;
+    private final MainCardMapper mainCardMapper;
 
 
     /* DB접속 TEST용 BEAN */
@@ -87,11 +91,15 @@ public class Config {
         return new KeywordsRepository(keywordsMapper);
     }
 
-    /* 검색겨로가 입출력용 Bean */
+    /* 검색결과 입출력용 Bean */
     @Bean
     public SearchInputInterface searchInputInterface() {
         return new SearchInputRepository(searchInputMapper);
     }
 
-
+    /* 메인 페이지 카드 출력용 Bean */
+    @Bean
+    public MainCardInterface mainCardInterface() {
+        return new MainCardRepository(mainCardMapper);
+    }
 }

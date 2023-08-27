@@ -9,11 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import party.people.domain.Client;
-import party.people.domain.Keywords;
-import party.people.domain.Place;
-import party.people.domain.Test;
+import party.people.domain.*;
 import party.people.repository.keywords.KeywordsInterface;
+import party.people.repository.mainCard.MainCardInterface;
+import party.people.repository.place.PlaceInterface;
 import party.people.repository.test.TestInterface;
 import party.people.service.keyword.KeywordsMerge;
 
@@ -22,6 +21,7 @@ import static party.people.web.controller.category.CategoryController.loginCheck
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,17 +29,48 @@ import java.util.List;
 public class HomeController {
     /* DB 접속 확인용 인터페이스*/
     private final TestInterface testInterface;
+    private final PlaceInterface placeInterface;
     private final KeywordsInterface keywordsInterface;
+    private final MainCardInterface mainCardInterface;
     private final KeywordsMerge keywordsMerge;
 
 
     /* home */
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model){
+/*
+    1. 메인 페이지 카드리스트 내용 전달
+*/
+        Random random = new Random();
+        List<String> randomCategory = Arrays.asList("관광", "전시", "자연", "레저", "쇼핑", "음식", "숙박");
+        int randomNumber = random.nextInt(randomCategory.size());
+        MainCard main = mainCardInterface.load(randomCategory.get(randomNumber));
+        model.addAttribute("category3", main.getCategory());
+        List<String> three = Arrays.stream(main.getResult().split("/")).toList();
+        for (String one : three) {
+            /* ,로 스플릿해 나누면 해당 finalList의 값은 ['가','나','다']가 된다 */
+            List<String> finalList = Arrays.stream(one.split(",")).toList();
+            /* 이 가,나,다 의 정보를 DB에서 찾아 PLACE객체를 담을 예정이므로 새 Place제네릭을 가진 리스트를 생성 */
+            List<Place> midForm = new ArrayList<>();
+
+            /* 위의 ['가','나','다']를 하나씩 불러온다 */
+            /* 가,나,다로 설명했지만 각각은 돈비어천가, 부평시장 등 상호, 장소명이다. */
+            for (String finalOne : finalList) {
+                /* findByTitle은 이름으로 List<Place>를 호출하기때문에 get(0)으로 첫번째 값을 리턴 */
+                Place placeOne = placeInterface.findByTitle(finalOne).get(0);
+                /* '가'로 리턴된 Place객체를 midForm에 담는다 이를 3번 반복 */
+                midForm.add(placeOne);
+            }
+            /* place객체가 담긴 midForm리스트를 finalForm리스트에 추가한다 */
+            model.addAttribute("category2",midForm);
+            break;
+        }
+
+
 
 
 /*
-    1. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
+    2. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
 */
         /* 기존 유무 확인 위해 카테고리 갱신 */
         List<String> interestCheckbox = Arrays.asList("관광","자연","레저","쇼핑","음식","숙박","전시");
@@ -86,7 +117,7 @@ public class HomeController {
             }
         }
 /*
-    2. 로그인 비로그인 세션 관련 로직 수행
+    3. 로그인 비로그인 세션 관련 로직 수행
 */
         /* 세션 정보 가져오기 */
         /* create:false => 세션 정보가 있으면 기존 세션정보 로딩, 없으면 null 반환 */
@@ -122,11 +153,34 @@ public class HomeController {
 
     @PostMapping("/")
     public String postHome(HttpServletRequest request, Model model,
-                            @RequestParam("categorySubject") String categorySubject){
-        log.info("postHome] "+categorySubject);
+                            @RequestParam("categorySub") String categorySub){
+        log.info("postHome] "+categorySub);
         loginCheck(request,model);
 
-        model.addAttribute("category2", categorySubject);
+        model.addAttribute("category3", categorySub);
+
+
+        MainCard main = mainCardInterface.load(categorySub);
+        model.addAttribute("category3", main.getCategory());
+        List<String> three = Arrays.stream(main.getResult().split("/")).toList();
+        for (String one : three) {
+            /* ,로 스플릿해 나누면 해당 finalList의 값은 ['가','나','다']가 된다 */
+            List<String> finalList = Arrays.stream(one.split(",")).toList();
+            /* 이 가,나,다 의 정보를 DB에서 찾아 PLACE객체를 담을 예정이므로 새 Place제네릭을 가진 리스트를 생성 */
+            List<Place> midForm = new ArrayList<>();
+
+            /* 위의 ['가','나','다']를 하나씩 불러온다 */
+            /* 가,나,다로 설명했지만 각각은 돈비어천가, 부평시장 등 상호, 장소명이다. */
+            for (String finalOne : finalList) {
+                /* findByTitle은 이름으로 List<Place>를 호출하기때문에 get(0)으로 첫번째 값을 리턴 */
+                Place placeOne = placeInterface.findByTitle(finalOne).get(0);
+                /* '가'로 리턴된 Place객체를 midForm에 담는다 이를 3번 반복 */
+                midForm.add(placeOne);
+            }
+            /* place객체가 담긴 midForm리스트를 finalForm리스트에 추가한다 */
+            model.addAttribute("category2",midForm);
+            break;
+        }
 
 
         return "main";
