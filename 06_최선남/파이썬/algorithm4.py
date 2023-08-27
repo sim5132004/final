@@ -58,7 +58,7 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     return distance if not math.isnan(distance) else None
 
 
-# 피타고라스의 정리와 유사함 a^2+c^2=b^2
+# 피타고라스의 정리와 유사함 a^2+c^2=b^2dd
 
 # 특정 카테고리와 키워드, 주소를 기반으로 제목(장소) 추천 및 거리 계산 실행
 def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천주소=None, top_n=3):
@@ -114,7 +114,7 @@ def recommend_distance(df, 추천카테고리=None, 추천키워드=None, 추천
             distance = haversine_distance(lat1, lon1, lat2, lon2)
             # haversine_distance 함수를 호출하여 현재 장소와 다른 장소 간의 거리를 계산, 거리 정보를 distance 변수에 저장
 
-            if distance is not None and distance < 10:
+            if distance is not None and distance < 20:
                 # 현재 장소와 추천한 장소의 거리가 0이 아닌 경우에만 실행
                 keywords = data_recommend.iloc[i]['키워드리스트'].split(',')[:5] if data_recommend.iloc[i]['키워드리스트'] else []
                 # 현재 추천한 장소의"키워드 리스트의" 값을 가져와서 쉼표로 분리한다. 최대 5개까지의 키워드만 추출함.
@@ -163,35 +163,36 @@ for item in recommended_distance[:3]:
     keywords_slash_delete = [re.match(r'([^/]+)', keyword).group(1) for keyword in top_keywords]
     set_keywords_slash_delete = list(set(keywords_slash_delete))
 
+    print(f"추천장소 : {제목}")
+    print(f"가장 빈도수가 높은 키워드:{', '.join(set_keywords_slash_delete)}")
+    cate_list = []
     for category, place, address, distance, keywords in 거리정보:
         keywords_str = ', '.join(keywords)
-
-        # 유사도 점수를 확률적으로 표현하기 위해 변환
-        similarity_percent = (distance / 2) * 100  # 0이 최소값
-        similarity_percent = min(similarity_percent, 100)  # 100이 최대값
-
-        print(f"추천장소: {place}, 유사도 확률: {similarity_percent:.2f}%")  # 유사도 퍼센트 출력
-        print(f"주소: {address}")
-
-        print(f"가장 빈도수가 높은 키워드: {', '.join(set_keywords_slash_delete)}")
+        print(
+            f"카테고리 : {category}, 가까운 추천 장소: {place}, \n주소: {address}, \n거리: {distance:.2f} km, \n추천키워드: {keywords_str}\n")
 
         idx = data_recommend[data_recommend['제목'] == place].index[0]
         sim_scores = list(enumerate(cosine_sim[idx]))
 
-        # 유사도가 0.3 이상인 것들만 추출하여 filtered_sim_scores에 추가
+        # 유사도가 0.4 이상인 것들만 추출하여 filtered_sim_scores에 추가
         filtered_sim_scores = [(i, score) for i, score in sim_scores if score >= 0.3 and i != idx]
 
         # 유사도 기준 내림차순으로 정렬
         filtered_sim_scores.sort(key=lambda x: x[1], reverse=True)
 
         for i, score in filtered_sim_scores[:top_n]:
-            similarity_percent = (score / 2) * 100  # 유사도 점수를 확률적으로 표현하기 위해 변환
-            similarity_percent = min(similarity_percent, 100)  # 100이 최대값
-
-            print(f"{data_recommend.loc[i]['제목']}: 유사도 확률 {similarity_percent:.2f}%")
+            print(f"{data_recommend.loc[i]['제목']}: {score:.4f}")
             print(f"카테고리: {data_recommend.iloc[i]['카테고리']}")
             print(f"주소: {data_recommend.iloc[i]['주소']}")
             print(
                 f"거리: {haversine_distance(data_recommend.iloc[idx]['위도'], data_recommend.iloc[idx]['경도'], data_recommend.iloc[i]['위도'], data_recommend.iloc[i]['경도']):.2f} km\n")
 
         print("\n")
+
+print(cate_list)
+baseString = ''
+for cate in cate_list:
+    for ca in cate:
+        baseString=baseString+ca.strip()+','
+    baseString=baseString+'/'
+finalString = baseString.rstrip('/').rstrip(',')
