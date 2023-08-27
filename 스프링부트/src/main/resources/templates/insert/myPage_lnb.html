@@ -15,7 +15,7 @@
         <li th:if="${client eq null}"><a href="/client/findId"><i class="fa-solid fa-key"></i> <span>아이디 찾기</span></a></li>
         <li th:if="${client eq null}"><a href="/client/findPw"><i class="fa-solid fa-key"></i> <span>비밀번호 찾기</span></a></li>
         <li th:if="${client != null}"><a href="/client/myInfo" class="active"><i class="fa-solid fa-user-pen"></i> <span>회원 정보수정</span> </a></li>
-        <li><a href="#"><i class="fa-regular fa-envelope"></i> <span>나의 모임카드</span></a></li>
+        <li th:if="${client != null}"><a href="#"><i class="fa-regular fa-envelope"></i> <span>나의 모임카드</span></a></li>
         <li th:if="${client != null}"><a href="/client/logout"><i class="fa-solid fa-right-from-bracket"></i> <span>로그아웃</span></a></li>
         <li th:if="${client != null}"><a href="/client/quit"><i class="fa-solid fa-square-xmark"></i> <span>회원탈퇴</span></a></li>
     </ul>
