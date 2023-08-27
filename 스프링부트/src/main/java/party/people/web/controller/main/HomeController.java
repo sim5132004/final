@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import party.people.domain.Client;
 import party.people.domain.Keywords;
 import party.people.domain.Place;
@@ -14,6 +16,8 @@ import party.people.domain.Test;
 import party.people.repository.keywords.KeywordsInterface;
 import party.people.repository.test.TestInterface;
 import party.people.service.keyword.KeywordsMerge;
+
+import static party.people.web.controller.category.CategoryController.loginCheck;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +36,7 @@ public class HomeController {
     /* home */
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model){
+
 
 /*
     1. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
@@ -112,6 +117,18 @@ public class HomeController {
         List<Test> test = testInterface.findAll();
 
         /* 세션 객체(로그인 정보)가 null이 아니라면 loginHome으로 이동 */
+        return "main";
+    }
+
+    @PostMapping("/")
+    public String postHome(HttpServletRequest request, Model model,
+                            @RequestParam("categorySubject") String categorySubject){
+        log.info("postHome] "+categorySubject);
+        loginCheck(request,model);
+
+        model.addAttribute("category2", categorySubject);
+
+
         return "main";
     }
 

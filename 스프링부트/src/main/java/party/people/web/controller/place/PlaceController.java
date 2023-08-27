@@ -8,13 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import party.people.domain.Client;
 import party.people.domain.Place;
 import party.people.domain.SearchInput;
 import party.people.domain.SearchResult;
+import party.people.repository.client.ClientInterface;
 import party.people.repository.place.PlaceInterface;
 import party.people.repository.search.SearchInputInterface;
+import party.people.web.controller.client.formAndDto.ClientUpdateDto;
 
+import static party.people.web.controller.category.CategoryController.loginCheck;
 import java.util.*;
+
+import static party.people.service.keyword.keywordToMapLogic.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -22,6 +28,7 @@ import java.util.*;
 public class PlaceController {
     private final PlaceInterface placeInterface;
     private final SearchInputInterface searchInputInterface;
+    private final ClientInterface clientInterface;
 
 //    @GetMapping("place")
     public String placeForm(Model model){
@@ -43,46 +50,49 @@ public class PlaceController {
                               @RequestParam(value = "categorySubject", required=false) String categorySubject,
                               @RequestParam(value = "hashTag", required = false) String hashTag,
                               @RequestParam(value = "buttonId", required = false) String buttonId,
-                              Model model){
+                              Model model) {
         /* 기존 세션 정보 로딩 */
         HttpSession test = request.getSession(false);
 
+        loginCheck(request, model);
+
         /* 세션 정보가 있을 경우 로직 수행 */
-        if(test!=null){
+        if (test != null) {
+
             /* "검색결과"키로 리스트 로딩 */
             List<List<Place>> place2 = (List<List<Place>>) test.getAttribute("검색결과");
 
             /* 모임카드 편집하기 버튼 클릭시 로직 수행용 객체 */
             List<Place> selected = new ArrayList<>();
             /* 버튼 클릭시 아래 로직 수행 */
-            if (buttonId!=null){
+            if (buttonId != null) {
                 /* 스트링으로 넘어오는 id를 int로 변경 */
                 int numberId = Integer.parseInt(buttonId);
 
                 /* 세션으로 받아온 리스트에서 버튼아이디-1로 모임카드 편집하기 버튼에서 가지고있는 객체들 저장 */
                 /* 리스트의 인덱스는 0에서 시작하지만 iterStat.count는 1부터 시작하기 때문에 -1을 해줘야 함 */
-                selected = place2.get(numberId-1);
+                selected = place2.get(numberId - 1);
                 /* 세션 생성 */
                 HttpSession searchResult = request.getSession();
                 /* "선택결과"라는 키로 세션 값 재생성 */
-                searchResult.setAttribute("선택결과",selected);
+                searchResult.setAttribute("선택결과", selected);
                 /* 인바이트 페이지로 사용자 리다이렉트 */
                 return "redirect:/invite";
             }
-            log.info("선택된 녀석을 보자"+selected);
+            log.info("선택된 녀석을 보자" + selected);
         }
 
         /* side lnb출력용 */
-        model.addAttribute("category","place");
+        model.addAttribute("category", "place");
 
         /* 검색창 카테고리 출력용 */
-        model.addAttribute("category2",categorySubject);
+        model.addAttribute("category2", categorySubject);
 
 
         /* 검색 결과를 출력하는 로직 */
         /* 우리의 검색 로직에는 3가지(카테고리, 키워드, 주소)가 들어가니 SearchInput 클래스에 넣는다 */
         SearchInput input = new SearchInput();
-        if (address!=null) {
+        if (address != null) {
             if (address.equals("null")) {
                 return "redirect:/place";
             } else {
@@ -92,19 +102,19 @@ public class PlaceController {
             }
         } else {
             input.setAddress("");
-            model.addAttribute("address","null");
+            model.addAttribute("address", "null");
 
         }
-        if (searchForm!=null) {
+        if (searchForm != null) {
             input.setKeyword(searchForm);
-            model.addAttribute("searchText",searchForm);
+            model.addAttribute("searchText", searchForm);
         } else {
-            if (hashTag !=null) {
+            if (hashTag != null) {
                 input.setKeyword(hashTag);
                 model.addAttribute("searchText", hashTag);
             } else input.setKeyword("");
         }
-        if (categorySubject!=null){
+        if (categorySubject != null) {
             input.setCategory(categorySubject);
             model.addAttribute("searchText", categorySubject);
         } else input.setCategory("");
@@ -113,18 +123,18 @@ public class PlaceController {
         searchInputInterface.save(input);
         /* 이와 동시에 searchResult DB 탐색을 시작한다 */
         List<SearchResult> old = searchInputInterface.loadAll();
-        log.info("올드 사이즈 : "+old.size());
+        log.info("올드 사이즈 : " + old.size());
         /* 탐색 결과를 받아올 객체를 미리 생성한다 */
         SearchResult result = new SearchResult();
         /* 반복문을 통해 주기적으로 검색 결과에 응신이 있는지 확인한다. */
-        while(true){
+        while (true) {
             /* 위의 old와 마찬가지 / 로그를 통해 올드 사이즈와 뉴 사이즈의 값을 확인 가능 */
             List<SearchResult> newLoad = searchInputInterface.loadAll();
-            log.info("뉴 사이즈 :  " +newLoad.size());
+            log.info("뉴 사이즈 :  " + newLoad.size());
             /* old 리스트와 new 리스트의 크기가 달라졌다는 것은 검색 결과에 대한 응신이 있다는것 */
-            if (newLoad.size()!= old.size()){
+            if (newLoad.size() != old.size()) {
                 /* 맨마지막으로 저장된 리스트의 값을 result에 저장 */
-                result = newLoad.get(newLoad.size()-1);
+                result = newLoad.get(newLoad.size() - 1);
                 break;
             }
             /* 대기 초 없이 반복하면 시스템에 무리가 가는 듯하여 0.5초마다 반복하게끔 실시  */
@@ -143,7 +153,7 @@ public class PlaceController {
         List<List<Place>> finalForm = new ArrayList<>();
         /* 첫 리스트 쪼개기 /로 3개로 구성되어있는 리스트로 만들기 */
         /* ['가,나,다','1,2,3',...,'A,B,C'] */
-        if (result.getResult()!=null) {
+        if (result.getResult() != null) {
             List<String> three = Arrays.stream(result.getResult().split("/")).toList();
             /* 위의 리스트를 또 ,단위로 쪼개야 한다 */
             /* 여기서 Strong one의 첫번째 값은 위의 예시 '가,나,다'를 예시로 */
@@ -165,19 +175,54 @@ public class PlaceController {
                 /* place객체가 담긴 midForm리스트를 finalForm리스트에 추가한다 */
                 finalForm.add(midForm);
             }
-            log.info("searchPlace] " + finalForm);
+//            log.info("searchPlace] " + finalForm);
             HttpSession searchResult = request.getSession();
             /* "검색결과"라는 키로 세션 값 생성 */
-            searchResult.setAttribute("검색결과",finalForm);
+            searchResult.setAttribute("검색결과", finalForm);
 
             /* 해당 리스트를 타임리프단에 전달 */
             model.addAttribute("searchResult", finalForm);
 
+            /* 검색 결과가 널이 아니면 키워드에 검색어 추가 */
+            /* 컨트롤 클릭으로 함수 확인 가능 */
+            /* DB 오염 방지로 아직 DB 수정은 주석 처리 돼있음*/
+            updateKeywordBySearchResult(input, finalForm);
 
+            /* 세션 정보가 있을 경우 로직 수행 */
+            if (test != null) {
+                Client client = (Client) test.getAttribute("로그인");
+                if (client != null) {
+                    String keyword = client.getKeyword();
+                    Map<String, Integer> map = new HashMap<>();
+                    map = keywordToMap(map, keyword);
+                    List<String> splitSearch = new ArrayList<>();
+                    splitSearch.add(input.getCategory());
+                    splitSearch.add(input.getKeyword());
+                    splitSearch.add(input.getAddress());
+                    for (String split : splitSearch) {
+                        log.info("split] " + split);
+                        if (!split.equals("")) {
+                            addNewKeyword(map, split);
+                        }
+                    }
+                    String updated = mapToSortedString(map);
+                    log.info("아이디로 검색 정렬 결과 : "+updated);
+                    log.info("너의 아이디는?"+ client.getClientId());
+                    ClientUpdateDto param = new ClientUpdateDto();
+                    param.setPassword2(client.getPassword());
+                    param.setClientEmail(client.getClientEmail());
+                    param.setKeyword(updated);
+                    log.info("DTO 내용 "+ param);
+                    clientInterface.update(client.getClientId(),param);
+                    Client updatedClient = clientInterface.findByClientId(client.getClientId()).orElse(null);
+                    log.info("제대로 업데이트 됐는지 확인 "+updatedClient);
+                    test.setAttribute("로그인",updatedClient);
+                }
+            }
 
 
         } else {
-            List<SearchResult>allResult = searchInputInterface.loadAll();
+            List<SearchResult> allResult = searchInputInterface.loadAll();
             Random random = new Random();
             int randomValue = random.nextInt(allResult.size());
 
@@ -189,7 +234,7 @@ public class PlaceController {
 //            List<List<Place>> finalForm = new ArrayList<>();
             /* 첫 리스트 쪼개기 /로 3개로 구성되어있는 리스트로 만들기 */
             /* ['가,나,다','1,2,3',...,'A,B,C'] */
-            if (start.getResult()!=null) {
+            if (start.getResult() != null) {
                 List<String> three = Arrays.stream(start.getResult().split("/")).toList();
                 /* 위의 리스트를 또 ,단위로 쪼개야 한다 */
                 /* 여기서 Strong one의 첫번째 값은 위의 예시 '가,나,다'를 예시로 */
@@ -216,15 +261,14 @@ public class PlaceController {
 
                 HttpSession searchResult = request.getSession();
                 /* "검색결과"라는 키로 세션 값 생성 */
-                searchResult.setAttribute("검색결과",finalForm);
+                searchResult.setAttribute("검색결과", finalForm);
 
                 /* 해당 리스트를 타임리프단에 전달 */
-                model.addAttribute("searchNull","null");
+                model.addAttribute("searchNull", "null");
                 model.addAttribute("searchResult", finalForm);
             }
 
         }
-
 
 
         // place페이지 오른쪽 카드세트 번호에 글자 색 리스트
@@ -235,29 +279,38 @@ public class PlaceController {
         model.addAttribute("colors", colors);
 
 
-        /* 검색한 내용을 키워드에 추가하는 로직 => 해당 로직은 완성 됐지만 반복시 데이터가 오염되므로 실 서비스시 주석 해제*/
-//        for (Place one : searchResult){
-//            String keyword = one.getKeyword();
-//            Map<String, Integer> map = new HashMap<>();
-//            map = keywordToMap(map, keyword);
-//            log.info("오류발생 지점 확인용 ");
-//            if(splitSearch!=null){
-//                log.info("searchPlace] "+splitSearch);
-//                for (String split : splitSearch){
-//                    log.info("split] "+split);
-//                    if (placeInterface.findByKeyword(splitSearch)!=null) {
-//                        addNewKeyword(map, split);
-//                    }
-//                }
-//            }
-//            String updated = mapToSortedString(map);
-//            placeInterface.updateKeyword(one.getTitle(), updated);
-//        }
+//        updateKeywordBySearchResult(input, finalForm);
 
 
         return "place/place_thymeleaf";
     }
 
+    public void updateKeywordBySearchResult(SearchInput input, List<List<Place>> finalForm) {
+        /* 검색한 내용을 키워드에 추가하는 로직 => 해당 로직은 완성 됐지만 반복시 데이터가 오염되므로 실 서비스시 주석 해제*/
+        for (List<Place> oneList : finalForm) {
+            for (Place one : oneList) {
+                String keyword = one.getKeyword();
+                Map<String, Integer> map = new HashMap<>();
+                map = keywordToMap(map, keyword);
+                List<String> splitSearch = new ArrayList<>();
+                splitSearch.add(input.getCategory());
+                splitSearch.add(input.getKeyword());
+                splitSearch.add(input.getAddress());
+                for (String split : splitSearch) {
+//                    log.info("split] " + split);
+                    if (!split.equals("")) {
+                        addNewKeyword(map, split);
+                    }
+                }
+                String updated = mapToSortedString(map);
+//                log.info("최종 검색 정렬 결과 "+updated);
+//                log.info("너는 누구니" + one.getTitle());
+
+//                placeInterface.updateKeyword(one.getTitle(), updated);
+
+            }
+        }
+    }
 
 
 }

@@ -99,29 +99,31 @@ public class keywordToMapLogic {
 
 
         /* ,로 keyword를 하나 하나 쪼개서 리스트 재 생성 */
-        List splitKeyword = Arrays.stream(keyword.get(0).split(",")).toList();
-        /* 쪼개진 키워드들을 이번엔 /의 인덱스를 이용해 해시맵에 키워드를 키로 개수를 밸류로 입력*/
-        for (int index = 0; index < splitKeyword.size(); index++) {
-            /* List에 <> 제네릭을 적용하지 않았기 때문에 get 호출시 Object 자료형으로 호출 */
-            // 그래서 toString()으로 String으로 변환
-            // , 하고 띄어쓰기를 했을 경우에 대비해 strip() 글자 시작과 끝에 띄어쓰기가 있으면 제거 함수 사용
-            String Title = splitKeyword.get(index).toString().strip();
-            // '/'의 인덱스를 찾아 divideCheckIndex에 저장
-            int divideCheckIndex = Title.indexOf("/");
-            // 시작부터 /의 인덱스 앞까지 substring으로 추출 -> substring(시작인덱스(포함),끝인덱스(미포함))
-            String textResult = Title.substring(0,divideCheckIndex);
-            // 체크인덱스의+1(/의 다음문자)부터 글자의 끝까지 substring으로 추출
-            // ex) "23"과 같은 스트링 자료형이므로 Integer.parseInt이용해 int형으로 변경
-            int numberResult = Integer.parseInt(Title.substring(divideCheckIndex+1, Title.length()));
+        if (keyword.get(0) != null) {
+            List splitKeyword = Arrays.stream(keyword.get(0).split(",")).toList();
+            /* 쪼개진 키워드들을 이번엔 /의 인덱스를 이용해 해시맵에 키워드를 키로 개수를 밸류로 입력*/
+            for (int index = 0; index < splitKeyword.size(); index++) {
+                /* List에 <> 제네릭을 적용하지 않았기 때문에 get 호출시 Object 자료형으로 호출 */
+                // 그래서 toString()으로 String으로 변환
+                // , 하고 띄어쓰기를 했을 경우에 대비해 strip() 글자 시작과 끝에 띄어쓰기가 있으면 제거 함수 사용
+                String Title = splitKeyword.get(index).toString().strip();
+                // '/'의 인덱스를 찾아 divideCheckIndex에 저장
+                int divideCheckIndex = Title.indexOf("/");
+                // 시작부터 /의 인덱스 앞까지 substring으로 추출 -> substring(시작인덱스(포함),끝인덱스(미포함))
+                String textResult = Title.substring(0, divideCheckIndex);
+                // 체크인덱스의+1(/의 다음문자)부터 글자의 끝까지 substring으로 추출
+                // ex) "23"과 같은 스트링 자료형이므로 Integer.parseInt이용해 int형으로 변경
+                int numberResult = Integer.parseInt(Title.substring(divideCheckIndex + 1, Title.length()));
 
-            /* keyword가 null 없으면 맵에 키를 추가하고 카운트에 1 */
-            if (mapKeyword.get(textResult)==null){
-                mapKeyword.put(textResult,numberResult);
-                /* keyword가 존재한다면 해당 키워드 카운트에 +1 */
-            } else {
-                mapKeyword.put(textResult, mapKeyword.get(textResult)+numberResult);
-            }
+                /* keyword가 null 없으면 맵에 키를 추가하고 카운트에 1 */
+                if (mapKeyword.get(textResult) == null) {
+                    mapKeyword.put(textResult, numberResult);
+                    /* keyword가 존재한다면 해당 키워드 카운트에 +1 */
+                } else {
+                    mapKeyword.put(textResult, mapKeyword.get(textResult) + numberResult);
+                }
 //            mapKeyword.put(textResult, numberResult);
+            }
         }
         return mapKeyword;
     }

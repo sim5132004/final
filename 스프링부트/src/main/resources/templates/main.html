@@ -47,14 +47,19 @@
             <div class="main_left_padding"></div>
             <div class="main_contents_center">
                 <ol class="category_main">
-                    <li class="active"><a href=""><i class="fa-solid fa-map-location-dot"></i> 관광</a></li>
-                    <li><a href=""><i class="fa-solid fa-landmark"></i> 전시</a></li>
-                    <li><a href=""><i class="fa-solid fa-mountain-sun"></i> 자연</a></li>
-                    <li><a href=""><i class="fa-solid fa-person-hiking"></i> 레저</a></li>
-                    <li><a href=""><i class="fa-brands fa-shopify"></i> 쇼핑</a></li>
-                    <li><a href=""><i class="fa-solid fa-utensils"></i> 음식</a></li>
-                    <li><a href=""><i class="fa-solid fa-bed"></i> 숙박</a></li>
+                    <li class="active"><a href="" onclick="sendCategory('관광')"><i class="fa-solid fa-map-location-dot"></i> 관광</a></li>
+                    <li><a href="" onclick="sendCategory('전시')"><i class="fa-solid fa-landmark"></i> 전시</a></li>
+                    <li><a href="" onclick="sendCategory('자연')"><i class="fa-solid fa-mountain-sun"></i> 자연</a></li>
+                    <li><a href="" onclick="sendCategory('레저')"><i class="fa-solid fa-person-hiking"></i> 레저</a></li>
+                    <li><a href="" onclick="sendCategory('쇼핑')"><i class="fa-brands fa-shopify"></i> 쇼핑</a></li>
+                    <li><a href="" onclick="sendCategory('음식')"><i class="fa-solid fa-utensils"></i> 음식</a></li>
+                    <li><a href="" onclick="sendCategory('숙박')"><i class="fa-solid fa-bed"></i> 숙박</a></li>
                 </ol>
+
+
+
+
+
                 <dl class="ai_card_skin d_type">
                     <dt class="header">INVITATION</dt>
                     <dd class="body">
@@ -146,6 +151,27 @@
             </div>
         </div>
     </section>
+    <!-- post 보내는곳 -->
+    <form id="categoryForm" action="/" method="post">
+        <input type="hidden" id="categorySubject" name="categorySubject">
+    </form>
+
+    <script th:inline="javascript">
+        function sendCategory(category) {
+
+            document.getElementById('categorySubject').value = category;
+            document.getElementById('categoryForm').submit();
+        }
+
+        var category2 = [[${category2}]];
+        console.log(category2);
+        function activeCategoryLnb(category2){
+            $('ol li').removeClass('active');
+            $('ol li.'+category2).addClass('active')
+        }
+        activeCategoryLnb(category2)
+
+    </script>
     <!-- ####### 03. CONTENTS END ####### -->
     <hr class="skip"/>
     <!-- ####### 04. FOOTER START ####### -->
