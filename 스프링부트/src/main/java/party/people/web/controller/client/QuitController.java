@@ -11,17 +11,19 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import party.people.domain.Client;
 import party.people.repository.client.ClientInterface;
 
 @Controller
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/client")
 public class QuitController {
     private final ClientInterface clientInterface;
 
 
-    @GetMapping("quit")
+    @GetMapping("/quit")
     public String quitForm(Client client, Model model, HttpServletRequest request){
         /* 기존 세션정보 호출 */
         HttpSession loginInfo = request.getSession(false);
@@ -31,7 +33,7 @@ public class QuitController {
         return "client/quit";
     }
 
-    @PostMapping("quit")
+    @PostMapping("/quit")
     public String quit(@Valid @ModelAttribute Client client, BindingResult bindingResult, Model model,
                         HttpServletRequest request){
 

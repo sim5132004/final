@@ -26,6 +26,7 @@ import static party.people.service.keyword.keywordToMapLogic.keywordToMap;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/client")
 public class MyInfoController {
 
     private final ClientInterface clientInterface;

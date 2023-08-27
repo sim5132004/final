@@ -94,12 +94,6 @@ public class CategoryController {
         return "place/place_thymeleaf";
     }
 
-    @GetMapping("main")
-    public String goCategory(Model model){
-        /* side lnb 출력용 */
-       // model.addAttribute("category","place");
-        return "main/main";
-    }
 
     @GetMapping("analysis")
     public String goAnalysis(HttpServletRequest request, Model model){
@@ -114,44 +108,20 @@ public class CategoryController {
         return "analysis/analysis";
     }
 
+    @GetMapping("client/myPage")
+    public String goMyPage(HttpServletRequest request, Model model){
+        /* side lnb 출력용 */
+        model.addAttribute("category","myPage");
 
+        /* 로그인 유무 체크 */
+        /* 함수 정보는 함수 이름 컨트롤 클릭 */
+        loginCheck(request, model);
 
-//    @GetMapping("invite")
-    public String goInvite(HttpServletRequest request, Model model){
-//
-//        Place place1 = placeInterface.idSearch(1L);
-//        Place place2 = placeInterface.idSearch(2L);
-//        Place place3 = placeInterface.idSearch(3L);
-//        List<Place> placeList = new ArrayList<>();
-//        placeList.add(place1);
-//        placeList.add(place2);
-//        placeList.add(place3);
-////        placeList=placeInterface.findAll();
-
-//
-//
-//        log.info("goInvite] "+placeList);
-//
-//        /* side lnb 출력용 */
-//        model.addAttribute("category","invite");
-//
-////        if(request != null){
-////            model.addAttribute("category2",request);
-////
-////        }else{
-//
-//            model.addAttribute("category2",placeList);
-//
-//        }
-
-        return "invite/invite_A";
+        return "client/myPage";
     }
 
-//    @GetMapping("category")
-//    public String goCategory(Model model){
-//
-//        return "category/category";
-//    }
+
+
 
     public static void loginCheck(HttpServletRequest request, Model model) {
         /* 세션 정보 가져오기 */

@@ -14,7 +14,7 @@ import party.people.web.controller.client.formAndDto.FindPwForm;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("client")
+@RequestMapping("/client")
 public class FindIdPwController {
 
     private final ClientInterface clientInterface;
