@@ -41,11 +41,17 @@ public class HomeController {
 /*
     1. 메인 페이지 카드리스트 내용 전달
 */
+        /* 랜덤 클래스 객체 생성 */
         Random random = new Random();
+        /* 카테고리 리스트 생성 */
         List<String> randomCategory = Arrays.asList("관광", "전시", "자연", "레저", "쇼핑", "음식", "숙박");
+        /* 랜덤 객체를 이용 리스트의 사이즈 수의 범위내에서 랜덤으로 숫자를 생성한다. */
         int randomNumber = random.nextInt(randomCategory.size());
+        /* 랜덤으로 생성된 숫자를 이용해 리스트의 카테고리를 불러오고 카테고리를 이용해 키워드를 불러온다. */
         MainCard main = mainCardInterface.load(randomCategory.get(randomNumber));
+        /* 어떤 카테고리인지 thymeleaf단에 전달 */
         model.addAttribute("category3", main.getCategory());
+        /* 불러온 String 키워드를 /로 스플릿하여 리스트 생성 */
         List<String> three = Arrays.stream(main.getResult().split("/")).toList();
         for (String one : three) {
             /* ,로 스플릿해 나누면 해당 finalList의 값은 ['가','나','다']가 된다 */
@@ -61,7 +67,7 @@ public class HomeController {
                 /* '가'로 리턴된 Place객체를 midForm에 담는다 이를 3번 반복 */
                 midForm.add(placeOne);
             }
-            /* place객체가 담긴 midForm리스트를 finalForm리스트에 추가한다 */
+            /* place객체가 담긴 midForm리스트를 thymeleaf에 전달한다 */
             model.addAttribute("category2",midForm);
             break;
         }
@@ -154,14 +160,16 @@ public class HomeController {
     @PostMapping("/")
     public String postHome(HttpServletRequest request, Model model,
                             @RequestParam("categorySub") String categorySub){
-        log.info("postHome] "+categorySub);
+
+        /* 포스트매핑시 로그인 유지 */
         loginCheck(request,model);
 
+        /* 카테고리 정보를 thymeleaf에 전달 */
         model.addAttribute("category3", categorySub);
 
 
+        /* 카테고리로 키워드 로딩 */
         MainCard main = mainCardInterface.load(categorySub);
-        model.addAttribute("category3", main.getCategory());
         List<String> three = Arrays.stream(main.getResult().split("/")).toList();
         for (String one : three) {
             /* ,로 스플릿해 나누면 해당 finalList의 값은 ['가','나','다']가 된다 */
@@ -179,6 +187,7 @@ public class HomeController {
             }
             /* place객체가 담긴 midForm리스트를 finalForm리스트에 추가한다 */
             model.addAttribute("category2",midForm);
+            /* 메인에는 첫번째 리스트만 사용하기 때문에 브레이크 */
             break;
         }
 
