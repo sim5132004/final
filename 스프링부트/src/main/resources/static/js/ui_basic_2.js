@@ -214,10 +214,10 @@ $(".place_info_layer.item_42").click(function(){
 $(".place_info_layer.item_43").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");
-    $(".layer_contents.item_4_3").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_contents.item_43").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_4_3").remove();
+        $(".modal_layer_wrap.detail .layer_contents.item_43").remove();
     });
 });
 

@@ -290,17 +290,17 @@
                     return function () {
                         var targetClass = "item_" + a + i; // 대상 클래스 이름 설정
 
-                        // 성보님이 만든 ui_basic2.js 파일의 j쿼리문을 그대로 사용
-                        // 마커를 클릭하면 아래 ".place_info_layer." + targetClass 이 페이지가 클릭됐을때 작동하는 함수를 만들고
-                        $(".place_info_layer." + targetClass).click(function() {
-                            $(".modal_layer_wrap.detail").addClass("show");
-                            $(".layer_contents." + targetClass).clone().appendTo(".modal_layer_wrap.detail .layer_box");
-
-                            $(".modal_layer_wrap.detail .layer_box a.close_layer, .layer_bg").click(function() {
-                                $(".modal_layer_wrap.detail").removeClass("show");
-                                $(".modal_layer_wrap.detail .layer_contents." + targetClass).remove();
-                            });
-                        });
+                        // // 성보님이 만든 ui_basic2.js 파일의 j쿼리문을 그대로 사용
+                        // // 마커를 클릭하면 아래 ".place_info_layer." + targetClass 이 페이지가 클릭됐을때 작동하는 함수를 만들고
+                        // $(".place_info_layer." + targetClass).click(function() {
+                        //     $(".modal_layer_wrap.detail").addClass("show");
+                        //     $(".layer_contents." + targetClass).clone().appendTo(".modal_layer_wrap.detail .layer_box");
+                        //
+                        //     $(".modal_layer_wrap.detail .layer_box a.close_layer, .layer_bg").click(function() {
+                        //         $(".modal_layer_wrap.detail").removeClass("show");
+                        //         $(".modal_layer_wrap.detail .layer_contents." + targetClass).remove();
+                        //     });
+                        // });
                         // 여기서 ".place_info_layer." + targetClass 페이지를 클릭하는 효과
                         $(".place_info_layer." + targetClass).click();
                         console.log(targetClass);
