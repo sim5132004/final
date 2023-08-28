@@ -43,18 +43,35 @@ public class placeSaveController {
 
         InviteCard letInviteCard = new InviteCard();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String dateOn;
+        try{
+            dateOn =datetype.split(",")[0];
+        }
+        catch (Exception e){
+            log.info("placeSaveController 데이트 오류발생");
+        }
+        if(inviteCard.getTITLE()!=null)
+            letInviteCard.setTITLE(inviteCard.getTITLE().split(",")[0]);
 
-        String dateOn =datetype.split(",")[0];
-        letInviteCard.setTITLE(inviteCard.getTITLE().split(",")[0]);
-        letInviteCard.setMEETING_CONTENT(inviteCard.getMEETING_CONTENT().split(",")[0]);
-        letInviteCard.setMEETING_PARTICIPANTS(inviteCard.getMEETING_PARTICIPANTS().split(",")[0]);
+        log.info("placeSaveController] letInviteCard.getTITLE() = " + letInviteCard.getTITLE());
+        log.info("위에는 렛"+inviteCard.getTITLE());
+        log.info(inviteCard.getTITLE().split(",")[0]);
+        log.info(inviteCard.getTITLE().split(",")[1]);
 
-
+        if(inviteCard.getMEETING_CONTENT() !=null)
+         letInviteCard.setMEETING_CONTENT(inviteCard.getMEETING_CONTENT().split(",")[0]);
+        if(inviteCard.getMEETING_PARTICIPANTS()!=null)
+           letInviteCard.setMEETING_PARTICIPANTS(inviteCard.getMEETING_PARTICIPANTS().split(",")[0]);
+        if(inviteCard.getTAGET_TIME()!=null)
+          letInviteCard.setTAGET_TIME(inviteCard.getTAGET_TIME().split(",")[0]);
 
         //클라이언트 아이디 저장
         letInviteCard.setCLIENT_ID("클라이언트 아이디 저장할곳");
+        if (inviteCard.getPLACE_ID_1()!=null)
         letInviteCard.setPLACE_ID_1(inviteCard.getPLACE_ID_1());
+        if(inviteCard.getPLACE_ID_2()!=null)
         letInviteCard.setPLACE_ID_2(inviteCard.getPLACE_ID_2());
+        if(inviteCard.getPLACE_ID_3()!=null)
         letInviteCard.setPLACE_ID_3(inviteCard.getPLACE_ID_3());
 
         try {
@@ -68,18 +85,20 @@ public class placeSaveController {
 
 
 
-        log.info("placeSaveController] datetype = " + datetype);
+//        log.info("placeSaveController] datetype = " + dateOn);
 
         log.info("placeSaveController] inviteCard = " + inviteCard.getTITLE());
         log.info("placeSaveController] inviteCard = " + inviteCard.getPLACE_ID_1());
 
         log.info("placeSaveController] inviteCard = " + inviteCard.getCLIENT_ID());
 
-        inviteCard.setCLIENT_ID("tester");
-        inviteCardInterface.saveCard(inviteCard);
+//        inviteCard.setCLIENT_ID("tester");
+        if (letInviteCard.getCLIENT_ID()!=null)
+        inviteCardInterface.saveCard(letInviteCard);
 
+//        return "";
+    return "redirect:/";
 
-        return "redirect:/invite/invite_A";
     }
 
 
