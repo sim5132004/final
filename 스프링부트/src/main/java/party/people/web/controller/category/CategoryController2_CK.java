@@ -125,7 +125,7 @@ public class CategoryController2_CK {
     }
 
     /* 이미지 다운로드 에러 방지용 객체 이미지주소 바이너리 타입으로 인코딩 후 객체 다시 저장 */
-    private static void placeImageToBinary(Place place12) {
+    public static void placeImageToBinary(Place place12) {
         String change = place12.getImageAdd1();
         try {
             // 이미지 다운로드
