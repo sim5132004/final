@@ -60,6 +60,16 @@
                         };
                     // 지도를 생성합니다
                     var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                    var center = map.getCenter();
+
+                    // 조금만 오른쪽으로 이동시킬 거리 (단위: 미터)
+                    var offsetX = 100; // 예시로 1000미터 이동
+
+                    // 새로운 중심 좌표 계산
+                    var newCenter = new kakao.maps.LatLng(center.getLat(), center.getLng() + (offsetX / 1000)); // 경도에 offset을 더해 새로운 경도 계산
+
+                    map.setCenter(newCenter);
                 </script>
 
             </div>
