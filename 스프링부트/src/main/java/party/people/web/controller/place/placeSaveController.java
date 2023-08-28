@@ -47,7 +47,7 @@ public class placeSaveController {
         InviteCard letInviteCard = new InviteCard();
 
         /* 저장 정보 제목 */
-        if(inviteCard.getTitle()!=null){
+        if(inviteCard.getTitle()!=null && !inviteCard.getTitle().equals(",")){
             /* 왠지 모르지만 저장 정보가 ,찍히고 2개씩 와서.. 이렇게 처리한다 */
             letInviteCard.setTitle(inviteCard.getTitle().split(",")[0]);}
         else letInviteCard.setTitle("");
@@ -56,25 +56,25 @@ public class placeSaveController {
         log.info("위에는 렛"+inviteCard.getTitle());
 
         /* 모임 내용 */
-        if(inviteCard.getMeetingContent() !=null){
+        if(inviteCard.getMeetingContent() !=null && !inviteCard.getMeetingContent().equals(",")){
          letInviteCard.setMeetingContent(inviteCard.getMeetingContent().split(",")[0]);}
         else letInviteCard.setMeetingContent("");
 
         /* 참가 인원 */
-        if((inviteCard.getMeetingParticipants()!=null)){
+        if((inviteCard.getMeetingParticipants()!=null && !inviteCard.getMeetingParticipants().equals(","))){
            letInviteCard.setMeetingParticipants(inviteCard.getMeetingParticipants().split(",")[0]);}
         else letInviteCard.setMeetingParticipants("");
         /* 약속 날짜 */
-        if((inviteCard.getTargetDate()!=null)){
+        if((inviteCard.getTargetDate()!=null && !inviteCard.getTargetDate().equals(","))){
             letInviteCard.setTargetDate(inviteCard.getTargetDate().split(",")[0]);}
         else letInviteCard.setTargetDate("");
         /* 약속 시간 */
-        if((inviteCard.getTargetTime()!=null)){
+        if((inviteCard.getTargetTime()!=null && !inviteCard.getTargetDate().equals(","))){
           letInviteCard.setTargetTime(inviteCard.getTargetTime().split(",")[0]);}
         else letInviteCard.setTargetTime("");
 
         /* 카드스킨 */
-        if(inviteCard.getCardSkin()!=null){
+        if(inviteCard.getCardSkin()!=null && !inviteCard.getCardSkin().equals(",")){
             letInviteCard.setCardSkin(inviteCard.getCardSkin().split(",")[0]);}
         else letInviteCard.setCardSkin("");
 

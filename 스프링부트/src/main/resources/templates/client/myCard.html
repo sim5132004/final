@@ -49,13 +49,14 @@
         <div class="page_contents">
           <!-- 페이지 삽입내용 부분 -->
 
-          <div class="card_list_wrap" style="width: 800px; height: 600px; margin: 0 auto; "
-          th:each="card, iterStat : ${category2}">
+          <div class="card_list_wrap" style="width: 800px; height: 700px; margin: 0 auto; "
+          th:if="${category2 != null}" th:each="card, iterStat : ${category2}">
             <!-- 추천(조합) 모임카드 #.01 시작 -->
 <!--            <b th:class="'depth_1 ' + ${colors[iterStat.count - 1]}"  th:text="${iterStat.count}" >1</b>-->
-            <dl class="ai_card design" style="background:#232323 url('../images/bg_04.jpg') no-repeat top; background-size: 100%; border-radius:15px; padding-top: 30px !important;">
+            <dl class="ai_card design" style="background:#232323 url('../images/bg_06.jpg') no-repeat top; background-size: 100%; border-radius:15px; padding-top: 30px !important;">
               <dt class="header" style="font-size: 30px; font-weight: bold; color: white; text-align: center"
-                th:text="${iterStat.count}번 초대장">INVITATION</dt>
+                th:text="|${pageMaker.getPage().getPageNum()}번 초대장|">INVITATION</dt>
+              <br>
 <!--              <b th:class="'depth_1'">1</b>-->
               <dt class="header" style="background:white; padding:10px; border-radius:5px; text-align: left">
                 <h2>
@@ -72,6 +73,7 @@
                   <div class="memo"><label><b>모임내용</b><textarea class="card_memo" name="" rows="3" value="" placeholder="모임에 대한 상세내용을 적어 주세요." th:text="${card.meetingContent}"></textarea></label></div>
                 </div>
               </dt>
+              <br>
 
               <dd class="body" style="background:white; padding:10px; border-radius:5px">
 
@@ -100,6 +102,24 @@
 
             </dl>
           </div>
+
+                      <div class="paging">
+                        <a th:if="${pageMaker.isPrev()}" th:href="@{/client/myCard(pageNum = ${pageMaker.getStartPage-1})}" th:text="이전" class="btn_first"></a>
+                        <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.getStartPage(),pageMaker.getEndPage())}">
+                          <a th:if="${pageNum != pageMaker.getPage().getPageNum()}" th:href="@{/client/myCard(pageNum = ${pageNum})}" th:text="${pageNum}"></a>
+                          <strong th:if="${pageNum == pageMaker.getPage().getPageNum()}" th:text="${pageNum}" class="active"></strong>
+                        </th:block>
+                        <a th:if="${pageMaker.isNext()}" th:href="@{/client/myCard(pageNum = ${pageMaker.getEndPage()+1})}" th:text="다음" class="btn_last"></a>
+<!--                          <a href="#" class="btn_first"></a>-->
+<!--                          <a href="#" class="btn_prev"></a>-->
+<!--                          <a href="#" class="active">1</a>-->
+<!--                          <a href="#">2</a>-->
+<!--                          <a href="#">3</a>-->
+<!--                          <a href="#">4</a>-->
+<!--                          <a href="#">5</a>-->
+<!--                          <a href="#" class="btn_next"></a>-->
+<!--                          <a href="#" class="btn_last"></a>-->
+                      </div>
 
 
           <!-- 페이지 삽입내용 끝 -->

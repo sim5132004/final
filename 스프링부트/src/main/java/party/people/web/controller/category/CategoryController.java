@@ -120,7 +120,7 @@ public class CategoryController {
     }
 
     @GetMapping("client/myCard")
-    public String goMyPage(HttpServletRequest request, Model model){
+    public String goMyPage(Page page, HttpServletRequest request, Model model){
         /* side lnb 출력용 */
         model.addAttribute("category","myCard");
 
@@ -134,7 +134,9 @@ public class CategoryController {
         Client info = (Client) session.getAttribute("로그인");
 
         log.info("로그인 세션까지 확인 ");
-        List<InviteCard> list = inviteCardInterface.loadById(info.getClientId());
+        List<InviteCard> listOrigin = inviteCardInterface.loadById(info.getClientId());
+        int total = listOrigin.size();
+        List<InviteCard> list = inviteCardInterface.loadByIdPaging(page, info.getClientId());
         List<InviteCardDomain> domainList = new ArrayList<>();
 
         InviteCardDomain cardDomain = new InviteCardDomain();
@@ -168,6 +170,7 @@ public class CategoryController {
             }
         }
 
+        model.addAttribute("pageMaker", new PageDto(page,total));
         model.addAttribute("category2", domainList);
 
 
