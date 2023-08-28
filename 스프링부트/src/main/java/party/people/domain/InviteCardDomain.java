@@ -21,7 +21,7 @@ public class InviteCardDomain {
     private Place placeId3;
     private List<Place> placeList;
     private String title;
-    private Date targatDate;
+    private String targetDate;
     private String targetTime;
     private String meetingContent;
     private String meetingParticipants;
@@ -37,7 +37,7 @@ public class InviteCardDomain {
         this.placeId3 = placeId3;
         this.placeList = placeList;
         this.title = other.getTitle();
-        this.targatDate = other.getTargatDate();
+        this.targetDate = other.getTargetDate();
         this.targetTime = other.getTargetTime();
         this.meetingContent = other.getMeetingContent();
         this.meetingParticipants = other.getMeetingParticipants();

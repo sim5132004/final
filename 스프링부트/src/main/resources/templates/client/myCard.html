@@ -50,11 +50,12 @@
           <!-- 페이지 삽입내용 부분 -->
 
           <div class="card_list_wrap" style="width: 800px; height: 600px; margin: 0 auto; "
-          th:each="card : ${category2}">
+          th:each="card, iterStat : ${category2}">
             <!-- 추천(조합) 모임카드 #.01 시작 -->
 <!--            <b th:class="'depth_1 ' + ${colors[iterStat.count - 1]}"  th:text="${iterStat.count}" >1</b>-->
             <dl class="ai_card design" style="background:#232323 url('../images/bg_04.jpg') no-repeat top; background-size: 100%; border-radius:15px; padding-top: 30px !important;">
-              <dt class="header" style="font-size: 30px; font-weight: bold; color: white; text-align: center" >INVITATION</dt>
+              <dt class="header" style="font-size: 30px; font-weight: bold; color: white; text-align: center"
+                th:text="${iterStat.count}번 초대장">INVITATION</dt>
 <!--              <b th:class="'depth_1'">1</b>-->
               <dt class="header" style="background:white; padding:10px; border-radius:5px; text-align: left">
                 <h2>
@@ -64,11 +65,11 @@
                 </h2>
                 <div class="form_info">
                   <div class="date">
-                    <label><b>모임날짜</b><input type="date" value="2023-08-21" th:value="${card.targatDate}"></label>
+                    <label><b>모임날짜</b><input type="date" value="2023-08-21" th:value="${card.targetDate}"></label>
                     <label><b>모임시간</b><input type="time" value="" th:value="${card.targetTime}"></label>
                     <label><b>참가인원</b><input type="text" value="" th:value="${card.meetingParticipants}"> </label>
                   </div>
-                  <div class="memo"><label><b>모임내용</b><textarea class="card_memo" name="" rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요." th:value="${card.meetingContent}"></textarea></label></div>
+                  <div class="memo"><label><b>모임내용</b><textarea class="card_memo" name="" rows="3" value="" placeholder="모임에 대한 상세내용을 적어 주세요." th:text="${card.meetingContent}"></textarea></label></div>
                 </div>
               </dt>
 
