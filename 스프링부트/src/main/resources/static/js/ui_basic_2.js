@@ -61,7 +61,8 @@ $(".ai_card.design .confirm").click(function(){
     $(".modal_layer_wrap.card").addClass("show");
     // 카드 디자인 스킨 복사
     // 모임카드 미리보기 버튼 클릭시, 인바이트 사용자가 작성한 최종 내용 카드 디자인 스킨 입혀서 보여주기
-    $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
+    //$(".right_contents.area .ai_card_skin input[type=radio]:checked").clone().appendTo(".right_contents .page_title h1");
+    $(".right_contents.area .ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
     $(".left_contents_center .ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
     // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
     // $(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=checkbox]:unchecked").parent().remove();
