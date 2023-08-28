@@ -20,7 +20,7 @@ import static party.people.web.controller.category.CategoryController.loginCheck
 import java.util.ArrayList;
 import java.util.List;
 
-//@Controller
+@Controller
 @RequiredArgsConstructor
 @Slf4j
 public class CategoryController2 {
@@ -31,7 +31,7 @@ public class CategoryController2 {
 
 
 
-    @GetMapping("invite")
+//    @GetMapping("invite")
     public String goInvite(HttpServletRequest request, Model model){
 
         Random random = new Random();
@@ -79,7 +79,7 @@ public class CategoryController2 {
 
         if (test!=null) {
             model.addAttribute("category2", pl);
-            model.addAttribute("keylist",pl.get(0).keyWordTitle());
+            model.addAttribute("keyList",pl.get(0).keyWordTitle());
         }else{
 
             model.addAttribute("category2", placeList2);
@@ -93,7 +93,7 @@ public class CategoryController2 {
 
 
     @GetMapping("/saveCard")
-    public String resultPage(@RequestParam("data") String data, @ModelAttribute("card") InviteCard inviteCard) {
+    public String resultPage(HttpServletRequest request, @ModelAttribute("card") InviteCard inviteCard) {
 
         inviteCardInterface.saveCard(inviteCard);
 

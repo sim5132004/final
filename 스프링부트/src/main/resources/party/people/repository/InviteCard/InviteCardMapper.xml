@@ -5,20 +5,15 @@
 
 
     <!-- 회원 가입 -->
-    <insert id="save" useGeneratedKeys="true" keyProperty="inde">
-        <selectKey keyProperty="indexId" resultType="java.lang.Long" order="BEFORE">
-            SELECT keyword_seq.NEXTVAL FROM DUAL
+    <insert id="saveCard" useGeneratedKeys="true" keyProperty="x">
+        <selectKey keyProperty="x" resultType="java.lang.Long" order="BEFORE">
+            SELECT INViTED.NEXTVAL FROM DUAL
         </selectKey>
-        INSERT INTO InviteCard (index_id, CLIENT_ID, PLACE_ID_1, PLACE_ID_2, PLACE_ID_3,  TITLE    ,TAGET_DATE ,TAGET_TIME,
-        MEETING_CONTENT,  MEETING_PARTICIPANTS,  CARD_SKIN,  PLACE_ID_1_SET,PLACE_ID_2_SET,PLACE_ID_3_SET)
-        VALUES (#{indexId}, #{CLIENT_ID}, #{PLACE_ID_1},#{PLACE_ID_2}, #{PLACE_ID_3}, #{TITLE},
-        #{TAGET_DATE}, #{TAGET_TIME}, #{MEETING_CONTENT},
-        #{MEETING_PARTICIPANTS}, #{CARD_SKIN}, #{PLACE_ID_1_SET} ,  #{PLACE_ID_2_SET}, #{PLACE_ID_3_SET}
+        INSERT INTO INVaTE_CARD2 (SEQUENCEID, CLIENT_ID, PLACE_ID_1, PLACE_ID_2, PLACE_ID_3,  TITLE    ,TAGET_DATE ,TAGET_TIME,    MEETING_CONTENT,  MEETING_PARTICIPANTS,  CARD_SKIN)
+        VALUES (#{x}, #{CLIENT_ID, jdbcType=VARCHAR}, #{PLACE_ID_1,jdbcType=INTEGER},#{PLACE_ID_2,jdbcType=INTEGER}, #{PLACE_ID_3,jdbcType=INTEGER}, #{TITLE, jdbcType=VARCHAR},
+        #{TAGET_DATE, jdbcType=DATE}, #{TAGET_TIME, jdbcType=VARCHAR}, #{MEETING_CONTENT, jdbcType=VARCHAR},
+        #{MEETING_PARTICIPANTS, jdbcType=VARCHAR}, #{CARD_SKIN, jdbcType=VARCHAR}
         )
-
-
-
-
     </insert>
 
     <!-- 전체 검색 -->

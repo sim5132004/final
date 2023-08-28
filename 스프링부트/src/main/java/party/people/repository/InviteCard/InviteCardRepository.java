@@ -22,6 +22,7 @@ public class InviteCardRepository implements InviteCardInterface {
     @Override
     public void saveCard(InviteCard inviteCard){
 
+        inviteCardMapper.saveCard(inviteCard);
     }
 
 }

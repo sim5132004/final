@@ -21,10 +21,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.Base64;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static party.people.web.controller.category.CategoryController.loginCheck;
 
@@ -107,7 +104,9 @@ public class CategoryController2_CK {
                 /* 해당 리스트를 타임리프단으로 전달 */
                 model.addAttribute("category2", newImageAddPlace);
                 /* 인바이트 제목내용 전달 */
-                model.addAttribute("keylist",pl.keyWordTitle());
+                model.addAttribute("keyList",place12.keyWordTitle());
+                log.info("CategoryController2_CK] place12 =  if 안쪽 문" + place12.getTitle());
+
             /* 세션 정보가 없을 경우 랜덤생성된 리스트 타임리프로 전달 */
             } else model.addAttribute("category2",placeList2);
 
@@ -115,8 +114,33 @@ public class CategoryController2_CK {
         /* 세션 정보가 없을 경우 랜덤생성된 리스트 타임리프로 전달 */
         else{
             model.addAttribute("category2", placeList2);
+            model.addAttribute("keyList",place12.keyWordTitle());
+            log.info("CategoryController2_CK] place12 = " + place12.getTitle());
             log.info("NULL !!!!");
         }
+
+        if (test != null) {
+            if (test.getAttribute("로그인") != null) {
+                model.addAttribute("login", "ok");
+            }
+        }
+
+//
+//        InviteCard inviteCard=new InviteCard();
+//        inviteCard.setCARD_SKIN("dd");
+//        inviteCard.setCLIENT_ID(1);
+//        inviteCard.setPLACE_ID_1(1);
+//        inviteCard.setPLACE_ID_2(1);
+//        inviteCard.setPLACE_ID_3(1);
+//        inviteCard.setTITLE("hihi");
+//        inviteCard.setTAGET_DATE(new Date(20220809));
+//        inviteCard.setTAGET_TIME("7시");
+//
+//        inviteCard.se
+//        System.out.println(inviteCard.getCLIENT_ID());
+//        inviteCardInterface.saveCard(inviteCard);
+//        System.out.println("됐나?");
+
 
 
 
@@ -125,7 +149,7 @@ public class CategoryController2_CK {
     }
 
     /* 이미지 다운로드 에러 방지용 객체 이미지주소 바이너리 타입으로 인코딩 후 객체 다시 저장 */
-    private static void placeImageToBinary(Place place12) {
+    public static void placeImageToBinary(Place place12) {
         String change = place12.getImageAdd1();
         try {
             // 이미지 다운로드
@@ -150,7 +174,7 @@ public class CategoryController2_CK {
     }
 
 
-    @GetMapping("/saveCard")
+//    @GetMapping("/saveCard")
     public String resultPage(@RequestParam("data") String data, @ModelAttribute("card") InviteCard inviteCard) {
 
         inviteCardInterface.saveCard(inviteCard);
