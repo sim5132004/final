@@ -19,6 +19,7 @@
 /* =================================
  메인 컨텐츠
 ====================================*/
+
 .word_cloud_wrap{ max-width: 700px; max-height: 100px;  margin:50px auto 0; padding:0 }
 
 
@@ -53,16 +54,16 @@
 .main_wrap .ai_card .form_info .date{ text-align: center }
 .main_wrap .ai_card .form_info .date i{ font-size: 18px }
 .main_wrap .ai_card .form_info .date label input{ width:130px }
-.main_wrap .ai_card .form_info .date label:nth-child(2) input{ width:110px }
+.main_wrap .ai_card .form_info .date label:nth-child(2) input{ width:130px }
 .main_wrap .ai_card .form_info .date label:nth-child(3) input{ width:40px }
 .main_wrap .form_info .memo b{ display: none }
 .main_wrap .ai_card .form_info .memo{ text-align: center }
 .main_wrap .ai_card .form_info .memo textarea{ width: 100%; border-color:rgba(0,0,0,.2); height: 20px; margin:0 auto; box-sizing: border-box; font:500 16px/22px 'Noto Sans KR',Sans-serif; text-align: center; padding-top: 12px }
 .main_wrap .ai_card .form_info .memo textarea::placeholder{  }
 
-.main_wrap .card_map_wrap{ margin:10px 10px 0 0; width: 100%; border-radius: 3px }
+.main_wrap .card_map_wrap{ margin:10px 10px 0 0; width: 280px; height: 320px; border-radius: 3px }
 .main_wrap .ai_card.design dd.body { display: flex; justify-content: center; flex-direction:row; justify-content: space-between; word-wrap: break-word; }
-.main_wrap .ai_card.design dd.body .layout_row:nth-child(1){ margin-right: 2%;  }
+.main_wrap .ai_card.design dd.body .layout_row:nth-child(1){ margin-right: 1%;  }
 .main_wrap .ai_card.design dd.body .layout_row{ flex:1 1 auto; }
 .main_wrap .ai_card.design dd.body .layout_row:nth-child(2){ flex:0 1 47%; }
 
