@@ -105,12 +105,14 @@ public class CategoryController2_CK {
                 model.addAttribute("category2", newImageAddPlace);
                 /* 인바이트 제목내용 전달 */
                 model.addAttribute("keyList",place2.get(0).keyWordTitle());
-                log.info("CategoryController2_CK] place12 =  if 안쪽 문" + place12.getTitle());
+                log.info("CategoryController2_CK] place12 =  if 안쪽 문" + place2.get(0).getTitle());
 
             /* 세션 정보가 없을 경우 랜덤생성된 리스트 타임리프로 전달 */
-            } else model.addAttribute("category2",placeList2);
+            } else {
+                model.addAttribute("category2", placeList2);
 
-            model.addAttribute("keyList",place12.keyWordTitle());
+                model.addAttribute("keyList", place12.keyWordTitle());
+            }
 
         }
         /* 세션 정보가 없을 경우 랜덤생성된 리스트 타임리프로 전달 */
