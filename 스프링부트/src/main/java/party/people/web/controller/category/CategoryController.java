@@ -2,16 +2,12 @@ package party.people.web.controller.category;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jdk.dynalink.beans.StaticClass;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import party.people.domain.Client;
-import party.people.domain.InviteCard;
-import party.people.domain.Place;
-import party.people.domain.SearchResult;
+import party.people.domain.*;
 import party.people.repository.InviteCard.InviteCardInterface;
 import party.people.repository.place.PlaceInterface;
 import party.people.repository.search.SearchInputInterface;
@@ -136,10 +132,14 @@ public class CategoryController {
 
         log.info("로그인 세션까지 확인 ");
         List<InviteCard> list = inviteCardInterface.loadById(info.getClientId());
+        List<InviteCardDomain> domainList = new ArrayList<>();
+
+        InviteCardDomain cardDomain = new InviteCardDomain();
         log.info("리스트 확인 "+list);
-        List<Place> listPlace = new ArrayList<>();
         if (!list.isEmpty()){
             for (InviteCard one : list){
+                List<Place> listPlace = new ArrayList<>();
+
                 Integer placeId1 = one.getPlaceId1();
                 Integer placeId2 = one.getPlaceId2();
                 Integer placeId3 = one.getPlaceId3();
@@ -152,10 +152,15 @@ public class CategoryController {
                 listPlace.add(place1);
                 listPlace.add(place2);
                 listPlace.add(place3);
-                break;
+                cardDomain = new InviteCardDomain(one, listPlace, place1, place2, place3 );
+
+                domainList.add(cardDomain);
+
             }
         }
-        model.addAttribute("category2", listPlace);
+//        log.info("리스트 확인 "+ domainList);
+//        log.info("리스트 내용물 확인 "+domainList.get(0));
+        model.addAttribute("category2", domainList);
 
 
 
