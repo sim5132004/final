@@ -1,14 +1,12 @@
 // 참고 사이트 : https://docs.anychart.com/Basic_Charts/Tag_Cloud
 anychart.onDocumentReady(function () {
-    var category2 = /*[[${category2}]]*/ {};
-    console.log(category2);
+    var category2 = [[${category2}]]
+    console.log(JSON.stringify(category2));
+    var keywordData = [];
 
-
+    if(category2.keyword){
         var keyword = category2.keyword.split(',');
         console.log("불러오니?"+category2.keyword);
-        console.log("넌 어디있니?"+keyword);
-        var keywordData = [];
-        console.log("오고있니?"+keywordData);
         for (var i = 0; i < keyword.length; i++) {
             var wordAndValue = keyword[i].split('/');
             console.log("너어디살아"+wordAndValue);
@@ -16,8 +14,10 @@ anychart.onDocumentReady(function () {
             var value = parseInt(wordAndValue[1]);
             keywordData.push({x: word, value: value})
         }
+    }
 
-        // var data = [];
+        var data = [];
+
         //     data.push({x: keywordData[i].x, value: keywordData[i].x, link: keywordData[i].x});
         for (var i = 0; i < keywordData.length; i++) {
             data.push({x: keywordData[i].x, value: keywordData[i].value, link: keywordData[i].x});

@@ -54,8 +54,11 @@ anychart.onDocumentReady(function () {
     chart.tooltip().format("{%yPercentOfTotal}% ({%value})\n\n{%category}");
 
     chart.listen("pointClick", function(e){ // 이벤트 리스너 추가, 페이지 링크 연결
-        var url = "//en.wiktionary.org/wiki/" + e.point.get("x");
-        window.open(url, "_self");
+        // var url = "//en.wiktionary.org/wiki/" + e.point.get("x");
+        // var url = "//https://namu.wiki/w/" + e.point.get("x");
+        // window.open(url, "_self");
+        var url = "https://namu.wiki/w/" + encodeURIComponent(e.point.get("x"));
+        window.open(url, "_blank");
     });
     chart.animation(true);
     chart.container("word_cloud_1");  // set the container id, 차트를 그릴 HTML 요소의 ID를 지정합니다.

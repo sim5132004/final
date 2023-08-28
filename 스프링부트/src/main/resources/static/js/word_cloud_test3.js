@@ -1,10 +1,10 @@
 // 참고 사이트 : https://docs.anychart.com/Basic_Charts/Tag_Cloud
 anychart.onDocumentReady(function () {
-    var category2 = /*[[${category2}]]*/ {};
-    console.log("확인"+category2);
+    var category_result =[[${category2}]];
+    console.log("확인"+category_reuslt);
 
-    var keyword = category2.keyword.split(',');
-    console.log("월에얼마버니"+category2.keyword)
+    var keyword = category_result.keyword.split(',');
+    console.log("월에얼마버니"+category_result.keyword)
     var keywordData = [];
     console.log("연봉200만원인데 많이버는건가요?"+keywordData)
     for(var i=0; i< keyword.length; i++){
