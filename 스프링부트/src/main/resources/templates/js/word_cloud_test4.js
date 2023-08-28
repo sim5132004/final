@@ -1,12 +1,12 @@
 // 참고 사이트 : https://docs.anychart.com/Basic_Charts/Tag_Cloud
 anychart.onDocumentReady(function () {
     var category2 = /*[[${category2}]]*/ {};
-    console.log("확인"+category2);
+    console.log(category2);
 
     var keyword = category2.keyword.split(',');
     var keywordData = [];
-    for(var i=0; i< keyword.length; i++){
-        var wordAndValue = keyword[i].split('/');
+    for(var i=0; i< category2.keyword.length; i++){
+        var wordAndValue = category2.keyword[i].split('/');
         var word = wordAndValue[0];
         var value = parseInt(wordAndValue[1]);
         keywordData.push({x: word, value: value})
