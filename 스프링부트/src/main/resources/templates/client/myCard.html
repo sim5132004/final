@@ -8,6 +8,7 @@
   <meta name="Description" content="인천시 다양한 모임주제에 맞는(회식/데이트/동호회) AI추천 카테고리에 대한 나만의 초대카드를 만들어보세요."/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
   <link rel="stylesheet" type="text/css" href="../css/reset.css" th:href="@{/css/testyo.css}" >
+<!--  <link rel="stylesheet" type="text/css" href="../css/ck2.css">-->
   <link rel="stylesheet" type="text/css" href="../css/reset.css" >
   <link rel="stylesheet" type="text/css" href="../css/layout.css" >
   <link rel="stylesheet" type="text/css" href="../css/card.css" >
@@ -48,12 +49,13 @@
         <div class="page_contents">
           <!-- 페이지 삽입내용 부분 -->
 
-          <div class="card_list_wrap" style="width: 800px; height: 1200px">
+          <div class="card_list_wrap" style="width: 800px; height: 600px; margin: 0 auto; ">
             <!-- 추천(조합) 모임카드 #.01 시작 -->
 <!--            <b th:class="'depth_1 ' + ${colors[iterStat.count - 1]}"  th:text="${iterStat.count}" >1</b>-->
-            <dl class="ai_card design">
-              <b th:class="'depth_1'">1</b>
-              <dt class="header">
+            <dl class="ai_card design" style="background:#232323 url('../images/bg_04.jpg') no-repeat top; background-size: 100%; border-radius:15px; padding-top: 30px !important;">
+              <dt class="header" style="font-size: 30px; font-weight: bold; color: white; text-align: center" >INVITATION</dt>
+<!--              <b th:class="'depth_1'">1</b>-->
+              <dt class="header" style="background:white; padding:10px; border-radius:5px; text-align: left">
                 <h2>
                   <label>
                     <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="${keylist}"  value="동인천/차이나타운/짜파게티/회식">
@@ -69,7 +71,7 @@
                 </div>
               </dt>
 
-              <dd class="body">
+              <dd class="body" style="background:white; padding:10px; border-radius:5px">
 
 
                 <!-- 대안 장소 선택_01: 업체 리스트 -->
