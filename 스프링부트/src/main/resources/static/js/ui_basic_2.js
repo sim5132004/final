@@ -4,6 +4,7 @@ $(function(){
     $("nav ul li:nth-child(1) a").addClass("active");
     // 사용자가 선택한 메뉴 활성화(class="active")에 따른 페이지 메뉴명 제이쿼리 변경 처리
     $(".fixed_quick_menu dd.active a").clone().prependTo(".lnb h2");
+    $(".fixed_quick_menu dd.active a").clone().prependTo(".left_contents_center .page_title > h1");
     $(".sub_menu_list li a.active").clone().prependTo(".right_contents h1");
     // $(".right_contents h1 span").appendTo("분석");
     // 페이지 네비게이션 경로 처리
@@ -67,7 +68,7 @@ $(".ai_card.design .confirm").click(function(){
     $(".left_contents_center .ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
     // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
     // $(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=checkbox]:unchecked").parent().remove();
-
+    $(".modal_layer_wrap.card .card_map_wrap").insertAfter($(".modal_layer_wrap.card .ai_card.design dd.body"));
     //$(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=radio]:checked").parent().remove();
     $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
     //$(".modal_layer_wrap.card .ai_card_skin > dd.body > input[type=radio]").remove();
@@ -214,10 +215,10 @@ $(".place_info_layer.item_42").click(function(){
 $(".place_info_layer.item_43").click(function(){
     //$("body").hide();
     $(".modal_layer_wrap.detail").addClass("show");
-    $(".layer_contents.item_4_3").clone().appendTo(".modal_layer_wrap.detail .layer_box");
+    $(".layer_contents.item_43").clone().appendTo(".modal_layer_wrap.detail .layer_box");
     $(".layer_box a.close_layer,.layer_bg").click(function(){
         $(".modal_layer_wrap.detail").removeClass("show");
-        $(".modal_layer_wrap.detail .layer_contents.item_4_3").remove();
+        $(".modal_layer_wrap.detail .layer_contents.item_43").remove();
     });
 });
 
