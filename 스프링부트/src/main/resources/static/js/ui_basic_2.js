@@ -4,6 +4,7 @@ $(function(){
     $("nav ul li:nth-child(1) a").addClass("active");
     // 사용자가 선택한 메뉴 활성화(class="active")에 따른 페이지 메뉴명 제이쿼리 변경 처리
     $(".fixed_quick_menu dd.active a").clone().prependTo(".lnb h2");
+    $(".fixed_quick_menu dd.active a").clone().prependTo(".left_contents_center .page_title > h1");
     $(".sub_menu_list li a.active").clone().prependTo(".right_contents h1");
     // $(".right_contents h1 span").appendTo("분석");
     // 페이지 네비게이션 경로 처리

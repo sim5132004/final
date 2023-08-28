@@ -434,9 +434,9 @@
             <form>
                 <div class="card_list_wrap">
                     <!-- 추천(조합) 모임카드 #.01 시작 -->
-                    <div th:if="${searchNull eq 'null'}">
-                        <h2><span th:text="|[${searchText}]|"></span>에 해당하는 검색 결과가 없습니다</h2>
-                        <h2>다음과 같은 장소는 어떠신가요?</h2>
+                    <div th:if="${searchNull eq 'null'}" class="no_result">
+                        <h2><span th:text="|[${searchText}]|"></span>에 해당하는 검색 결과가 없습니다.</h2>
+                        <h2>아래와 같은 장소는 어떠신가요?</h2>
                     </div>
                     <dl class="ai_card" th:each="search, iterStat :${searchResult}">
                         <dt class="header">
