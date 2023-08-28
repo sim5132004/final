@@ -47,6 +47,15 @@ public class placeSaveController {
         String dateOn =datetype.split(",")[0];
         letInviteCard.setTITLE(inviteCard.getTITLE().split(",")[0]);
         letInviteCard.setMEETING_CONTENT(inviteCard.getMEETING_CONTENT().split(",")[0]);
+        letInviteCard.setMEETING_PARTICIPANTS(inviteCard.getMEETING_PARTICIPANTS().split(",")[0]);
+
+
+
+        //클라이언트 아이디 저장
+        letInviteCard.setCLIENT_ID("클라이언트 아이디 저장할곳");
+        letInviteCard.setPLACE_ID_1(inviteCard.getPLACE_ID_1());
+        letInviteCard.setPLACE_ID_2(inviteCard.getPLACE_ID_2());
+        letInviteCard.setPLACE_ID_3(inviteCard.getPLACE_ID_3());
 
         try {
             letInviteCard.setTAGET_DATE(formatter.parse(datetype));
