@@ -16,7 +16,12 @@
         )
     </insert>
 
-    <!-- 전체 검색 -->
+    <!-- 아이디로 전체 불러오기 -->
+    <select id="loadById" resultType="inviteCard">
+        select *
+        from invite_card2
+        where client_id = #{clientId}
+    </select>
 
 
 

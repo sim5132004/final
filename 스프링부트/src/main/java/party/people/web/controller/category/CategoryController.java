@@ -2,6 +2,7 @@ package party.people.web.controller.category;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jdk.dynalink.beans.StaticClass;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -115,23 +116,20 @@ public class CategoryController {
         /* side lnb 출력용 */
         model.addAttribute("category","myCard");
 
+
+
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
         loginCheck(request, model);
 
+        request.getSession()
+
+
+
         Random random = new Random();
 
-        /* 로그인 세션 유지용 메서드 */
-        /* 메서드 이름 컨트롤 클릭으로 내용 확인 가능 */
-        loginCheck(request,model);
-
-        /* side lnb 출력용 */
-        model.addAttribute("category","myCard");
-
         int randomNumber1 = random.nextInt(1,10);
-
         int randomNumber2 = random.nextInt(1,800);
-
         int randomNumber3 = random.nextInt(1, 800);
 
 
@@ -157,7 +155,6 @@ public class CategoryController {
 
         /* 세션 값이 있을 경우 이하 구문 실행 */
         if (test!=null) {
-
             /* 세션 중 플레이스에서 보내온 세션이 있는지 확인하고 있으면 플레이스 리스트 객체에 저장 */
 
             /* 키값을 "검색결과" 로 받아오면 인바이트에서 List<Place>가 아니라
@@ -186,7 +183,6 @@ public class CategoryController {
                 model.addAttribute("keylist",pl.keyWordTitle());
                 /* 세션 정보가 없을 경우 랜덤생성된 리스트 타임리프로 전달 */
             } else model.addAttribute("category2",placeList2);
-
         }
         /* 세션 정보가 없을 경우 랜덤생성된 리스트 타임리프로 전달 */
         else{
@@ -194,11 +190,8 @@ public class CategoryController {
             log.info("NULL !!!!");
         }
 
-
         return "client/myCard";
     }
-
-
 
 
     public static void loginCheck(HttpServletRequest request, Model model) {
@@ -207,6 +200,7 @@ public class CategoryController {
         /* 세션 생성은 LoginController 참조 */
         HttpSession loginInfo = request.getSession(false);
         log.info("세션정보 " + loginInfo);
+
 
         /* 세션 정보가 없으면 client 객체에 null값 반환 */
         if (loginInfo==null) {

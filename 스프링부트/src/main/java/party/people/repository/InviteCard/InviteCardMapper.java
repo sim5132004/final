@@ -10,7 +10,9 @@ import java.util.List;
 public interface InviteCardMapper {
 
     /* 저장 */
-
     void saveCard(InviteCard inviteCard);
+
+    /* clientId로 저장한 정보 로딩 */
+    List<InviteCard> loadById(String clientId);
 
 }

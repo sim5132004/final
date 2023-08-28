@@ -25,4 +25,8 @@ public class InviteCardRepository implements InviteCardInterface {
         inviteCardMapper.saveCard(inviteCard);
     }
 
+    @Override
+    public List<InviteCard> loadById(String clientId) {
+        return inviteCardMapper.loadById(clientId);
+    }
 }
