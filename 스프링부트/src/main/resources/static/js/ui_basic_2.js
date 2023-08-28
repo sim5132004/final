@@ -68,7 +68,7 @@ $(".ai_card.design .confirm").click(function(){
     $(".left_contents_center .ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
     // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
     // $(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=checkbox]:unchecked").parent().remove();
-
+    $(".modal_layer_wrap.card .card_map_wrap").insertAfter($(".modal_layer_wrap.card .ai_card.design dd.body"));
     //$(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=radio]:checked").parent().remove();
     $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
     //$(".modal_layer_wrap.card .ai_card_skin > dd.body > input[type=radio]").remove();
