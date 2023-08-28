@@ -48,7 +48,6 @@ pw='3az9LS7plV'
 blog_lists = []  # 데이터를 저장할 리스트 생성
 count = 0
 for list_name in data:
-
     encText = urllib.parse.quote(str(list_name))
     print(list_name)
     url = "https://openapi.naver.com/v1/search/blog?display=20&query=" + encText  # JSON 결과

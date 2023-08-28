@@ -34,10 +34,6 @@ for c in range(start_unit,end_unit):
     keys = list(json_lists[c].keys())
     values = list(json_lists[c].values())
     data[c]=pd.DataFrame({"데이터": values},index=keys)
-
-
-
-
 #메인 리스트 만들기
 #=====================================
 #수동 컨트롤 x=> 0~9까지 처음 돌릴때는 아래 주석 풀기
@@ -47,7 +43,6 @@ for x in range(start_unit,end_unit):
     for name_list in s_list[int(x*100):]:
         data_list=[]
         for c in range(21):
-
             try:
                 data_list.append(data[x].loc[f'{name_list}{c}'].tolist())
             except:
@@ -58,41 +53,31 @@ for x in range(start_unit,end_unit):
         print('100개 완료')
 # ========================================
 # 명사 빈도수 저장 딕셔너리
-
 okt = Okt()
-main_str = [None]*len_list
-line_list = [None]*len_list
-test = [None]*len_list
-top_n = 50
-# 아래는
+main_str = [None]*len_list;line_list = [None]*len_list
+test = [None]*len_list;top_n = 50
 for c in range(start_unit*100, len_list):
     keys = []
     word_dic = {}
-
     for x in main_data_list[c]:
         for y in x:
             main_str[c] += y
     line_list[c]=main_str[c].split(' ')
-
     # 텍스트 내의 명사 추출 및 빈도 계산
     for line in line_list[c]:
-
         malist = okt.pos(line, norm=True, stem=True)
         for word in malist:
             if word[1] == "Noun" and len(word[0]) >= 2:  # 두 글자 이상인 명사만 고려
                 if word[0] not in word_dic:
                     word_dic[word[0]] = 0
                 word_dic[word[0]] += 1
-
     # 가장 많이 사용된 명사 상위 50개만 추출
     keys = sorted(word_dic.items(), key=lambda x: x[1], reverse=True)[:top_n]
     # 결과 출력
     for word, count in keys:
         test[c] += f"{word}/{count},"
     print(test[c])
-
     update_keyward_from_oracle(test[c], s_list[c])
-
 # ===========================================
 
 
