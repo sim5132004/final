@@ -16,4 +16,7 @@ public interface KeywordsMapper {
 
     /* 키워드를 수정하는 로직 */
     void update(Keywords keywords);
+
+    /* 카테고리로 키워드 가져오기 */
+    Keywords findByCategory(String category);
 }
