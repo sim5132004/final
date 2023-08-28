@@ -109,6 +109,9 @@ public class CategoryController {
         /* side lnb 출력용 */
         model.addAttribute("category","analysis");
 
+        /* side의 active용 전환 */
+        model.addAttribute("lnbInfo","분석");
+
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
         loginCheck(request, model);
