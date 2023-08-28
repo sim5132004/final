@@ -122,7 +122,7 @@ public class CategoryController {
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
         loginCheck(request, model);
 
-        request.getSession()
+        request.getSession();
 
 
 

@@ -11,13 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import party.people.domain.InviteCard;
-import party.people.domain.Place;
-import party.people.domain.SearchInput;
-import party.people.domain.SearchResult;
+import party.people.domain.*;
 import party.people.repository.InviteCard.InviteCardInterface;
 import party.people.repository.place.PlaceInterface;
 import party.people.repository.search.SearchInputInterface;
+
+import static party.people.web.controller.category.CategoryController.loginCheck;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -36,7 +35,9 @@ public class placeSaveController {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @PostMapping("saveCard")
-    public String inviteCard(@ModelAttribute("inviteCard")InviteCard inviteCard,@RequestParam("datetype") String datetype){
+    public String inviteCard(@ModelAttribute("inviteCard")InviteCard inviteCard,@RequestParam("datetype") String datetype, HttpServletRequest request, Model model){
+
+        loginCheck(request, model);
 
         System.out.println("저장중");
         System.out.println(inviteCard.getPLACE_ID_1());
@@ -66,7 +67,9 @@ public class placeSaveController {
           letInviteCard.setTAGET_TIME(inviteCard.getTAGET_TIME().split(",")[0]);
 
         //클라이언트 아이디 저장
-        letInviteCard.setCLIENT_ID("클라이언트 아이디 저장할곳");
+        HttpSession loginId = request.getSession(false);
+        Client login = (Client) loginId.getAttribute("로그인");
+        letInviteCard.setCLIENT_ID(login.getClientId());
         if (inviteCard.getPLACE_ID_1()!=null)
         letInviteCard.setPLACE_ID_1(inviteCard.getPLACE_ID_1());
         if(inviteCard.getPLACE_ID_2()!=null)
