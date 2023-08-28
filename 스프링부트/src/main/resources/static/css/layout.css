@@ -145,7 +145,7 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 /* 모달 레이어 */
 .modal_layer_wrap{ position: fixed; top:0; left: 0;  z-index:9999999999; display:none;width:100%; height: 100%; }
 .modal_layer_wrap.show{  display: block; }
-.layer_bg{  z-index:99999999999; position: fixed; top:0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.6);}
+.layer_bg{  z-index:99999999999; position: fixed; top:0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.7);}
 .layer_box{ z-index:9999999999999; /* 상하좌우 정중앙 정렬하기 */position: fixed; top: 50%;left: 50%; transform: translate(-50%, -50%); min-width: 600px; min-height: 300px; background: #fff; border-radius: 10px; box-shadow: 3px 3px 10px rgba(0,0,0,.6); max-width: 60%; max-height: 85%; overflow-y:auto; word-break: break-word; padding: 30px;}
 .modal_layer_wrap.card .layer_box{ max-width: 800px; max-height: 95%; background: none; box-shadow: none; border-radius: 0; padding: 0 0 30px 0 }
 
@@ -244,8 +244,17 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 .invite .left_contents .card_list_wrap{  padding:0; }
 .invite .left_contents .ai_card{ vertical-align: top; padding: 30px 50px 5px 50px; border-radius: 0; border: 0; box-shadow: none }
 .invite .ai_card dd.body,
+.invite .left_contents_center .card_list_wrap,
 .invite .right_contents .card_list_wrap{ display: flex; justify-content: center; flex-direction:row;  justify-content: center;  align-items: stretch; align-content: stretch; word-wrap: break-word; flex-wrap: wrap;}
+.invite .left_contents_center .card_list_wrap > dl{width: 32%; flex: 1 1 auto; }
 .invite .ai_card .card_list{ width: 32%; flex: 1 1 auto; }
+
+.invite .right_contents .card_list_wrap > label{ width: 46%; flex: 1 1 auto; margin: 0 2%; position: relative }
+.invite .right_contents .card_list_wrap > label > .ai_card_skin{ width:100% }
+.radio_skin{ position:absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;  font:500 26px/26px 'Noto Sans KR', SansSerif; color:rgba(0,0,0,.5) }
+.radio_skin{ font:600 30px/30px 'Noto Sans KR',Sans-serif; color: rgba(0,0,0,.3) }
+.radio_skin input[type=radio]{ width: 20px; height: 20px }
+.right_contents.area .ai_card_skin dd.body > label:hover{ color: #0d6efd }
 
 .invite .ai_card .card_list .summary_card{  }
 .invite .ai_card .card_list .summary_card li { width: 100% !important; }
