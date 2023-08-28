@@ -44,6 +44,12 @@ public class CategoryController {
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
         loginCheck(request, model);
 
+        HttpSession session = request.getSession(false);
+        if (session!=null) {
+            session.setAttribute("카테", null);
+            session.setAttribute("주소", null);
+        }
+
         List<SearchResult>allResult = searchInputInterface.loadAll();
         Random random = new Random();
         int randomValue = random.nextInt(allResult.size());
@@ -134,9 +140,9 @@ public class CategoryController {
         List<Place> listPlace = new ArrayList<>();
         if (!list.isEmpty()){
             for (InviteCard one : list){
-                Integer placeId1 = one.getPLACE_ID_1();
-                Integer placeId2 = one.getPLACE_ID_2();
-                Integer placeId3 = one.getPLACE_ID_3();
+                Integer placeId1 = one.getPlaceId1();
+                Integer placeId2 = one.getPlaceId2();
+                Integer placeId3 = one.getPlaceId3();
                 Place place1 = placeInterface.idSearch(placeId1);
                 placeImageToBinary(place1);
                 Place place2 = placeInterface.idSearch(placeId2);

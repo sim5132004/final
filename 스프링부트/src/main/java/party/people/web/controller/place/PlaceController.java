@@ -43,15 +43,15 @@ public class PlaceController {
                               @RequestParam(value = "buttonId", required = false) String buttonId,
                               Model model) {
         /* 기존 세션 정보 로딩 */
-        HttpSession test = request.getSession(false);
+        HttpSession session = request.getSession(false);
 
         loginCheck(request, model);
 
         /* 세션 정보가 있을 경우 로직 수행 */
-        if (test != null) {
+        if (session != null) {
 
             /* "검색결과"키로 리스트 로딩 */
-            List<List<Place>> place2 = (List<List<Place>>) test.getAttribute("검색결과");
+            List<List<Place>> place2 = (List<List<Place>>) session.getAttribute("검색결과");
 
             /* 모임카드 편집하기 버튼 클릭시 로직 수행용 객체 */
             List<Place> selected = new ArrayList<>();
@@ -76,13 +76,50 @@ public class PlaceController {
         /* side lnb출력용 */
         model.addAttribute("category", "place");
 
+
+        String prevCategory = (String) session.getAttribute("카테");
+        // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
+        if (categorySubject != null && !categorySubject.equals(prevCategory)) {
+            session.setAttribute("카테", categorySubject);
+        }
+
+        // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
+        if (categorySubject == null && prevCategory != null) {
+            categorySubject = prevCategory;
+        }
+        log.info("카테고리 서브젝트 "+categorySubject);
+
         /* 검색창 카테고리 출력용 */
         model.addAttribute("category2", categorySubject);
+
+        String prevAddrress = (String) session.getAttribute("주소");
+        // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
+        if (address != null && !address.equals(prevAddrress)) {
+            session.setAttribute("주소", address);
+        }
+
+        // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
+        if (address == null && prevAddrress != null) {
+            address = prevAddrress;
+        }
+        log.info("주소는 "+address);
+
+        /* 검색창 카테고리 출력용 */
+        model.addAttribute("category2", categorySubject);
+
+
+
 
 
         /* 검색 결과를 출력하는 로직 */
         /* 우리의 검색 로직에는 3가지(카테고리, 키워드, 주소)가 들어가니 SearchInput 클래스에 넣는다 */
         SearchInput input = new SearchInput();
+        List<String> searchTextList = new ArrayList<>();
+        if (categorySubject != null) {
+            input.setCategory(categorySubject);
+            model.addAttribute("searchText", categorySubject);
+            searchTextList.add(categorySubject);
+        } else input.setCategory("");
         if (address != null) {
             if (address.equals("null")) {
                 return "redirect:/place";
@@ -90,25 +127,35 @@ public class PlaceController {
                 input.setAddress(address);
                 model.addAttribute("address", address);
                 model.addAttribute("searchText", address);
+                searchTextList.add(address);
             }
         } else {
             input.setAddress("");
             model.addAttribute("address", "null");
-
         }
         if (searchForm != null) {
             input.setKeyword(searchForm);
             model.addAttribute("searchText", searchForm);
+            searchTextList.add(searchForm);
         } else {
             if (hashTag != null) {
+                input.setAddress("");
+                input.setCategory("");
                 input.setKeyword(hashTag);
                 model.addAttribute("searchText", hashTag);
             } else input.setKeyword("");
         }
-        if (categorySubject != null) {
-            input.setCategory(categorySubject);
-            model.addAttribute("searchText", categorySubject);
-        } else input.setCategory("");
+
+
+        String searchText = new String();
+        int count = 0;
+        for (String oneText : searchTextList ){
+            if (count==0)
+                searchText = searchText + oneText;
+            else searchText = searchText +" / "+oneText;
+            count++;
+        }
+        model.addAttribute("searchText",searchText);
 
         /* 이를 searchinput DB Table에 집어넣는다 */
         searchInputInterface.save(input);
@@ -180,8 +227,8 @@ public class PlaceController {
             updateKeywordBySearchResult(input, finalForm);
 
             /* 세션 정보가 있을 경우 로직 수행 */
-            if (test != null) {
-                Client client = (Client) test.getAttribute("로그인");
+            if (session != null) {
+                Client client = (Client) session.getAttribute("로그인");
                 if (client != null) {
                     String keyword = client.getKeyword();
                     Map<String, Integer> map = new HashMap<>();
@@ -207,7 +254,7 @@ public class PlaceController {
                     clientInterface.update(client.getClientId(),param);
                     Client updatedClient = clientInterface.findByClientId(client.getClientId()).orElse(null);
                     log.info("제대로 업데이트 됐는지 확인 "+updatedClient);
-                    test.setAttribute("로그인",updatedClient);
+                    session.setAttribute("로그인",updatedClient);
                 }
             }
 

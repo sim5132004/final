@@ -10,16 +10,16 @@ import java.util.Date;
 @Validated
 public class InviteCard {
 
-    private Long x;
-    private String         CLIENT_ID;
-    private Integer  PLACE_ID_1;
-    private Integer         PLACE_ID_2;
-    private Integer PLACE_ID_3;
-    private String        TITLE;
-    private Date TAGET_DATE;
-    private String TAGET_TIME;
-    private String      MEETING_CONTENT;
-    private String              MEETING_PARTICIPANTS;
-    private String     CARD_SKIN;
+    private Long sequenceId;
+    private String clientId;
+    private Integer placeId1;
+    private Integer placeId2;
+    private Integer placeId3;
+    private String title;
+    private Date targatDate;
+    private String targetTime;
+    private String meetingContent;
+    private String meetingParticipants;
+    private String cardSkin;
 
 }
