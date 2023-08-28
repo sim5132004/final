@@ -2,7 +2,7 @@
 메인 페이지 CSS
 ====================================*/
 /* .main{ background: #0f5132 url(../images/bg_06.jpg) no-repeat top; background-size: cover; } */
-.main .header_wrap{ position:fixed; top:0px; left:auto; right:0; width: 70px; height:100%; border:none; background:none; writing-mode: vertical-rl; min-width: auto; z-index: 1 }
+.main .header_wrap{ position:fixed; top:0px; left:auto; right:0; width: 70px; height:100%; border:none; background:none; writing-mode: vertical-rl; min-width: auto; z-index: 10 }
 .main .header_wrap header h1{ font: 600 75px/75px Sans-serif; text-align: left; opacity: .7 }
 .main .header_wrap header h1 a{ color:rgba(255,255,255,1); /*  -webkit-text-stroke: 1px rgba(255,255,255,.2); */ text-shadow: -1px 0px rgba(0,0,0,.3), 0px 1px rgba(0,0,0,.3), 1px 0px rgba(0,0,0,.3), 0px -1px rgba(0,0,0,.3); }
 
@@ -13,7 +13,7 @@
 .fixed_quick_menu dt{ background:url("../images/em_ic.png") no-repeat center 10px; padding-top:40px; background-size: 30px 30px; font-weight: 600 }
 
 /* 푸터 */
-.main .footer_wrap{ position:fixed;  width: 100%; min-width: 800px; height: 30px; background:none; border:0; z-index: 0; }
+.main .footer_wrap{ position:fixed;  width: 100%; min-width: 800px; height: 30px; background:none; border:0; z-index: 1; }
 .main .copyright{ text-align: right; padding-right:10px; color: rgba(255,255,255,.7) }
 
 /* =================================

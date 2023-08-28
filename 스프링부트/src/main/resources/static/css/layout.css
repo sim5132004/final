@@ -242,7 +242,7 @@ nav ul li a.active{ color: #009900; font-weight: 600 }
 
 .invite .left_contents_padding_right{ width: 40%; min-width: 400px; }
 .invite .left_contents .card_list_wrap{  padding:0; }
-.invite .left_contents .ai_card{ vertical-align: top; padding: 30px 50px; border-radius: 0; border: 0; box-shadow: none }
+.invite .left_contents .ai_card{ vertical-align: top; padding: 30px 50px 5px 50px; border-radius: 0; border: 0; box-shadow: none }
 .invite .ai_card dd.body,
 .invite .right_contents .card_list_wrap{ display: flex; justify-content: center; flex-direction:row;  justify-content: center;  align-items: stretch; align-content: stretch; word-wrap: break-word; flex-wrap: wrap;}
 .invite .ai_card .card_list{ width: 32%; flex: 1 1 auto; }
@@ -399,10 +399,10 @@ dl.ai_card dd.content_data::-webkit-scrollbar-corner {background:rgba(0,0,0,.08)
 .left_contents_center::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
 
 
-/* 스크롤 end */
+/* 스크롤 end
 .card_list ul.summary_card{ margin-left:20px !important; }
 .card_list ul.summary_card:nth-child(1){ margin-left:0px !important; }
-
+*/
 ul.summary_card{ position: relative;  box-sizing: border-box; padding:5px 0 8px 0; transition: .2s ease; margin: 0 4% }
 ul.summary_card:after{ content:""; display: block; clear:both; }
 ul.summary_card:hover{ background: #fff  }

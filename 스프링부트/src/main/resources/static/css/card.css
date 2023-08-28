@@ -74,7 +74,10 @@
 .modal_layer_wrap.card .ai_card.design{ border: 0; border-radius: 0; padding-top:0  }
 .modal_layer_wrap.card .ai_card{ box-shadow: none; margin:0 auto }
 .modal_layer_wrap.card .ai_card label{ color: rgba(0,0,0,.8) }
-.modal_layer_wrap.card .ai_card label b{ min-width: 30px }
+.modal_layer_wrap.card .ai_card label b{ min-width: 70px }
+
+.modal_layer_wrap.card .ai_card ul.summary_card > li .category b{ min-width: 40px }
+
 .modal_layer_wrap.card .ai_card label input[type=text],
 .modal_layer_wrap.card .ai_card label input[type=date],
 .modal_layer_wrap.card .ai_card label input[type=time]
