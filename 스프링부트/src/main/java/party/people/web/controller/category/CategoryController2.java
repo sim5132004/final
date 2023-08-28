@@ -92,7 +92,7 @@ public class CategoryController2 {
 
 
 
-    @GetMapping("/saveCard")
+//    @GetMapping("/saveCard")
     public String resultPage(HttpServletRequest request, @ModelAttribute("card") InviteCard inviteCard) {
 
         inviteCardInterface.saveCard(inviteCard);

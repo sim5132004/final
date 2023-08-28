@@ -22,7 +22,7 @@
 </head>
 <body>
 <!--<form>-->
-<form th:action="saveCard" th:object="${inviteCard}">
+<form th:action="saveCard"  th:method="post">
 <div class="container invite skin" id = "no">
     <!-- 모달 레이어 : 모임카드 미리보기 상세페이지 정보 -->
     <div class="modal_layer_wrap detail">
@@ -58,6 +58,7 @@
             }, 3000);
             html2canvas(captureDiv,
                 {
+
                     allowTaint: true,
                     useCORS: true,// CORS 를 사용하여 시도 하 여 서버에서 이미지 업로드
                     // imageTimeout: 10000,
@@ -96,25 +97,28 @@
     <hr class="skip"/>
     <!-- ####### 03. CONTENTS START ####### -->
     <section class="contents_wrap">
-            <!-- <form> -->
+
+
+            <!--        <form>-->
             <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
             <div class="left_contents">
                 <div class="left_contents_padding_left"></div>
                 <div class="left_contents_center">
+
                     <div class="card_list_wrap">
                         <!-- 추천(조합) 모임카드 #.01 시작 -->
                         <dl class="ai_card design">
                             <dt class="header">
                                 <h2>
                                     <label for="title">
-                                        <b>제 목</b><input id='title' name="title" type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="${keyList}"  value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input id='title' name="TITLE" type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="${keyList}"  value="동인천/차이나타운/짜파게티/회식">
                                     </label>
                                 </h2>
                                 <div class="form_info">
                                     <div class="date">
-                                        <label for="taget_date"><b>모임날짜</b><input type="date" id="taget_date" name="taget_date" value="2023-08-21"></label>
-                                        <label for="taget_time"><b>모임시간</b><input type="time" id="taget_time" name="taget_time" value=""></label>
-                                        <label for="meeting_participants"><b>참가인원</b><input type="text" id="meeting_participants" name="meeting_partcipants" value=""> </label>
+                                        <label for="taget_date"><b>모임날짜</b><input type="date" id="taget_date" name="datetype" value=""></label>
+                                        <label for="taget_time"><b>모임시간</b><input type="text" id="taget_time" name="TAGET_TIME" value=""></label>
+                                        <label for="meeting_participants"><b>참가인원</b><input type="text" id="meeting_participants" name="MEETING_PARTICIPANTS" value=""> </label>
                                     </div>
                                     <div class="memo"><label><b>모임내용</b><textarea id="meetContent" name="meetContent" class="card_memo"  rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
 <!--                               <label for="meetContent"> -->
@@ -242,9 +246,7 @@
 
                                 <!-- 대안 장소 선택_01: 업체 리스트 -->
                                 <div class="card_list" th:each="place, iterStat : ${category2}">
-                                    <label th:for="|placeId${iterStat.count}|">
-                                        <!-- <input type="checkbox" th:checked="checked" th:id="|placeId${iterStat.count}|" > -->
-                                        <input type="hidden" th:id="|placeId${iterStat.count}|" th:name="|placeId${iterStat.count}|" th:value="${place}">
+                                    <label th:for="|placeId${iterStat.count}|"><input type="hidden" th:id="|placeId${iterStat.count}|" th:name="|PLACE_ID_${iterStat.count}|" th:value="${place.getId()}"></label>
                                     <ul class="summary_card">
                                         <li class="subject">
                                             <b th:text="${place.getTitle()}">돈비어천가</b>

@@ -52,15 +52,12 @@ for counting in range(5,9):
     for name_list in t[0+int(counting_ck):100+int(counting_ck)]:
         count2 = 0
         names = json.loads(name_list)
-
         for name in names['items']:
             print(f"{name['link']}")
             url = name['link']
             driver.get(url)
             sleep(1)
-
             #     find_elements(By.CSS_SELECTOR)
-
             if url.find('naver') == -1:
                 x = driver.find_elements(By.CSS_SELECTOR, tstroy_main_se)
                 contents = [element.text for element in x]
@@ -71,7 +68,6 @@ for counting in range(5,9):
                 x = driver.find_elements(By.CSS_SELECTOR, naver_main_se)
                 contents = [element.text for element in x]
                 driver.switch_to.parent_frame()
-
             sleep(1)
             st = str_c(contents)
             try:
@@ -82,7 +78,6 @@ for counting in range(5,9):
             except:
                 print('종료')
                 continue
-
             print(contents)
             count2 += 1
         count += 1
