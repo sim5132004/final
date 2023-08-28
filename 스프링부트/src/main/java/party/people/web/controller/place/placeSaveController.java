@@ -61,9 +61,9 @@ public class placeSaveController {
 
         if(inviteCard.getMEETING_CONTENT() !=null)
          letInviteCard.setMEETING_CONTENT(inviteCard.getMEETING_CONTENT().split(",")[0]);
-        if(inviteCard.getMEETING_PARTICIPANTS()!=null)
+        if((inviteCard.getMEETING_PARTICIPANTS()!=null) && inviteCard.getMEETING_PARTICIPANTS().equals(""))
            letInviteCard.setMEETING_PARTICIPANTS(inviteCard.getMEETING_PARTICIPANTS().split(",")[0]);
-        if(inviteCard.getTAGET_TIME()!=null)
+        if((inviteCard.getTAGET_TIME()!=null)&& inviteCard.getTAGET_TIME().equals(""))
           letInviteCard.setTAGET_TIME(inviteCard.getTAGET_TIME().split(",")[0]);
 
         //클라이언트 아이디 저장
