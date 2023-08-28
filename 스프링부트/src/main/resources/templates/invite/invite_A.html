@@ -243,13 +243,12 @@
 
                             <dd class="body">
 
-
                                 <!-- 대안 장소 선택_01: 업체 리스트 -->
                                 <div class="card_list" th:each="place, iterStat : ${category2}">
                                     <label th:for="|placeId${iterStat.count}|"><input type="hidden" th:id="|placeId${iterStat.count}|" th:name="|PLACE_ID_${iterStat.count}|" th:value="${place.getId()}"></label>
                                     <ul class="summary_card">
                                         <li class="subject">
-                                            <b th:text="${place.getTitle()}">돈비어천가</b>
+                                            <input type="checkbox" checked><b th:text="${place.getTitle()}">돈비어천가</b>
                                             <span class="category"><b class="depth_1"  th:text="${place.getCategory()}">음식</b><b class="depth_2"  th:text="${place.getSmallCategory()}">한식</b></span>
                                         </li>
                                         <li class="thumb">

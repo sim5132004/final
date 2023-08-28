@@ -57,7 +57,7 @@ $(".place_info_layer.item_3").click(function(){
 
 // INVITE > 모임카드 미리보기 버튼 클릭시 최종 모임카드 디자인 적용된 레이어 노출하기
 $(".ai_card.design .confirm").click(function(){
-    //$("body").hide();c
+    //$("body").hide();
     $(".modal_layer_wrap.card").addClass("show");
     // 카드 디자인 스킨 복사
     // 모임카드 미리보기 버튼 클릭시, 인바이트 사용자가 작성한 최종 내용 카드 디자인 스킨 입혀서 보여주기
@@ -66,11 +66,12 @@ $(".ai_card.design .confirm").click(function(){
     // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
     // $(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=checkbox]:unchecked").parent().remove();
 
-    $(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=radio]:checked").parent().remove();
+    //$(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=radio]:checked").parent().remove();
     $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
-    $(".modal_layer_wrap.card .ai_card_skin > dd.body > input[type=radio]").remove();
+    //$(".modal_layer_wrap.card .ai_card_skin > dd.body > input[type=radio]").remove();
     $(".modal_layer_wrap.card .form_info .skin").remove();
-    $(".modal_layer_wrap.card .ai_card_skin > dd.body > label").remove();
+    $(".modal_layer_wrap.card .ai_card.design .summary_card li.subject > input[type=checkbox]").not(".modal_layer_wrap.card .ai_card.design .summary_card li.subject > input[type=checkbox]:checked").parent().parent().parent().hide();
+    //$(".modal_layer_wrap.card .ai_card_skin > dd.body > label").remove();
     $(".layer_bg").click(function(){
         $(".modal_layer_wrap.card").removeClass("show")
         $(".modal_layer_wrap.card .layer_contents .ai_card_skin").remove();
@@ -78,25 +79,6 @@ $(".ai_card.design .confirm").click(function(){
 });
 // var skinChecked = $(".ai_card_skin input[type=radio]:checked").val();
 // skinChecked.clone().appendTo(".modal_layer_wrap.card .layer_contents");
-$(function(){
-    // 모임카드 미리보기 버튼 클릭시, 인바이트 사용자가 작성한 최종 내용 카드 디자인 스킨 입혀서 보여주기
-    //  $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
-    //  $(".ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
-    // // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
-    //  $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
-    //  $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
-    //  $(".modal_layer_wrap.card .form_info .skin").remove();
-    //  $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
-});
-
-
-//수정중..
-// document.addEventListener("DOMContentLoaded", function() {
-//     var h1Element = document.getElementById("goddem");
-//
-//     h1Element.textContent = [[${place.getId}]];
-// });
-//
 
 
 $(".place_info_layer.item_11").click(function(){

@@ -13,6 +13,7 @@
 .invite dl.ai_card .c_type{ }
 .invite dl.ai_card .d_type{ }
 .invite dl.ai_card .e_type{ }
+.invite dl.ai_card .card_map_wrap{ width: 740px; }
 
 .ai_card label{  }
 .ai_card label b{ display: inline-block; width:9%; min-width:56px; vertical-align: top }
@@ -58,10 +59,10 @@
 .right_contents.area .ai_card_skin dd.body > label input[type=radio]{ width: 20px; height: 20px }
 .right_contents.area .ai_card_skin dd.body > label:hover{ color: #0d6efd }
 
-.ai_card_skin.a_type{ background:#052238 url("../images/bg0.png") }
+.ai_card_skin.a_type{ background:#0f5132 url("../images/bg_06.jpg") no-repeat top; background-size: 100% }
 .ai_card_skin.b_type{ background:#232323 url("../images/bg_04.jpg") no-repeat top; background-size: 100%  }
 .ai_card_skin.c_type{ background:#232323 url("../images/bg_05.jpg") no-repeat top; background-size: 100% }
-.ai_card_skin.d_type{ background:#0f5132 url("../images/bg_06.jpg") no-repeat top; background-size: 100%  }
+.ai_card_skin.d_type{ background:#052238 url("../images/bg0.png")  }
 .ai_card_skin.e_type{ background:#000000 url("../images/bg3.png") }
 .ai_card_skin.f_type{ background:#232323 url("../images/bg_03.jpg") no-repeat top; background-size: 100%  }
 .ai_card_skin.g_type{ background:#009900 url("../images/bg4.png") }
@@ -76,7 +77,7 @@
 .modal_layer_wrap.card .ai_card{ box-shadow: none; margin:0 auto }
 .modal_layer_wrap.card .ai_card label{ color: rgba(0,0,0,.8) }
 .modal_layer_wrap.card .ai_card label b{ min-width: 70px }
-
+.modal_layer_wrap.card dl.ai_card .card_map_wrap{ width: 700px !important; }
 .modal_layer_wrap.card .ai_card ul.summary_card > li .category b{ min-width: 40px }
 
 .modal_layer_wrap.card .ai_card label input[type=text],
