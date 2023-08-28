@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.1,maximum-scale=5.0,user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="../css/reset.css" th:href="@{/css/testyo.css}" >
     <link rel="stylesheet" type="text/css" href="../css/reset.css" >
-    <link rel="stylesheet" type="text/css" href="../css/layout.css" >
-    <link rel="stylesheet" type="text/css" href="../css/card.css" >
+    <link rel="stylesheet" type="text/css" href="../css/layout.css?ver=0.001" >
+    <link rel="stylesheet" type="text/css" href="../css/card.css?ver=0.001" >
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3fa5806dfe291fb3622cf85fca14b017&libraries=services,clusterer,drawing"></script>
     <script th:inline="javascript" src="../js/jquery.js"></script>
@@ -37,12 +37,11 @@
         <div class="layer_bg"></div>
         <div class="layer_box">
             <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
-            <div class="layer_contents" id="x3">
-                <h1>작성하신 내용을 확인하신 후, 모임카드 이미지를 다운로드하세요.
-                    <a href="#" class="download" id="download"><i class="fa-solid fa-download"></i> 초대장(JPG) 다운로드</a>
-                    <button th:if="${login!= null}"  type="submit"> 저장하기</button>
-                </h1>
-            </div>
+            <h1><i class="fa-regular fa-square-check"></i> 작성하신 내용을 확인하신 후, 모임카드 이미지를 다운로드하세요.
+                <a href="#" class="download" id="download"><i class="fa-solid fa-download"></i> 초대장(JPG) 다운로드</a>
+                <button th:if="${login!= null}"  type="submit"> 저장하기</button>
+            </h1>
+            <div class="layer_contents" id="x3"></div>
         </div>
     </div>
 
@@ -59,7 +58,6 @@
             }, 3000);
             html2canvas(captureDiv,
                 {
-
                     allowTaint: true,
                     useCORS: true,// CORS 를 사용하여 시도 하 여 서버에서 이미지 업로드
                     // imageTimeout: 10000,
@@ -98,14 +96,11 @@
     <hr class="skip"/>
     <!-- ####### 03. CONTENTS START ####### -->
     <section class="contents_wrap">
-
-
-            <!--        <form>-->
+            <!-- <form> -->
             <!-- ########  페이지마다의 고정 서비스 내용이(예, 지도나 모임카드 수정) 들어갑니다. ########### -->
             <div class="left_contents">
                 <div class="left_contents_padding_left"></div>
                 <div class="left_contents_center">
-
                     <div class="card_list_wrap">
                         <!-- 추천(조합) 모임카드 #.01 시작 -->
                         <dl class="ai_card design">
@@ -121,7 +116,7 @@
                                         <label for="taget_time"><b>모임시간</b><input type="time" id="taget_time" name="taget_time" value=""></label>
                                         <label for="meeting_participants"><b>참가인원</b><input type="text" id="meeting_participants" name="meeting_partcipants" value=""> </label>
                                     </div>
-                                    <div class="memo" ><b>모임내용</b><textarea id="meetContent" name="meetContent" class="card_memo"  rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></div>
+                                    <div class="memo"><label><b>모임내용</b><textarea id="meetContent" name="meetContent" class="card_memo"  rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
 <!--                               <label for="meetContent"> -->
                                 </div>
                             </dt>
@@ -130,7 +125,6 @@
                                     <script th:inline="javascript">
                                         var maps = /*[[${category2}]]*/ [];
                                         console.log(maps);
-
                                         var allLatLng = [];
                                         var bounds = new kakao.maps.LatLngBounds();
                                         for(var i = 0; i < maps.length; i++){
@@ -248,10 +242,12 @@
 
                                 <!-- 대안 장소 선택_01: 업체 리스트 -->
                                 <div class="card_list" th:each="place, iterStat : ${category2}">
-                                    <label th:for="|placeId${iterStat.count}|"><input type="hidden" th:id="|placeId${iterStat.count}|" th:name="|placeId${iterStat.count}|" th:value="${place}"></label>
+                                    <label th:for="|placeId${iterStat.count}|">
+                                        <!-- <input type="checkbox" th:checked="checked" th:id="|placeId${iterStat.count}|" > -->
+                                        <input type="hidden" th:id="|placeId${iterStat.count}|" th:name="|placeId${iterStat.count}|" th:value="${place}">
                                     <ul class="summary_card">
                                         <li class="subject">
-                                            <b th:text="${place.getTitle()}">돈비어천가c</b>
+                                            <b th:text="${place.getTitle()}">돈비어천가</b>
                                             <span class="category"><b class="depth_1"  th:text="${place.getCategory()}">음식</b><b class="depth_2"  th:text="${place.getSmallCategory()}">한식</b></span>
                                         </li>
                                         <li class="thumb">
@@ -264,7 +260,7 @@
                                         <!-- 업체 상세 정보 레이어 -->
                                         <!--                                            <script th:inline="javascript"> placeId = [[${place.getId}]]</script>-->
                                         <div th:class="|layer_contents item_${iterStat.count}|" th:insert="~{insert/place_info}"></div>
-
+                                    </label>
                                     </ul>
                                 </div>
                             </dd>

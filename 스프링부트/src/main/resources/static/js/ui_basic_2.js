@@ -64,12 +64,12 @@ $(".ai_card.design .confirm").click(function(){
     $(".ai_card_skin input[type=radio]:checked").parent().parent().parent().clone().appendTo(".modal_layer_wrap.card .layer_contents");
     $(".left_contents_center .ai_card.design").clone().appendTo(".modal_layer_wrap.card .layer_contents .ai_card_skin dd.body");
     // $(".modal_layer_wrap.card .ai_card_skin").prepend("<dt></dt>");
+    $(".modal_layer_wrap.card .layer_contents .ai_card.design .card_list > label > input[type=checkbox]:unchecked").parent().remove();
     $(".modal_layer_wrap.card .layer_contents .ai_card.design dd.footer").remove();
-    $(".modal_layer_wrap.card .ai_card_skin > input[type=radio]").remove();
+    $(".modal_layer_wrap.card .ai_card_skin > dd.body > input[type=radio]").remove();
     $(".modal_layer_wrap.card .form_info .skin").remove();
-    $(".modal_layer_wrap.card .ai_card_skin dd.body > label").remove();
-
-    $(".layer_box a.close_layer,.layer_bg").click(function(){
+    $(".modal_layer_wrap.card .ai_card_skin > dd.body > label").remove();
+    $(".layer_bg").click(function(){
         $(".modal_layer_wrap.card").removeClass("show")
         $(".modal_layer_wrap.card .layer_contents .ai_card_skin").remove();
     });
