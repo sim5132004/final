@@ -190,7 +190,7 @@
 
                                             var placeId= 1;
                                             /* 지도 관련 스크립트*/
-                                            var imageSrc = "images/marker_spot(3).png";
+                                            var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png";
                                             var imageSize = new kakao.maps.Size(24, 35);
                                             var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
@@ -232,7 +232,7 @@
 
                                                     kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
                                                     kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-                                                    kakao.maps.event.addListener(marker, 'click', makeClickListener(positions[i].index));
+                                                    kakao.maps.event.addListener(marker, 'click', makeClickListener(a+1));
                                                 }
 
                                             }
@@ -256,6 +256,27 @@
                                                     window.location.href = "festival/" + index;
                                                 };
                                             }
+                                            // function makeClickListener(a) {
+                                            //     return function () {
+                                            //         var targetClass = "item_" + a; // 대상 클래스 이름 설정
+                                            //         console.log(targetClass);
+                                            //
+                                            //         // 성보님이 만든 ui_basic2.js 파일의 j쿼리문을 그대로 사용
+                                            //         // 마커를 클릭하면 아래 ".place_info_layer." + targetClass 이 페이지가 클릭됐을때 작동하는 함수를 만들고
+                                            //         $(".place_info_layer." + targetClass).click(function() {
+                                            //             $(".modal_layer_wrap.detail").addClass("show");
+                                            //             $(".layer_contents." + targetClass).clone().appendTo(".modal_layer_wrap.detail .layer_box");
+                                            //
+                                            //             $(".modal_layer_wrap.detail .layer_box a.close_layer, .layer_bg").click(function() {
+                                            //                 $(".modal_layer_wrap.detail").removeClass("show");
+                                            //                 $(".modal_layer_wrap.detail .layer_contents." + targetClass).remove();
+                                            //             });
+                                            //         });
+                                            //         // 여기서 ".place_info_layer." + targetClass 페이지를 클릭하는 효과
+                                            //         $(".place_info_layer." + targetClass).click();
+                                            //         console.log(targetClass);
+                                            //     };
+                                            // }
                                         </script>
                                     </div>
                                 </div>
@@ -340,6 +361,7 @@
     <!-- ####### 04. FOOTER START ####### -->
     <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
     <!-- ####### 04. FOOTER END ####### -->
+</div>a
 </div>
 </body>
 </html>
