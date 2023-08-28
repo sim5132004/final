@@ -38,7 +38,7 @@
         <div class="layer_box">
             <a href="#" class="close_layer"><i class="fa-solid fa-xmark"></i></a>
             <div class="layer_contents" id="x3">
-                <h1>작성하신 내용을 확인하신 후, 초대장 이미지를 다운로드하세요.
+                <h1>작성하신 내용을 확인하신 후, 모임카드 이미지를 다운로드하세요.
                     <a href="#" class="download" id="download"><i class="fa-solid fa-download"></i> 초대장(JPG) 다운로드</a>
                     <button th:if="${login!= null}"  type="submit"> 저장하기</button>
                 </h1>
@@ -126,7 +126,7 @@
                                 </div>
                             </dt>
                             <div class="card_map_wrap">
-                                <div id="map" style="width: 800px; height: 300px;">
+                                <div id="map">
                                     <script th:inline="javascript">
                                         var maps = /*[[${category2}]]*/ [];
                                         console.log(maps);
@@ -255,12 +255,12 @@
                                             <span class="category"><b class="depth_1"  th:text="${place.getCategory()}">음식</b><b class="depth_2"  th:text="${place.getSmallCategory()}">한식</b></span>
                                         </li>
                                         <li class="thumb">
-                                            <img th:src="${place.getImageAdd1()}" alt="돈비어천가">
-
+                                            <img th:src="${place.getImageAdd1()}" th:alt="${place.getTitle()}">
                                         </li>
+                                        <li><a href="#" th:class="|place_info_layer item_${iterStat.count}|"><i class="fa-solid fa-magnifying-glass"></i> 상세정보</a></li>
                                         <li th:each="p:${place.viewList()}" th:if="p !=null"  th:text="${p}"></li>
-                                        <li class="tel" th:text="${place.getTel()}">032-930-1234 </li>
-                                        <a href="#" th:class="|place_info_layer item_${iterStat.count}|">상세정보</a>
+                                        <li class="tel" th:text="${place.getTel()}">032-930-1234</li>
+
                                         <!-- 업체 상세 정보 레이어 -->
                                         <!--                                            <script th:inline="javascript"> placeId = [[${place.getId}]]</script>-->
                                         <div th:class="|layer_contents item_${iterStat.count}|" th:insert="~{insert/place_info}"></div>
@@ -284,20 +284,9 @@
             <!-- #### 03-1.우측 본문 영역 시작 -->
             <div class="right_contents area">
                 <div class="page_title">
-                    <h1>초대장 디자인 설정<!-- ## 페이지 타이틀 ##  좌측 메뉴 .active 되어 있는 메뉴명 제이쿼리 클론하여 가져옴 --> </h1>
+                    <h1>카드 디자인 설정<!-- ## 페이지 타이틀 ##  좌측 메뉴 .active 되어 있는 메뉴명 제이쿼리 클론하여 가져옴 --> </h1>
                     <!-- ## 페이지 네비 경로 ## -->
                     <span class="page_path"><!-- 페이지 네비게이션 제이쿼리 액티브 메뉴 복사 --></span>
-                </div>
-                <div class="paging">
-                    <a href="#" class="btn_first"></a>
-                    <a href="#" class="btn_prev"></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#" class="btn_next"></a>
-                    <a href="#" class="btn_last"></a>
                 </div>
                 <div class="card_list_wrap">
                     <!-- 카드 디자인 스킨 #.01 시작 -->
