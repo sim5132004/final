@@ -77,27 +77,17 @@
                             }
                             activeCategoryLnb(category3)
 
-                            // 페이지를 이동하는 함수
-                            function redirectToPage(url) {
-                                window.location.href = url;
-                            }
-
-                            // 5초 후에 페이지를 이동
-                            setTimeout(function() {
-                                redirectToPage('/');
-                            }, 10000); // 5000 밀리초 = 5초
-
-                            // // 5초(2000ms)마다 페이지를 새로고침하는 함수
-                            // function refreshPage() {
-                            //     location.reload(); // 페이지 새로고침
+                            // // 페이지를 이동하는 함수
+                            // function redirectToPage(url) {
+                            //     window.location.href = url;
                             // }
                             //
-                            // // 5초마다 refreshPage 함수 실행
-                            // setInterval(refreshPage, 10000);
-                            //
-                            // $( document ).ready( function() {
-                            //     $( '.main_contents_center' ).fadeIn( 1500 );
-                            // } );
+                            // // 5초 후에 페이지를 이동
+                            // setTimeout(function() {
+                            //     redirectToPage('/');
+                            // }, 10000); // 5000 밀리초 = 5초
+
+
 
 
                             var cloudTitle = [[${cloudTitle}]];
@@ -110,6 +100,13 @@
                         <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-core.min.js"></script>
                         <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-tag-cloud.min.js"></script>
                         <script src="../js/word_cloud.js"></script>
+                        <form id="hashTagForm" action="/place" method="post">
+                            <input type="hidden" id="hashTag" name="hashTag">
+                        </form>
+
+
+
+
                         <!-- // 메인 워드 클라우드 -->
                 <dl class="ai_card_skin a_type">
                     <dt class="header">INVITATION</dt>

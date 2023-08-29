@@ -57,8 +57,11 @@ anychart.onDocumentReady(function () {
     chart.listen("pointClick", function(e){ // 이벤트 리스너 추가, 페이지 링크 연결
         // var url = "https://namu.wiki/w/%EB%82%98%EB%AC%B4%EC%9C%84%ED%82%A4:%EB%8C%80%EB%AC%B8" + e.point.get("x");
         // window.open(url, "_self");
-        var url = "https://namu.wiki/w/" + encodeURIComponent(e.point.get("x"));
-        window.open(url, "_self");
+        document.getElementById('hashTag').value = e.point.get("x");
+        document.getElementById('hashTagForm').submit();
+
+        // var url = "https://namu.wiki/w/" + encodeURIComponent(e.point.get("x"));
+        // window.open(url, "_self");
     });
     chart.animation(true);
     chart.container("word_cloud");  // set the container id, 차트를 그릴 HTML 요소의 ID를 지정합니다.

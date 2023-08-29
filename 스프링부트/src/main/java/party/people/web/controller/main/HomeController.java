@@ -134,6 +134,7 @@ public class HomeController {
 //                }
 //                /* place객체가 담긴 midForm리스트를 thymeleaf에 전달한다 */
 //                slideDomain.setMainPlace(midForm);
+//                model.addAttribute("placeList",midForm);
 //                break;
 //            }
 //            keywords = keywordsInterface.findByCategory(category);
@@ -250,7 +251,16 @@ public class HomeController {
 
     @PostMapping("/")
     public String postHome(HttpServletRequest request, Model model,
-                            @RequestParam("categorySub") String categorySub){
+//                            @RequestParam(value = "hashTag", required = false) String hashTag,
+                            @RequestParam(value = "categorySub", required = false) String categorySub){
+
+//        HttpSession session = request.getSession();
+//        log.info("너의집에서 보낸 녀석 "+hashTag);
+
+//        if(hashTag!=null){
+//            session.setAttribute("해시",hashTag);
+//            return "place/place_thymeleaf";
+//        }
 
         /* 포스트매핑시 로그인 유지 */
         loginCheck(request,model);
@@ -308,8 +318,6 @@ public class HomeController {
         log.info("클라우드 보낼 밸류 :"+values);
         model.addAttribute("cloudTitle",title);
         model.addAttribute("cloudValues",values);
-
-
 
 
 

@@ -1,16 +1,16 @@
 // 참고 사이트 : https://docs.anychart.com/Basic_Charts/Tag_Cloud
 
-var cloudX = cloudTitle;
-var cloudValue = cloudValues;
-console.log("x값"+cloudX);
-console.log("밸류값"+cloudValue);
+var cloudX3 = cloudTitle3;
+var cloudValue3 = cloudValues3;
+console.log("x값"+cloudX3);
+console.log("밸류값"+cloudValue3);
 
 anychart.onDocumentReady(function () {
     var data = []
     for (var i = 0; i < cloudX.length; i++) {
         var item = {
-            x: cloudX[i],
-            value: cloudValue[i],
+            x: cloudX3[i],
+            value: cloudValue3[i],
             link: category3
         };
         data.push(item);
