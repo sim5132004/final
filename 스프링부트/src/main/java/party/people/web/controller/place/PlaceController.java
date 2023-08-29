@@ -44,6 +44,10 @@ public class PlaceController {
                               Model model) {
         /* 기존 세션 정보 로딩 */
         HttpSession session = request.getSession(false);
+        log.info("해시태그를 제대로 받는가 "+hashTag);
+
+        /* side lnb출력용 */
+        model.addAttribute("category", "place");
 
         loginCheck(request, model);
 
@@ -71,41 +75,41 @@ public class PlaceController {
                 return "redirect:/invite";
             }
             log.info("선택된 녀석을 보자" + selected);
+//        }
+
+
+
+
+            String prevCategory = (String) session.getAttribute("카테");
+            // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
+            if (categorySubject != null && !categorySubject.equals(prevCategory)) {
+                session.setAttribute("카테", categorySubject);
+            }
+
+            // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
+            if (categorySubject == null && prevCategory != null) {
+                categorySubject = prevCategory;
+            }
+            log.info("카테고리 서브젝트 " + categorySubject);
+
+            /* 검색창 카테고리 출력용 */
+            model.addAttribute("category2", categorySubject);
+
+            String prevAddrress = (String) session.getAttribute("주소");
+            // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
+            if (address != null && !address.equals(prevAddrress)) {
+                session.setAttribute("주소", address);
+            }
+
+            // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
+            if (address == null && prevAddrress != null) {
+                address = prevAddrress;
+            }
+            log.info("주소는 " + address);
+
+            /* 검색창 카테고리 출력용 */
+            model.addAttribute("category2", categorySubject);
         }
-
-        /* side lnb출력용 */
-        model.addAttribute("category", "place");
-
-
-        String prevCategory = (String) session.getAttribute("카테");
-        // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
-        if (categorySubject != null && !categorySubject.equals(prevCategory)) {
-            session.setAttribute("카테", categorySubject);
-        }
-
-        // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
-        if (categorySubject == null && prevCategory != null) {
-            categorySubject = prevCategory;
-        }
-        log.info("카테고리 서브젝트 "+categorySubject);
-
-        /* 검색창 카테고리 출력용 */
-        model.addAttribute("category2", categorySubject);
-
-        String prevAddrress = (String) session.getAttribute("주소");
-        // 새로운 카테고리 값이 전달되면 세션에 저장합니다.
-        if (address != null && !address.equals(prevAddrress)) {
-            session.setAttribute("주소", address);
-        }
-
-        // 카테고리 값이 없으면 세션에 저장된 이전 카테고리 값을 사용합니다.
-        if (address == null && prevAddrress != null) {
-            address = prevAddrress;
-        }
-        log.info("주소는 "+address);
-
-        /* 검색창 카테고리 출력용 */
-        model.addAttribute("category2", categorySubject);
 
 
 
@@ -142,20 +146,24 @@ public class PlaceController {
                 input.setAddress("");
                 input.setCategory("");
                 input.setKeyword(hashTag);
+                searchTextList.add(hashTag);
                 model.addAttribute("searchText", hashTag);
             } else input.setKeyword("");
         }
 
 
-        String searchText = new String();
-        int count = 0;
-        for (String oneText : searchTextList ){
-            if (count==0)
-                searchText = searchText + oneText;
-            else searchText = searchText +" / "+oneText;
-            count++;
+        /* 세션으로 카테고리, 지역 등 중복 체킹 돼었을때 검색어 출력 로직 */
+        if (searchTextList!=null) {
+            String searchText = new String();
+            int count = 0;
+            for (String oneText : searchTextList) {
+                if (count == 0)
+                    searchText = searchText + oneText;
+                else searchText = searchText + " / " + oneText;
+                count++;
+            }
+            model.addAttribute("searchText", searchText);
         }
-        model.addAttribute("searchText",searchText);
 
         /* 이를 searchinput DB Table에 집어넣는다 */
         searchInputInterface.save(input);

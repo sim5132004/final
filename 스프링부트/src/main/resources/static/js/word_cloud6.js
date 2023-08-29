@@ -1,16 +1,16 @@
 // 참고 사이트 : https://docs.anychart.com/Basic_Charts/Tag_Cloud
 
-var cloudX1 = cloudTitle1;
-var cloudValue1 = cloudValues1;
-console.log("x값"+cloudX1);
-console.log("밸류값"+cloudValue1);
+var cloudX5 = cloudTitle5;
+var cloudValue5 = cloudValues5;
+console.log("x값"+cloudX5);
+console.log("밸류값"+cloudValue5);
 
 anychart.onDocumentReady(function () {
     var data = []
     for (var i = 0; i < cloudX.length; i++) {
         var item = {
-            x: cloudX1[i],
-            value: cloudValue1[i],
+            x: cloudX5[i],
+            value: cloudValue5[i],
             link: category3
         };
         data.push(item);
@@ -61,7 +61,7 @@ anychart.onDocumentReady(function () {
         window.open(url, "_self");
     });
     chart.animation(true);
-    chart.container("word_cloud2");  // set the container id, 차트를 그릴 HTML 요소의 ID를 지정합니다.
+    chart.container("word_cloud6");  // set the container id, 차트를 그릴 HTML 요소의 ID를 지정합니다.
     chart.draw(); // initiate drawing the chart, 위의 설정들을 기반으로 차트를 그립니다.
 
     // configure the visual settings of the chart
