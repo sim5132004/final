@@ -17,6 +17,17 @@
     <!--구글 차트 관련 스크립트-->
     <script src="//kit.fontawesome.com/56b5cc4bd2.js" crossorigin="anonymous"></script><!-- 폰트어썸(아이콘 폰트) 사용 인증된 링크 -->
     <script src="../js/jquery-ui-1.10.4.custom.min.js"></script>
+    <style>
+        .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}
+        .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
+        .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+        .number {font-weight:bold;color:#ee6152;}
+        .dotOverlay:after {content:'';position:absolute;margin-left:-6px;left:50%;bottom:-8px;width:11px;height:8px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')}
+        .distanceInfo {position:relative;top:5px;left:5px;list-style:none;margin:0;}
+        .distanceInfo .label {display:inline-block;width:50px;}
+        .distanceInfo:after {content:none;}
+    </style>
+
 </head>
 <body>
 <div class="container invite analisys">
@@ -70,6 +81,52 @@
                     var newCenter = new kakao.maps.LatLng(center.getLat(), center.getLng() + (offsetX / 1000)); // 경도에 offset을 더해 새로운 경도 계산
 
                     map.setCenter(newCenter);
+
+                    // var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png";
+                    var imageSrc = "images/marker_spot(0).png";
+                    var imageSize = new kakao.maps.Size(24, 35);
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                    var latlnglist = [];
+                    latlnglist.push(new kakao.maps.LatLng(37.4895467, 126.723336));
+                    latlnglist.push(new kakao.maps.LatLng(37.4579693, 126.702328));
+                    latlnglist.push(new kakao.maps.LatLng(37.4416532, 126.699218));
+                    latlnglist.push(new kakao.maps.LatLng(37.4652058, 126.678901));
+                    latlnglist.push(new kakao.maps.LatLng(37.5382354, 126.722884));
+                    latlnglist.push(new kakao.maps.LatLng(37.4073304, 126.625736));
+                    latlnglist.push(new kakao.maps.LatLng(37.5062705, 126.674574));
+
+                    var titlelist = [];
+                    titlelist.push('부평역');
+                    titlelist.push('인천시청역');
+                    titlelist.push('인천터미널역');
+                    titlelist.push('주안역');
+                    titlelist.push('경인교대역');
+                    titlelist.push('송도역');
+                    titlelist.push('석남역');
+
+                    for(var i = 0; i < titlelist.length; i++){
+                        var marker = new kakao.maps.Marker({
+                            map: map,   // 클러스터러 쓸때는 여기서 맵 지정해서 마커 찍으면 안됌
+                            position: latlnglist[i],
+                            title: titlelist[i],
+                            image: markerImage // 마커 이미지
+                        });
+                        var circleOverlay = new kakao.maps.CustomOverlay({
+                            content: '<span class="dot"></span>',
+                            position: latlnglist[i],
+                            zIndex: 1
+                        });
+                        circleOverlay.setMap(map);
+                        var distanceOverlay = new kakao.maps.CustomOverlay({
+                            content: '<div class="dotOverlay">'+ titlelist[i] +'<span class="number">',
+                            position: latlnglist[i],
+                            yAnchor: 1,
+                            zIndex: 2
+                        });
+                        distanceOverlay.setMap(map);
+                    }
+
                 </script>
 
             </div>
@@ -86,9 +143,9 @@
 
                 <dl class="ai_card">
                     <dt class="header">
-                        <h2>인천 지하철 시계열 분석</h2>
+                        <h2>인천시 주요 지하철 역 하차인원 시계열 분석</h2>
                         <p><!-- 연관 키워드 10개 -->
-                            인천 광역시 부평구를 대표하는 부평역 하차 유동인구 기준, 유동인구 혼잡도를 시계열 예측 분석
+                            인천 광역시 주요 역의 일별 하차 인원을 시계열 분석하여 혼잡도를 파악하고 예측하여 여행지 추천시 혼잡한 날이나 장소를 피하기 위함
                         </p>
                     </dt>
                     <dd class="content_data">
@@ -476,5 +533,6 @@
     <div class="footer_wrap" th:insert="~{insert/footer_wrap}">
         <!-- ####### 04. FOOTER END ####### -->
     </div>
+</div>
 </body>
 </html>
