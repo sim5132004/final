@@ -11,7 +11,7 @@ from PIL import Image
 # 지도 그리는 함수
 def go_map(map_list):
     # 디폴트 맵 생성, 첫번째 마커 좌표 기준으로 생성
-    m = folium.Map(zoom_start=9,
+    m = folium.Map(zoom_start=11,
                    location=[map_list[0][0], map_list[0][1]],
                    width=800,
                    height=550)
@@ -40,7 +40,7 @@ driver = webdriver.Chrome()
 
 while X1:
     try:
-        # time.sleep(1)
+        time.sleep(1)
 
         f = open('findTEXT.txt')
         q = f.read()
@@ -80,18 +80,6 @@ while X1:
 
     except Exception:
         print(f"{Exception} \n오류발생!")
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
