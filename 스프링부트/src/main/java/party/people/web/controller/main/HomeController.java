@@ -17,11 +17,10 @@ import party.people.repository.test.TestInterface;
 import party.people.service.keyword.KeywordsMerge;
 
 import static party.people.web.controller.category.CategoryController.loginCheck;
+import static party.people.service.keyword.keywordToMapLogic.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -51,6 +50,7 @@ public class HomeController {
         MainCard main = mainCardInterface.load(randomCategory.get(randomNumber));
         /* 어떤 카테고리인지 thymeleaf단에 전달 */
         model.addAttribute("category3", main.getCategory());
+
         /* 불러온 String 키워드를 /로 스플릿하여 리스트 생성 */
         List<String> three = Arrays.stream(main.getResult().split("/")).toList();
         for (String one : three) {
@@ -72,11 +72,37 @@ public class HomeController {
             break;
         }
 
+/*
+    2. 워드 클라우드용 리스트 전달
+*/
+        Keywords keywords = keywordsInterface.findByCategory(randomCategory.get(randomNumber));
+        String keyword=keywords.getKeywords();
+        Map<String, Integer> map = new HashMap<>();
+        keywordToMap(map, keyword);
+        List<Map.Entry<String, Integer>> entries = map.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+        List<String> title = new ArrayList<>();
+        List<Integer> values = new ArrayList<>();
+        int count = 0;
+        for (Map.Entry<String, Integer> entry : entries) {
+            title.add(entry.getKey());
+            values.add(entry.getValue());
+            count++;
+            if (count== entries.size()){
+                break;
+            }
+        }
+        log.info("클라우드 보낼 타이틀 :"+title);
+        log.info("클라우드 보낼 밸류 :"+values);
+        model.addAttribute("cloudTitle",title);
+        model.addAttribute("cloudValues",values);
+
 
 
 
 /*
-    2. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
+    3. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
 */
         /* 기존 유무 확인 위해 카테고리 갱신 */
         List<String> interestCheckbox = Arrays.asList("관광","자연","레저","쇼핑","음식","숙박","전시");
@@ -123,7 +149,7 @@ public class HomeController {
             }
         }
 /*
-    3. 로그인 비로그인 세션 관련 로직 수행
+    4. 로그인 비로그인 세션 관련 로직 수행
 */
         /* 세션 정보 가져오기 */
         /* create:false => 세션 정보가 있으면 기존 세션정보 로딩, 없으면 null 반환 */
@@ -190,6 +216,33 @@ public class HomeController {
             /* 메인에는 첫번째 리스트만 사용하기 때문에 브레이크 */
             break;
         }
+
+
+        /*
+    2. 워드 클라우드용 리스트 전달
+*/
+        Keywords keywords = keywordsInterface.findByCategory(categorySub);
+        String keyword=keywords.getKeywords();
+        Map<String, Integer> map = new HashMap<>();
+        keywordToMap(map, keyword);
+        List<Map.Entry<String, Integer>> entries = map.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toList());
+        List<String> title = new ArrayList<>();
+        List<Integer> values = new ArrayList<>();
+        int count = 0;
+        for (Map.Entry<String, Integer> entry : entries) {
+            title.add(entry.getKey());
+            values.add(entry.getValue());
+            count++;
+            if (count== entries.size()){
+                break;
+            }
+        }
+        log.info("클라우드 보낼 타이틀 :"+title);
+        log.info("클라우드 보낼 밸류 :"+values);
+        model.addAttribute("cloudTitle",title);
+        model.addAttribute("cloudValues",values);
 
 
         return "main";

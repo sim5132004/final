@@ -77,45 +77,49 @@
                             }
                             activeCategoryLnb(category3)
 
+                            var cloudTitle = [[${cloudTitle}]];
+                            var cloudValues = [[${cloudValues}]];
+
                         </script>
                         <!-- 메인 워드 클라우드 스크립트 -->
-                        <div class="word_cloud_wrap" id="word_cloud_1"></div>
+                        <div class="word_cloud_wrap" id="word_cloud"></div>
+                        <div id="category" data-category="/* [[${category}]] */"></div>
                         <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-core.min.js"></script>
                         <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-tag-cloud.min.js"></script>
                         <script src="../js/word_cloud.js"></script>
                         <!-- // 메인 워드 클라우드 -->
-                        <dl class="ai_card_skin d_type">
+                <dl class="ai_card_skin a_type">
                     <dt class="header">INVITATION</dt>
                     <dd class="body">
                         <dl class="ai_card design">
                             <dt class="header">
                                 <h2>
                                     <label th:if="${category3 eq '관광'}">
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 놀러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="|${category2.get(0).title}(으)로 놀러갈래?|" value="">
                                     </label>
                                     <label th:if="${category3 eq '전시'}">
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 보러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="|${category2.get(0).title}(으)로 보러갈래?|" value="">
                                     </label>
                                     <label th:if="${category3 eq '자연'}">
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 쉬러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="|${category2.get(0).title}(으)로 쉬러갈래?|" value="">
                                     </label>
                                     <label th:if="${category3 eq '레저'}">
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 놀러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="|${category2.get(0).title}(으)로 놀러갈래?|" value="">
                                     </label>
                                     <label th:if="${category3 eq '쇼핑'}">
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 쇼핑갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="|${category2.get(0).title}(으)로 쇼핑갈래?|" value="">
                                     </label>
                                     <label th:if="${category3 eq '음식'}">
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 먹으러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="|${category2.get(0).title}(으)로 먹으러갈래?|" value="">
                                     </label>
                                     <label th:if="${category3 eq '숙박'}">
-                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요." id="goddem" th:value="|${category2.get(0).title}(으)로 쉬러갈래?|" value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="|${category2.get(0).title}(으)로 쉬러갈래?|" value="">
                                     </label>
 
                                 </h2>
                                 <div class="form_info">
                                     <div class="date">
-                                        <label><i class="fa-solid fa-people-group"></i> <b>모임날짜</b><input type="date" id="todayDate" value="2023-08-21"></label>
+                                        <label><i class="fa-solid fa-people-group"></i> <b>모임날짜</b><input type="date" id="todayDate" value=""></label>
                                         <label><b>모임시간</b><input type="time" id="nowTime" value=""></label>
                                         <label><b>참가인원</b><input type="text" value="6명"> </label>
                                     </div>
@@ -136,7 +140,7 @@
                                         document.getElementById('nowTime').value = formattedTime;
                                     </script>
 
-                                    <div class="memo"><label><b>모임내용</b><textarea class="card_memo" name="" rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
+                                    <div class="memo"><label><b>모임내용</b><textarea class="card_memo" name="" rows="3" vlaue="" placeholder="AI추천 인천 명소를 확인 후, 나만의 초대장를 만들어보세요."></textarea></label></div>
                                 </div>
                             </dt>
                             <dd class="body">
@@ -190,11 +194,10 @@
 
                                             var placeId= 1;
                                             /* 지도 관련 스크립트*/
-                                            var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png";
+                                            //var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png";
+                                            var imageSrc = "images/marker_spot(0).png";
                                             var imageSize = new kakao.maps.Size(24, 35);
                                             var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-
 
                                             for(var a = 0; a < maps.length; a++) {
 
@@ -285,7 +288,7 @@
                                     <div class="card_list" th:each="place, iterStat : ${category2}">
                                         <ul class="summary_card">
                                             <li class="subject">
-                                                <b th:text="${place.getTitle()}">돈비어천가c</b>
+                                                <b th:text="${place.getTitle()}">돈비어천가</b>
                                             </li>
                                             <li class="thumb">
                                                 <img th:src="${place.getImageAdd1()}" alt="돈비어천가">
@@ -305,10 +308,10 @@
                     </dd>
                     <dd class="footer">Party People</dd>
                 </dl>
-                    </swiper-slide>
-                </swiper-container>
-            </div>
-        </div>
+            </swiper-slide>
+        </swiper-container>
+    </div>
+</div>
         <!-- 메인 swiper 갤러리 라이브러리 -->
         <link rel="stylesheet" type="text/css" href="../css/swiper.css" >
         <script src="../js/swiper.js"></script>

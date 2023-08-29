@@ -107,16 +107,33 @@
                             <dt class="header">
                                 <h2>
                                     <label for="title">
-                                        <b>제 목</b><input id='title' name="TITLE" type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="${keyList}"  value="동인천/차이나타운/짜파게티/회식">
+                                        <b>제 목</b><input id="title" name="title" type="text" placeholder="원하시는 모임명을 적어주세요."  th:value="${keyList}"  value="동인천/차이나타운/짜파게티/회식">
                                     </label>
                                 </h2>
                                 <div class="form_info">
                                     <div class="date">
-                                        <label for="taget_date"><b>모임날짜</b><input type="date" id="taget_date" name="datetype" value=""></label>
-                                        <label for="taget_time"><b>모임시간</b><input type="time" id="taget_time" name="TAGET_TIME" value=""></label>
-                                        <label for="meeting_participants"><b>참가인원</b><input type="text" id="meeting_participants" name="MEETING_PARTICIPANTS" value=""> </label>
+                                        <label for="targetDate"><b>모임날짜</b><input type="date" id="targetDate" name="targetDate" value=""></label>
+                                        <label for="targetTime"><b>모임시간</b><input type="time" id="targetTime" name="targetTime" value=""></label>
+                                        <label for="meetingParticipants"><b>참가인원</b><input type="text" id="meetingParticipants" name="meetingParticipants" value=""> </label>
                                     </div>
-                                    <div class="memo"><label><b>모임내용</b><textarea id="meetContent" name="meetContent" class="card_memo"  rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
+
+                                    <script>
+                                        const today = new Date();
+                                        const year = today.getFullYear();
+                                        const month = (today.getMonth() + 1).toString().padStart(2, '0');
+                                        const day = today.getDate().toString().padStart(2, '0');
+                                        const formattedDate = `${year}-${month}-${day}`;
+                                        document.getElementById('targetDate').value = formattedDate;
+
+                                        const now = new Date();
+                                        const hours = now.getHours().toString().padStart(2, '0');
+                                        const minutes = now.getMinutes().toString().padStart(2, '0');
+                                        const formattedTime = `${hours}:${minutes}`;
+
+                                        document.getElementById('targetTime').value = formattedTime;
+                                    </script>
+
+                                    <div class="memo"><label><b>모임내용</b><textarea id="meetingContent" name="meetingContent" class="card_memo"  rows="3" vlaue="" placeholder="모임에 대한 상세내용을 적어 주세요."></textarea></label></div>
 <!--                               <label for="meetContent"> -->
                                 </div>
                             </dt>
@@ -168,7 +185,8 @@
 
                                         var placeId= 1;
                                         /* 지도 관련 스크립트*/
-                                        var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png";
+                                        //var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/2018/pc/img/marker_spot.png";
+                                        var imageSrc = "images/marker_spot(0).png";
                                         var imageSize = new kakao.maps.Size(24, 35);
                                         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
@@ -239,7 +257,7 @@
                             <dd class="body">
                                 <!-- 대안 장소 선택_01: 업체 리스트 -->
                                 <div class="card_list" th:each="place, iterStat : ${category2}">
-                                    <label th:for="|placeId${iterStat.count}|"><input type="hidden" th:id="|placeId${iterStat.count}|" th:name="|PLACE_ID_${iterStat.count}|" th:value="${place.getId()}"></label>
+                                    <label th:for="|placeId${iterStat.count}|"><input type="hidden" th:id="|placeId${iterStat.count}|" th:name="|placeId${iterStat.count}|" th:value="${place.getId()}"></label>
                                     <ul class="summary_card">
                                         <li class="subject">
                                             <input type="checkbox" checked><b th:text="${place.getTitle()}">돈비어천가</b>

@@ -144,7 +144,7 @@ public class MyInfoController {
         /* 수정된 객체 정보를 세션에 재설정 */
         loginInfo.setAttribute("로그인",updateCheck);
 
-        return "redirect:/client/myPage";
+        return "redirect:/";
     }
 
 }

@@ -19,6 +19,13 @@
         from totalkeyword
     </select>
 
+    <!-- 카테고리로 검색 -->
+    <select id="findByCategory" resultType="keywords">
+        select *
+        from totalkeyword
+        where category = #{category}
+    </select>
+
 
 
     <!-- 내 정보 수정 -->

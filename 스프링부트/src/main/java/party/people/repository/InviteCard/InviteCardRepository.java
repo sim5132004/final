@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import party.people.domain.InviteCard;
 import party.people.domain.Keywords;
+import party.people.domain.Page;
 import party.people.repository.keywords.KeywordsInterface;
 import party.people.repository.keywords.KeywordsMapper;
 
@@ -28,5 +29,10 @@ public class InviteCardRepository implements InviteCardInterface {
     @Override
     public List<InviteCard> loadById(String clientId) {
         return inviteCardMapper.loadById(clientId);
+    }
+
+    @Override
+    public List<InviteCard> loadByIdPaging(Page page, String clientId) {
+        return inviteCardMapper.loadByIdPaging(page, clientId);
     }
 }

@@ -1,12 +1,15 @@
 // 참고 사이트 : https://docs.anychart.com/Basic_Charts/Tag_Cloud
 anychart.onDocumentReady(function () {
-    var category2 = /*[[${category2}]]*/ {};
-    console.log("확인"+category2);
+    var category_result =[[${category2}]];
+    console.log("확인"+category_reuslt);
 
-    var keyword = category2.keyword.split(',');
+    var keyword = category_result.keyword.split(',');
+    console.log("월에얼마버니"+category_result.keyword)
     var keywordData = [];
+    console.log("연봉200만원인데 많이버는건가요?"+keywordData)
     for(var i=0; i< keyword.length; i++){
         var wordAndValue = keyword[i].split('/');
+        console.log("죽이고싶은워드클라우드"+wordAndValue)
         var word = wordAndValue[0];
         var value = parseInt(wordAndValue[1]);
         keywordData.push({x: word, value: value})
@@ -54,11 +57,8 @@ anychart.onDocumentReady(function () {
     chart.tooltip().format("{%yPercentOfTotal}% ({%value})\n\n{%category}");
 
     chart.listen("pointClick", function(e){ // 이벤트 리스너 추가, 페이지 링크 연결
-        // var url = "//en.wiktionary.org/wiki/" + e.point.get("x");
-        // var url = "//https://namu.wiki/w/" + e.point.get("x");
-        // window.open(url, "_self");
-        var url = "https://namu.wiki/w/" + encodeURIComponent(e.point.get("x"));
-        window.open(url, "_blank");
+        var url = "//en.wiktionary.org/wiki/" + e.point.get("x");
+        window.open(url, "_self");
     });
     chart.animation(true);
     chart.container("word_cloud_1");  // set the container id, 차트를 그릴 HTML 요소의 ID를 지정합니다.

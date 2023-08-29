@@ -6,11 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import party.people.domain.Place;
-import party.people.repository.place.PlaceInterface;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static party.people.web.controller.category.CategoryController.loginCheck;
 
@@ -18,12 +13,15 @@ import static party.people.web.controller.category.CategoryController.loginCheck
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class analcontroller {
+public class AnalysisController {
 
     @GetMapping("bup")
     public String bup(HttpServletRequest request, Model model){
         /* side lnb 출력용 */
         model.addAttribute("category","analysis");
+
+        /* side의 active용 전환 */
+        model.addAttribute("lnbInfo","부평역");
 
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
@@ -36,6 +34,9 @@ public class analcontroller {
         /* side lnb 출력용 */
         model.addAttribute("category","analysis");
 
+        /* side의 active용 전환 */
+        model.addAttribute("lnbInfo","시청역");
+
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
         loginCheck(request, model);
@@ -46,6 +47,9 @@ public class analcontroller {
     public String in_t(HttpServletRequest request, Model model){
         /* side lnb 출력용 */
         model.addAttribute("category","analysis");
+
+        /* side의 active용 전환 */
+        model.addAttribute("lnbInfo","터미널역");
 
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
@@ -58,6 +62,9 @@ public class analcontroller {
         /* side lnb 출력용 */
         model.addAttribute("category","analysis");
 
+        /* side의 active용 전환 */
+        model.addAttribute("lnbInfo","주안역");
+
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
         loginCheck(request, model);
@@ -68,6 +75,9 @@ public class analcontroller {
     public String k_in_univer(HttpServletRequest request, Model model){
         /* side lnb 출력용 */
         model.addAttribute("category","analysis");
+
+        /* side의 active용 전환 */
+        model.addAttribute("lnbInfo","교대역");
 
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
@@ -80,6 +90,9 @@ public class analcontroller {
         /* side lnb 출력용 */
         model.addAttribute("category","analysis");
 
+        /* side의 active용 전환 */
+        model.addAttribute("lnbInfo","공원역");
+
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */
         loginCheck(request, model);
@@ -90,6 +103,9 @@ public class analcontroller {
     public String sucknam(HttpServletRequest request, Model model){
         /* side lnb 출력용 */
         model.addAttribute("category","analysis");
+
+        /* side의 active용 전환 */
+        model.addAttribute("lnbInfo","석남역");
 
         /* 로그인 유무 체크 */
         /* 함수 정보는 함수 이름 컨트롤 클릭 */

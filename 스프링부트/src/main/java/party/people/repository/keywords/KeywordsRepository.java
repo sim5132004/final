@@ -30,4 +30,9 @@ public class KeywordsRepository implements KeywordsInterface {
     public void update(Keywords keywords) {
         keywordsMapper.update(keywords);
     }
+
+    @Override
+    public Keywords findByCategory(String category) {
+        return keywordsMapper.findByCategory(category);
+    }
 }

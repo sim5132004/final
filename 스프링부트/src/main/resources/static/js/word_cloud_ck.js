@@ -1,19 +1,8 @@
 // 참고 사이트 : https://docs.anychart.com/Basic_Charts/Tag_Cloud
 anychart.onDocumentReady(function () {
-    var category2 = /*[[${category2}]]*/ {};
-    console.log("확인"+category2);
-
-    var keyword = category2.keyword.split(',');
-    var keywordData = [];
-    for(var i=0; i< keyword.length; i++){
-        var wordAndValue = keyword[i].split('/');
-        var word = wordAndValue[0];
-        var value = parseInt(wordAndValue[1]);
-        keywordData.push({x: word, value: value})
-    }
 
     var data = [
-        {x: keywordData[0].x, value: keywordData[0].value, link: keywordData[0].x},
+        {x: "어휴", value: 80, category: "관광"},
         {x: "맛집", value: 56, link: "관광"},
         {x: "lists", value: 44, category: "전시"},
         {x: "meaning", value: 40, category: "전시"},
