@@ -129,6 +129,16 @@ public class CategoryController2_CK {
 
             /* 세션 정보가 없을 경우 랜덤생성된 리스트 타임리프로 전달 */
             } else {
+
+                int count = 0;
+                for (Place one : placeList2){
+                    String latitude = one.getLatitude().toString();
+                    String longitude = one.getLongitude().toString();
+                    String coord = latitude+" "+longitude;
+                    if (count == 0) makeText= makeText + coord;
+                    else makeText = makeText+"\n"+coord;
+                    count++;
+                }
                 model.addAttribute("category2", placeList2);
 
                 model.addAttribute("keyList", place12.keyWordTitle());
