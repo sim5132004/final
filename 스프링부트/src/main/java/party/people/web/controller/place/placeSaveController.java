@@ -135,10 +135,10 @@ public class placeSaveController {
 //
 //        return "redirect:/invite/invite_A";
 //    }
-    @GetMapping("saveCard")
-    public String inviteGet(){
-        return "invite/invite_A";
-    }
+//    @GetMapping("saveCard")
+//    public String inviteGet(){
+//        return "invite/invite_A";
+//    }
 
 
 
