@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-@Validated
 public class InviteCardDomain {
 
     private Long sequenceId;

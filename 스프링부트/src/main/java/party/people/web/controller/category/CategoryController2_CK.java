@@ -14,6 +14,10 @@ import party.people.domain.InviteCard;
 import party.people.domain.Place;
 import party.people.repository.InviteCard.InviteCardInterface;
 import party.people.repository.place.PlaceInterface;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,6 +80,12 @@ public class CategoryController2_CK {
         /* 플레이스 리스트 객체를 담을 전역(컨트롤러 한정) 리스트변수 생성 */
         List<Place>place2 = new ArrayList<>();
 
+        /* text파일 만들 빈 스트링 객체 */
+        String makeText = "";
+
+
+
+
         /* 세션 값이 있을 경우 이하 구문 실행 */
         if (test!=null) {
 
@@ -101,6 +111,16 @@ public class CategoryController2_CK {
                 }
                 Place pl = newImageAddPlace.get(0);
 
+                int count = 0;
+                for (Place one : newImageAddPlace){
+                    String latitude = one.getLatitude().toString();
+                    String longitude = one.getLongitude().toString();
+                    String coord = latitude+" "+longitude;
+                    if (count == 0) makeText= makeText + coord;
+                    else makeText = makeText+"\n"+coord;
+                    count++;
+                }
+
                 /* 해당 리스트를 타임리프단으로 전달 */
                 model.addAttribute("category2", newImageAddPlace);
                 /* 인바이트 제목내용 전달 */
@@ -117,6 +137,17 @@ public class CategoryController2_CK {
         }
         /* 세션 정보가 없을 경우 랜덤생성된 리스트 타임리프로 전달 */
         else{
+            int count = 0;
+            for (Place one : placeList2){
+                String latitude = one.getLatitude().toString();
+                String longitude = one.getLongitude().toString();
+                String coord = latitude+" "+longitude;
+                if (count == 0) makeText= makeText + coord;
+                else makeText = makeText+"\n"+coord;
+                count++;
+            }
+
+
             model.addAttribute("category2", placeList2);
             model.addAttribute("keyList",place12.keyWordTitle());
             log.info("CategoryController2_CK] place12 = " + place12.getTitle());
@@ -129,22 +160,18 @@ public class CategoryController2_CK {
             }
         }
 
-//
-//        InviteCard inviteCard=new InviteCard();
-//        inviteCard.setCARD_SKIN("dd");
-//        inviteCard.setCLIENT_ID(1);
-//        inviteCard.setPLACE_ID_1(1);
-//        inviteCard.setPLACE_ID_2(1);
-//        inviteCard.setPLACE_ID_3(1);
-//        inviteCard.setTITLE("hihi");
-//        inviteCard.setTAGET_DATE(new Date(20220809));
-//        inviteCard.setTAGET_TIME("7시");
-//
-//        inviteCard.se
-//        System.out.println(inviteCard.getCLIENT_ID());
-//        inviteCardInterface.saveCard(inviteCard);
-//        System.out.println("됐나?");
 
+        String content = "This is the content of the text file.";
+        String fileName = "findTEXT.txt";
+        System.out.println(makeText);
+
+        try {
+            Path filePath = Paths.get(fileName);
+            Files.write(filePath, makeText.getBytes());
+            System.out.println("Text file created successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
 

@@ -33,6 +33,7 @@ public class HomeController {
     private final MainCardInterface mainCardInterface;
     private final KeywordsMerge keywordsMerge;
 
+    String MAIN = "main";
 
     /* home */
     @GetMapping("/")
@@ -93,16 +94,80 @@ public class HomeController {
                 break;
             }
         }
-        log.info("클라우드 보낼 타이틀 :"+title);
-        log.info("클라우드 보낼 밸류 :"+values);
+//        log.info("클라우드 보낼 타이틀 :"+title);
+//        log.info("클라우드 보낼 밸류 :"+values);
         model.addAttribute("cloudTitle",title);
         model.addAttribute("cloudValues",values);
+
+//
+//        /*
+//    3. 슬라이드용
+//*/
+//
+//        /* 슬라이드 생성용 리스트 생성 */
+//        List<MainCardDomain> slideList = new ArrayList<>();
+//        /* 카테고리별로 슬라이드 돌릴 거기 때문에 카테고리별 리스트 생성 */
+//        for (String category : randomCategory) {
+//            /* 메인 슬라이드 도메인용 객체 생성 정보는 도메인에서 확인 */
+//            MainCardDomain slideDomain = new MainCardDomain();
+//            slideDomain.setCategory(category);
+//
+//            main = mainCardInterface.load(category);
+//            /* 어떤 카테고리인지 thymeleaf단에 전달 */
+//            model.addAttribute("category3", main.getCategory());
+//
+//            /* 불러온 String 키워드를 /로 스플릿하여 리스트 생성 */
+//            three = Arrays.stream(main.getResult().split("/")).toList();
+//            for (String one : three) {
+//                /* ,로 스플릿해 나누면 해당 finalList의 값은 ['가','나','다']가 된다 */
+//                List<String> finalList = Arrays.stream(one.split(",")).toList();
+//                /* 이 가,나,다 의 정보를 DB에서 찾아 PLACE객체를 담을 예정이므로 새 Place제네릭을 가진 리스트를 생성 */
+//                List<Place> midForm = new ArrayList<>();
+//
+//                /* 위의 ['가','나','다']를 하나씩 불러온다 */
+//                /* 가,나,다로 설명했지만 각각은 돈비어천가, 부평시장 등 상호, 장소명이다. */
+//                for (String finalOne : finalList) {
+//                    /* findByTitle은 이름으로 List<Place>를 호출하기때문에 get(0)으로 첫번째 값을 리턴 */
+//                    Place placeOne = placeInterface.findByTitle(finalOne).get(0);
+//                    /* '가'로 리턴된 Place객체를 midForm에 담는다 이를 3번 반복 */
+//                    midForm.add(placeOne);
+//                }
+//                /* place객체가 담긴 midForm리스트를 thymeleaf에 전달한다 */
+//                slideDomain.setMainPlace(midForm);
+//                break;
+//            }
+//            keywords = keywordsInterface.findByCategory(category);
+//            keyword=keywords.getKeywords();
+//            Map<String, Integer> slideMap = new HashMap<>();
+//            keywordToMap(slideMap, keyword);
+//            List<Map.Entry<String, Integer>> slideEntries = slideMap.entrySet().stream()
+//                    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+//                    .collect(Collectors.toList());
+//            List<String> slideTitle = new ArrayList<>();
+//            List<Integer> slideValues = new ArrayList<>();
+//            count = 0;
+//            for (Map.Entry<String, Integer> entry : slideEntries) {
+//                slideTitle.add(entry.getKey());
+//                slideValues.add(entry.getValue());
+//                count++;
+//                if (count== slideEntries.size()){
+//                    break;
+//                }
+//            }
+//            slideDomain.setCloudTitle(slideTitle);
+//            slideDomain.setCloudValues(slideValues);
+//            slideList.add(slideDomain);
+//        }
+//        model.addAttribute("slideList",slideList);
+//
+
+
 
 
 
 
 /*
-    3. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
+    4. 첫 페이지 호출 시 회원 및 플레이스의 키워드 리스트들을 새롭게 갱신
 */
         /* 기존 유무 확인 위해 카테고리 갱신 */
         List<String> interestCheckbox = Arrays.asList("관광","자연","레저","쇼핑","음식","숙박","전시");
@@ -149,7 +214,7 @@ public class HomeController {
             }
         }
 /*
-    4. 로그인 비로그인 세션 관련 로직 수행
+    5. 로그인 비로그인 세션 관련 로직 수행
 */
         /* 세션 정보 가져오기 */
         /* create:false => 세션 정보가 있으면 기존 세션정보 로딩, 없으면 null 반환 */
@@ -160,7 +225,7 @@ public class HomeController {
         /* 기존 세션 정보가 없으면 home으로 이동 */
         if (loginInfo==null){
             model.addAttribute("client",null);
-            return "main";
+            return MAIN;
         }
 
         /* 세션 정보 "로그인"으로 세션 정보를 호출해 Client loginClient 객체를 생성 */
@@ -170,7 +235,7 @@ public class HomeController {
         /* 해당 객체가 없다면 home으로 이동 */
         if (loginClient==null){
             model.addAttribute("client",null);
-            return "main";
+            return MAIN;
         }
         log.info("home] "+loginClient);
         /* 세션에 저장되어있는 로그인 정보를 thymeleaf단에 "client"이름으로 전달 */
@@ -180,7 +245,7 @@ public class HomeController {
         List<Test> test = testInterface.findAll();
 
         /* 세션 객체(로그인 정보)가 null이 아니라면 loginHome으로 이동 */
-        return "main";
+        return MAIN;
     }
 
     @PostMapping("/")
@@ -243,6 +308,9 @@ public class HomeController {
         log.info("클라우드 보낼 밸류 :"+values);
         model.addAttribute("cloudTitle",title);
         model.addAttribute("cloudValues",values);
+
+
+
 
 
         return "main";
