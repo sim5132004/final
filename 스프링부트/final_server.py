@@ -40,7 +40,7 @@ driver = webdriver.Chrome()
 
 while X1:
     try:
-        time.sleep(1)
+        time.sleep(10)
 
         f = open('findTEXT.txt')
         q = f.read()
