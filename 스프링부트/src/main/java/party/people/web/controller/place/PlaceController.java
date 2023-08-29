@@ -343,7 +343,7 @@ public class PlaceController {
 //                log.info("최종 검색 정렬 결과 "+updated);
 //                log.info("너는 누구니" + one.getTitle());
 
-//                placeInterface.updateKeyword(one.getTitle(), updated);
+                placeInterface.updateKeyword(one.getTitle(), updated);
 
             }
         }
